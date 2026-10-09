@@ -83,6 +83,12 @@ body.fa .hero h1{font-family:var(--font-fa);font-size:30px;letter-spacing:0}
   --fc-h:#e8ecf0; --fc-d:#a8b2be;
   --fc-chip-t:#c9d2da; --fc-chip-bg:rgba(90,100,112,.4); --fc-chip-line:#4a545e;
 }
+.fcard.yl{
+  --fc-a:#302a12; --fc-b:#262109; --fc-c:#1c1807; --fc-line:#4e451d;
+  --fc-spr-a:#8a7a2a; --fc-spr-b:#5e5418; --fc-spr-line:#b2a54c;
+  --fc-h:#f2ecce; --fc-d:#bfb88f;
+  --fc-chip-t:#d8d1a6; --fc-chip-bg:rgba(124,108,42,.35); --fc-chip-line:#5c5326;
+}
 .fcard .fspr img{width:96px;height:96px;image-rendering:pixelated}
 .fcard .finfo{flex:1;min-width:250px}
 .fcard .fkick{font-family:var(--font-px);font-size:8.5px;letter-spacing:2px;color:var(--ok);direction:ltr;display:inline-block}

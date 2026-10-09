@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pokédex — Yellow Version (Gen 1)</title>
+<meta name="description" content="Offline Pokédex in the Pokémon Yellow in-game style — all 151 Gen-1 Pokémon with Yellow's own sprites (Game Boy mono + colorized) and Yellow's authentic dex entries, cries, stats, matchups and evolutions. Bilingual EN/FA.">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="stylesheet" href="assets/css/yellow.css">
+</head>
+</head>
+<body>
+
+<div id="splash">
+  <div class="sp-inner">
+    <svg class="sp-ball" viewBox="0 0 100 100" aria-hidden="true">
+      <circle cx="50" cy="50" r="45" fill="#f8f8f0" stroke="#0b3d28" stroke-width="6"/>
+      <path d="M5,50 A45,45 0 0 1 95,50 Z" fill="#e5484d" stroke="#0b3d28" stroke-width="5"/>
+      <rect x="3" y="44" width="94" height="12" fill="#0b3d28"/>
+      <circle cx="50" cy="50" r="16" fill="#f8f8f0" stroke="#0b3d28" stroke-width="5"/>
+      <circle cx="50" cy="50" r="6.5" fill="#cfd8d3" stroke="#0b3d28" stroke-width="3"/>
+    </svg>
+    <div class="sp-title">POK&eacute;DEX</div>
+    <div class="sp-sub">GEN I &bull; YELLOW VERSION</div>
+    <div class="sp-load"><span></span><span></span><span></span></div>
+  </div>
+</div>
+
+<div id="shell">
+  <div id="screen">
+
+    <header id="topbar">
+      <div class="dexlogo"><span class="l1">POK&eacute;</span><span class="l2">DEX</span></div>
+      <div class="tt">
+        <div class="t1" data-i18n="brand_sub">GEN I &middot; RED/BLUE STYLE</div>
+        <div class="t2" data-i18n="brand_main">Kanto Pok&eacute;dex &mdash; 151 Pok&eacute;mon</div>
+      </div>
+      <div class="hspace"></div>
+      <nav id="tabs" aria-label="dex mode"></nav>
+      <div class="htools">
+        <span id="kbHint" data-i18n="kb_hint">&uarr;&darr; browse &middot; / search</span>
+        <button class="hbtn" id="langBtn" title="Change language">فارسی</button>
+        <a class="hbtn" id="homeBtn" data-i18n="home" href="index.html" style="text-decoration:none">HOME</a>
+      </div>
+    </header>
+
+    <main id="main">
+
+      <!-- ============ list pane ============ -->
+      <section id="listPane" aria-label="pokemon list">
+        <div id="searchRow">
+          <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search name or number...">
+          <button class="mbtn" id="sortBtn" title="Sort"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h13M4 12h9M4 17h5"/></svg></button>
+          <button class="mbtn" id="favBtn" title="Favorites only"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg></button>
+          <button class="mbtn" id="randBtn" title="Random"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1.6" fill="currentColor" stroke="none"/><circle cx="15.5" cy="8.5" r="1.6" fill="currentColor" stroke="none"/><circle cx="8.5" cy="15.5" r="1.6" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.6" fill="currentColor" stroke="none"/></svg></button>
+        </div>
+        <div id="typeRow"></div>
+        <div id="scrollUp"><svg viewBox="0 0 24 14" fill="currentColor"><path d="M12 1 23 13H1z"/></svg></div>
+        <ul id="list"></ul>
+        <div id="scrollDown"><svg viewBox="0 0 24 14" fill="currentColor"><path d="M12 13 1 1h22z"/></svg></div>
+        <div id="listMeta"><span id="countLabel"></span></div>
+      </section>
+
+      <!-- ============ sprite pane ============ -->
+      <section id="spritePane" aria-label="selected pokemon">
+        <div class="sprCard" id="sprCard">
+          <div id="sprBox" role="img"><img id="sprImg" alt=""></div>
+          <div id="sprNo">#0000</div>
+          <div id="sprName">---</div>
+          <div id="sprTypes"></div>
+          <div class="setRow" id="setRow" role="group" aria-label="sprite set">
+            <button class="setchip" data-set="y">Y</button>
+            <button class="setchip" data-set="yc">COLOR</button>
+          </div>
+          <div class="sprBtns">
+            <button class="sbtn" id="btnPal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="9" r="1.3" fill="currentColor" stroke="none"/><circle cx="14.5" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="9.5" cy="14.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="15" cy="14" r="1.3" fill="currentColor" stroke="none"/></svg><span data-i18n="pal_mark">Palette</span></button>
+            <button class="sbtn" id="btnCry"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span data-i18n="cry_mark">Cry</span></button>
+            <button class="sbtn" id="btnOwn"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M3.6 10.5h16.8" stroke="currentColor" stroke-width="2.4"/><circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" stroke-width="2.2"/></svg><span data-i18n="own_mark">Own</span></button>
+            <button class="sbtn" id="btnFav"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><span data-i18n="fav_mark">Fav</span></button>
+          </div>
+        </div>
+        <div class="cntBox">
+          <div class="cTitle" data-i18n="dex_status">DEX STATUS</div>
+          <div id="cntRows"></div>
+        </div>
+        <div class="htwt">
+          <div class="hw"><div class="k" data-i18n="ht">HT</div><div class="v" id="htVal">-</div></div>
+          <div class="hw"><div class="k" data-i18n="wt">WT</div><div class="v" id="wtVal">-</div></div>
+        </div>
+      </section>
+
+      <!-- ============ detail pane ============ -->
+      <section id="detailPane" aria-live="polite"></section>
+
+    </main>
+
+    <footer id="foot">
+      <button id="startBtn"><span class="pill" data-i18n="start">START</span><span data-i18n="menu">MENU</span></button>
+      <span data-i18n="foot_disclaimer">Fan-made, non-commercial project. Pok&eacute;mon &copy; Nintendo / Creatures Inc. / GAME FREAK inc.</span>
+      <span><span data-i18n="foot_offline">Runs 100% offline &middot; single HTML file</span> &middot; <a href="index.html" data-i18n="all_games">All games</a></span>
+    </footer>
+
+  </div>
+</div>
+
+<!-- START menu popup -->
+<div id="menuScrim" class="hidden"></div>
+<div id="menuPop" class="hidden">
+  <div class="m-head" data-i18n="menu_title">POK&eacute;DEX MENU</div>
+  <button class="m-item" data-act="search"><span class="mi">&#128269;</span><span data-i18n="m_search">Search</span></button>
+  <button class="m-item" data-act="random"><span class="mi">&#127922;</span><span data-i18n="m_random">Random Pok&eacute;mon</span></button>
+  <button class="m-item" data-act="cry"><span class="mi">&#128266;</span><span data-i18n="m_cry">Play cry</span></button>
+  <button class="m-item" data-act="set"><span class="mi">&#127918;</span><span data-i18n="m_set">Sprites: Yellow</span></button>
+  <button class="m-item" data-act="pal"><span class="mi">&#127912;</span><span data-i18n="m_pal">Palette: Game Boy</span></button>
+  <button class="m-item" data-act="fav"><span class="mi">&#9733;</span><span data-i18n="m_fav">Favorites only</span></button>
+  <button class="m-item" data-act="sort"><span class="mi">&#8645;</span><span data-i18n="m_sort">Sort: number</span></button>
+  <div class="m-sep"></div>
+  <button class="m-item" data-act="reset"><span class="mi">&#128465;</span><span data-i18n="m_reset">Reset seen / owned</span></button>
+  <button class="m-item" data-act="lang"><span class="mi">&#127760;</span><span data-i18n="m_lang">Language: English</span></button>
+  <button class="m-item" data-act="about"><span class="mi">&#8505;</span><span data-i18n="m_about">About / help</span></button>
+</div>
+
+<!-- about modal -->
+<div id="aboutWrap" class="hidden">
+  <div id="aboutBox">
+    <div class="a-head"><span data-i18n="about_title">ABOUT</span><button class="sbtn" id="aboutClose">&#10005;</button></div>
+    <div class="a-body">
+      <p data-i18n="about_p1">A fan-made, offline Pokédex covering all 151 Pokémon of Generation I, styled after the in-game Pokédex of Pokémon Yellow. Data, sprites, cries and fonts live in local files next to the page — everything runs without internet.</p>
+      <p data-i18n="about_p2"><span class="kbd">&uarr; &darr;</span> browse &nbsp; <span class="kbd">/</span> search &nbsp; <span class="kbd">C</span> cry &nbsp; <span class="kbd">P</span> palette &nbsp; <span class="kbd">R</span> random &nbsp; <span class="kbd">Esc</span> close</p>
+      <p data-i18n="about_p3">Mark Pokémon as <b>Seen</b> (automatic while browsing) and <b>Owned</b> (pokeball button) to fill your dex status, just like the game. The entry text flips pages like the original — click the text box. Every entry here is the authentic Yellow-version text — Yellow rewrote all 151 entries and gave several Pokémon redrawn sprites. The sprite chips switch between two authentic sprite sets: <b>Y</b> (Game Boy mono, DMG/Pocket palettes) and <b>COLOR</b> (the same Yellow sprites colorized).</p>
+      <div class="a-close"><button class="btn sec" id="aboutOk" data-i18n="ok">OK</button></div>
+    </div>
+  </div>
+</div>
+<script src="assets/js/yellow.js"></script>
+</body>
+</html>
