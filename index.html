@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pokédex Project — Classic Pokémon Dexes, Game by Game</title>
-<meta name="description" content="A growing collection of offline, in-game-style Pokédexes — one for each Pokémon game. Bilingual EN/FA. Currently available: Pokémon Emerald (Gen 3).">
+<meta name="description" content="A growing collection of offline, in-game-style Pokédexes — one for each Pokémon game (paired versions share one). Bilingual EN/FA. Currently available: Pokémon Emerald (Gen 3) and Pokémon Red/Blue (Gen 1).">
 <link rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAuElEQVR42mNgGOmAkViFSko6/0kx+N69K0SZzTRoQwDdx8dkOEgy2OrJD6JCZPCFAMznpPqY2BBBD4nBEwK08jmhkBjwEBh1ACOpcY+ev9EBqeYMeAiwkJp6r107iVedlpY5SSExeEKAUNySm9+HTggQG7fEAmLNGzq5AAZu3Hs5zEpC9NqQ2Lhbt2UTiniQjx9JcT9oakMWcjXCfDx80gCpaYFUgB73Q69fQGqIoJecQ6dfMOL6hgCiclNkpOzsfgAAAABJRU5ErkJggg==">
 <style>
 @font-face{font-family:'PS2P';src:url(data:font/woff2;base64,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) format('woff2');font-display:swap;}
@@ -73,30 +73,36 @@ body.fa .hero h1{font-family:var(--font-fa);font-size:30px;letter-spacing:0}
 .fact b{color:var(--gold)}
 
 /* ---------- featured ---------- */
-.featured{margin-top:38px}
+.featured{margin-top:38px;display:grid;gap:14px}
 .fcard{
   display:flex;gap:22px;align-items:center;flex-wrap:wrap;
-  background:linear-gradient(140deg,#1b2a1c,#142015 55%,#101a12);
-  border:1px solid #2c4a2e;border-radius:18px;padding:26px 28px;
+  background:linear-gradient(140deg,var(--fc-a,#1b2a1c),var(--fc-b,#142015) 55%,var(--fc-c,#101a12));
+  border:1px solid var(--fc-line,#2c4a2e);border-radius:18px;padding:26px 28px;
   box-shadow:0 18px 44px rgba(0,0,0,.35);
 }
 .fcard .fspr{
   width:120px;height:120px;flex:none;border-radius:14px;
-  background:
-    radial-gradient(130% 130% at 50% 0%, #27492a, #16301a 75%);
-  border:2px solid #3c6b3e;display:grid;place-items:center;
+  background:radial-gradient(130% 130% at 50% 0%, var(--fc-spr-a,#27492a), var(--fc-spr-b,#16301a) 75%);
+  border:2px solid var(--fc-spr-line,#3c6b3e);display:grid;place-items:center;
+}
+/* Red/Blue featured variant — Game Boy tones, restrained */
+.fcard.rb{
+  --fc-a:#2b3138; --fc-b:#21262c; --fc-c:#191d23; --fc-line:#414c58;
+  --fc-spr-a:#6a7a32; --fc-spr-b:#485421; --fc-spr-line:#8a9a50;
+  --fc-h:#e8ecf0; --fc-d:#a8b2be;
+  --fc-chip-t:#c9d2da; --fc-chip-bg:rgba(90,100,112,.4); --fc-chip-line:#4a545e;
 }
 .fcard .fspr img{width:96px;height:96px;image-rendering:pixelated}
 .fcard .finfo{flex:1;min-width:250px}
 .fcard .fkick{font-family:var(--font-px);font-size:8.5px;letter-spacing:2px;color:var(--ok);direction:ltr;display:inline-block}
 body.fa .fcard .fkick{font-family:var(--font-fa);font-size:12px;letter-spacing:0;direction:rtl}
-.fcard h2{font-family:var(--font-px);font-size:17px;letter-spacing:1px;color:#dff3e0;margin-top:10px;direction:ltr}
+.fcard h2{font-family:var(--font-px);font-size:17px;letter-spacing:1px;color:var(--fc-h,#dff3e0);margin-top:10px;direction:ltr}
 body.fa .fcard h2{font-family:var(--font-fa);font-size:21px;letter-spacing:0;direction:rtl;text-align:start}
-.fcard .fdesc{margin-top:9px;font-size:13px;line-height:2;color:#a9c4ab;max-width:560px}
+.fcard .fdesc{margin-top:9px;font-size:13px;line-height:2;color:var(--fc-d,#a9c4ab);max-width:560px}
 .fcard .fmeta{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px}
 .fcard .fm{
-  font-size:11px;font-weight:700;color:#bfe8cf;background:rgba(48,90,52,.5);
-  border:1px solid #3c6b3e;border-radius:8px;padding:5px 10px;
+  font-size:11px;font-weight:700;color:var(--fc-chip-t,#bfe8cf);background:var(--fc-chip-bg,rgba(48,90,52,.5));
+  border:1px solid var(--fc-chip-line,#3c6b3e);border-radius:8px;padding:5px 10px;
 }
 .playbtn{
   display:inline-flex;align-items:center;gap:10px;text-decoration:none;flex:none;
@@ -224,11 +230,26 @@ body.fa footer .pix{font-family:var(--font-fa);font-size:11px;letter-spacing:0}
         <div class="fmeta">
           <span class="fm" data-i18n="fm1">Emerald visual style</span>
           <span class="fm" data-i18n="fm2">Normal + Shiny sprites</span>
-          <span class="fm" data-i18n="fm3">Seen / Owned tracking</span>
-          <span class="fm" data-i18n="fm4">Keyboard friendly</span>
+          <span class="fm" data-i18n="fm3">Animated battle sprites</span>
+          <span class="fm" data-i18n="fm4">Seen / Owned tracking</span>
         </div>
       </div>
       <a class="playbtn" href="emerald.html" data-i18n="play">&#9654; OPEN DEX</a>
+    </div>
+    <div class="fcard rb">
+      <div class="fspr"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADgAAAA4CAYAAACohjseAAAFSElEQVR42u1aPbLyOBCUVJv7DEqJHHIGYjIyzmAyhy/jnYGMjJgzEDoi1Rl8Am9ADbTHI2kkXPttba2qqHr42Ug9PT+tkY35f/w7xvnWTOdbM5U+99daC2i2n8nHx2j/U9YlcGTlZjv/rMli6TM2tuBSFvAZWsj17o0xxoRnMH+KXRtb6Lcg22MrWpvAfgv0fGum0z7/G25Na5FhOLjwDG9gfuON33izhvtqXNZJDNT4em74jZ+5KgL9Bkwuuy4YbI/tRLFTmj21IDlQLZsIhLtnDOQC4GEXZhNrYi51X3gG4zd+wVwpm6f9aDUxFwXYbJup7/657MZBao1a6sYut4g169iaIFMxmVQyP7/G+E153NE1dEd0T3J9GhTnBJK7cTBhqi0lWELcEtzSqgii2TYTxQy3vPTsYRcW4DjgUiZLsrzj8TdcBtt3Zla3MMtxYHwyzJS5mJaA50CWlrAZg333AnvajzOQUtGOsSwZQQMyNl9tHiBDuJgrxkCSK3IQ/L6+e7m8FuT17lcHmcyiCBInopg67D6JgccfskIgqY7lalkMZG7ExImLZTYpM/KYoe8oDmJMchXCwRKLa5esrNj++TUztnIM+I1fLBRB8iQhsVrLYhLg9S7XIxrDZXgvRAJJLMYWRiA5mwh0uAw2x6IU16lnXC74+04GxK+RgVLW77sP0GZb12PReFFRT0bzYwjutE+LbwJK7s/HcBmsMe3Ud8H8/AZRUAQTJg17xhjjSJmUZCZecIkxTVm43v3baFR3a5jMGV6UahhL42O0MVc735r3npFn3tx2h34TQcYMs0aycciCJK00m1EsD5JHoLXHx2ippRFjUpNsmm0T3ZjjfC5HPSUGCShOgAoHrS65kvR/qV6WsBieQSw5LpcMfn4/iyDLnfajzQnlXHNK6rpRGVizJ+RycUPsUUz23We/hbKtNBHkWNZmyZyhnSZbEUiMUW7lFFDtjoOev979QrqhQUiQaOZzWotz4ZxbfKpkNNtmii2OYljqikvgqAbHdv8uRrsUI333cRkJpLbd6Dc+ayRpz0khguCqYpBPjt9xUj6BJttJ7PGzjJwCKhlFx2fkdu2xnYbLYElW4f7vejeiy7THdkI5x+M4BY4D47GZak5VnQ+GZ3hn0hfQ12JfBphPSLXzsAvG7OZK6HpPZ9fP9qu+TFhSHty6yBQqlJgb+o03dC8+zzNjignMrvx7qtSkGCw+XZLU/fgYLQeH6oL+5m542H0aWLzPg6pISjbaYziLbkS+zlkkdksPNMkDsIZSWufGSmXGVPLKAXRSEsFjaCnIsdmUGsNlWAhrMhZqTHRdSTCUtCFVLkod7pwUktxSuoe7Hmrb2O9rVIqmtW+l8wY6EsPkIyWEkrMDcnU8bpNCgkvAmFzTzu00D6Dsqt2ADpfB0hw4V0pUaJlUuygHyfuda7Xy2mM7jY+6A81Sz3Gph4k5qYvN3bpUKJT0W9DQq+0Hx8dopbO+byb7E8Pl4oaYlIp5TTv9fIt38Wp7n19teCV/54eXpa+CHHah2DC1yUYl1VK7bwQp9VLoPEI6KI29DcVZfAlzX5Xk1G4gvYsm1SnNno1LPi7UubSrrYFFABGkphhLQGNiAY/p8HrKkFqQxYGcA6l1I2mBBFTylFqQKoAks6S4lA4u+b2lkg7dNcVibB9aBBDB4UJzfZRvXptEl+XdMzQadQZKXHYBjm+fcBt1vr1enaQP/j+XIXPg8O1hXAfNg4bm19RlAo/FxserAYxnFan40mylNCUC943UTcfai9e+dtG1hbBmToqx1LVUHP4NarD7rFFYsCAAAAAASUVORK5CYII=" alt="Charizard" draggable="false"></div>
+      <div class="finfo">
+        <span class="fkick" data-i18n="featured2_kick">&#9679; AVAILABLE NOW</span>
+        <h2 data-i18n="featured2_title">POK&eacute;MON RED/BLUE &mdash; GEN 1 DEX</h2>
+        <div class="fdesc" data-i18n="featured2_desc">The in-game Pok&eacute;dex of Pok&eacute;mon Red and Blue: all 151 Kanto Pok&eacute;mon with the original Game Boy sprites in two palettes, page-flipping entries, authentic cries and the same structure as the Emerald dex.</div>
+        <div class="fmeta">
+          <span class="fm" data-i18n="fm5">Red/Blue visual style</span>
+          <span class="fm" data-i18n="fm6">Game Boy + Pocket palettes</span>
+          <span class="fm" data-i18n="fm7">Authentic cries</span>
+          <span class="fm" data-i18n="fm8">Same structure as Emerald</span>
+        </div>
+      </div>
+      <a class="playbtn" href="red-blue.html" data-i18n="play">&#9654; OPEN DEX</a>
     </div>
   </section>
 
@@ -237,7 +258,7 @@ body.fa footer .pix{font-family:var(--font-fa);font-size:11px;letter-spacing:0}
     <div class="sec-h">
       <span class="st" data-i18n="games_t">GAME CATALOG</span>
       <span class="ss" data-i18n="games_s">Every Pok&eacute;mon game gets its own dex &mdash; its own style, data and sprites.</span>
-      <span class="cnt" data-i18n="games_cnt">3 / 35 RELEASED</span>
+      <span class="cnt" data-i18n="games_cnt">2 / 20 RELEASED</span>
     </div>
     <div id="gens"></div>
   </section>
@@ -251,7 +272,7 @@ body.fa footer .pix{font-family:var(--font-fa);font-size:11px;letter-spacing:0}
       <p data-i18n="roadmap_p1">This project grows game by game. Each new Pok&eacute;dex is rebuilt to match its own game &mdash; the UI style of that era, the regional dex of that version, the sprites and entry texts of that release. Emerald is the first one; more will follow.</p>
       <div class="steps">
         <div class="step"><div class="n">STEP 1 &#10003;</div><div class="t" data-i18n="step1_t">Emerald (Gen 3)</div><div class="d" data-i18n="step1_d">The in-game Emerald dex for all 386 Pok&eacute;mon of Gens I-III &mdash; live now.</div></div>
-        <div class="step"><div class="n">STEP 2 &#10003;</div><div class="t" data-i18n="step2_t">Red &amp; Blue (Gen 1)</div><div class="d" data-i18n="step2_d">The in-game Red/Blue Pokédex for all 151 Gen-1 Pokémon, on a Game Boy &mdash; live now.</div></div>
+        <div class="step"><div class="n">STEP 2 &#10003;</div><div class="t" data-i18n="step2_t">Red &amp; Blue (Gen 1)</div><div class="d" data-i18n="step2_d">The in-game Red/Blue Pok&eacute;dex for all 151 Kanto Pok&eacute;mon &mdash; live now.</div></div>
         <div class="step"><div class="n">STEP 3</div><div class="t" data-i18n="step3_t">Next games</div><div class="d" data-i18n="step3_d">Yellow, Gen 2 and more &mdash; one dex per game, each faithful to its original look.</div></div>
       </div>
     </div>
@@ -267,60 +288,45 @@ body.fa footer .pix{font-family:var(--font-fa);font-size:11px;letter-spacing:0}
 
 <script>
 "use strict";
-/* ================= games catalog ================= */
+/* ================= games catalog — one item per game; complementary pairs share one ================= */
 const GAMES = [
   {gen:1, g:"GEN 1", region:{en:"Kanto",fa:"کانتو"}, items:[
-    {id:"red",    en:"Pokémon Red",      fa:"پوکمون قرمز",    c:["#e8534a","#9c2820"], href:"red-blue.html", active:true},
-    {id:"blue",   en:"Pokémon Blue",     fa:"پوکمون آبی",     c:["#4a78c8","#24407c"], href:"red-blue.html", active:true},
-    {id:"yellow", en:"Pokémon Yellow",   fa:"پوکمون زرد",     c:["#f0c030","#a8801a"]}
+    {id:"redblue", en:"Pokémon Red/Blue",   fa:"پوکمون قرمز و آبی",      c:["#c8433c","#3d6ab8"], href:"red-blue.html", active:true},
+    {id:"yellow",  en:"Pokémon Yellow",     fa:"پوکمون زرد",             c:["#f0c030","#a8801a"]}
   ]},
   {gen:2, g:"GEN 2", region:{en:"Johto",fa:"جوتو"}, items:[
-    {id:"gold",    en:"Pokémon Gold",    fa:"پوکمون طلایی",   c:["#d8a028","#8a5f10"]},
-    {id:"silver",  en:"Pokémon Silver",  fa:"پوکمون نقره‌ای", c:["#9aa5b8","#5a6474"]},
-    {id:"crystal", en:"Pokémon Crystal", fa:"پوکمون کریستال", c:["#7ec8d8","#3a7a8c"]}
+    {id:"goldsilver", en:"Pokémon Gold/Silver", fa:"پوکمون طلایی و نقره‌ای", c:["#d8a028","#8a94a8"]},
+    {id:"crystal",     en:"Pokémon Crystal",     fa:"پوکمون کریستال",         c:["#7ec8d8","#3a7a8c"]}
   ]},
   {gen:3, g:"GEN 3", region:{en:"Hoenn",fa:"هوئن"}, items:[
-    {id:"ruby",     en:"Pokémon Ruby",      fa:"پوکمون یاقوت",     c:["#d84048","#7c1a20"]},
-    {id:"sapphire", en:"Pokémon Sapphire",  fa:"پوکمون یاقوت کبود", c:["#3870c8","#1a3a70"]},
-    {id:"emerald",  en:"Pokémon Emerald",   fa:"پوکمون زمرد",      c:["#48a858","#1b632c"], href:"emerald.html", active:true},
-    {id:"firered",  en:"Pokémon FireRed",   fa:"پوکمون آتشین قرمز", c:["#e86a3a","#9c3818"]},
-    {id:"leafgreen",en:"Pokémon LeafGreen", fa:"پوکمون برگ سبز",    c:["#58b868","#23632c"]}
+    {id:"rubysapphire", en:"Pokémon Ruby/Sapphire", fa:"پوکمون یاقوت و یاقوت کبود", c:["#d84048","#3870c8"]},
+    {id:"emerald",       en:"Pokémon Emerald",        fa:"پوکمون زمرد",               c:["#48a858","#1b632c"], href:"emerald.html", active:true},
+    {id:"frlg",          en:"FireRed/LeafGreen",      fa:"آتشین قرمز و برگ سبز",      c:["#e86a3a","#58b868"]}
   ]},
   {gen:4, g:"GEN 4", region:{en:"Sinnoh",fa:"سینو"}, items:[
-    {id:"diamond",    en:"Pokémon Diamond",       fa:"پوکمون الماس",      c:["#68a8d8","#2a5a8c"]},
-    {id:"pearl",      en:"Pokémon Pearl",         fa:"پوکمون مروارید",    c:["#d890b0","#8c4a68"]},
-    {id:"platinum",   en:"Pokémon Platinum",      fa:"پوکمون پلاتین",     c:["#b8c0cc","#5a6470"]},
-    {id:"heartgold",  en:"Pokémon HeartGold",     fa:"قلب طلایی",         c:["#e8b040","#9c6a10"]},
-    {id:"soulsilver", en:"Pokémon SoulSilver",    fa:"روح نقره‌ای",       c:["#c0c8d8","#6a7488"]}
+    {id:"diamondpearl", en:"Pokémon Diamond/Pearl", fa:"پوکمون الماس و مروارید", c:["#68a8d8","#d890b0"]},
+    {id:"platinum",      en:"Pokémon Platinum",       fa:"پوکمون پلاتین",           c:["#b8c0cc","#5a6470"]},
+    {id:"hgss",          en:"HeartGold/SoulSilver",   fa:"قلب طلایی و روح نقره‌ای",  c:["#e8b040","#9aa5b8"]}
   ]},
   {gen:5, g:"GEN 5", region:{en:"Unova",fa:"یونوف"}, items:[
-    {id:"black",     en:"Pokémon Black",      fa:"پوکمون سیاه",      c:["#3a3f4a","#14161c"]},
-    {id:"white",     en:"Pokémon White",      fa:"پوکمون سفید",      c:["#e8e8ec","#b8b8c0"]},
-    {id:"black2",    en:"Pokémon Black 2",    fa:"پوکمون سیاه ۲",    c:["#2a2f3a","#101218"]},
-    {id:"white2",    en:"Pokémon White 2",    fa:"پوکمون سفید ۲",    c:["#d8dce4","#a0a4b0"]}
+    {id:"blackwhite",   en:"Pokémon Black/White",     fa:"پوکمون سیاه و سفید",   c:["#3a3f4a","#d8dce4"]},
+    {id:"black2white2", en:"Pokémon Black 2/White 2", fa:"پوکمون سیاه ۲ و سفید ۲", c:["#2a2f3a","#a0a4b0"]}
   ]},
   {gen:6, g:"GEN 6", region:{en:"Kalos",fa:"کالوس"}, items:[
-    {id:"x",          en:"Pokémon X",             fa:"پوکمون ایکس",       c:["#3858a8","#1a2a60"]},
-    {id:"y",          en:"Pokémon Y",             fa:"پوکمون وای",        c:["#c83848","#701a28"]},
-    {id:"omegaruby",  en:"Pokémon Omega Ruby",    fa:"امگا یاقوت",        c:["#c03038","#6a141c"]},
-    {id:"alphasapphire", en:"Pokémon Alpha Sapphire", fa:"آلفا یاقوت کبود", c:["#2860b8","#123060"]}
+    {id:"xy",   en:"Pokémon X/Y",                 fa:"پوکمون ایکس و وای",       c:["#3858a8","#c83848"]},
+    {id:"oras", en:"Omega Ruby/Alpha Sapphire",   fa:"امگا یاقوت و آلفا یاقوت کبود", c:["#c03038","#2860b8"]}
   ]},
   {gen:7, g:"GEN 7", region:{en:"Alola",fa:"آلولا"}, items:[
-    {id:"sun",        en:"Pokémon Sun",           fa:"پوکمون خورشید",     c:["#f09030","#a85a10"]},
-    {id:"moon",       en:"Pokémon Moon",          fa:"پوکمون ماه",        c:["#4868b0","#22345c"]},
-    {id:"ultrasun",   en:"Pokémon Ultra Sun",     fa:"فراخورشید",         c:["#f0a028","#9c5a08"]},
-    {id:"ultramoon",  en:"Pokémon Ultra Moon",    fa:"فراماه",            c:["#3858a0","#182c54"]}
+    {id:"sunmoon", en:"Pokémon Sun/Moon",       fa:"پوکمون خورشید و ماه", c:["#f09030","#4868b0"]},
+    {id:"usum",    en:"Ultra Sun/Ultra Moon",   fa:"فراخورشید و فراماه",   c:["#f0a028","#3858a0"]}
   ]},
   {gen:8, g:"GEN 8", region:{en:"Galar",fa:"گالار"}, items:[
-    {id:"sword",      en:"Pokémon Sword",         fa:"پوکمون شمشیر",      c:["#3898b8","#175a6c"]},
-    {id:"shield",     en:"Pokémon Shield",        fa:"پوکمون سپر",        c:["#c84858","#70202c"]},
-    {id:"bdsp",       en:"Brilliant Diamond",     fa:"الماس درخشان",      c:["#58a0d0","#1e4a78"]},
-    {id:"shiningp",   en:"Shining Pearl",         fa:"مروارید درخشان",    c:["#c890b8","#6e3f5e"]},
-    {id:"arceus",     en:"Legends: Arceus",       fa:"افسانه‌ها: آرسیوس", c:["#b0a890","#5e584a"]}
+    {id:"swordshield", en:"Pokémon Sword/Shield",           fa:"پوکمون شمشیر و سپر",        c:["#3898b8","#c84858"]},
+    {id:"bdsp",        en:"Brilliant Diamond/Shining Pearl", fa:"الماس درخشان و مروارید درخشان", c:["#58a0d0","#c890b8"]},
+    {id:"arceus",      en:"Legends: Arceus",                 fa:"افسانه‌ها: آرسیوس",          c:["#b0a890","#5e584a"]}
   ]},
   {gen:9, g:"GEN 9", region:{en:"Paldea",fa:"پالدیا"}, items:[
-    {id:"scarlet",    en:"Pokémon Scarlet",       fa:"پوکمون سرخ",        c:["#d84a3a","#7c1c14"]},
-    {id:"violet",     en:"Pokémon Violet",        fa:"پوکمون بنفش",       c:["#7850b8","#3a2464"]}
+    {id:"scarletviolet", en:"Pokémon Scarlet/Violet", fa:"پوکمون سرخ و بنفش", c:["#d84a3a","#7850b8"]}
   ]}
 ];
 
@@ -329,21 +335,25 @@ const I18N = {
 en:{
   brand:"POKéDEX PROJECT", brand_sub:"ONE DEX PER GAME",
   hero_title:'THE POKéDEX <span class="accent">PROJECT</span>',
-  hero_sub:"A growing collection of offline, in-game-style Pokédexes — one for each Pokémon game, with the look, data and sprites of its own era. Pick a game and start exploring.",
+  hero_sub:"A growing collection of offline, in-game-style Pokédexes — every Pokémon game gets its own dex, and complementary pairs like Red/Blue share one. Pick a game and start exploring.",
   fact1:"<b>386</b> Pokémon available", fact2:"<b>2</b> languages · EN / FA",
-  fact3:"<b>100%</b> offline · single file", fact4:"<b>35</b> games planned",
+  fact3:"<b>100%</b> offline · single file", fact4:"<b>20</b> games planned",
   featured_kick:"● AVAILABLE NOW",
   featured_title:"POKéMON EMERALD — GEN 3 DEX",
   featured_desc:"The full in-game Pokédex experience of Pokémon Emerald: all 386 Pokémon of Generations I-III with Emerald-style sprites — including the game's animated battle sprites — dex entries, stats, type matchups and evolutions, styled after the dex inside the game itself.",
-  fm1:"Emerald visual style", fm2:"Normal + Shiny sprites", fm3:"Seen / Owned tracking", fm4:"Keyboard friendly",
+  fm1:"Emerald visual style", fm2:"Normal + Shiny sprites", fm3:"Animated battle sprites", fm4:"Seen / Owned tracking",
+  featured2_kick:"● AVAILABLE NOW",
+  featured2_title:"POKéMON RED/BLUE — GEN 1 DEX",
+  featured2_desc:"The in-game Pokédex of Pokémon Red and Blue: all 151 Kanto Pokémon with the original Game Boy sprites in two palettes, page-flipping entries, authentic cries and the same structure as the Emerald dex.",
+  fm5:"Red/Blue visual style", fm6:"Game Boy + Pocket palettes", fm7:"Authentic cries", fm8:"Same structure as Emerald",
   play:"▶ OPEN DEX",
-  games_t:"GAME CATALOG", games_s:"Every Pokémon game gets its own dex — its own style, data and sprites.", games_cnt:"3 / 35 RELEASED",
+  games_t:"GAME CATALOG", games_s:"Every Pokémon game gets its own dex — complementary pairs like Red/Blue or Ruby/Sapphire share one item.", games_cnt:"2 / 20 RELEASED",
   gen_label:"GENERATION {n} · {r}",
   status_ok:"PLAY NOW", status_soon:"COMING SOON", meta_fmt:"{r} region",
   roadmap_t:"ROADMAP",
   roadmap_p1:"This project grows game by game. Each new Pokédex is rebuilt to match its own game — the UI style of that era, the regional dex of that version, the sprites and entry texts of that release. Emerald is the first one; more will follow.",
   step1_t:"Emerald (Gen 3)", step1_d:"The in-game Emerald dex for all 386 Pokémon of Gens I-III — live now.",
-  step2_t:"Red & Blue (Gen 1)", step2_d:"The in-game Red/Blue Pokédex for all 151 Gen-1 Pokémon, on a Game Boy — live now.",
+  step2_t:"Red & Blue (Gen 1)", step2_d:"The in-game Red/Blue Pokédex for all 151 Kanto Pokémon — live now.",
   step3_t:"Next games", step3_d:"Yellow, Gen 2 and more — one dex per game, each faithful to its original look.",
   foot1:"Fan-made, non-commercial project. Pokémon © Nintendo / Creatures Inc. / GAME FREAK inc.",
   foot2:"No game assets are redistributed; sprites are rendered from open data via PokeAPI. Pages run 100% offline.",
@@ -352,21 +362,25 @@ en:{
 fa:{
   brand:"پروژه پوکیدکس", brand_sub:"برای هر بازی یک پوکیدکس",
   hero_title:'پروژه <span class="accent">پوکیدکس</span>',
-  hero_sub:"مجموعه‌ای در حال رشد از پوکیدکس‌های آفلاین با ظاهر داخل بازی — برای هر بازی پوکمون، با استایل، داده‌ها و اسپرایت‌های همان دوران. یک بازی را انتخاب کنید و شروع کنید.",
+  hero_sub:"مجموعه‌ای در حال رشد از پوکیدکس‌های آفلاین با ظاهر داخل بازی — برای هر بازی پوکمون یک پوکیدکس، و نسخه‌های مکمل مثل قرمز/آبی یک آیتم مشترک دارند. یک بازی را انتخاب کنید و شروع کنید.",
   fact1:"<b>۳۸۶</b> پوکمون موجود", fact2:"<b>۲</b> زبان · فارسی/انگلیسی",
-  fact3:"<b>۱۰۰٪</b> آفلاین · تک‌فایل", fact4:"<b>۳۵</b> بازی در برنامه",
+  fact3:"<b>۱۰۰٪</b> آفلاین · تک‌فایل", fact4:"<b>۲۰</b> بازی در برنامه",
   featured_kick:"● هم‌اکنون موجود است",
   featured_title:"پوکمون زمرد — پوکیدکس نسل ۳",
   featured_desc:"تجربه کامل پوکیدکس داخل بازی Pokémon Emerald: هر ۳۸۶ پوکمون نسل‌های ۱ تا ۳ با اسپرایت‌های سبک زمرد — همراه با انیمیشن‌های نبردی خود بازی — توضیحات پوکیدکس، آمار، تناسب انواع و تکامل‌ها — دقیقاً با ظاهر پوکیدکس داخل خود بازی.",
-  fm1:"ظاهر سبک زمرد", fm2:"اسپرایت عادی + براق", fm3:"ثبت دیده‌شده / گرفته‌شده", fm4:"پیمایش با کیبورد",
+  fm1:"ظاهر سبک زمرد", fm2:"اسپرایت عادی + براق", fm3:"اسپرایت‌های متحرک نبرد", fm4:"ثبت دیده‌شده / گرفته‌شده",
+  featured2_kick:"● هم‌اکنون موجود است",
+  featured2_title:"پوکمون قرمز/آبی — پوکیدکس نسل ۱",
+  featured2_desc:"پوکیدکس داخل بازی‌های Pokémon Red و Blue: هر ۱۵۱ پوکمون کانتو با اسپرایت‌های اصلی گیم‌بوی در دو پالت، توضیحات صفحه‌صفحه مثل خود بازی، صدای اصلی پوکمون‌ها و همین ساختار پوکیدکس زمرد.",
+  fm5:"ظاهر سبک قرمز/آبی", fm6:"پالت گیم‌بوی + پاکت", fm7:"صدای اصلی پوکمون‌ها", fm8:"همان ساختار پوکیدکس زمرد",
   play:"▶ ورود به پوکیدکس",
-  games_t:"فهرست بازی‌ها", games_s:"برای هر بازی پوکمون یک پوکیدکس جداگانه با استایل، داده‌ها و اسپرایت‌های خودش ساخته می‌شود.", games_cnt:"۳ از ۳۵ منتشر شده",
+  games_t:"فهرست بازی‌ها", games_s:"برای هر بازی پوکمون یک پوکیدکس جداگانه ساخته می‌شود — نسخه‌های مکمل مثل قرمز/آبی یا یاقوت/یاقوت کبود یک آیتم مشترک دارند.", games_cnt:"۲ از ۲۰ منتشر شده",
   gen_label:"نسل {n} · {r}",
   status_ok:"هم‌اکنون بازی کنید", status_soon:"به‌زودی", meta_fmt:"منطقه {r}",
   roadmap_t:"نقشه راه",
   roadmap_p1:"این پروژه بازی‌به‌بازی بزرگ می‌شود. هر پوکیدکس جدید از نو و مطابق همان بازی ساخته می‌شود — استایل رابط کاربری همان دوران، پوکیدکس منطقه‌ای همان نسخه، و اسپرایت‌ها و متن‌های همان انتشار. زمرد اولین است؛ بقیه هم می‌آیند.",
   step1_t:"زمرد (نسل ۳)", step1_d:"پوکیدکس داخل بازی زمرد برای هر ۳۸۶ پوکمون نسل‌های ۱ تا ۳ — هم‌اکنون فعال است.",
-  step2_t:"قرمز و آبی (نسل ۱)", step2_d:"پوکیدکس داخل بازی قرمز/آبی برای هر ۱۵۱ پوکمون نسل اول، روی یک گیم‌بوی — هم‌اکنون فعال است.",
+  step2_t:"قرمز و آبی (نسل ۱)", step2_d:"پوکیدکس داخل بازی قرمز/آبی برای هر ۱۵۱ پوکمون کانتو — هم‌اکنون فعال است.",
   step3_t:"بازی‌های بعدی", step3_d:"زرد، نسل ۲ و بیشتر — برای هر بازی یک پوکیدکس، وفادار به ظاهر اصلی‌اش.",
   foot1:"پروژه‌ای غیرتجاری ساخته‌ی طرفداران. پوکمون © نینتندو / کرچرز / گیم‌فریک.",
   foot2:"هیچ دارایی بازی توزیع نمی‌شود؛ اسپرایت‌ها از داده باز PokeAPI رندر شده‌اند. صفحه‌ها کاملاً آفلاین اجرا می‌شوند.",
