@@ -5,7 +5,7 @@
    Same structure as the Emerald dex; themed after the Game Boy era with
    the Yellow version's own accent. Restrained: gray shell + DMG screen. */
 :root{
-  --shell-a:#c2c8cd; --shell-b:#8f979e; --deep:#16181c;
+  --shell-a:#f4cf37; --shell-b:#d0a011; --deep:#191307;
   --screen:#c9d3a2; --screen-line:#b5c08c;
   --panel:#fdfef6; --panel-edge:#bcc6a6; --panel-edge-d:#7e8a6c;
   --ink:#212b18; --ink-soft:#5c6753; --ink-faint:#8d9683;
@@ -26,8 +26,8 @@ html,body{margin:0;padding:0}
 body{
   font-family:var(--font-fa);
   background:
-    radial-gradient(1100px 640px at 50% -8%, #3a4048, transparent 60%),
-    radial-gradient(900px 560px at 94% 108%, #262b31, transparent 55%),
+    radial-gradient(1100px 640px at 50% -8%, #4a3c14, transparent 60%),
+    radial-gradient(900px 560px at 94% 108%, #2c2210, transparent 55%),
     var(--deep);
   color:#e8ecf0;
   min-height:100vh;
@@ -41,12 +41,12 @@ bdi{unicode-bidi:isolate}
 #shell{
   max-width:1400px;margin:0 auto;
   background:linear-gradient(180deg,var(--shell-a),var(--shell-b));
-  border:4px solid #1d2126;border-radius:26px;
+  border:4px solid #4a3610;border-radius:26px;
   box-shadow:0 30px 70px rgba(0,0,0,.62), inset 0 2px 0 rgba(255,255,255,.35), inset 0 -6px 0 rgba(0,0,0,.22);
   padding:10px;
 }
 #screen{
-  background:var(--screen);border-radius:14px;border:3px solid #23282d;
+  background:var(--screen);border-radius:14px;border:3px solid #4a3610;
   box-shadow:inset 0 0 0 2px rgba(255,255,255,.5), inset 0 0 42px rgba(70,80,50,.22);
   overflow:hidden;position:relative;color:var(--ink);
   transition:background .25s;
@@ -61,8 +61,8 @@ bdi{unicode-bidi:isolate}
 #topbar{
   display:flex;align-items:center;gap:12px;flex-wrap:wrap;
   padding:10px 14px 9px;
-  background:linear-gradient(180deg,#636c73,#464e55);
-  border-bottom:3px solid #23282d;
+  background:linear-gradient(180deg,#c39a1e,#8f6f0e);
+  border-bottom:3px solid #4a3610;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.22), inset 0 -2px 0 rgba(0,0,0,.18);
 }
 .dexlogo{
@@ -74,21 +74,21 @@ bdi{unicode-bidi:isolate}
 .dexlogo .l1{font-family:var(--font-px);font-size:11px;color:#fff;letter-spacing:1px;text-shadow:1px 1px 0 #7c560a;display:block}
 .dexlogo .l2{font-family:var(--font-px);font-size:11px;color:#ffe9a8;letter-spacing:1px;text-shadow:1px 1px 0 #7c560a;display:block}
 #topbar .tt{min-width:0}
-#topbar .tt .t1{font-family:var(--font-px);font-size:10px;color:#ccd4d9;letter-spacing:1.5px;direction:ltr}
+#topbar .tt .t1{font-family:var(--font-px);font-size:10px;color:#f5ecca;letter-spacing:1.5px;direction:ltr}
 body.fa #topbar .tt .t1{font-family:var(--font-fa);font-size:12px;letter-spacing:0}
 #topbar .tt .t2{font-size:12.5px;font-weight:700;color:#fff;margin-top:5px}
 .hspace{flex:1}
 .htools{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
 .hbtn{
-  font-family:var(--font-px);font-size:9px;letter-spacing:1px;color:#252d33;
-  background:linear-gradient(180deg,#f6f8fa,#ccd4da);
-  border:2px solid #2f373d;border-radius:9px;padding:8px 11px;cursor:pointer;
-  box-shadow:0 3px 0 #262d33, inset 0 1px 0 #fff;
+  font-family:var(--font-px);font-size:9px;letter-spacing:1px;color:#3d2f0c;
+  background:linear-gradient(180deg,#fdf6da,#e3d494);
+  border:2px solid #4a3610;border-radius:9px;padding:8px 11px;cursor:pointer;
+  box-shadow:0 3px 0 #3d2f0c, inset 0 1px 0 #fff;
   text-decoration:none;
 }
 body.fa .hbtn{font-family:var(--font-fa);font-size:12.5px;letter-spacing:0}
 .hbtn:hover{border-color:var(--gold)}
-.hbtn:active{transform:translateY(2px);box-shadow:0 1px 0 #262d33}
+.hbtn:active{transform:translateY(2px);box-shadow:0 1px 0 #3d2f0c}
 
 /* ---------- dex mode tabs ---------- */
 #tabs{display:flex;gap:6px;flex-wrap:wrap}
@@ -104,7 +104,7 @@ body.fa .tab{font-family:var(--font-fa);font-size:12.5px;letter-spacing:0}
   color:#4d3500;background:linear-gradient(180deg,#ffd95e,#e8a613);
   border-color:#a06c00;box-shadow:0 0 0 2px rgba(255,217,74,.28), inset 0 1px 0 rgba(255,255,255,.5);
 }
-#kbHint{font-size:11px;color:#c3ccd2;opacity:.8;white-space:nowrap}
+#kbHint{font-size:11px;color:#eadfae;opacity:.85;white-space:nowrap}
 
 /* ---------- layout ---------- */
 #main{
@@ -373,11 +373,11 @@ body.fa .abchip .hid{font-size:9.5px}
 /* ---------- START menu popup ---------- */
 #menuPop{
   position:fixed;z-index:80;inset-inline-start:26px;bottom:74px;width:250px;
-  background:#fff;border:3px solid #23282d;border-radius:12px;overflow:hidden;
+  background:#fff;border:3px solid #4a3610;border-radius:12px;overflow:hidden;
   box-shadow:0 14px 34px rgba(0,0,0,.4);
 }
 #menuPop .m-head{
-  background:linear-gradient(180deg,#636c73,#464e55);color:#fff;
+  background:linear-gradient(180deg,#b8931e,#8f6f0e);color:#fff;
   font-family:var(--font-px);font-size:9px;letter-spacing:1px;padding:9px 12px;direction:ltr;
 }
 body.fa #menuPop .m-head{font-family:var(--font-fa);font-size:12.5px;direction:rtl;letter-spacing:0}
@@ -396,11 +396,11 @@ body.fa #menuPop .m-head{font-family:var(--font-fa);font-size:12.5px;direction:r
 /* ---------- about modal ---------- */
 #aboutWrap{position:fixed;inset:0;z-index:90;display:grid;place-items:center;background:rgba(8,10,12,.55);padding:16px}
 #aboutBox{
-  max-width:520px;width:100%;background:#fff;border:3px solid #23282d;border-radius:14px;
+  max-width:520px;width:100%;background:#fff;border:3px solid #4a3610;border-radius:14px;
   box-shadow:0 20px 50px rgba(0,0,0,.5);overflow:hidden;
 }
 #aboutBox .a-head{
-  background:linear-gradient(180deg,#636c73,#464e55);color:#fff;padding:12px 16px;
+  background:linear-gradient(180deg,#b8931e,#8f6f0e);color:#fff;padding:12px 16px;
   font-family:var(--font-px);font-size:10px;letter-spacing:1px;direction:ltr;display:flex;justify-content:space-between;align-items:center;
 }
 body.fa #aboutBox .a-head{font-family:var(--font-fa);font-size:14px;direction:rtl;letter-spacing:0}
@@ -413,8 +413,8 @@ body.fa #aboutBox .kbd{font-family:var(--font-fa);font-size:10.5px}
 /* ---------- footer ---------- */
 #foot{
   display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;
-  font-size:11px;color:#ccd4d9;padding:9px 14px;
-  border-top:3px solid #23282d;background:linear-gradient(180deg,#525b62,#3e464d);
+  font-size:11px;color:#f0e6c8;padding:9px 14px;
+  border-top:3px solid #4a3610;background:linear-gradient(180deg,#a8841a,#7f650f);
 }
 #foot a{color:#ffe9a8;text-decoration:none;font-weight:700}
 #foot a:hover{text-decoration:underline}

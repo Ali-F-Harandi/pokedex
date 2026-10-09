@@ -13,6 +13,8 @@ Every dex shares one structure and feature set; only the theme changes per game.
 > ▶️ **Yellow dex (Gen 1):** https://ali-f-harandi.github.io/pokedex/yellow.html
 >
 > ▶️ **Gold/Silver dex (Gen 2):** https://ali-f-harandi.github.io/pokedex/goldsilver.html
+>
+> ▶️ **Crystal dex (Gen 2):** https://ali-f-harandi.github.io/pokedex/crystal.html
 
 ---
 
@@ -24,6 +26,7 @@ Every dex shares one structure and feature set; only the theme changes per game.
 | **Pokémon Red/Blue** | Gen 1 (Kanto) | [`red-blue.html`](https://ali-f-harandi.github.io/pokedex/red-blue.html) | ✅ Available |
 | **Pokémon Yellow** | Gen 1 (Kanto) | [`yellow.html`](https://ali-f-harandi.github.io/pokedex/yellow.html) | ✅ Available |
 | **Pokémon Gold/Silver** | Gen 2 (Johto) | [`goldsilver.html`](https://ali-f-harandi.github.io/pokedex/goldsilver.html) | ✅ Available |
+| **Pokémon Crystal** | Gen 2 (Johto) | [`crystal.html`](https://ali-f-harandi.github.io/pokedex/crystal.html) | ✅ Available |
 
 ### Emerald Dex — features
 
@@ -49,7 +52,7 @@ Every dex shares one structure and feature set; only the theme changes per game.
 
 ### Yellow Dex — features
 
-- A **dedicated Pokédex for Pokémon Yellow**, with the same structure as the Emerald and Red/Blue dexes and its own yellow-accented Game Boy theme
+- A **dedicated Pokédex for Pokémon Yellow**, with the same structure as the Emerald and Red/Blue dexes and its own **Pikachu-Yellow-edition** Game Boy shell (warm gold body — clearly its own, unlike the Red/Blue gray)
 - **Yellow's own dex entries** — Yellow rewrote all 151 entry texts; they are transcribed from the [`pret/pokeyellow`](https://github.com/pret/pokeyellow) decompilation (original 2-page text, authentic categories, in-game HT/WT), not reused from Red/Blue
 - **Yellow's own sprites**, switchable from the sprite card or the START menu:
   - `Y` — the Yellow-version Game Boy sprites in monochrome, in **DMG green** and **Pocket gray** palettes
@@ -60,7 +63,7 @@ Every dex shares one structure and feature set; only the theme changes per game.
 
 ### Gold/Silver Dex — features
 
-- A **dedicated Pokédex for Pokémon Gold & Silver** (all **251 Johto + Kanto Pokémon**), same structure as the other dexes, themed after the Game Boy Color era with a **Gold accent**
+- A **dedicated Pokédex for Pokémon Gold & Silver** (all **251 Johto + Kanto Pokémon**), same structure as the other dexes, themed after the Game Boy Color era: a **grape-purple Game Boy Color shell** with the multicolor `GAME BOY COLOR` wordmark and POWER led on the bezel, plus a **Gold accent**
 - **Each version's own in-game sprites**, switchable from the sprite card or the START menu:
   - `GOLD` — Gold's own sprites
   - `SILVER` — Silver's own sprites (Gold and Silver redrew many of them)
@@ -71,6 +74,14 @@ Every dex shares one structure and feature set; only the theme changes per game.
 - Authentic **Gen-2 type chart** — Dark & Steel types included, `Ghost ×2 vs Psychic` fixed
 - **Authentic cries** for all 251 (local OGG files) · seen/owned tracking · full detail grid (catch rate, happiness, growth, egg groups, habitat, gender)
 
+### Crystal Dex — features
+
+- A **dedicated Pokédex for Pokémon Crystal** (all **251 Johto + Kanto Pokémon**), same structure as the other dexes, with its own **teal Game Boy Color shell** and Crystal's **ice-blue accent**
+- **Crystal's own in-game sprites** — Crystal redrew the Gen-2 sprites again — with **shiny variants** (`Shiny` button or key `S`)
+- **Animated battle sprites** — Crystal introduced the series' very first animated Pokémon sprites; all 251 authentic animations are included as lossless WebP with a toggle (`Anim` button, START menu or key `A`), exactly like the Emerald dex
+- **Crystal's rewritten dex entries** — Crystal rewrote every single entry text (all 251 differ from both Gold and Silver); the box flips pages like the original
+- Counters split like the game: **Kanto / Johto / Total** seen & owned · authentic **Gen-2 type chart** · authentic cries · seen/owned tracking · full detail grid
+
 ### All dexes
 
 - **Bilingual: English (primary) + Persian (فارسی)** — full RTL, Persian digits, translated names/types/entries/abilities/evolutions
@@ -79,15 +90,16 @@ Every dex shares one structure and feature set; only the theme changes per game.
 
 ## 🏠 Landing page
 
-`index.html` is the project hub (dark neutral theme, not tied to any single game). Every mainline Pokémon game (Gen 1–9) is listed with its own colored card; **Emerald**, **Red/Blue**, **Yellow** and **Gold/Silver** are live now, everything else is *Coming Soon* and will follow one by one. Bilingual EN/FA.
+`index.html` is the project hub (dark neutral theme, not tied to any single game). Every mainline Pokémon game (Gen 1–9) is listed with its own colored card; **Emerald**, **Red/Blue**, **Yellow**, **Gold/Silver** and **Crystal** are live now, everything else is *Coming Soon* and will follow one by one. Bilingual EN/FA.
 
 ## 🗺 Roadmap
 
 - [x] **Emerald (Gen 3)** — available
 - [x] **Red / Blue (Gen 1)** — available
 - [x] **Yellow (Gen 1)** — available (Yellow's own sprites and Yellow's own dex entries)
-- [x] **Gold / Silver (Gen 2)** — available (both versions' sprites + shiny, both versions' dex texts)
-- [ ] Crystal (Gen 2), Ruby / Sapphire, FireRed / LeafGreen (Gen 3) — next
+- [x] **Gold / Silver (Gen 2)** — available (both versions' sprites + shiny, both versions' dex texts, Game Boy Color shell)
+- [x] **Crystal (Gen 2)** — available (Crystal's own sprites + shiny, animated battle sprites, fully rewritten dex entries)
+- [ ] Ruby / Sapphire, FireRed / LeafGreen (Gen 3) — next
 - [ ] Gen 4–9 — planned
 
 ## 🚀 Run locally
@@ -97,7 +109,7 @@ No installation needed:
 ```bash
 git clone https://github.com/Ali-F-Harandi/pokedex.git
 cd pokedex
-# open index.html (or emerald.html / red-blue.html / yellow.html / goldsilver.html) directly in any browser —
+# open index.html (or emerald.html / red-blue.html / yellow.html / goldsilver.html / crystal.html) directly in any browser —
 # everything works offline, even over file://
 ```
 
@@ -110,9 +122,10 @@ pokedex/
 ├── red-blue.html               ← Gen-1 Red/Blue dex entry page
 ├── yellow.html                 ← Gen-1 Yellow dex entry page
 ├── goldsilver.html             ← Gen-2 Gold/Silver dex entry page
+├── crystal.html                ← Gen-2 Crystal dex entry page
 └── assets/
-    ├── css/                    ← one stylesheet per page (emerald / redblue / yellow / goldsilver / landing)
-    ├── js/                     ← data + logic per page (emerald / redblue / yellow / goldsilver / landing)
+    ├── css/                    ← one stylesheet per page (emerald / redblue / yellow / goldsilver / crystal / landing)
+    ├── js/                     ← data + logic per page (emerald / redblue / yellow / goldsilver / crystal / landing)
     ├── fonts/                  ← Press Start 2P + Vazirmatn (woff2, OFL)
     ├── img/                    ← favicon, Emerald sprite atlas, featured-card images
     ├── sprites/
@@ -126,7 +139,10 @@ pokedex/
     │   ├── gen2-gold/          ← Gold's own sprites (251)
     │   ├── gen2-silver/        ← Silver's own sprites (251)
     │   ├── gen2-gold-shiny/    ← Gold shiny variants (251)
-    │   └── gen2-silver-shiny/  ← Silver shiny variants (251)
+    │   ├── gen2-silver-shiny/  ← Silver shiny variants (251)
+    │   ├── gen2-crystal/       ← Crystal's own sprites (251)
+    │   ├── gen2-crystal-shiny/ ← Crystal shiny variants (251)
+    │   └── gen2-crystal-anim/  ← 251 animated battle sprites (lossless WebP)
     └── audio/cries/            ← 251 authentic cries (ogg, shared by all Gen-1/2 dexes)
 ```
 
@@ -140,7 +156,8 @@ Each HTML page is tiny (6–12 KB) and pulls in its own CSS/JS plus the shared `
   - `generation-i/red-blue` — Red/Blue sprites (mono conversions + colored originals)
   - `generation-i/yellow` — Yellow sprites (mono conversions + colored originals)
   - `generation-ii/gold` + `generation-ii/silver` (+ `shiny`) — each version's own sprites (Gold/Silver)
-- Pokédex entry texts, categories and in-game HT/WT from the [`pret/pokered`](https://github.com/pret/pokered) and [`pret/pokeyellow`](https://github.com/pret/pokeyellow) decompilations; Gold/Silver EN texts per version from PokeAPI
+  - `generation-ii/crystal` (+ `shiny` + `animated`) — Crystal's own static and animated sprites
+- Pokédex entry texts, categories and in-game HT/WT from the [`pret/pokered`](https://github.com/pret/pokered) and [`pret/pokeyellow`](https://github.com/pret/pokeyellow) decompilations; Gold/Silver/Crystal EN texts per version from PokeAPI
 - Game data (stats, abilities, evolutions, genera) from [PokeAPI](https://pokeapi.co/)
 - [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) (OFL) + [Vazirmatn](https://github.com/rastikerdar/vazirmatn) (OFL)
 - Persian translations: names, genera, dex entries, abilities and UI — hand-written for this project
