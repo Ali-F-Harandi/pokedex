@@ -237,7 +237,7 @@ body.fa footer .pix{font-family:var(--font-fa);font-size:11px;letter-spacing:0}
     <div class="sec-h">
       <span class="st" data-i18n="games_t">GAME CATALOG</span>
       <span class="ss" data-i18n="games_s">Every Pok&eacute;mon game gets its own dex &mdash; its own style, data and sprites.</span>
-      <span class="cnt" data-i18n="games_cnt">1 / 35 RELEASED</span>
+      <span class="cnt" data-i18n="games_cnt">3 / 35 RELEASED</span>
     </div>
     <div id="gens"></div>
   </section>
@@ -251,8 +251,8 @@ body.fa footer .pix{font-family:var(--font-fa);font-size:11px;letter-spacing:0}
       <p data-i18n="roadmap_p1">This project grows game by game. Each new Pok&eacute;dex is rebuilt to match its own game &mdash; the UI style of that era, the regional dex of that version, the sprites and entry texts of that release. Emerald is the first one; more will follow.</p>
       <div class="steps">
         <div class="step"><div class="n">STEP 1 &#10003;</div><div class="t" data-i18n="step1_t">Emerald (Gen 3)</div><div class="d" data-i18n="step1_d">The in-game Emerald dex for all 386 Pok&eacute;mon of Gens I-III &mdash; live now.</div></div>
-        <div class="step"><div class="n">STEP 2</div><div class="t" data-i18n="step2_t">More Gen 3 &amp; spin-offs</div><div class="d" data-i18n="step2_d">Ruby, Sapphire, FireRed and LeafGreen dexes with their own visuals.</div></div>
-        <div class="step"><div class="n">STEP 3</div><div class="t" data-i18n="step3_t">Other generations</div><div class="d" data-i18n="step3_d">One dex per game across all generations, each faithful to its original look.</div></div>
+        <div class="step"><div class="n">STEP 2 &#10003;</div><div class="t" data-i18n="step2_t">Red &amp; Blue (Gen 1)</div><div class="d" data-i18n="step2_d">The in-game Red/Blue Pokédex for all 151 Gen-1 Pokémon, on a Game Boy &mdash; live now.</div></div>
+        <div class="step"><div class="n">STEP 3</div><div class="t" data-i18n="step3_t">Next games</div><div class="d" data-i18n="step3_d">Yellow, Gen 2 and more &mdash; one dex per game, each faithful to its original look.</div></div>
       </div>
     </div>
   </section>
@@ -270,8 +270,8 @@ body.fa footer .pix{font-family:var(--font-fa);font-size:11px;letter-spacing:0}
 /* ================= games catalog ================= */
 const GAMES = [
   {gen:1, g:"GEN 1", region:{en:"Kanto",fa:"کانتو"}, items:[
-    {id:"red",    en:"Pokémon Red",      fa:"پوکمون قرمز",    c:["#e8534a","#9c2820"]},
-    {id:"blue",   en:"Pokémon Blue",     fa:"پوکمون آبی",     c:["#4a78c8","#24407c"]},
+    {id:"red",    en:"Pokémon Red",      fa:"پوکمون قرمز",    c:["#e8534a","#9c2820"], href:"red-blue.html", active:true},
+    {id:"blue",   en:"Pokémon Blue",     fa:"پوکمون آبی",     c:["#4a78c8","#24407c"], href:"red-blue.html", active:true},
     {id:"yellow", en:"Pokémon Yellow",   fa:"پوکمون زرد",     c:["#f0c030","#a8801a"]}
   ]},
   {gen:2, g:"GEN 2", region:{en:"Johto",fa:"جوتو"}, items:[
@@ -337,14 +337,14 @@ en:{
   featured_desc:"The full in-game Pokédex experience of Pokémon Emerald: all 386 Pokémon of Generations I-III with Emerald-style sprites — including the game's animated battle sprites — dex entries, stats, type matchups and evolutions, styled after the dex inside the game itself.",
   fm1:"Emerald visual style", fm2:"Normal + Shiny sprites", fm3:"Seen / Owned tracking", fm4:"Keyboard friendly",
   play:"▶ OPEN DEX",
-  games_t:"GAME CATALOG", games_s:"Every Pokémon game gets its own dex — its own style, data and sprites.", games_cnt:"1 / 35 RELEASED",
+  games_t:"GAME CATALOG", games_s:"Every Pokémon game gets its own dex — its own style, data and sprites.", games_cnt:"3 / 35 RELEASED",
   gen_label:"GENERATION {n} · {r}",
   status_ok:"PLAY NOW", status_soon:"COMING SOON", meta_fmt:"{r} region",
   roadmap_t:"ROADMAP",
   roadmap_p1:"This project grows game by game. Each new Pokédex is rebuilt to match its own game — the UI style of that era, the regional dex of that version, the sprites and entry texts of that release. Emerald is the first one; more will follow.",
   step1_t:"Emerald (Gen 3)", step1_d:"The in-game Emerald dex for all 386 Pokémon of Gens I-III — live now.",
-  step2_t:"More Gen 3 & spin-offs", step2_d:"Ruby, Sapphire, FireRed and LeafGreen dexes with their own visuals.",
-  step3_t:"Other generations", step3_d:"One dex per game across all generations, each faithful to its original look.",
+  step2_t:"Red & Blue (Gen 1)", step2_d:"The in-game Red/Blue Pokédex for all 151 Gen-1 Pokémon, on a Game Boy — live now.",
+  step3_t:"Next games", step3_d:"Yellow, Gen 2 and more — one dex per game, each faithful to its original look.",
   foot1:"Fan-made, non-commercial project. Pokémon © Nintendo / Creatures Inc. / GAME FREAK inc.",
   foot2:"No game assets are redistributed; sprites are rendered from open data via PokeAPI. Pages run 100% offline.",
   title:"Pokédex Project — Classic Pokémon Dexes, Game by Game"
@@ -360,14 +360,14 @@ fa:{
   featured_desc:"تجربه کامل پوکیدکس داخل بازی Pokémon Emerald: هر ۳۸۶ پوکمون نسل‌های ۱ تا ۳ با اسپرایت‌های سبک زمرد — همراه با انیمیشن‌های نبردی خود بازی — توضیحات پوکیدکس، آمار، تناسب انواع و تکامل‌ها — دقیقاً با ظاهر پوکیدکس داخل خود بازی.",
   fm1:"ظاهر سبک زمرد", fm2:"اسپرایت عادی + براق", fm3:"ثبت دیده‌شده / گرفته‌شده", fm4:"پیمایش با کیبورد",
   play:"▶ ورود به پوکیدکس",
-  games_t:"فهرست بازی‌ها", games_s:"برای هر بازی پوکمون یک پوکیدکس جداگانه با استایل، داده‌ها و اسپرایت‌های خودش ساخته می‌شود.", games_cnt:"۱ از ۳۵ منتشر شده",
+  games_t:"فهرست بازی‌ها", games_s:"برای هر بازی پوکمون یک پوکیدکس جداگانه با استایل، داده‌ها و اسپرایت‌های خودش ساخته می‌شود.", games_cnt:"۳ از ۳۵ منتشر شده",
   gen_label:"نسل {n} · {r}",
   status_ok:"هم‌اکنون بازی کنید", status_soon:"به‌زودی", meta_fmt:"منطقه {r}",
   roadmap_t:"نقشه راه",
   roadmap_p1:"این پروژه بازی‌به‌بازی بزرگ می‌شود. هر پوکیدکس جدید از نو و مطابق همان بازی ساخته می‌شود — استایل رابط کاربری همان دوران، پوکیدکس منطقه‌ای همان نسخه، و اسپرایت‌ها و متن‌های همان انتشار. زمرد اولین است؛ بقیه هم می‌آیند.",
   step1_t:"زمرد (نسل ۳)", step1_d:"پوکیدکس داخل بازی زمرد برای هر ۳۸۶ پوکمون نسل‌های ۱ تا ۳ — هم‌اکنون فعال است.",
-  step2_t:"نسل ۳ بیشتر و اسپین‌آف‌ها", step2_d:"پوکیدکس‌های یاقوت، یاقوت کبود، آتشین قرمز و برگ سبز با ظاهر خودشان.",
-  step3_t:"نسل‌های دیگر", step3_d:"برای هر بازی یک پوکیدکس در همه نسل‌ها، هر کدام وفادار به ظاهر اصلی‌اش.",
+  step2_t:"قرمز و آبی (نسل ۱)", step2_d:"پوکیدکس داخل بازی قرمز/آبی برای هر ۱۵۱ پوکمون نسل اول، روی یک گیم‌بوی — هم‌اکنون فعال است.",
+  step3_t:"بازی‌های بعدی", step3_d:"زرد، نسل ۲ و بیشتر — برای هر بازی یک پوکیدکس، وفادار به ظاهر اصلی‌اش.",
   foot1:"پروژه‌ای غیرتجاری ساخته‌ی طرفداران. پوکمون © نینتندو / کرچرز / گیم‌فریک.",
   foot2:"هیچ دارایی بازی توزیع نمی‌شود؛ اسپرایت‌ها از داده باز PokeAPI رندر شده‌اند. صفحه‌ها کاملاً آفلاین اجرا می‌شوند.",
   title:"پروژه پوکیدکس — پوکیدکس کلاسیک برای هر بازی"
