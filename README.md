@@ -1,10 +1,12 @@
 # Pokédex Project
 
-**Interactive, fully offline Pokédex apps for every classic Pokémon game — each one styled exactly like its own generation.**
+**Interactive, fully offline Pokédex apps for every classic Pokémon game — each one styled exactly like the dex inside its own game.**
 
 A single-file HTML Pokédex per game: no build tools, no server, no internet required. Just open the file (or the GitHub Pages site) and browse.
 
-> 🌐 **Live demo:** https://ali-f-harandi.github.io/pokedex/
+> 🌐 **Live site:** https://ali-f-harandi.github.io/pokedex/
+>
+> ▶️ **Emerald dex:** https://ali-f-harandi.github.io/pokedex/emerald.html
 
 ---
 
@@ -14,25 +16,30 @@ A single-file HTML Pokédex per game: no build tools, no server, no internet req
 |------|-----------|------|--------|
 | **Pokémon Emerald** | Gen 3 (Hoenn) | [`emerald.html`](https://ali-f-harandi.github.io/pokedex/emerald.html) | ✅ Available |
 
-### Emerald Dex features
+### Emerald Dex — features
+
 - All **386 Pokémon** (Gen 1–3, National Dex #001–#386)
-- Original **Gen-3 / Emerald sprites** (normal **+ shiny**, rendered from a single embedded sprite atlas)
-- Detailed info: types, genus, abilities (incl. hidden), height, weight, base stats with bars & total, official flavor text
-- **Bilingual: English (primary) + Persian (فارسی)** — full RTL support
-- Search by name (EN/FA) or number · Filter by type · Kanto / Johto / Hoenn tabs
-- Shiny mode for the whole grid · Legendary/Mythical badges
-- 100% offline — data, sprites and pixel font are embedded in **one ~2 MB HTML file**
+- UI faithful to the **in-game Pokémon Emerald Pokédex**: cream screen, red `POKé DEX` badge, red selection bar with pointer arrow, sprite card, `DEX STATUS` counters, `START · MENU` button
+- **Dex modes** like the game: `NATIONAL / KANTO / JOHTO / HOENN`
+- **Seen / Owned tracking** — browsing marks a Pokémon as *Seen* (automatic), the Poké Ball button marks it as *Owned*; live counters per region, saved in your browser
+- Original **Gen-3 / Emerald sprites** — normal **+ shiny** (single embedded sprite atlas)
+- Detail view: dex entry, base stats with colored bars, gen-3-accurate **type matchups** (×4 / ×2 / ½ / ¼ / immune), full **evolution line** with conditions, abilities (incl. hidden), catch rate, happiness, growth rate, egg groups, habitat, gender ratio
+- Search by name (EN/FA) or number · type filter chips · sort by number / name / stats · favorites · random
+- **START menu** (in-game style popup): search, random, shiny, favorites, sort, reset progress, language, about
+- Keyboard: `↑ ↓ ← →` browse · `/` search · `S` shiny · `R` random · `Esc` close
+- Deep links: `emerald.html#025` opens Pokémon #025
+- **Bilingual: English (primary) + Persian (فارسی)** — full RTL, Persian digits, translated names/types/entries/abilities/evolutions
+- 100% offline — data, sprites and fonts are embedded in **one ~2.3 MB HTML file**
 
-## 🕹 Landing page
+## 🏠 Landing page
 
-`index.html` is the project landing page: every mainline Pokémon game (Gen 1–9) is listed with its own themed card. **Emerald is live now** — all other games are shown as *Coming Soon* and will be added one by one, each in its own game's authentic style.
+`index.html` is the **game-neutral** project hub (dark neutral theme, not tied to any single game): every mainline Pokémon game (Gen 1–9, 35 games) is listed with its own colored card. **Emerald is live now** — all other games are *Coming Soon* and will be added one by one, each faithful to its own game's style, data and sprites. Bilingual EN/FA as well.
 
 ## 🗺 Roadmap
 
 - [x] **Emerald (Gen 3)** — available
-- [ ] Red / Blue / Yellow (Gen 1) — planned
-- [ ] Gold / Silver / Crystal (Gen 2) — planned
-- [ ] Ruby / Sapphire, FireRed / LeafGreen (Gen 3) — planned
+- [ ] Ruby / Sapphire, FireRed / LeafGreen (Gen 3) — next
+- [ ] Red / Blue / Yellow (Gen 1), Gold / Silver / Crystal (Gen 2) — planned
 - [ ] Gen 4–9 — planned
 
 ## 🚀 Run locally
@@ -40,27 +47,25 @@ A single-file HTML Pokédex per game: no build tools, no server, no internet req
 No installation needed:
 
 ```bash
-# clone and open — that's it
 git clone https://github.com/Ali-F-Harandi/pokedex.git
 cd pokedex
-# open index.html or emerald.html in any browser
+# open index.html or emerald.html in any browser — works fully offline
 ```
-
-Or just open `emerald.html` directly — everything (data, sprites, font, styles) is inside the file.
 
 ## 📁 Project structure
 
 ```
 pokedex/
-├── index.html      ← landing page (game selector, EN/FA)
-└── emerald.html    ← Gen-3 Emerald Pokédex (single-file, EN/FA, offline)
+├── index.html      ← game-neutral landing page (catalog + roadmap, EN/FA)
+└── emerald.html    ← Gen-3 Emerald in-game-style Pokédex (single-file, EN/FA, offline)
 ```
 
 ## 🛠 Built with
 
 - Vanilla HTML/CSS/JS — zero dependencies, zero network calls
-- Sprite atlas assembled from [PokeAPI sprites](https://github.com/PokeAPI/sprites) (Gen-3 Emerald set)
-- [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) (OFL) embedded for the retro look
+- Sprites from the [PokeAPI sprites](https://github.com/PokeAPI/sprites) project (Gen-3 Emerald set), packed into one atlas
+- Data (stats, entries, abilities, evolutions) from [PokeAPI](https://pokeapi.co/)
+- [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) (OFL) + [Vazirmatn](https://github.com/rastikerdar/vazirmatn) (OFL) embedded as woff2
 
 ## ⚠️ Disclaimer
 
