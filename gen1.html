@@ -65,6 +65,17 @@
 
       <!-- ============ sprite pane ============ -->
       <section id="spritePane" aria-label="selected pokemon">
+        <div id="gameCfg" aria-label="game and view settings">
+          <div class="gcHead" data-i18n="gc_title">SETTINGS</div>
+          <div class="gcGames" id="themeRow" role="group" aria-label="game"></div>
+          <div class="gcRow">
+            <span class="gcLab" data-i18n="set_mark">Sprites</span>
+            <div class="setRow" id="setRow" role="group" aria-label="sprite set"></div>
+            <span class="gcLab" data-i18n="lcd_mark">LCD</span>
+            <button class="lcdchip" id="btnLcd" aria-pressed="false"><span class="lcdDot"></span><span id="lcdTxt">OFF</span></button>
+          </div>
+          <div id="setNote" class="setNote hidden"></div>
+        </div>
         <div class="sprCard" id="sprCard">
           <div class="sprStage" id="sprStage">
             <button class="navArrow" id="mPrev" aria-label="Previous Pok&eacute;mon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 4.5 8 12l7.5 7.5 1.8-1.8L11.6 12l5.7-5.7z"/></svg></button>
@@ -74,9 +85,11 @@
           <div id="sprNo">#0000</div>
           <div id="sprName">---</div>
           <div id="sprTypes"></div>
-          <div class="themeRow" id="themeRow" role="group" aria-label="game"></div>
-          <div class="setRow" id="setRow" role="group" aria-label="sprite set"></div>
-          <div id="setNote" class="setNote hidden"></div>
+          <div class="htwt">
+            <div class="hw"><div class="k" data-i18n="ht">HT</div><div class="v" id="htVal">-</div></div>
+            <div class="hw"><div class="k" data-i18n="wt">WT</div><div class="v" id="wtVal">-</div></div>
+          </div>
+          <div id="cardFlavor" class="cardFlavor"></div>
           <div class="sprBtns">
             <button class="sbtn" id="btnBack" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h14M13 4l4 4-4 4"/><path d="M21 16H7M11 12l-4 4 4 4"/></svg><span data-i18n="back_mark">Back</span></button>
             <button class="sbtn" id="btnPal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="9" r="1.3" fill="currentColor" stroke="none"/><circle cx="14.5" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="9.5" cy="14.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="15" cy="14" r="1.3" fill="currentColor" stroke="none"/></svg><span data-i18n="pal_mark">Palette</span></button>
@@ -84,14 +97,11 @@
             <button class="sbtn" id="btnOwn"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M3.6 10.5h16.8" stroke="currentColor" stroke-width="2.4"/><circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" stroke-width="2.2"/></svg><span data-i18n="own_mark">Own</span></button>
             <button class="sbtn" id="btnFav"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><span data-i18n="fav_mark">Fav</span></button>
           </div>
+          <div id="sprHint" class="sprHint" data-i18n="swipe_hint">swipe: browse &middot; tap: front / back</div>
         </div>
         <div class="cntBox">
           <div class="cTitle" data-i18n="dex_status">DEX STATUS</div>
           <div id="cntRows"></div>
-        </div>
-        <div class="htwt">
-          <div class="hw"><div class="k" data-i18n="ht">HT</div><div class="v" id="htVal">-</div></div>
-          <div class="hw"><div class="k" data-i18n="wt">WT</div><div class="v" id="wtVal">-</div></div>
         </div>
       </section>
 
@@ -120,6 +130,7 @@
   <button class="m-item" data-act="set"><span class="mi">&#9881;</span><span data-i18n="m_set">Sprites: Red/Blue</span></button>
   <button class="m-item" data-act="back"><span class="mi">&#8646;</span><span data-i18n="m_back">View: Front</span></button>
   <button class="m-item" data-act="pal"><span class="mi">&#127912;</span><span data-i18n="m_pal">Palette: Game Boy</span></button>
+  <button class="m-item" data-act="lcd"><span class="mi">&#128441;</span><span data-i18n="m_lcd">Screen: LCD</span></button>
   <button class="m-item" data-act="fav"><span class="mi">&#9733;</span><span data-i18n="m_fav">Favorites only</span></button>
   <button class="m-item" data-act="sort"><span class="mi">&#8645;</span><span data-i18n="m_sort">Sort: number</span></button>
   <div class="m-sep"></div>

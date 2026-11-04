@@ -46,6 +46,11 @@ en:{
   start:"START", menu:"MENU", menu_title:"POKéDEX MENU",
   m_search:"Search", m_random:"Random Pokémon",
   m_cry:"Play cry", m_pal_tpl:"Palette: {v}",
+  m_lcd:"Screen: LCD", m_lcd_tpl:"Screen: LCD {v}",
+  lcd_mark:"LCD", lcd_on:"ON", lcd_off:"OFF",
+  gc_title:"SETTINGS",
+  flip_hint:"Tap the sprite: front / back",
+  swipe_hint:"swipe: browse · tap: front / back",
   m_fav:"Favorites only", m_sort:"Sort: number", m_reset:"Reset seen / owned",
   m_lang:"Language: English", m_about:"About / help",
   sort_id:"number", sort_name:"name", sort_total:"stats",
@@ -121,6 +126,11 @@ fa:{
   start:"استارت", menu:"منو", menu_title:"منوی پوکیدکس",
   m_search:"جست‌وجو", m_random:"پوکمون تصادفی",
   m_cry:"پخش صدای پوکمون", m_pal_tpl:"پالت: {v}",
+  m_lcd:"نمایشگر: LCD", m_lcd_tpl:"نمایشگر: LCD {v}",
+  lcd_mark:"LCD", lcd_on:"روشن", lcd_off:"خاموش",
+  gc_title:"تنظیمات",
+  flip_hint:"برای جلو/پشت، اسپرایت را لمس کنید",
+  swipe_hint:"سویپ: پیمایش پوکمون‌ها · لمس: جلو/پشت",
   m_fav:"فقط علاقه‌مندی‌ها", m_sort:"ترتیب: شماره", m_reset:"بازنشانی دیده/گرفته‌شده",
   m_lang:"زبان: فارسی", m_about:"درباره / راهنما",
   sort_id:"شماره", sort_name:"نام", sort_total:"آمار",
@@ -229,6 +239,7 @@ const state = {
   set: ["rb","rbc","green","y","yc"].indexOf(store("pkd_g1_set", "rb")) !== -1 ? store("pkd_g1_set", "rb") : "rb",
   text: store("pkd_g1_text", null) === "y" ? "y" : (store("pkd_g1_text", null) === "rb" ? "rb" : null),
   back: store("pkd_g1_back", "front") === "back",
+  lcd: store("pkd_g1_lcd", false) === true,
   favOnly: store("pkd_g1_favonly", false) === true,
   sort: ["id","name","total"].indexOf(store("pkd_g1_sort", "id")) !== -1 ? store("pkd_g1_sort", "id") : "id",
   page: 1,
@@ -479,6 +490,7 @@ function renderSpritePane(){
   $("#btnBack").classList.toggle("on", state.back);
   $("#btnBack").setAttribute("aria-pressed", state.back ? "true" : "false");
   $("#btnBack").title = tpl(t("m_view_tpl"), {v: t(state.back ? "view_back" : "view_front")});
+  $("#sprBox").title = t("flip_hint");
   const gn = $("#setNote");
   if (gn){ gn.classList.toggle("hidden", state.theme !== "green"); gn.textContent = t("green_note"); }
   $("#htVal").textContent = num((p.height_dm / 10).toFixed(1)) + " " + t("units.m");
@@ -509,10 +521,15 @@ window.__itemIconHint = function(){
 function renderThemeRow(){
   const el = $("#themeRow");
   if (!el) return;
-  el.innerHTML = THEME_ORDER.map(th =>
+  const chip = th =>
     '<button class="tchip' + (state.theme === th ? " on" : "") + '" data-th="' + th +
-    '" title="' + esc(t("theme_names." + th)) + '"><span class="dot"></span>' + esc(t("theme_short." + th)) + '</button>'
-  ).join("");
+    '" title="' + esc(t("theme_names." + th)) + '"><span class="dot"></span>' + esc(t("theme_short." + th)) + '</button>';
+  /* RED + BLUE share one cartridge group (same game, different colour);
+     GREEN (Japan) and YELLOW get a group of their own */
+  el.innerHTML =
+    '<div class="gcGroup">' + chip("red") + chip("blue") + '</div>' +
+    '<div class="gcGroup">' + chip("green") + '</div>' +
+    '<div class="gcGroup">' + chip("yellow") + '</div>';
 }
 function renderSetRow(){
   const el = $("#setRow");
@@ -624,6 +641,14 @@ function renderDetail(){
       '<button class="btn sec" id="bRand">' + ICON.dice + ' <span>' + esc(t("random")) + '</span></button>' +
     '</div>';
 
+  const cf = $("#cardFlavor");
+  if (cf){
+    cf.dataset.pgs = String(pages.length);
+    cf.innerHTML =
+      '<div class="cfTop"><span class="cfGenus">' + esc(dispGenus(p)) + '</span>' +
+      (multi ? '<span class="pgno">' + tpl(t("page"), {a:num(pg), b:num(pages.length)}) + '</span>' : '') +
+      '</div><div class="cfTxt">' + esc(pages[pg - 1] || "") + '</div>';
+  }
   $("#bPrev").addEventListener("click", () => next(-1));
   $("#bNext").addEventListener("click", () => next(1));
   $("#bRand").addEventListener("click", randomPick);
@@ -712,6 +737,23 @@ function togglePalette(){
   renderSpritePane();
   renderDetail();
 }
+/* ===== LCD screen shader (optional, per-visitor) ===== */
+function applyLcd(){
+  document.body.classList.toggle("lcd-on", state.lcd === true);
+  const b = $("#btnLcd");
+  if (b){
+    b.classList.toggle("on", state.lcd === true);
+    b.setAttribute("aria-pressed", state.lcd ? "true" : "false");
+  }
+  const tx = $("#lcdTxt");
+  if (tx) tx.textContent = state.lcd ? t("lcd_on") : t("lcd_off");
+}
+function toggleLcd(){
+  state.lcd = !state.lcd;
+  save("pkd_g1_lcd", state.lcd);
+  applyLcd();
+  refreshMenuLabels();
+}
 /* ===== sprite set cycling (menu) — within the active game ===== */
 function cycleSet(){
   const order = THEMES[state.theme].sets;
@@ -738,6 +780,7 @@ function refreshMenuLabels(){
   $("#menuPop [data-act=back] span:last-child").textContent = tpl(t("m_view_tpl"), {v: t(state.back ? "view_back" : "view_front")});
 
   $("#menuPop [data-act=pal] span:last-child").textContent = tpl(t("m_pal_tpl"), {v: t("pal_names."+state.pal)});
+  $("#menuPop [data-act=lcd] span:last-child").textContent = tpl(t("m_lcd_tpl"), {v: state.lcd ? t("lcd_on") : t("lcd_off")});
   $("#menuPop [data-act=fav]").classList.toggle("on", state.favOnly);
 }
 
@@ -757,6 +800,7 @@ function applyLang(){
   $("#sortBtn").title = tpl(t("m_sort_tpl"), {v: t("sort_"+state.sort)});
   renderTabs(); renderChips(); renderList(); renderThemeRow(); renderSetRow(); renderSpritePane(); renderDetail(); renderCounters();
   refreshMenuLabels();
+  applyLcd();
   const t1 = document.querySelector("#topbar .t1");
   if (t1) t1.textContent = t("theme_tag." + state.theme);
   if (typeof MovesUI !== "undefined") MovesUI.applyLang();
@@ -807,6 +851,7 @@ function bind(){
   $("#btnPal").addEventListener("click", togglePalette);
   $("#btnBack").addEventListener("click", toggleBack);
   $("#btnCry").addEventListener("click", playCry);
+  $("#btnLcd").addEventListener("click", toggleLcd);
   $("#setRow").addEventListener("click", e => {
     const c = e.target.closest(".setchip");
     if (c) toggleSet(c.dataset.set);
@@ -830,6 +875,7 @@ function bind(){
     else if (act === "set") cycleSet();
     else if (act === "game") cycleTheme();
     else if (act === "pal") togglePalette();
+    else if (act === "lcd") toggleLcd();
     else if (act === "back") toggleBack();
     else if (act === "fav"){ state.favOnly = !state.favOnly; save("pkd_g1_favonly", state.favOnly); $("#favBtn").classList.toggle("on", state.favOnly); renderList(); }
     else if (act === "sort") cycleSort();
@@ -852,7 +898,8 @@ function bind(){
   /* mobile: big prev/next arrows beside the sprite */
   $("#mPrev").addEventListener("click", () => next(-1));
   $("#mNext").addEventListener("click", () => next(1));
-  /* mobile: swipe the sprite to browse — like a slider */
+  /* mobile gestures: swipe = browse, tap on the sprite = flip front/back */
+  let lastSwipe = 0;
   (() => {
     const stage = $("#sprStage");
     if (!stage) return;
@@ -865,10 +912,20 @@ function bind(){
       const tc = e.changedTouches[0];
       const dx = tc.clientX - sx, dy = tc.clientY - sy;
       if (Math.abs(dx) > 42 && Math.abs(dx) > Math.abs(dy) * 1.4 && Date.now() - st < 900){
+        lastSwipe = Date.now();   /* swallow the click that follows the swipe */
         next(dx < 0 ? 1 : -1);   /* swipe left → next, swipe right → previous */
       }
     }, { passive: true });
   })();
+  $("#sprBox").addEventListener("click", () => {
+    if (Date.now() - lastSwipe < 500) return;
+    toggleBack();
+  });
+  const cfEl = $("#cardFlavor");
+  if (cfEl) cfEl.addEventListener("click", () => {
+    const n = parseInt(cfEl.dataset.pgs || "1", 10);
+    if (n > 1){ state.page = state.page >= n ? 1 : state.page + 1; renderDetail(); }
+  });
   document.addEventListener("keydown", e => {
     if (e.target.matches("input,select,textarea")){
       if (e.key === "Escape") e.target.blur();
