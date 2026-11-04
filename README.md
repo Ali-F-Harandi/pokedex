@@ -87,9 +87,21 @@ Every dex shares one structure and feature set; only the theme changes per game.
 - **Crystal's rewritten dex entries** — Crystal rewrote every single entry text (all 251 differ from both Gold and Silver); the box flips pages like the original
 - Counters split like the game: **Kanto / Johto / Total** seen & owned · authentic **Gen-2 type chart** · authentic cries · seen/owned tracking · full detail grid
 
+### Moves & learnsets (Gen-1/2 dexes — Pokédex Plus, Phase 2)
+
+- **MOVES panel in every Pokémon's detail view** — the learnset *of that exact game*, grouped by learn method with counts: **LEVEL-UP** (with the learn level), **TM · HM** (with the machine number), **EGG** and **TUTOR** tabs (the latter two only where the game has them — eggs and tutors are Gen-2 features, and the tutor tab is Crystal-only)
+- Clicking any move opens its **move card** inside the **MOVES DEX** overlay
+- **MOVES DEX** (START menu, `M` key, or the `ALL MOVES` button): every move that exists in that game — 165 in Red/Blue/Yellow, 251 in Gold/Silver/Crystal — with search (EN/FA), type and physical/special filters
+- **TM / HM LIST** (START menu): the authentic machine list of that game — 50 TMs + 5 HMs in Gen 1, 50 TMs + 7 HMs in Gen 2; on Crystal it also notes the Goldenrod **Move Tutor** (Flamethrower / Thunderbolt / Ice Beam)
+- **Move cards** show power / accuracy / PP, the type badge, the **Gen-1/2 physical-vs-special class** (derived from the move's type, as the games did), the authentic **Gold/Silver/Crystal in-game description** (EN + FA) and a **"who can learn it"** section — every Pokémon of that game grouped by method, with learn levels; clicking one jumps to that Pokémon
+- **Historical accuracy**: power / type / accuracy / PP are taken from the `pret` decompiles (`pokered` / `pokegold` move tables) — so Gen 1 shows **Gust, Karate Chop, Bite and Sand Attack as NORMAL-type**, **Rock Throw at 65% accuracy**, **Barrier with 30 PP** etc.; Curse keeps its authentic **`???` type badge**; Gen-1 pages label the description as the Gold/Silver wording (the Gen-1 games had no move text)
+- **Fully bilingual**: 251 Persian move names + all 251 descriptions translated, Persian digits, RTL-aware panels
+- Reproducible: `python3 tools/build-moves.py` regenerates every data file from `pret` + PokéAPI
+
 ### All dexes
 
 - **Bilingual: English (primary) + Persian (فارسی)** — full RTL, Persian digits, translated names/types/entries/abilities/evolutions
+- **Moves everywhere (Gen-1/2 dexes)** — per-game learnset panel, Moves Dex (`M`), TM/HM list — see the *Moves & learnsets* section above
 - **100% offline** — all data, sprites, cries and fonts are plain local files next to each page
 - Landing page (`index.html`) is **game-neutral**: one catalog item per game — complementary pairs like Red/Blue or Ruby/Sapphire share a single item
 
@@ -105,7 +117,7 @@ Every dex shares one structure and feature set; only the theme changes per game.
 - [x] **Gold / Silver (Gen 2)** — available (both versions' sprites + shiny, both versions' dex texts, Game Boy Color shell)
 - [x] **Crystal (Gen 2)** — available (Crystal's own sprites + shiny, animated battle sprites, fully rewritten dex entries)
 - [x] **Back sprites everywhere + Japan-only Green set** (Pokédex Plus, Phase 1)
-- [ ] Moves & learnsets per game (Pokédex Plus, Phase 2) — next
+- [x] **Moves & learnsets per game (Pokédex Plus, Phase 2)** — per-game move data, learnset panel, Moves Dex & TM/HM lists on all Gen-1/2 dexes
 - [ ] Ruby / Sapphire, FireRed / LeafGreen (Gen 3)
 - [ ] Gen 4–9 — planned
 

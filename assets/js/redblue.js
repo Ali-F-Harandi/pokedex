@@ -515,6 +515,8 @@ function renderDetail(){
       '<div class="item wide"><div class="k">' + esc(t("gender")) + '</div><div class="v">' + gender + '</div></div>' +
     '</div></div>' +
 
+        (typeof MovesUI !== "undefined" ? MovesUI.sectionHTML(p) : "") +
+
     '<div class="d-nav">' +
       '<button class="btn" id="bPrev">' + ICON.left + ' <span>' + esc(t("prev")) + '</span></button>' +
       '<button class="btn" id="bNext"><span>' + esc(t("next")) + '</span> ' + ICON.right + '</button>' +
@@ -528,6 +530,8 @@ function renderDetail(){
   if (fb && multi) fb.addEventListener("click", () => { state.page = state.page >= pages.length ? 1 : state.page + 1; renderDetail(); });
   document.querySelectorAll("#detailPane .evo").forEach(el =>
     el.addEventListener("click", () => select(parseInt(el.dataset.id, 10))));
+  if (typeof MovesUI !== "undefined") MovesUI.wire(p);
+
 }
 
 /* ===== cries ===== */
@@ -647,6 +651,7 @@ function applyLang(){
   $("#sortBtn").title = tpl(t("m_sort_tpl"), {v: t("sort_"+state.sort)});
   renderTabs(); renderChips(); renderList(); renderSpritePane(); renderDetail(); renderCounters();
   refreshMenuLabels();
+  if (typeof MovesUI !== "undefined") MovesUI.applyLang();
 }
 function toggleLang(){
   state.lang = state.lang === "en" ? "fa" : "en";
