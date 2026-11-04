@@ -1,13 +1,30 @@
 #!/usr/bin/env python3
-"""Build every Gen-1/Gen-2 *back* sprite folder + the Japan Green set for this repo.
+"""Build every Gen-1/Gen-2 *back* sprite folder, the Japan Green set and
+front-sprite repairs for this repo — using PokeAPI's ORIGINAL transparent
+sprites as the source of truth.
 
-Self-contained: downloads straight from the PokeAPI/sprites GitHub repo and
-reproduces, pixel-exactly, the conventions already used by assets/sprites/:
-  - gen-1 sprites: border-flood the white background, keep interior white
-  - mono sets: recolor the 4-shade gray ramp onto the DMG / Pocket palettes
-  - gen-2 sprites: same border-flood (raw backs ship with a white background)
-  - transparent pixels are stored as (0,0,0,0); back sprites are padded onto a
-    40x40 canvas (Gen-1) so they keep the same pixel density as the fronts
+Why: the previous border-flood pipeline destroyed sprites whose white body
+touches the background (every Gen-1 back sprite was hollowed out — e.g.
+Pikachu's back lost ~65% of its body). PokeAPI ships official *transparent*
+variants whose cut-out is authoritative, so we no longer invent our own:
+
+  gen-1 rb/yellow BACKS : native 32x32 white-bg source (colors + geometry)
+                          + alpha mask from the official `transparent/back`
+                          sprite (96x96, art at 2x -> downscaled 2:1 with BOX).
+                          The mask is aligned onto the native sprite by a
+                          dark-pixel bbox search (+-2 px, scored); dark pixels
+                          are never dropped (safety net). Padded to 40x40.
+  gen-1 GREEN (4 sets)  : the red-green-japan sources are already transparent
+                          -> used as-is, only recolored onto the DMG / Pocket
+                          ramps. Zero transparency processing.
+  gen-2 BACKS (+shiny)  : native 48x48 white-bg source + mask from the
+                          official `transparent/back` sprite (art at 1:1).
+  gen-1/2 FRONTS        : scanned against the official transparent sprites;
+                          any pokemon that lost >2% of its body vs official
+                          (flood damage: Blissey, Growlithe, Goldeen) is
+                          rebuilt with the same mask-transfer method.
+  mono sets             : the 4-shade gray ramp is recolored onto the
+                          DMG / Pocket palettes (as before).
 
 Outputs (assets/sprites/):
   gen1-rb-color-back  gen1-rb-dmg-back  gen1-rb-pocket-back
@@ -21,6 +38,7 @@ Usage:
   python3 tools/build-sprites.py                 # build everything (skips existing)
   python3 tools/build-sprites.py --ids 25        # smoke-test one pokemon
   python3 tools/build-sprites.py --refresh       # rebuild all outputs
+  python3 tools/build-sprites.py --skip-fronts   # backs + green only
 """
 import argparse
 import io
@@ -34,10 +52,12 @@ from PIL import Image
 
 BASE = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions'
 REPO = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+SPR = f'{REPO}/assets/sprites'
 
 RAMP_DMG = [(255, 255, 255), (139, 172, 15), (48, 98, 48), (15, 56, 15)]
 RAMP_POCKET = [(255, 255, 255), (168, 168, 146), (85, 85, 74), (28, 28, 22)]
 GRAY_KEYS = [(255, 255, 255), (170, 170, 170), (85, 85, 85), (0, 0, 0)]
+WHITE = (255, 255, 255)
 
 
 def fetch(path, retries=3):
@@ -56,43 +76,23 @@ def load(path):
     return Image.open(io.BytesIO(fetch(path))).convert('RGBA')
 
 
-def flood(im):
-    """Border-connected pure-white pixels -> fully-transparent black."""
+# ---------------------------------------------------------------- helpers
+def bbox(im, dark=False):
     px = im.load()
     w, h = im.size
-    seen = [[False] * w for _ in range(h)]
-    q = deque()
-    for x in range(w):
-        q.append((x, 0))
-        q.append((x, h - 1))
-    for y in range(h):
-        q.append((0, y))
-        q.append((w - 1, y))
-    while q:
-        x, y = q.popleft()
-        if x < 0 or y < 0 or x >= w or y >= h or seen[y][x]:
-            continue
-        seen[y][x] = True
-        r, g, b, a = px[x, y]
-        if a == 0:
-            pass
-        elif (r, g, b) == (255, 255, 255):
-            px[x, y] = (0, 0, 0, 0)
-        else:
-            continue
-        q.extend(((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)))
-    return im
-
-
-def normalize_alpha(im):
-    px = im.load()
-    w, h = im.size
+    xs, ys = [], []
+    lmode = im.mode == 'L'
     for y in range(h):
         for x in range(w):
-            r, g, b, a = px[x, y]
-            if a == 0 and (r, g, b) != (0, 0, 0):
-                px[x, y] = (0, 0, 0, 0)
-    return im
+            p = px[x, y]
+            if lmode:
+                hit = p > 0
+            else:
+                hit = p[3] > 0 if not dark else (p[3] > 0 and p[:3] != WHITE)
+            if hit:
+                xs.append(x)
+                ys.append(y)
+    return (min(xs), min(ys), max(xs), max(ys)) if xs else None
 
 
 def recolor_gray(im, ramp):
@@ -114,72 +114,181 @@ def recolor_gray(im, ramp):
     return im
 
 
+def normalize_alpha(im):
+    px = im.load()
+    w, h = im.size
+    for y in range(h):
+        for x in range(w):
+            r, g, b, a = px[x, y]
+            if a == 0 and (r, g, b) != (0, 0, 0):
+                px[x, y] = (0, 0, 0, 0)
+    return im
+
+
 def pad_to(im, size):
     w, h = im.size
-    if w >= size or h >= size:
+    if w > size or h > size:
         return im
     out = Image.new('RGBA', (size, size), (0, 0, 0, 0))
     out.paste(im, ((size - w) // 2, size - h))
     return out
 
 
-def build_gen1(pid, refresh):
+def save(im, d, pid):
+    os.makedirs(f'{SPR}/{d}', exist_ok=True)
+    im.save(f'{SPR}/{d}/{pid}.png', optimize=True)
+
+
+# ---------------------------------------------------------------- mask transfer
+def apply_official_mask(N, T, scale_down):
+    """Transfer the official transparent cut-out onto native source N."""
+    bt = bbox(T)
+    if bt is None:
+        return None
+    art = T.crop(bt)
+    if scale_down:  # gen-1 backs: official art is 2x native
+        art = art.resize((round(art.size[0] / 2), round(art.size[1] / 2)), Image.BOX)
+    mask = art.getchannel('A').point(lambda v: 255 if v >= 128 else 0)
+    mw, mh = mask.size
+    nw, nh = N.size
+    npx, mpx = N.load(), mask.load()
+
+    dbn = bbox(N, dark=True)
+    dbm = bbox(mask)  # mask is L-mode: any value > 0 is body
+    if dbn is None or dbm is None:
+        return None
+    base = (dbn[0] - dbm[0], dbn[1] - dbm[1])
+
+    def score(ox, oy):
+        s = 0
+        for y in range(mh):
+            ny = oy + y
+            for x in range(mw):
+                nx = ox + x
+                m = mpx[x, y] > 0
+                if nx < 0 or ny < 0 or nx >= nw or ny >= nh:
+                    s -= 2 if m else 0
+                    continue
+                ndark = npx[nx, ny][:3] != WHITE
+                if m and ndark:
+                    s += 3
+                elif not m and ndark:
+                    s -= 6
+                elif not m:
+                    s += 1
+        return s
+
+    best = None
+    for dy in range(-2, 3):
+        for dx in range(-2, 3):
+            ox, oy = base[0] + dx, base[1] + dy
+            if ox < -2 or oy < -2 or ox + mw > nw + 2 or oy + mh > nh + 2:
+                continue
+            sc = score(ox, oy)
+            if best is None or sc > best[0]:
+                best = (sc, ox, oy)
+    _, ox, oy = best
+
+    out = Image.new('RGBA', N.size, (0, 0, 0, 0))
+    opx = out.load()
+    for y in range(nh):
+        for x in range(nw):
+            n = npx[x, y]
+            mx, my = x - ox, y - oy
+            m = 0 <= mx < mw and 0 <= my < mh and mpx[mx, my] > 0
+            if m or n[:3] != WHITE:  # mask says body, or dark pixel (safety net)
+                opx[x, y] = (*n[:3], 255)
+    return out
+
+
+# ---------------------------------------------------------------- builders
+def build_gen1(pid, refresh=False):
     outs = {
-        'gen1-rb-color-back': None, 'gen1-rb-dmg-back': None, 'gen1-rb-pocket-back': None,
-        'gen1-yellow-back': None, 'gen1-y-dmg-back': None, 'gen1-y-pocket-back': None,
-        'gen1-green-dmg': None, 'gen1-green-pocket': None,
-        'gen1-green-dmg-back': None, 'gen1-green-pocket-back': None,
+        'gen1-rb-color-back': (f'generation-i/red-blue/back/{pid}.png',
+                               f'generation-i/red-blue/transparent/back/{pid}.png', None),
+        'gen1-rb-dmg-back': (f'generation-i/red-blue/back/gray/{pid}.png',
+                             f'generation-i/red-blue/transparent/back/gray/{pid}.png', 'dmg'),
+        'gen1-rb-pocket-back': (f'generation-i/red-blue/back/gray/{pid}.png',
+                                f'generation-i/red-blue/transparent/back/gray/{pid}.png', 'pocket'),
+        'gen1-yellow-back': (f'generation-i/yellow/back/{pid}.png',
+                             f'generation-i/yellow/transparent/back/{pid}.png', None),
+        'gen1-y-dmg-back': (f'generation-i/yellow/back/gray/{pid}.png',
+                            f'generation-i/yellow/transparent/back/gray/{pid}.png', 'dmg'),
+        'gen1-y-pocket-back': (f'generation-i/yellow/back/gray/{pid}.png',
+                               f'generation-i/yellow/transparent/back/gray/{pid}.png', 'pocket'),
+        'gen1-green-dmg': (f'generation-i/red-green-japan/gray/{pid}.png', None, 'dmg'),
+        'gen1-green-pocket': (f'generation-i/red-green-japan/gray/{pid}.png', None, 'pocket'),
+        'gen1-green-dmg-back': (f'generation-i/red-green-japan/back/gray/{pid}.png', None, 'dmg'),
+        'gen1-green-pocket-back': (f'generation-i/red-green-japan/back/gray/{pid}.png', None, 'pocket'),
     }
-    outdir = f'{REPO}/assets/sprites'
-    if not refresh and all(os.path.exists(f'{outdir}/{d}/{pid}.png') for d in outs):
+    if not refresh and all(os.path.exists(f'{SPR}/{d}/{pid}.png') for d in outs):
         return 'skip'
-    rb_back_color = flood(load(f'generation-i/red-blue/back/{pid}.png'))
-    rb_back_gray = flood(load(f'generation-i/red-blue/back/gray/{pid}.png'))
-    y_back_color = flood(load(f'generation-i/yellow/back/{pid}.png'))
-    y_back_gray = flood(load(f'generation-i/yellow/back/gray/{pid}.png'))
-    gf = flood(load(f'generation-i/red-green-japan/gray/{pid}.png'))
-    gb = flood(load(f'generation-i/red-green-japan/back/gray/{pid}.png'))
-    outs['gen1-rb-color-back'] = pad_to(normalize_alpha(rb_back_color), 40)
-    outs['gen1-rb-dmg-back'] = pad_to(normalize_alpha(recolor_gray(rb_back_gray, RAMP_DMG)), 40)
-    outs['gen1-rb-pocket-back'] = pad_to(normalize_alpha(recolor_gray(rb_back_gray, RAMP_POCKET)), 40)
-    outs['gen1-yellow-back'] = pad_to(normalize_alpha(y_back_color), 40)
-    outs['gen1-y-dmg-back'] = pad_to(normalize_alpha(recolor_gray(y_back_gray, RAMP_DMG)), 40)
-    outs['gen1-y-pocket-back'] = pad_to(normalize_alpha(recolor_gray(y_back_gray, RAMP_POCKET)), 40)
-    outs['gen1-green-dmg'] = normalize_alpha(recolor_gray(gf, RAMP_DMG))
-    outs['gen1-green-pocket'] = normalize_alpha(recolor_gray(gf, RAMP_POCKET))
-    outs['gen1-green-dmg-back'] = normalize_alpha(recolor_gray(gb, RAMP_DMG))
-    outs['gen1-green-pocket-back'] = normalize_alpha(recolor_gray(gb, RAMP_POCKET))
-    for d, im in outs.items():
-        os.makedirs(f'{outdir}/{d}', exist_ok=True)
-        im.save(f'{outdir}/{d}/{pid}.png', optimize=True)
+    for d, (npath, tpath, ramp) in outs.items():
+        N = load(npath)                     # green sources are already transparent
+        im = apply_official_mask(N, load(tpath), True) if tpath else N.copy()
+        if ramp == 'dmg':
+            im = recolor_gray(im, RAMP_DMG)
+        elif ramp == 'pocket':
+            im = recolor_gray(im, RAMP_POCKET)
+        save(pad_to(normalize_alpha(im), 40), d, pid)
     return 'ok'
 
 
-def build_gen2(pid, refresh):
+def build_gen2(pid, refresh=False):
     dirs = ['gen2-gold-back', 'gen2-gold-back-shiny', 'gen2-silver-back', 'gen2-silver-back-shiny',
             'gen2-crystal-back', 'gen2-crystal-back-shiny']
-    outdir = f'{REPO}/assets/sprites'
-    if not refresh and all(os.path.exists(f'{outdir}/{d}/{pid}.png') for d in dirs):
+    if not refresh and all(os.path.exists(f'{SPR}/{d}/{pid}.png') for d in dirs):
         return 'skip'
-    srcs = {
-        'gen2-gold-back': f'generation-ii/gold/back/{pid}.png',
-        'gen2-gold-back-shiny': f'generation-ii/gold/back/shiny/{pid}.png',
-        'gen2-silver-back': f'generation-ii/silver/back/{pid}.png',
-        'gen2-silver-back-shiny': f'generation-ii/silver/back/shiny/{pid}.png',
-        'gen2-crystal-back': f'generation-ii/crystal/back/{pid}.png',
-        'gen2-crystal-back-shiny': f'generation-ii/crystal/back/shiny/{pid}.png',
-    }
-    for d, path in srcs.items():
-        im = normalize_alpha(flood(load(path)))
-        os.makedirs(f'{outdir}/{d}', exist_ok=True)
-        im.save(f'{outdir}/{d}/{pid}.png', optimize=True)
+    for d in dirs:
+        ver = d.split('-')[1]
+        sfx = 'shiny/' if 'shiny' in d else ''
+        N = load(f'generation-ii/{ver}/back/{sfx}{pid}.png')
+        T = load(f'generation-ii/{ver}/transparent/back/{sfx}{pid}.png')
+        im = apply_official_mask(N, T, False)
+        save(normalize_alpha(im), d, pid)  # native 48x48 canvas, no padding
     return 'ok'
+
+
+FRONT_SETS = {
+    'gen2-gold': ('gold', ''), 'gen2-gold-shiny': ('gold', 'shiny/'),
+    'gen2-silver': ('silver', ''), 'gen2-silver-shiny': ('silver', 'shiny/'),
+    'gen2-crystal': ('crystal', ''), 'gen2-crystal-shiny': ('crystal', 'shiny/'),
+}
+
+
+def fix_front(pid):
+    """Rebuild any front sprite that lost >2% of its body vs official."""
+    fixed = []
+    if pid <= 151:
+        checks = {
+            'gen1-rb-color': (f'generation-i/red-blue/{pid}.png', f'generation-i/red-blue/transparent/{pid}.png'),
+            'gen1-rb-dmg': (f'generation-i/red-blue/gray/{pid}.png', f'generation-i/red-blue/transparent/gray/{pid}.png'),
+            'gen1-yellow': (f'generation-i/yellow/{pid}.png', f'generation-i/yellow/transparent/{pid}.png'),
+        }
+    else:
+        checks = {d: (f'generation-ii/{v}/{s}{pid}.png', f'generation-ii/{v}/transparent/{s}{pid}.png')
+                  for d, (v, s) in FRONT_SETS.items()}
+    for d, (npath, tpath) in checks.items():
+        try:
+            rep = Image.open(f'{SPR}/{d}/{pid}.png').convert('RGBA')
+            off = load(tpath)
+        except OSError:
+            continue
+        ro = sum(1 for p in rep.getdata() if p[3] == 255)
+        oo = sum(1 for p in off.getdata() if p[3] == 255)
+        if ro >= oo * 0.98 or oo == 0:
+            continue
+        im = apply_official_mask(load(npath), off, False)
+        save(normalize_alpha(im), d, pid)
+        fixed.append((d, ro, oo))
+    return fixed
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('--ids', help='pokemon id or range, e.g. 25 or 1-151 (default: all needed)')
     ap.add_argument('--refresh', action='store_true', help='rebuild even if outputs exist')
+    ap.add_argument('--skip-fronts', action='store_true', help='do not scan/repair front sprites')
     ap.add_argument('--workers', type=int, default=8)
     args = ap.parse_args()
 
@@ -188,7 +297,7 @@ def main():
             a, b = args.ids.split('-')
             ids = list(range(int(a), int(b) + 1))
         else:
-            ids = [int(args.ids)]
+            ids = [int(x) for x in args.ids.split(',')]
     else:
         ids = list(range(1, 252))
 
@@ -200,7 +309,17 @@ def main():
             stats[f.result()] += 1
             if n % 50 == 0:
                 print(f'  {n}/{len(jobs)} done')
-    print(f'done: {dict(stats)}')
+    print(f'backs+green: {dict(stats)}')
+
+    if not args.skip_fronts:
+        repaired = []
+        with ThreadPoolExecutor(max_workers=args.workers) as ex:
+            futs = {ex.submit(fix_front, i): i for i in ids}
+            for f in as_completed(futs):
+                repaired.extend(f.result())
+        print(f'fronts repaired (>2% body loss vs official): {len(repaired)}')
+        for r in repaired:
+            print('   ', r)
     return 0
 
 
