@@ -46,7 +46,7 @@ updates the statuses below. Work through the phases IN ORDER.
 | # | Phase | Status | Notes |
 |---|-------|--------|-------|
 | 1 | Landing by generations + `gen2.html` unified dex (GBC styling, 3 themes, data, sprites incl. shiny/back/anim, corrected Gen-2 type chart, full i18n + persistence) | DONE (see git log: "Gen 2 unified dex…") | Built in the session that set up this plan |
-| 2 | Sprite & cry completeness audit (every variant × 251) + fixes | TODO | |
+| 2 | Sprite & cry completeness audit (every variant × 251) + fixes | DONE | tools/test-gen2-sprites.py 30/30 — all 12 static banks ×251 (exists/size/PIL decode/RGBA alpha), 251 animated webp all multi-frame, cries 1..251 >2KB, SPRITE_SETS wiring verified; 0 of 753 shiny sprites identical to normal (front+back, 3 games); pixelated rendering confirmed on #sprImg/evo/list; webp playback proven by pixel-diff in Chromium AND Firefox (playwright firefox installed for the audit) |
 | 3 | Moves Dex wiring (GOLD/SILVER · CRYSTAL) + verification | TODO | |
 | 4 | Item Dex wiring (games "gc", gen 2) + verification | TODO | |
 | 5 | How to Catch + Location Dex (Johto & Kanto, G/S/C) | TODO | biggest data phase — start early, see notes |
