@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pokédex — Yellow Version (Gen 1)</title>
-<meta name="description" content="Offline Pokédex in the Pokémon Yellow in-game style — all 151 Gen-1 Pokémon with Yellow's own sprites (Game Boy mono + colorized) and Yellow's authentic dex entries, cries, stats, matchups and evolutions. Bilingual EN/FA.">
+<meta name="description" content="Offline Pokédex in the Pokémon Yellow in-game style — all 151 Gen-1 Pokémon with Yellow&rsquo;s own front &amp; back sprites (Game Boy mono + colorized), the Yellow version&rsquo;s own dex entries, authentic cries, stats and matchups. Bilingual EN/FA.">
 <link rel="icon" href="assets/img/favicon.png">
 <link rel="stylesheet" href="assets/css/yellow.css">
 </head>
@@ -73,6 +73,7 @@
             <button class="setchip" data-set="yc">COLOR</button>
           </div>
           <div class="sprBtns">
+            <button class="sbtn" id="btnBack" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h14M13 4l4 4-4 4"/><path d="M21 16H7M11 12l-4 4 4 4"/></svg><span data-i18n="back_mark">Back</span></button>
             <button class="sbtn" id="btnPal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="9" r="1.3" fill="currentColor" stroke="none"/><circle cx="14.5" cy="8" r="1.3" fill="currentColor" stroke="none"/><circle cx="9.5" cy="14.5" r="1.3" fill="currentColor" stroke="none"/><circle cx="15" cy="14" r="1.3" fill="currentColor" stroke="none"/></svg><span data-i18n="pal_mark">Palette</span></button>
             <button class="sbtn" id="btnCry"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span data-i18n="cry_mark">Cry</span></button>
             <button class="sbtn" id="btnOwn"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M3.6 10.5h16.8" stroke="currentColor" stroke-width="2.4"/><circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" stroke-width="2.2"/></svg><span data-i18n="own_mark">Own</span></button>
@@ -111,6 +112,7 @@
   <button class="m-item" data-act="random"><span class="mi">&#127922;</span><span data-i18n="m_random">Random Pok&eacute;mon</span></button>
   <button class="m-item" data-act="cry"><span class="mi">&#128266;</span><span data-i18n="m_cry">Play cry</span></button>
   <button class="m-item" data-act="set"><span class="mi">&#127918;</span><span data-i18n="m_set">Sprites: Yellow</span></button>
+  <button class="m-item" data-act="back"><span class="mi">&#8646;</span><span data-i18n="m_back">View: Front</span></button>
   <button class="m-item" data-act="pal"><span class="mi">&#127912;</span><span data-i18n="m_pal">Palette: Game Boy</span></button>
   <button class="m-item" data-act="fav"><span class="mi">&#9733;</span><span data-i18n="m_fav">Favorites only</span></button>
   <button class="m-item" data-act="sort"><span class="mi">&#8645;</span><span data-i18n="m_sort">Sort: number</span></button>

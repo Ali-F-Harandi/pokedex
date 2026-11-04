@@ -42,9 +42,11 @@ Every dex shares one structure and feature set; only the theme changes per game.
 ### Red/Blue Dex — features
 
 - All **151 Kanto Pokémon**, same structure and feature set as the Emerald dex, themed after the Game Boy era in a restrained way (gray shell, DMG-tinted screen — no console gimmicks)
-- **Two authentic sprite sets**, switchable from the sprite card or the START menu:
+- **Three authentic sprite sets**, switchable from the sprite card or the START menu:
   - `R/B` — original Game Boy monochrome sprites, in **DMG green** and **Pocket gray** screen palettes
   - `COLOR` — the very same Red/Blue sprites, colorized
+  - `GREEN` — the **Japan-only 1996 Green version** with its older artwork, with a short historical note
+- **Back sprites** for every Pokémon in every set — the `Back` button, START menu or key `B` flips to the in-game back side
 - **Authentic Red/Blue cries** for all 151 Pokémon (local OGG files)
 - Pokédex entries transcribed from the [`pret/pokered`](https://github.com/pret/pokered) decompilation: original 2-page text, authentic categories, in-game imperial HT/WT
 - Authentic **Gen-1 type chart** — including the famous R/B quirks (Ghost ×0 vs Psychic, Bug ×2 vs Poison)
@@ -58,6 +60,7 @@ Every dex shares one structure and feature set; only the theme changes per game.
   - `Y` — the Yellow-version Game Boy sprites in monochrome, in **DMG green** and **Pocket gray** palettes
   - `COLOR` — the same Yellow sprites, colorized
 - Includes the anime-famous **yellow Pikachu** sprite and every other redrawn version-specific sprite
+- **Back sprites** for every set (Yellow kept the Red/Blue back artwork) — `Back` button, START menu or key `B`
 - **Authentic Gen-1 cries** (shared local OGG files) · entry page-flipping · seen/owned tracking
 - Authentic **Gen-1 type chart** — the same mechanics Yellow used
 
@@ -68,6 +71,7 @@ Every dex shares one structure and feature set; only the theme changes per game.
   - `GOLD` — Gold's own sprites
   - `SILVER` — Silver's own sprites (Gold and Silver redrew many of them)
 - **Shiny sprites** for every Pokémon — shiny Pokémon were introduced in this generation (`Shiny` button, START menu or key `S`)
+- **Back sprites** for every Pokémon, normal **and** shiny — `Back` button, START menu or key `B`
 - **Both versions' dex entry texts**: Gold and Silver rewrote most entries — small `GOLD` / `SILVER` buttons on the entry box switch between the two authentic texts (EN); the box still flips pages like the original
 - The **Palette/Version button** recolors the whole dex between Gold and Silver accents
 - Counters split like the game: **Kanto / Johto / Total** seen & owned
@@ -79,6 +83,7 @@ Every dex shares one structure and feature set; only the theme changes per game.
 - A **dedicated Pokédex for Pokémon Crystal** (all **251 Johto + Kanto Pokémon**), same structure as the other dexes, with its own **teal Game Boy Color shell** and Crystal's **ice-blue accent**
 - **Crystal's own in-game sprites** — Crystal redrew the Gen-2 sprites again — with **shiny variants** (`Shiny` button or key `S`)
 - **Animated battle sprites** — Crystal introduced the series' very first animated Pokémon sprites; all 251 authentic animations are included as lossless WebP with a toggle (`Anim` button, START menu or key `A`), exactly like the Emerald dex
+- **Back sprites** for every Pokémon, normal and shiny — static, exactly like the game (Crystal only animated its fronts); `Back` button, START menu or key `B`
 - **Crystal's rewritten dex entries** — Crystal rewrote every single entry text (all 251 differ from both Gold and Silver); the box flips pages like the original
 - Counters split like the game: **Kanto / Johto / Total** seen & owned · authentic **Gen-2 type chart** · authentic cries · seen/owned tracking · full detail grid
 
@@ -99,7 +104,9 @@ Every dex shares one structure and feature set; only the theme changes per game.
 - [x] **Yellow (Gen 1)** — available (Yellow's own sprites and Yellow's own dex entries)
 - [x] **Gold / Silver (Gen 2)** — available (both versions' sprites + shiny, both versions' dex texts, Game Boy Color shell)
 - [x] **Crystal (Gen 2)** — available (Crystal's own sprites + shiny, animated battle sprites, fully rewritten dex entries)
-- [ ] Ruby / Sapphire, FireRed / LeafGreen (Gen 3) — next
+- [x] **Back sprites everywhere + Japan-only Green set** (Pokédex Plus, Phase 1)
+- [ ] Moves & learnsets per game (Pokédex Plus, Phase 2) — next
+- [ ] Ruby / Sapphire, FireRed / LeafGreen (Gen 3)
 - [ ] Gen 4–9 — planned
 
 ## 🚀 Run locally
@@ -133,6 +140,8 @@ pokedex/
     │   ├── gen1-rb-dmg/        ← Red/Blue Game Boy mono, DMG green palette
     │   ├── gen1-rb-pocket/     ← Red/Blue Game Boy mono, Pocket gray palette
     │   ├── gen1-rb-color/      ← Red/Blue sprites, colorized
+    │   ├── gen1-green-dmg/     ← Japan Green version, DMG palette (56×56)
+    │   ├── gen1-green-pocket/  ← Japan Green version, Pocket palette (56×56)
     │   ├── gen1-y-dmg/         ← Yellow Game Boy mono, DMG green palette
     │   ├── gen1-y-pocket/      ← Yellow Game Boy mono, Pocket gray palette
     │   ├── gen1-yellow/        ← Yellow sprites, colorized
@@ -142,7 +151,9 @@ pokedex/
     │   ├── gen2-silver-shiny/  ← Silver shiny variants (251)
     │   ├── gen2-crystal/       ← Crystal's own sprites (251)
     │   ├── gen2-crystal-shiny/ ← Crystal shiny variants (251)
-    │   └── gen2-crystal-anim/  ← 251 animated battle sprites (lossless WebP)
+    │   ├── gen2-crystal-anim/  ← 251 animated battle sprites (lossless WebP)
+    │   ├── gen1-*-back/        ← back sprites of every Gen-1 set above
+    │   └── gen2-*-back*/       ← back sprites (normal + shiny) of every Gen-2 version
     └── audio/cries/            ← 251 authentic cries (ogg, shared by all Gen-1/2 dexes)
 ```
 
@@ -153,10 +164,11 @@ Each HTML page is tiny (6–12 KB) and pulls in its own CSS/JS plus the shared `
 - Vanilla HTML/CSS/JS — zero dependencies, zero network calls
 - Sprites from the [PokeAPI sprites](https://github.com/PokeAPI/sprites) project:
   - `generation-iii/emerald` — static + animated battle sprites (Emerald)
-  - `generation-i/red-blue` — Red/Blue sprites (mono conversions + colored originals)
-  - `generation-i/yellow` — Yellow sprites (mono conversions + colored originals)
-  - `generation-ii/gold` + `generation-ii/silver` (+ `shiny`) — each version's own sprites (Gold/Silver)
-  - `generation-ii/crystal` (+ `shiny` + `animated`) — Crystal's own static and animated sprites
+  - `generation-i/red-blue` — Red/Blue sprites (mono conversions + colored originals, front + back)
+  - `generation-i/red-green-japan` — the Japan-only Green version's older artwork (front + back)
+  - `generation-i/yellow` — Yellow sprites (mono conversions + colored originals, front + back)
+  - `generation-ii/gold` + `generation-ii/silver` (+ `shiny`, + back sprites) — each version's own sprites (Gold/Silver)
+  - `generation-ii/crystal` (+ `shiny` + `animated` + back sprites) — Crystal's own static and animated sprites
 - Pokédex entry texts, categories and in-game HT/WT from the [`pret/pokered`](https://github.com/pret/pokered) and [`pret/pokeyellow`](https://github.com/pret/pokeyellow) decompilations; Gold/Silver/Crystal EN texts per version from PokeAPI
 - Game data (stats, abilities, evolutions, genera) from [PokeAPI](https://pokeapi.co/)
 - [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) (OFL) + [Vazirmatn](https://github.com/rastikerdar/vazirmatn) (OFL)

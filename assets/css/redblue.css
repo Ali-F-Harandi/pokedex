@@ -237,6 +237,9 @@ body.fa #sprNo{font-family:var(--font-fa);font-size:12px;font-weight:700}
 body.fa .setchip{font-family:var(--font-fa);font-size:10px;letter-spacing:0}
 .setchip:hover{border-color:var(--gold);color:var(--ink)}
 .setchip.on{background:linear-gradient(180deg,#ffd95e,#e8a613);color:#4d3500;border-color:#a06c00}
+/* green-set historical note (Red/Blue dex) */
+.setNote{font-size:10px;color:var(--ink-soft);text-align:center;line-height:1.55;padding:1px 4px 2px;max-width:184px;margin:0 auto}
+body.fa .setNote{font-size:11.5px}
 /* counters box — in-game SEEN/OWN style */
 .cntBox{
   background:#fff;border:2px solid var(--panel-edge-d);border-radius:12px;

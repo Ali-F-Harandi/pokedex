@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Pokédex — Pokémon Crystal (Gen 2)</title>
-<meta name="description" content="Offline Pokédex in the Pokémon Crystal in-game style — all 251 Gen-2 Pokémon with Crystal's own sprites, the series' first animated battle sprites, shiny variants, authentic Crystal dex entries, cries, stats, matchups and evolutions. Bilingual EN/FA.">
+<meta name="description" content="Offline Pokédex in the Pokémon Crystal in-game style — all 251 Johto + Kanto Pokémon with Crystal&rsquo;s own front &amp; back sprites (normal + shiny), the series&rsquo; first animated sprites, its rewritten dex entries, authentic cries and stats. Bilingual EN/FA.">
 <link rel="icon" href="assets/img/favicon.png">
 <link rel="stylesheet" href="assets/css/crystal.css">
 </head>
@@ -72,6 +72,7 @@
             <button class="setchip" data-set="c">CRYSTAL</button>
           </div>
           <div class="sprBtns">
+            <button class="sbtn" id="btnBack" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h14M13 4l4 4-4 4"/><path d="M21 16H7M11 12l-4 4 4 4"/></svg><span data-i18n="back_mark">Back</span></button>
             <button class="sbtn" id="btnAnim" aria-pressed="false"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"/></svg><span data-i18n="anim_mark">Anim</span></button>
             <button class="sbtn" id="btnShiny"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l2.2 7.2L21 10l-6.8 1.8L12 19l-2.2-7.2L3 10l6.8-1.8z"/><path d="M19 15l1 3 3 1-3 1-1 3-1-3-3-1 3-1z"/></svg><span data-i18n="shiny">Shiny</span></button>
             <button class="sbtn" id="btnCry"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span data-i18n="cry_mark">Cry</span></button>
@@ -111,6 +112,7 @@
   <button class="m-item" data-act="random"><span class="mi">&#127922;</span><span data-i18n="m_random">Random Pok&eacute;mon</span></button>
   <button class="m-item" data-act="cry"><span class="mi">&#128266;</span><span data-i18n="m_cry">Play cry</span></button>
   <button class="m-item" data-act="set"><span class="mi">&#127918;</span><span data-i18n="m_set">Sprites: Crystal</span></button>
+  <button class="m-item" data-act="back"><span class="mi">&#8646;</span><span data-i18n="m_back">View: Front</span></button>
   <button class="m-item" data-act="shiny"><span class="mi">&#10022;</span><span data-i18n="m_shiny">Shiny mode</span></button>
   <button class="m-item" data-act="anim"><span class="mi">&#9654;</span><span data-i18n="m_anim">Animated sprites</span></button>
   <button class="m-item" data-act="fav"><span class="mi">&#9733;</span><span data-i18n="m_fav">Favorites only</span></button>
