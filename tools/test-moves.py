@@ -26,8 +26,9 @@ def run():
         page.on('pageerror', lambda e: errors.append(str(e)))
 
         # ---------------- red-blue ----------------
-        print('== red-blue.html ==')
-        page.goto(f'file://{R}/red-blue.html')
+        print('== gen1.html (RED theme) ==')
+        ctx.add_init_script("try{localStorage.setItem('pkd_g1_theme', JSON.stringify('red'))}catch(e){}")
+        page.goto(f'file://{R}/gen1.html')
         page.wait_for_timeout(900)
         check('rb: no js errors', not [e for e in errors if 'favicon' not in e], errors[:3])
 
@@ -103,9 +104,9 @@ def run():
         page.click('#movesWrap .mv-close')
 
         # ---------------- yellow (spot) ----------------
-        print('== yellow.html ==')
+        print('== gen1.html (YELLOW theme) ==')
         errors.clear()
-        page.goto(f'file://{R}/yellow.html#25')
+        ctx2 = browser.new_context(viewport={'width': 1280, 'height': 900}); ctx2.add_init_script("try{localStorage.setItem('pkd_g1_theme', JSON.stringify('yellow'))}catch(e){}"); page2 = ctx2.new_page(); page2.on('console', lambda m: errors.append(m.text) if m.type == 'error' else None); page2.on('pageerror', lambda e: errors.append(str(e))); page = page2; page.goto(f'file://{R}/gen1.html#25')
         page.wait_for_timeout(900)
         check('y: no js errors', not [e for e in errors if 'favicon' not in e], errors[:3])
         check('y: moves section', page.locator('#movesSec').count() == 1)

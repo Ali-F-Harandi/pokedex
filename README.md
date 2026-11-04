@@ -8,9 +8,7 @@ Every dex shares one structure and feature set; only the theme changes per game.
 >
 > ▶️ **Emerald dex (Gen 3):** https://ali-f-harandi.github.io/pokedex/emerald.html
 >
-> ▶️ **Red/Blue dex (Gen 1):** https://ali-f-harandi.github.io/pokedex/red-blue.html
->
-> ▶️ **Yellow dex (Gen 1):** https://ali-f-harandi.github.io/pokedex/yellow.html
+> ▶️ **Generation I dex — Red · Blue · Green · Yellow in one page:** https://ali-f-harandi.github.io/pokedex/gen1.html
 >
 > ▶️ **Gold/Silver dex (Gen 2):** https://ali-f-harandi.github.io/pokedex/goldsilver.html
 >
@@ -23,10 +21,11 @@ Every dex shares one structure and feature set; only the theme changes per game.
 | Game | Generation | File | Status |
 |------|-----------|------|--------|
 | **Pokémon Emerald** | Gen 3 (Hoenn) | [`emerald.html`](https://ali-f-harandi.github.io/pokedex/emerald.html) | ✅ Available |
-| **Pokémon Red/Blue** | Gen 1 (Kanto) | [`red-blue.html`](https://ali-f-harandi.github.io/pokedex/red-blue.html) | ✅ Available |
-| **Pokémon Yellow** | Gen 1 (Kanto) | [`yellow.html`](https://ali-f-harandi.github.io/pokedex/yellow.html) | ✅ Available |
+| **Generation I — Red · Blue · Green · Yellow** | Gen 1 (Kanto) | [`gen1.html`](https://ali-f-harandi.github.io/pokedex/gen1.html) | ✅ Available |
 | **Pokémon Gold/Silver** | Gen 2 (Johto) | [`goldsilver.html`](https://ali-f-harandi.github.io/pokedex/goldsilver.html) | ✅ Available |
 | **Pokémon Crystal** | Gen 2 (Johto) | [`crystal.html`](https://ali-f-harandi.github.io/pokedex/crystal.html) | ✅ Available |
+
+(`red-blue.html` and `yellow.html` now redirect to `gen1.html` — the whole generation lives in one dex.)
 
 ### Emerald Dex — features
 
@@ -39,30 +38,17 @@ Every dex shares one structure and feature set; only the theme changes per game.
 - Search (EN/FA/number) · type filter chips · sort · favorites · random · seen/owned tracking (saved in browser)
 - Keyboard: `↑ ↓ ← →` browse · `/` search · `S` shiny · `A` anim · `R` random · `Esc` close · deep links (`emerald.html#025`)
 
-### Red/Blue Dex — features
+### Generation I Dex — features (Red · Blue · Green · Yellow in one page)
 
-- All **151 Kanto Pokémon**, same structure and feature set as the Emerald dex, themed after the Game Boy era in a restrained way (gray shell, DMG-tinted screen — no console gimmicks)
-- **Three authentic sprite sets**, switchable from the sprite card or the START menu:
-  - `R/B` — original Game Boy monochrome sprites, in **DMG green** and **Pocket gray** screen palettes
-  - `COLOR` — the very same Red/Blue sprites, colorized
-  - `GREEN` — the **Japan-only 1996 Green version** with its older artwork, with a short historical note
-- **Back sprites** for every Pokémon in every set — the `Back` button, START menu or key `B` flips to the in-game back side
-- **Authentic Red/Blue cries** for all 151 Pokémon (local OGG files)
-- Pokédex entries transcribed from the [`pret/pokered`](https://github.com/pret/pokered) decompilation: original 2-page text, authentic categories, in-game imperial HT/WT
-- Authentic **Gen-1 type chart** — including the famous R/B quirks (Ghost ×0 vs Psychic, Bug ×2 vs Poison)
-- Entry text flips pages like the original · seen/owned tracking · cries playable from the side menu
-
-### Yellow Dex — features
-
-- A **dedicated Pokédex for Pokémon Yellow**, with the same structure as the Emerald and Red/Blue dexes and its own **Pikachu-Yellow-edition** Game Boy shell (warm gold body — clearly its own, unlike the Red/Blue gray)
-- **Yellow's own dex entries** — Yellow rewrote all 151 entry texts; they are transcribed from the [`pret/pokeyellow`](https://github.com/pret/pokeyellow) decompilation (original 2-page text, authentic categories, in-game HT/WT), not reused from Red/Blue
-- **Yellow's own sprites**, switchable from the sprite card or the START menu:
-  - `Y` — the Yellow-version Game Boy sprites in monochrome, in **DMG green** and **Pocket gray** palettes
-  - `COLOR` — the same Yellow sprites, colorized
-- Includes the anime-famous **yellow Pikachu** sprite and every other redrawn version-specific sprite
-- **Back sprites** for every set (Yellow kept the Red/Blue back artwork) — `Back` button, START menu or key `B`
-- **Authentic Gen-1 cries** (shared local OGG files) · entry page-flipping · seen/owned tracking
-- Authentic **Gen-1 type chart** — the same mechanics Yellow used
+- All **151 Kanto Pokémon** and **all four Gen-1 games in a single dex**, themed after the Game Boy era (gray DMG shell, restrained — no console gimmicks)
+- **GAME theme switcher** (sprite-card chips, START menu or key `T`) between the four releases — each theme restyles the dex and swaps in that game's data:
+  - **RED** / **BLUE** — the international 1998 pair sharing one sprite set: `MONO` (Game Boy monochrome, **DMG green** / **Pocket gray** palettes) and `COLOR` (the same sprites colorized)
+  - **GREEN** — the **Japan-only 1996 version** with its older artwork (mono only, as the game was), with a short historical note
+  - **YELLOW** — its own shell (warm gold), its own redrawn sprites (`MONO` + `COLOR`), its own dex texts and its own moves
+- **Back sprites for every Pokémon in every set** — the `Back` button, START menu or key `B` flips to the in-game back side; international backs are rendered at the games' authentic 2× scale, matching the Japan Green backs pixel-for-pixel
+- **Dex-text version selector**: Yellow rewrote **all 151** entries — small `R/B` / `YELLOW` buttons on the entry box switch between the authentic Red/Blue and Yellow texts (the choice follows the active game and can be overridden anytime)
+- **Moves follow the selected game** — the learnset panel, Moves Dex and TM/HM list switch between the Red/Blue and Yellow data with the theme
+- **Authentic Gen-1 cries** (local OGG files); Pokédex entries transcribed from the [`pret/pokered`](https://github.com/pret/pokered) and [`pret/pokeyellow`](https://github.com/pret/pokeyellow) decompilations (original 2-page texts, authentic categories); authentic **Gen-1 type chart** (Ghost ×0 vs Psychic, Bug ×2 vs Poison quirks included); page-flipping entries; seen/owned tracking
 
 ### Gold/Silver Dex — features
 
@@ -87,6 +73,13 @@ Every dex shares one structure and feature set; only the theme changes per game.
 - **Crystal's rewritten dex entries** — Crystal rewrote every single entry text (all 251 differ from both Gold and Silver); the box flips pages like the original
 - Counters split like the game: **Kanto / Johto / Total** seen & owned · authentic **Gen-2 type chart** · authentic cries · seen/owned tracking · full detail grid
 
+### Uniform sprite scale (all dexes)
+
+- Every sprite set now sits on its **native uniform canvas** — no more zoom-to-fit: a Caterpie stays small next to a Gyarados, exactly like the games
+- Gen-1/2 fronts & shinies: uniform 56×56 (7×7 tile) canvas, bottom-centered — the Japan Green convention
+- Gen-1 international backs are stored at **half resolution and rendered at 2×**, just like the games did — matching the Green backs pixel-for-pixel; Gen-2 backs keep their uniform 48×48 at 1:1
+- Emerald animated sprites re-anchored onto a uniform 96×96 canvas (the animation envelope), frame-exact
+
 ### Moves & learnsets (Gen-1/2 dexes — Pokédex Plus, Phase 2)
 
 - **MOVES panel in every Pokémon's detail view** — the learnset *of that exact game*, grouped by learn method with counts: **LEVEL-UP** (with the learn level), **TM · HM** (with the machine number), **EGG** and **TUTOR** tabs (the latter two only where the game has them — eggs and tutors are Gen-2 features, and the tutor tab is Crystal-only)
@@ -103,11 +96,11 @@ Every dex shares one structure and feature set; only the theme changes per game.
 - **Bilingual: English (primary) + Persian (فارسی)** — full RTL, Persian digits, translated names/types/entries/abilities/evolutions
 - **Moves everywhere (Gen-1/2 dexes)** — per-game learnset panel, Moves Dex (`M`), TM/HM list — see the *Moves & learnsets* section above
 - **100% offline** — all data, sprites, cries and fonts are plain local files next to each page
-- Landing page (`index.html`) is **game-neutral**: one catalog item per game — complementary pairs like Red/Blue or Ruby/Sapphire share a single item
+- Landing page (`index.html`) is **game-neutral**: one catalog item per game — Generation I is all four Game Boy games in one item; complementary pairs like Gold/Silver or Ruby/Sapphire share a single item
 
 ## 🏠 Landing page
 
-`index.html` is the project hub (dark neutral theme, not tied to any single game). Every mainline Pokémon game (Gen 1–9) is listed with its own colored card; **Emerald**, **Red/Blue**, **Yellow**, **Gold/Silver** and **Crystal** are live now, everything else is *Coming Soon* and will follow one by one. Bilingual EN/FA.
+`index.html` is the project hub (dark neutral theme, not tied to any single game). Every mainline Pokémon game (Gen 1–9) is listed with its own colored card; **Emerald**, the **Generation I dex** (Red · Blue · Green · Yellow in one page), **Gold/Silver** and **Crystal** are live now, everything else is *Coming Soon* and will follow one by one. Bilingual EN/FA.
 
 ## 🗺 Roadmap
 
@@ -138,8 +131,9 @@ cd pokedex
 pokedex/
 ├── index.html                  ← game-neutral landing page (catalog + roadmap, EN/FA)
 ├── emerald.html                ← Gen-3 Emerald dex entry page
-├── red-blue.html               ← Gen-1 Red/Blue dex entry page
-├── yellow.html                 ← Gen-1 Yellow dex entry page
+├── gen1.html                   ← Generation I dex — Red · Blue · Green · Yellow in one page
+├── red-blue.html               ← redirect → gen1.html
+├── yellow.html                 ← redirect → gen1.html
 ├── goldsilver.html             ← Gen-2 Gold/Silver dex entry page
 ├── crystal.html                ← Gen-2 Crystal dex entry page
 └── assets/

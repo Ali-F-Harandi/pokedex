@@ -191,6 +191,24 @@ const MovesUI = (() => {
     wire(p);
   }
 
+  /* ================= game switching (gen1.html only) =================
+     The merged Gen-1 page swaps the active game's moves data when the
+     RED/BLUE/GREEN/YELLOW theme changes. On it, `MD` is a mutable `var`
+     (moves-gen1.js) so the swap sticks; single-game pages declare `const
+     MD` and simply never call this. */
+  function setGame(next){
+    if (!next || next === MD) return;
+    try { MD = next; } catch(err){ return; }
+    Object.keys(MACH).forEach(k => { delete MACH[k]; });
+    Object.keys(MD.tm).forEach(n => { MACH[MD.tm[n]] = { kind: "TM", num: +n }; });
+    Object.keys(MD.hm).forEach(n => { MACH[MD.hm[n]] = { kind: "HM", num: +n }; });
+    byCache.clear();
+    secTab = "lv";
+    view.mode = "list"; view.q = ""; view.type = null; view.cls = null; view.move = null;
+    try { renderSection(typeof select === "function" && typeof state !== "undefined" ? PMAP[state.sel] : undefined); } catch(err){}
+    if (isOpen()) renderDex();
+  }
+
   /* ================= overlay ================= */
   const view = { mode: "list", q: "", type: null, cls: null, move: null };
   let el = null;
@@ -429,6 +447,7 @@ const MovesUI = (() => {
     if (isOpen()) renderDex();
   }
   injectMenu();
+  ensureOverlay();   /* register the M-key shortcut before the first open */
 
-  return { sectionHTML, wire, renderSection, openDex, closeDex, applyLang, learnersOf };
+  return { sectionHTML, wire, renderSection, setGame, openDex, closeDex, applyLang, learnersOf };
 })();
