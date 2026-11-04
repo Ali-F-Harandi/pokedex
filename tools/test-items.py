@@ -55,8 +55,10 @@ def run():
         check('detail view opens', page.evaluate("!!document.querySelector('.id-card')"))
         buy = page.evaluate("[...document.querySelectorAll('.id-stat b')].map(x=>x.textContent)")
         check('gen1 prices shown (master ball not for sale)', buy and buy[0] == '—', str(buy))
-        gsrc = page.evaluate("document.querySelector('.id-desc em') && document.querySelector('.id-desc em').textContent")
-        check('G/S/C wording label on gen1', gsrc and 'GOLD' in gsrc.upper(), str(gsrc))
+        body_txt = page.evaluate("document.querySelector('#itBody').textContent")
+        check('no G/S/C wording label on gen1 (gen1-only info)', 'GOLD' not in body_txt.upper() and 'CRYSTAL' not in body_txt.upper())
+        chips = page.evaluate("[...document.querySelectorAll('.id-gchip')].map(x=>x.textContent)")
+        check('gen1 availability chips are R/B + YELLOW only', set(chips) <= {'RED/BLUE', 'YELLOW'} and len(chips) == 2, str(chips))
         page.screenshot(path=f'{SHOT}/gen1-detail.png')
         # gen1-only item without description
         page.click('#itBack')

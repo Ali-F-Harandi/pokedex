@@ -75,7 +75,7 @@ bdi{unicode-bidi:isolate}
 .dexlogo .l2{font-family:var(--font-px);font-size:11px;color:#ffe9a8;letter-spacing:1px;text-shadow:1px 1px 0 #7c1a12;display:block}
 #topbar .tt{min-width:0}
 #topbar .tt .t1{font-family:var(--font-px);font-size:10px;color:#ccd4d9;letter-spacing:1.5px;direction:ltr}
-body.fa #topbar .tt .t1{font-family:var(--font-fa);font-size:12px;letter-spacing:0}
+body.fa #topbar .tt .t1{font-family:var(--font-fa);font-size:12px;letter-spacing:0;direction:rtl}
 #topbar .tt .t2{font-size:12.5px;font-weight:700;color:#fff;margin-top:5px}
 .hspace{flex:1}
 .htools{display:flex;gap:7px;align-items:center;flex-wrap:wrap}

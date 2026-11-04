@@ -15,7 +15,7 @@
   --ball-red:#d84038;
   --head:#5a636a; --head-d:#3e464d;
   --row-line:#e2e6d4; --num:#5e6a58;
-  --sprbg:#c9d3a2;
+  --sprbg:#f1f2ee;  /* paper-white sprite backdrop — sprites read crisply on it */
   --stat-hp:#f0a030; --stat-atk:#e05038; --stat-def:#4890d0;
   --stat-spa:#a870d8; --stat-spd:#58b868; --stat-spe:#f0d048;
   --font-px:'PS2P','Courier New',monospace;
@@ -25,7 +25,7 @@
 body.silver{
   --red:#4a7ca8; --red-deep:#265680; --sel-a:#5a8cb8; --sel-b:#31618c;
   --gold:#8fb0c8; --gold-d:#4e718c;
-  --screen:#c9d0d4; --screen-line:#b4bdc2; --sprbg:#c9d0d4;
+  --screen:#c9d0d4; --screen-line:#b4bdc2;
   --row-line:#e0e5e8; --num:#5a646b;
   --panel-edge:#a8b4bc; --panel-edge-d:#6e7c86;
   --ink-soft:#545f68; --ink-faint:#87929a;
@@ -103,7 +103,7 @@ bdi{unicode-bidi:isolate}
 .dexlogo .l2{font-family:var(--font-px);font-size:11px;color:#ffe9a8;letter-spacing:1px;text-shadow:1px 1px 0 #7c560a;display:block}
 #topbar .tt{min-width:0}
 #topbar .tt .t1{font-family:var(--font-px);font-size:10px;color:#d8ccec;letter-spacing:1.5px;direction:ltr}
-body.fa #topbar .tt .t1{font-family:var(--font-fa);font-size:12px;letter-spacing:0}
+body.fa #topbar .tt .t1{font-family:var(--font-fa);font-size:12px;letter-spacing:0;direction:rtl}
 #topbar .tt .t2{font-size:12.5px;font-weight:700;color:#fff;margin-top:5px}
 .hspace{flex:1}
 .htools{display:flex;gap:7px;align-items:center;flex-wrap:wrap}

@@ -12,15 +12,16 @@
   --red:#d84438; --red-deep:#8e2620; --sel-a:#e86850; --sel-b:#b83a2c;
   --gold:#e8b840; --gold-d:#a87814;
   --ball-red:#d84038;
-  --head:#5a636a; --head-d:#3e464d;
+  --head-a:#636c73; --head-b:#464e55;
+  --foot-a:#525b62; --foot-b:#3e464d;
   --row-line:#e2e6d4; --num:#5e6a58;
-  --sprbg:#c9d3a2;
+  --sprbg:#f1f2ee;
   --stat-hp:#f0a030; --stat-atk:#e05038; --stat-def:#4890d0;
   --stat-spa:#a870d8; --stat-spd:#58b868; --stat-spe:#f0d048;
   --font-px:'PS2P','Courier New',monospace;
   --font-fa:'Vazirmatn',Tahoma,'Segoe UI',sans-serif;
 }
-body.pocket{ --screen:#c9ced2; --screen-line:#b6bcc2; --sprbg:#c9ced2; }
+body.pocket{ --screen:#c9ced2; --screen-line:#b6bcc2; }
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{margin:0;padding:0}
 body{
@@ -61,9 +62,10 @@ bdi{unicode-bidi:isolate}
 #topbar{
   display:flex;align-items:center;gap:12px;flex-wrap:wrap;
   padding:10px 14px 9px;
-  background:linear-gradient(180deg,#636c73,#464e55);
+  background:linear-gradient(180deg,var(--head-a),var(--head-b));
   border-bottom:3px solid #23282d;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.22), inset 0 -2px 0 rgba(0,0,0,.18);
+  transition:background .3s;
 }
 .dexlogo{
   flex:none;background:linear-gradient(180deg,#f2604e,#c22d22);
@@ -75,7 +77,7 @@ bdi{unicode-bidi:isolate}
 .dexlogo .l2{font-family:var(--font-px);font-size:11px;color:#ffe9a8;letter-spacing:1px;text-shadow:1px 1px 0 #7c1a12;display:block}
 #topbar .tt{min-width:0}
 #topbar .tt .t1{font-family:var(--font-px);font-size:10px;color:#ccd4d9;letter-spacing:1.5px;direction:ltr}
-body.fa #topbar .tt .t1{font-family:var(--font-fa);font-size:12px;letter-spacing:0}
+body.fa #topbar .tt .t1{font-family:var(--font-fa);font-size:12px;letter-spacing:0;direction:rtl}
 #topbar .tt .t2{font-size:12.5px;font-weight:700;color:#fff;margin-top:5px}
 .hspace{flex:1}
 .htools{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
@@ -205,6 +207,17 @@ body.fa .row.sel .no{color:#ffe9a8}
   transition:background .25s;
 }
 #sprBox img{width:100%;height:100%;object-fit:contain;object-position:center bottom;image-rendering:pixelated;display:block}
+/* sprite stage — big prev/next arrows flank the Pokémon on touch screens;
+   swiping the sprite also works (see gen1.js) */
+.sprStage{display:flex;align-items:center;justify-content:center;gap:12px;touch-action:pan-y;direction:ltr}
+.navArrow{
+  display:none;flex:none;width:46px;height:46px;align-items:center;justify-content:center;
+  color:#fff;background:linear-gradient(180deg,var(--sel-a),var(--sel-b));
+  border:2px solid var(--red-deep);border-radius:50%;cursor:pointer;
+  box-shadow:0 3px 0 rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.3);
+}
+.navArrow svg{width:20px;height:20px}
+.navArrow:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.35)}
 #sprName{font-size:15px;font-weight:700;color:#243018;text-align:center;line-height:1.5}
 body.fa #sprName{font-size:16.5px}
 #sprNo{font-family:var(--font-px);font-size:9px;color:var(--gold-d);direction:ltr}
@@ -380,7 +393,7 @@ body.fa .abchip .hid{font-size:9.5px}
   box-shadow:0 14px 34px rgba(0,0,0,.4);
 }
 #menuPop .m-head{
-  background:linear-gradient(180deg,#636c73,#464e55);color:#fff;
+  background:linear-gradient(180deg,var(--head-a),var(--head-b));color:#fff;
   font-family:var(--font-px);font-size:9px;letter-spacing:1px;padding:9px 12px;direction:ltr;
 }
 body.fa #menuPop .m-head{font-family:var(--font-fa);font-size:12.5px;direction:rtl;letter-spacing:0}
@@ -403,7 +416,7 @@ body.fa #menuPop .m-head{font-family:var(--font-fa);font-size:12.5px;direction:r
   box-shadow:0 20px 50px rgba(0,0,0,.5);overflow:hidden;
 }
 #aboutBox .a-head{
-  background:linear-gradient(180deg,#636c73,#464e55);color:#fff;padding:12px 16px;
+  background:linear-gradient(180deg,var(--head-a),var(--head-b));color:#fff;padding:12px 16px;
   font-family:var(--font-px);font-size:10px;letter-spacing:1px;direction:ltr;display:flex;justify-content:space-between;align-items:center;
 }
 body.fa #aboutBox .a-head{font-family:var(--font-fa);font-size:14px;direction:rtl;letter-spacing:0}
@@ -417,7 +430,8 @@ body.fa #aboutBox .kbd{font-family:var(--font-fa);font-size:10.5px}
 #foot{
   display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;
   font-size:11px;color:#ccd4d9;padding:9px 14px;
-  border-top:3px solid #23282d;background:linear-gradient(180deg,#525b62,#3e464d);
+  border-top:3px solid #23282d;background:linear-gradient(180deg,var(--foot-a),var(--foot-b));
+  transition:background .3s;
 }
 #foot a{color:#ffe9a8;text-decoration:none;font-weight:700}
 #foot a:hover{text-decoration:underline}
@@ -487,6 +501,8 @@ body.fa #startBtn{font-family:var(--font-fa);font-size:12px;letter-spacing:0;dir
   #detailPane{order:3;max-height:none}
   #list{max-height:48vh}
   .row.sel::before{inset-inline-start:1px}
+  .navArrow{display:inline-flex}
+  #sprBox{width:150px;height:150px}
 }
 @media (max-width:480px){
   .dexlogo{padding:5px 9px 6px}
@@ -501,32 +517,69 @@ body.fa #startBtn{font-family:var(--font-fa);font-size:12px;letter-spacing:0;dir
    R/B ↔ YELLOW dex-text selector.
    ============================================================ */
 
-/* ---- theme variable layers ---- */
-/* BLUE — cool gray shell, blue accent (the Blue version) */
+/* ---- theme variable layers ----
+   Every game repaints the WHOLE dex, like sliding a different cartridge
+   into the same console: cartridge-coloured shell, matching dark header
+   and footer, its own accent colour and its own page glow. The LCD
+   screen stays the classic DMG green — all four games ran on it. */
+/* RED — Pokémon Red: warm cartridge-red shell */
+body.theme-red{
+  --shell-a:#e05a46; --shell-b:#a82818; --deep:#180c09;
+  --head-a:#7e2b1f; --head-b:#521610;
+  --foot-a:#66221a; --foot-b:#431309;
+  --red:#d84438; --red-deep:#8e2620; --sel-a:#e86850; --sel-b:#b83a2c;
+  --row-line:#ecdfd8; --num:#7a4a42;
+  --panel-edge:#d9bdb2; --panel-edge-d:#9c6a5a;
+  background:
+    radial-gradient(1100px 640px at 50% -8%, #4c1d15, transparent 60%),
+    radial-gradient(900px 560px at 94% 108%, #2b120c, transparent 55%),
+    var(--deep);
+}
+/* BLUE — Pokémon Blue: cartridge-blue shell */
 body.theme-blue{
+  --shell-a:#5a8ed2; --shell-b:#2a5496; --deep:#0c1118;
+  --head-a:#2d5288; --head-b:#1b3560;
+  --foot-a:#26466e; --foot-b:#172e4c;
   --red:#3a72c8; --red-deep:#1e4a8e; --sel-a:#5a8ccc; --sel-b:#2a5a9e;
-  --head:#54626e; --head-d:#39444e;
   --row-line:#dde4ea; --num:#5a6874;
-  --panel-edge:#aebac4; --panel-edge-d:#6e7c88;
+  --panel-edge:#b6c4d4; --panel-edge-d:#6e8098;
+  background:
+    radial-gradient(1100px 640px at 50% -8%, #1b2c48, transparent 60%),
+    radial-gradient(900px 560px at 94% 108%, #101a2c, transparent 55%),
+    var(--deep);
 }
-/* GREEN — the Japan-only 1996 version: sage tint + DMG-green screen */
+/* GREEN — the Japan-only 1996 Green: cartridge-green shell */
 body.theme-green{
-  --red:#3a9a52; --red-deep:#1e6a34; --sel-a:#5aac6c; --sel-b:#2a7a42;
-  --shell-a:#c2ccc4; --shell-b:#8f9c92;
-  --gold:#a8c88a; --gold-d:#5a7a3a;
-  --row-line:#dfe6da; --num:#5c6e58;
-  --panel-edge:#b2c0a8; --panel-edge-d:#70826a;
+  --shell-a:#5cba78; --shell-b:#2d8448; --deep:#0a160d;
+  --head-a:#2b7a41; --head-b:#185028;
+  --foot-a:#236633; --foot-b:#154620;
+  --red:#2f9a52; --red-deep:#1e6a34; --sel-a:#5aac6c; --sel-b:#2a7a42;
+  --row-line:#dfe8dc; --num:#55705a;
+  --panel-edge:#b4ccae; --panel-edge-d:#6f8a6e;
+  background:
+    radial-gradient(1100px 640px at 50% -8%, #17331f, transparent 60%),
+    radial-gradient(900px 560px at 94% 108%, #0e2013, transparent 55%),
+    var(--deep);
 }
-/* YELLOW — the Pikachu edition: gold shell (from the Yellow dex) */
+/* YELLOW — the Pikachu edition: gold shell */
 body.theme-yellow{
-  --shell-a:#f4cf37; --shell-b:#d0a011; --deep:#191307;
+  --shell-a:#f6d340; --shell-b:#d09c10; --deep:#191307;
+  --head-a:#a87e10; --head-b:#6e5006;
+  --foot-a:#8a670e; --foot-b:#5c4307;
   --red:#d9a014; --red-deep:#8a5f00; --sel-a:#e2a616; --sel-b:#a87808;
   --row-line:#e9e2c8; --num:#7a6a2e;
-  --panel-edge:#c8bc96; --panel-edge-d:#8a7a4a;
+  --panel-edge:#d0c49a; --panel-edge-d:#8a7a4a;
   background:
     radial-gradient(1100px 640px at 50% -8%, #4a3c14, transparent 60%),
     radial-gradient(900px 560px at 94% 108%, #2c2210, transparent 55%),
     var(--deep);
+}
+/* shell + header/footer follow the game smoothly */
+#shell{transition:background .3s}
+/* themed "on" chips per game */
+body.theme-red .tab.on, body.theme-red .mbtn.on, body.theme-red .sbtn.on,
+body.theme-red .setchip.on, body.theme-red .btn.on, body.theme-red .vbtn.on, body.theme-red .tchip.on{
+  background:linear-gradient(180deg,#f59a86,#d0492f);color:#4d1006;border-color:#9c2c18;
 }
 body.theme-blue .tab.on, body.theme-blue .mbtn.on, body.theme-blue .sbtn.on,
 body.theme-blue .setchip.on, body.theme-blue .btn.on, body.theme-blue .vbtn.on, body.theme-blue .tchip.on{
@@ -540,6 +593,14 @@ body.theme-yellow .tab.on, body.theme-yellow .mbtn.on, body.theme-yellow .sbtn.o
 body.theme-yellow .setchip.on, body.theme-yellow .btn.on, body.theme-yellow .vbtn.on, body.theme-yellow .tchip.on{
   background:linear-gradient(180deg,#ffe084,#e8a613);color:#4d3500;border-color:#a06c00;
 }
+/* the brand chip rides the game colour */
+body.theme-red .dexlogo{background:linear-gradient(180deg,#f2604e,#c22d22);border-color:#7c1a12}
+body.theme-blue .dexlogo{background:linear-gradient(180deg,#6a9ade,#2a5aa8);border-color:#1c3e78}
+body.theme-blue .dexlogo .l2{color:#dbe8ff;text-shadow:1px 1px 0 #1c3e78}
+body.theme-green .dexlogo{background:linear-gradient(180deg,#6cc488,#2e8a4e);border-color:#1c5c30}
+body.theme-green .dexlogo .l2{color:#dcf5e2;text-shadow:1px 1px 0 #1c5c30}
+body.theme-yellow .dexlogo{background:linear-gradient(180deg,#f6d340,#cf9c10);border-color:#9a7008}
+body.theme-yellow .dexlogo .l2{color:#fff6d8;text-shadow:1px 1px 0 #9a7008}
 
 /* ---- theme switcher row (game selector) ---- */
 .themeRow{display:flex;gap:5px;justify-content:center;margin:6px 0 2px;flex-wrap:wrap}

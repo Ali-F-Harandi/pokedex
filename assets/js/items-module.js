@@ -43,7 +43,7 @@ const ItemsUI = (() => {
               mail: "Mail", treasure: "Treasures", rod: "Rods", key: "Key items", misc: "Misc" },
       pockets: { ball: "BALLS", item: "ITEMS", key: "KEY ITEMS" },
       buy: "BUY", sell: "SELL", not_sold: "NOT FOR SALE",
-      desc_t: "DESCRIPTION", desc_src: "— GOLD/SILVER/CRYSTAL WORDING",
+      desc_t: "DESCRIPTION",
       no_desc_g1: "Generation I items had no in-game descriptions.",
       g1_only: "This item exists only in Generation I.",
       hold_mark: "HOLD", games_t: "APPEARS IN",
@@ -61,7 +61,7 @@ const ItemsUI = (() => {
               mail: "نامه‌ها", treasure: "گنجینه‌ها", rod: "ماهیگیری", key: "آیتم‌های کلیدی", misc: "متفرقه" },
       pockets: { ball: "توپ‌ها", item: "آیتم‌ها", key: "کلیدی" },
       buy: "خرید", sell: "فروش", not_sold: "فروشی نیست",
-      desc_t: "توضیحات", desc_src: "— متن گلد/سیلور/کریستال",
+      desc_t: "توضیحات",
       no_desc_g1: "آیتم‌های نسل اول در بازی توضیح نداشتند.",
       g1_only: "این آیتم فقط در نسل اول وجود دارد.",
       hold_mark: "همراه", games_t: "موجود در",
@@ -94,6 +94,16 @@ const ItemsUI = (() => {
   function iconPath(it){
     if (!it.i) return "";
     return (view.icons === "gb" ? "assets/itemicons-gb/" : "assets/itemicons/") + it.i + ".png";
+  }
+  /* icon <img> — in COLOR mode an item without a coloured icon
+     falls back to its GB icon (like sprites: colour when it has it) */
+  function iconImg(it, cls){
+    if (!it.i) return '<span class="ph"></span>';
+    if (view.icons !== "gb"){
+      return '<img class="' + cls + '" src="' + iconPath(it) + '" data-gb="assets/itemicons-gb/' + it.i + '.png"' +
+        ' onerror="this.onerror=null;this.src=this.dataset.gb" alt="">';
+    }
+    return '<img class="' + cls + '" src="' + iconPath(it) + '" alt="">';
   }
   function nameEN(it){
     if (lang() === "fa") return it.en;
@@ -128,10 +138,22 @@ const ItemsUI = (() => {
 
   function openDex(){
     ensureOverlay();
+    syncIcons(true);          /* icons follow the page's sprite colour mode */
     el.wrap.classList.remove("hidden");
     renderDex();
   }
   function closeDex(){ if (el) el.wrap.classList.add("hidden"); }
+  /* icon style follows the MONO/COLOR sprite switch of the page
+     (pages set window.__itemIconHint; others keep their default) */
+  function syncIcons(quiet){
+    if (typeof window.__itemIconHint !== "function") return;
+    const v = window.__itemIconHint();
+    if ((v === "gb" || v === "color") && v !== view.icons){
+      view.icons = v;
+      save("pkd_itemicons", v);
+      if (!quiet && el && !el.wrap.classList.contains("hidden")) renderDex();
+    }
+  }
 
   /* ================= list view ================= */
   function renderDex(){
@@ -183,10 +205,9 @@ const ItemsUI = (() => {
   }
 
   function cardHtml(it){
-    const ic = iconPath(it);
     return '<button class="icard" data-k="' + it.k + '">' +
       '<span class="icard-top">' +
-        '<span class="icard-ic">' + (ic ? '<img class="icn" src="' + ic + '" alt="">' : '<span class="ph"></span>') + "</span>" +
+        '<span class="icard-ic">' + iconImg(it, "icn") + "</span>" +
         '<span class="icard-nm">' +
           '<span class="icard-en">' + esc(nameEN(it)) + "</span>" +
           '<span class="icard-fa">' + esc(nameFA(it)) + "</span>" +
@@ -203,22 +224,21 @@ const ItemsUI = (() => {
   function renderDetail(it){
     const p = priceOf(it);
     const sell = p ? Math.floor(p / 2) : 0;
-    const gChips = ["b","y","g","c"].map(g =>
+    /* availability chips — only the games this dex covers
+       (the Gen-1 dex shows RED/BLUE and YELLOW, never Gen-2 games) */
+    const gChips = ["b","y","g","c"].filter(g => CFG.games.indexOf(g) !== -1).map(g =>
       '<span class="id-gchip' + (it.g.indexOf(g) !== -1 ? " on" : "") + '">' + esc(t("g_names." + g)) + "</span>").join("");
     const descHtml = it.d
-      ? '<div class="id-desc"><div class="mv-sec-t">' + esc(t("desc_t")) +
-          (CFG.gen === 1 ? ' <em style="font-style:normal;color:var(--ink-faint)">' + esc(t("desc_src")) + "</em>" : "") +
-        "</div>" +
+      ? '<div class="id-desc"><div class="mv-sec-t">' + esc(t("desc_t")) + "</div>" +
         '<p class="d-fa">' + esc(it.fa2) + "</p>" +
         '<p class="d-en">' + esc(it.d) + "</p></div>"
       : '<div class="id-desc"><div class="mv-sec-t">' + esc(t("desc_t")) + "</div>" +
         '<p class="d-fa" style="margin:0;color:var(--ink-faint)">' + esc(t("g1_only") ) + " " + esc(t("no_desc_g1")) + "</p></div>";
-    const ic = iconPath(it);
     el.body.innerHTML =
       '<button class="it-back" id="itBack">' + esc(t("back")) + "</button>" +
       '<div class="id-card">' +
         '<div class="id-head">' +
-          '<span class="id-ic">' + (ic ? '<img src="' + ic + '" alt="">' : '<span class="ph"></span>') + "</span>" +
+          '<span class="id-ic">' + iconImg(it, "icn") + "</span>" +
           '<span class="id-name">' +
             '<span class="mv-fa big">' + esc(nameFA(it)) + "</span>" +
             '<span class="mv-en big">' + esc(nameEN(it)) + "</span>" +
@@ -274,5 +294,5 @@ const ItemsUI = (() => {
   injectMenu();
   ensureOverlay();   /* register the I-key shortcut before the first open */
 
-  return { openDex, closeDex, applyLang };
+  return { openDex, closeDex, applyLang, syncIcons };
 })();

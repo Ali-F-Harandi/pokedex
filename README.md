@@ -40,11 +40,13 @@ Every dex shares one structure and feature set; only the theme changes per game.
 
 ### Generation I Dex — features (Red · Blue · Green · Yellow in one page)
 
-- All **151 Kanto Pokémon** and **all four Gen-1 games in a single dex**, themed after the Game Boy era (gray DMG shell, restrained — no console gimmicks)
-- **GAME theme switcher** (sprite-card chips, START menu or key `T`) between the four releases — each theme restyles the dex and swaps in that game's data:
+- All **151 Kanto Pokémon** and **all four Gen-1 games in a single dex**, themed after the Game Boy era — each game repaints the whole console like its own cartridge
+- **GAME theme switcher** (sprite-card chips, START menu or key `T`) between the four releases — each theme repaints the **cartridge-coloured shell, header, footer, accents and page glow** (Red / Blue / Green / Yellow) and swaps in that game's data:
   - **RED** / **BLUE** — the international 1998 pair sharing one sprite set: `MONO` (Game Boy monochrome, **DMG green** / **Pocket gray** palettes) and `COLOR` (the same sprites colorized)
   - **GREEN** — the **Japan-only 1996 version** with its older artwork (mono only, as the game was), with a short historical note
-  - **YELLOW** — its own shell (warm gold), its own redrawn sprites (`MONO` + `COLOR`), its own dex texts and its own moves
+  - **YELLOW** — its own gold shell, its own redrawn sprites (`MONO` + `COLOR`), its own dex texts and its own moves
+- **Touch-friendly browsing** — on phones, big round arrows flank the Pokémon and **swiping the sprite** goes to the next/previous one (like a slider); the arrows keep their physical direction in the Persian (RTL) layout too
+- **Paper-white sprite backdrop** — every sprite (and evolution sprite) sits on a light card so even the palest sprites read clearly; the LCD screen keeps its authentic green
 - **Back sprites for every Pokémon in every set** — the `Back` button, START menu or key `B` flips to the in-game back side; international backs are rendered at the games' authentic 2× scale, matching the Japan Green backs pixel-for-pixel
 - **Dex-text version selector**: Yellow rewrote **all 151** entries — small `R/B` / `YELLOW` buttons on the entry box switch between the authentic Red/Blue and Yellow texts (the choice follows the active game and can be overridden anytime)
 - **Moves follow the selected game** — the learnset panel, Moves Dex and TM/HM list switch between the Red/Blue and Yellow data with the theme
@@ -87,7 +89,7 @@ Every dex shares one structure and feature set; only the theme changes per game.
 - **MOVES DEX** (START menu, `M` key, or the `ALL MOVES` button): every move that exists in that game — 165 in Red/Blue/Yellow, 251 in Gold/Silver/Crystal — with search (EN/FA), type and physical/special filters
 - **TM / HM LIST** (START menu): the authentic machine list of that game — 50 TMs + 5 HMs in Gen 1, 50 TMs + 7 HMs in Gen 2; on Crystal it also notes the Goldenrod **Move Tutor** (Flamethrower / Thunderbolt / Ice Beam)
 - **Move cards** show power / accuracy / PP, the type badge, the **Gen-1/2 physical-vs-special class** (derived from the move's type, as the games did), the authentic **Gold/Silver/Crystal in-game description** (EN + FA) and a **"who can learn it"** section — every Pokémon of that game grouped by method, with learn levels; clicking one jumps to that Pokémon
-- **Historical accuracy**: power / type / accuracy / PP are taken from the `pret` decompiles (`pokered` / `pokegold` move tables) — so Gen 1 shows **Gust, Karate Chop, Bite and Sand Attack as NORMAL-type**, **Rock Throw at 65% accuracy**, **Barrier with 30 PP** etc.; Curse keeps its authentic **`???` type badge**; Gen-1 pages label the description as the Gold/Silver wording (the Gen-1 games had no move text)
+- **Historical accuracy**: power / type / accuracy / PP are taken from the `pret` decompiles (`pokered` / `pokegold` move tables) — so Gen 1 shows **Gust, Karate Chop, Bite and Sand Attack as NORMAL-type**, **Rock Throw at 65% accuracy**, **Barrier with 30 PP** etc.; Curse keeps its authentic **`???` type badge**; the Gen-1 games had no move text, so Gen-1 pages carry a short historical note instead of any wording label
 - **Fully bilingual**: 251 Persian move names + all 251 descriptions translated, Persian digits, RTL-aware panels
 - Reproducible: `python3 tools/build-moves.py` regenerates every data file from `pret` + PokéAPI
 
@@ -95,9 +97,9 @@ Every dex shares one structure and feature set; only the theme changes per game.
 
 - **ITEM DEX overlay** (START menu or `I` key) on the Generation I, Gold/Silver and Crystal dexes: every **bag item of that game** — 72 in Red/Blue/Yellow, 161 in Gold/Silver, 165 in Crystal (machines stay in the TM/HM list of the Moves Dex)
 - **Game-authentic item lists** from the `pret` decompiles (`pokered` / `pokecrystal`): unused placeholder slots (TERU-SAMA) are excluded, and the four **Crystal-only items** (CLEAR BELL, GS BALL, BLUE CARD, EGG TICKET) appear only on the Crystal dex
-- **Item cards**: authentic in-game name (EN + FA), bag pocket (BALLS / ITEMS / KEY ITEMS), category badge (Medicine, Battle, Berries, Apricorns, Held items, Mail, …), **buy and sell prices of that game** — prices really do differ between generations (HYPER POTION: ¥1500 in R/B, ¥1200 in G/S/C) — the authentic **G/S/C in-game description** (EN + FA) with a wording label on the Gen-1 page, a HOLD badge for held items, and an **appears-in row** (RED/BLUE · YELLOW · GOLD/SILVER · CRYSTAL)
-- **Gen-1 historical note**: the Gen-1 games had no item descriptions — items that also exist in Gen 2 show the G/S/C wording (labelled), Gen-1-only items (SILPH SCOPE, GOLD TEETH, OAK'S PARCEL…) say so
-- **Icons in two styles**: the PokeAPI menu icons recolored onto the **DMG 4-shade Game Boy ramp** (default on the Gen-1 dex) and the original color icons (default on the G/S/C dexes) — toggle in the overlay, choice saved. A dozen items never had an icon anywhere (GS BALL, EGG TICKET, BERSERK GENE, the two BOWs…) and show a dashed placeholder; Gen-2 berries borrow the modern fruit icons of their Gen-3 renames (BERRY → Oran design etc.)
+- **Item cards**: authentic in-game name (EN + FA), bag pocket (BALLS / ITEMS / KEY ITEMS), category badge (Medicine, Battle, Berries, Apricorns, Held items, Mail, …), **buy and sell prices of that game** — prices really do differ between generations (HYPER POTION: ¥1500 in R/B, ¥1200 in G/S/C) — the item's **in-game description** (EN + FA), a HOLD badge for held items, and an **appears-in row limited to that dex's own games** (the Gen-1 dex shows only RED/BLUE · YELLOW — no Gen-2 games leak in)
+- **Gen-1-only info on the Gen-1 dex**: only the 72 Red/Blue/Yellow items appear, availability is RED/BLUE · YELLOW only and no Gen-2 wording labels are shown — the Gen-1 games had no item descriptions, so items that never got one (SILPH SCOPE, GOLD TEETH, OAK'S PARCEL…) say so
+- **Icons in two styles**: the PokeAPI menu icons recolored onto the **DMG 4-shade Game Boy ramp** and the original color icons — on the Gen-1 dex the icons **follow the sprite `MONO`/`COLOR` switch** (colour set → colour icons), with a manual toggle in the overlay; an icon that has no colour version falls back to its GB icon. A dozen items never had an icon anywhere (GS BALL, EGG TICKET, BERSERK GENE, the two BOWs…) and show a dashed placeholder; Gen-2 berries borrow the modern fruit icons of their Gen-3 renames (BERRY → Oran design etc.)
 - **Fully bilingual**: all 181 Persian item names + all 161 descriptions translated; search works in EN and FA; category chips localized
 - Reproducible: `python3 tools/build-items.py` regenerates the data and icons from `pret` + PokeAPI
 

@@ -481,7 +481,14 @@ function toggleSet(s){
   save("pkd_g1_set", state.set);
   renderSpritePane();
   renderDetail();
+  /* item icons ride the same MONO/COLOR switch as the sprites */
+  if (typeof ItemsUI !== "undefined" && ItemsUI.syncIcons) ItemsUI.syncIcons();
 }
+/* hint for the Item Dex: which icon style matches the active sprite set */
+window.__itemIconHint = function(){
+  try { return SPRITE_SETS[state.set] && SPRITE_SETS[state.set].color ? "color" : "gb"; }
+  catch(e){ return "gb"; }
+};
 function renderThemeRow(){
   const el = $("#themeRow");
   if (!el) return;
@@ -731,7 +738,7 @@ function applyLang(){
   const t1 = document.querySelector("#topbar .t1");
   if (t1) t1.textContent = t("theme_tag." + state.theme);
   if (typeof MovesUI !== "undefined") MovesUI.applyLang();
-  if (window.ItemsUI) ItemsUI.applyLang();
+  if (typeof ItemsUI !== "undefined") ItemsUI.applyLang();
 }
 function toggleLang(){
   state.lang = state.lang === "en" ? "fa" : "en";
@@ -818,6 +825,26 @@ function bind(){
   $("#aboutWrap").addEventListener("click", e => { if (e.target.id === "aboutWrap") $("#aboutWrap").classList.add("hidden"); });
   $("#scrollUp").addEventListener("click", () => $("#list").scrollBy({top:-180, behavior:"smooth"}));
   $("#scrollDown").addEventListener("click", () => $("#list").scrollBy({top:180, behavior:"smooth"}));
+  /* mobile: big prev/next arrows beside the sprite */
+  $("#mPrev").addEventListener("click", () => next(-1));
+  $("#mNext").addEventListener("click", () => next(1));
+  /* mobile: swipe the sprite to browse — like a slider */
+  (() => {
+    const stage = $("#sprStage");
+    if (!stage) return;
+    let sx = 0, sy = 0, st = 0;
+    stage.addEventListener("touchstart", e => {
+      const tc = e.changedTouches[0];
+      sx = tc.clientX; sy = tc.clientY; st = Date.now();
+    }, { passive: true });
+    stage.addEventListener("touchend", e => {
+      const tc = e.changedTouches[0];
+      const dx = tc.clientX - sx, dy = tc.clientY - sy;
+      if (Math.abs(dx) > 42 && Math.abs(dx) > Math.abs(dy) * 1.4 && Date.now() - st < 900){
+        next(dx < 0 ? 1 : -1);   /* swipe left → next, swipe right → previous */
+      }
+    }, { passive: true });
+  })();
   document.addEventListener("keydown", e => {
     if (e.target.matches("input,select,textarea")){
       if (e.key === "Escape") e.target.blur();
