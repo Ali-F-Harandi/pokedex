@@ -731,6 +731,7 @@ function applyLang(){
   const t1 = document.querySelector("#topbar .t1");
   if (t1) t1.textContent = t("theme_tag." + state.theme);
   if (typeof MovesUI !== "undefined") MovesUI.applyLang();
+  if (window.ItemsUI) ItemsUI.applyLang();
 }
 function toggleLang(){
   state.lang = state.lang === "en" ? "fa" : "en";

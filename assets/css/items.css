@@ -1,0 +1,127 @@
+/* Pokédex Plus — item module styles (shared by the Gen-1/2 dex pages).
+   Uses each page's existing CSS variables so it inherits the Game Boy
+   look of whichever page loads it. Same visual language as moves.css. */
+
+/* ---------- overlay ---------- */
+#itemsWrap {
+  position: fixed; inset: 0; z-index: 96; display: grid; place-items: center;
+  background: rgba(8, 10, 12, .58); padding: 14px;
+}
+#itemsWrap.hidden { display: none; }
+#itemsBox {
+  display: flex; flex-direction: column; width: min(780px, 100%);
+  max-height: min(720px, 92vh); overflow: hidden;
+  background: var(--panel, #fdfef6); border: 3px solid #23282d; border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .5);
+}
+.it-head {
+  background: linear-gradient(180deg, #636c73, #464e55); color: #fff;
+  padding: 12px 16px; font-family: var(--font-px); font-size: 10px; letter-spacing: 1px;
+  direction: ltr; display: flex; justify-content: space-between; align-items: center; gap: 10px;
+}
+.it-close {
+  font-family: inherit; font-size: 14px; font-weight: 700; line-height: 1;
+  color: #fff; background: rgba(0, 0, 0, .25); border: 2px solid rgba(255, 255, 255, .4);
+  border-radius: 8px; padding: 4px 9px; cursor: pointer;
+}
+.it-close:hover { background: rgba(0, 0, 0, .45); }
+.it-sub { background: #fbfdf0; border-bottom: 2px solid #dfe6cb; padding: 10px 14px; }
+#itQ {
+  font-family: inherit; font-size: 13px; color: var(--ink); width: 100%;
+  background: #fff; border: 2px solid #c3cda9; border-radius: 9px; padding: 8px 12px;
+  outline: none;
+}
+#itQ:focus { border-color: var(--red); }
+.it-chiprow { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+.it-chip {
+  font-family: inherit; font-size: 11px; font-weight: 700; color: var(--ink-soft);
+  background: #fff; border: 2px solid #c3cda9; border-radius: 999px;
+  padding: 3px 10px; cursor: pointer;
+}
+.it-chip.on { background: var(--red); border-color: var(--red-deep); color: #fff; }
+.it-style {
+  font-family: var(--font-px); font-size: 8px; letter-spacing: .8px; direction: ltr;
+  color: var(--red-deep); background: transparent; border: 2px solid var(--panel-edge);
+  border-radius: 8px; padding: 4px 9px; cursor: pointer; margin-inline-start: auto;
+}
+.it-style:hover { background: #f2f5e4; }
+.it-body { overflow-y: auto; padding: 12px 14px 16px; }
+.it-count { font-size: 11.5px; color: var(--ink-faint); margin-bottom: 8px; }
+.it-note { font-size: 11.5px; color: var(--ink-faint); line-height: 1.9; margin: 8px 0; }
+
+/* ---------- grid cards ---------- */
+.igrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+.icard {
+  display: flex; flex-direction: column; gap: 5px; text-align: start;
+  font-family: inherit; color: var(--ink);
+  background: #fff; border: 2px solid #c3cda9; border-radius: 11px;
+  padding: 9px 10px; cursor: pointer; transition: border-color .1s, transform .08s;
+}
+.icard:hover { border-color: var(--red); transform: translateY(-1px); }
+.icard .icn { width: 30px; height: 30px; image-rendering: pixelated; object-fit: contain; }
+.icard .icn.ph { width: 26px; height: 26px; }
+.icard-top { display: flex; align-items: center; gap: 8px; }
+.icard-ic { width: 34px; height: 34px; display: grid; place-items: center;
+  background: #f4f7e8; border: 1px solid #dfe6cb; border-radius: 8px; flex: none; }
+.icard-ic .ph { width: 18px; height: 18px; border: 2px dashed #b9c4a4; border-radius: 6px; }
+.icard-nm { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.icard-en { font-family: var(--font-px); font-size: 8px; letter-spacing: .5px; color: #243018; direction: ltr;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.icard-fa { font-weight: 700; font-size: 11.5px; color: var(--ink); white-space: nowrap;
+  overflow: hidden; text-overflow: ellipsis; }
+.icard-meta { display: flex; align-items: center; gap: 5px; flex-wrap: wrap;
+  border-top: 1px dashed #dfe6cb; padding-top: 5px; }
+.it-price { font-family: var(--font-px); font-size: 8px; letter-spacing: .5px; direction: ltr;
+  color: #4d5c3a; background: #f1f5e2; border-radius: 7px; padding: 3px 6px; white-space: nowrap; }
+.it-pk-badge { font-family: var(--font-px); font-size: 7px; letter-spacing: .5px; direction: ltr;
+  color: #fff; border-radius: 7px; padding: 3px 6px; white-space: nowrap; background: var(--ink-soft); }
+.it-pk-badge.ball { background: #c8a038; }
+.it-pk-badge.key  { background: #8a6a9a; }
+
+/* ---------- detail view ---------- */
+.it-back {
+  font-family: var(--font-px); font-size: 8.5px; letter-spacing: 1px;
+  color: var(--red-deep); background: transparent; border: 2px solid var(--panel-edge);
+  border-radius: 8px; padding: 5px 10px; cursor: pointer; margin-bottom: 10px;
+  align-self: flex-start;
+}
+.it-back:hover { background: #f2f5e4; }
+.id-card { background: #fbfdf0; border: 2px solid #c3cda9; border-radius: 12px; padding: 12px 14px; }
+.id-head { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.id-ic { width: 52px; height: 52px; display: grid; place-items: center;
+  background: #fff; border: 2px solid #c3cda9; border-radius: 10px; flex: none; }
+.id-ic img { width: 44px; height: 44px; image-rendering: pixelated; object-fit: contain; }
+.id-ic .ph { width: 26px; height: 26px; border: 2px dashed #b9c4a4; border-radius: 8px; }
+.id-name { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.id-meta { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; margin-inline-start: auto; }
+.id-stats { display: flex; gap: 10px; margin: 12px 0 4px; }
+.id-stat {
+  flex: 1; text-align: center; background: #fff; border: 2px solid #c3cda9;
+  border-radius: 10px; padding: 8px 6px;
+}
+.id-stat i { display: block; font-family: var(--font-px); font-size: 7.5px; font-style: normal;
+  letter-spacing: 1px; color: var(--ink-faint); margin-bottom: 4px; }
+.id-stat b { font-size: 15px; color: #243018; font-variant-numeric: tabular-nums; }
+.id-desc { background: #fff; border: 2px solid #c3cda9; border-radius: 10px; padding: 10px 14px; }
+.id-desc .d-fa { font-size: 13.5px; font-weight: 700; line-height: 2; color: #28391c; margin: 0 0 6px; }
+.id-desc .d-en { font-size: 12px; line-height: 1.8; color: var(--ink-soft); margin: 0; direction: ltr; text-align: left; }
+.id-games { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.id-gchip {
+  font-family: var(--font-px); font-size: 7.5px; letter-spacing: .8px; direction: ltr;
+  color: #fff; background: var(--ink-faint); border-radius: 7px; padding: 4px 7px;
+}
+.id-gchip.on { background: var(--red); }
+.it-cat {
+  font-family: var(--font-px); font-size: 7.5px; letter-spacing: .5px; direction: ltr;
+  color: #4d5c3a; background: #e7edd6; border-radius: 7px; padding: 3px 7px; white-space: nowrap;
+}
+.it-hold {
+  font-family: var(--font-px); font-size: 7.5px; letter-spacing: .5px; direction: ltr;
+  color: #fff; background: #58a068; border-radius: 7px; padding: 3px 7px; white-space: nowrap;
+}
+
+/* ---------- responsive ---------- */
+@media (max-width: 640px) {
+  .id-meta { margin-inline-start: 0; }
+  .igrid { grid-template-columns: repeat(auto-fill, minmax(128px, 1fr)); }
+}

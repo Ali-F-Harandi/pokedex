@@ -91,10 +91,21 @@ Every dex shares one structure and feature set; only the theme changes per game.
 - **Fully bilingual**: 251 Persian move names + all 251 descriptions translated, Persian digits, RTL-aware panels
 - Reproducible: `python3 tools/build-moves.py` regenerates every data file from `pret` + PokéAPI
 
+### Item Dex (Gen-1/2 dexes — Pokédex Plus, Phase 3)
+
+- **ITEM DEX overlay** (START menu or `I` key) on the Generation I, Gold/Silver and Crystal dexes: every **bag item of that game** — 72 in Red/Blue/Yellow, 161 in Gold/Silver, 165 in Crystal (machines stay in the TM/HM list of the Moves Dex)
+- **Game-authentic item lists** from the `pret` decompiles (`pokered` / `pokecrystal`): unused placeholder slots (TERU-SAMA) are excluded, and the four **Crystal-only items** (CLEAR BELL, GS BALL, BLUE CARD, EGG TICKET) appear only on the Crystal dex
+- **Item cards**: authentic in-game name (EN + FA), bag pocket (BALLS / ITEMS / KEY ITEMS), category badge (Medicine, Battle, Berries, Apricorns, Held items, Mail, …), **buy and sell prices of that game** — prices really do differ between generations (HYPER POTION: ¥1500 in R/B, ¥1200 in G/S/C) — the authentic **G/S/C in-game description** (EN + FA) with a wording label on the Gen-1 page, a HOLD badge for held items, and an **appears-in row** (RED/BLUE · YELLOW · GOLD/SILVER · CRYSTAL)
+- **Gen-1 historical note**: the Gen-1 games had no item descriptions — items that also exist in Gen 2 show the G/S/C wording (labelled), Gen-1-only items (SILPH SCOPE, GOLD TEETH, OAK'S PARCEL…) say so
+- **Icons in two styles**: the PokeAPI menu icons recolored onto the **DMG 4-shade Game Boy ramp** (default on the Gen-1 dex) and the original color icons (default on the G/S/C dexes) — toggle in the overlay, choice saved. A dozen items never had an icon anywhere (GS BALL, EGG TICKET, BERSERK GENE, the two BOWs…) and show a dashed placeholder; Gen-2 berries borrow the modern fruit icons of their Gen-3 renames (BERRY → Oran design etc.)
+- **Fully bilingual**: all 181 Persian item names + all 161 descriptions translated; search works in EN and FA; category chips localized
+- Reproducible: `python3 tools/build-items.py` regenerates the data and icons from `pret` + PokeAPI
+
 ### All dexes
 
 - **Bilingual: English (primary) + Persian (فارسی)** — full RTL, Persian digits, translated names/types/entries/abilities/evolutions
 - **Moves everywhere (Gen-1/2 dexes)** — per-game learnset panel, Moves Dex (`M`), TM/HM list — see the *Moves & learnsets* section above
+- **Item Dex everywhere (Gen-1/2 dexes)** — every bag item of the game with icons, prices and bilingual descriptions (`I`) — see the *Item Dex* section above
 - **100% offline** — all data, sprites, cries and fonts are plain local files next to each page
 - Landing page (`index.html`) is **game-neutral**: one catalog item per game — Generation I is all four Game Boy games in one item; complementary pairs like Gold/Silver or Ruby/Sapphire share a single item
 

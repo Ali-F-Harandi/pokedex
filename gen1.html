@@ -8,6 +8,7 @@
 <link rel="icon" href="assets/img/favicon.png">
 <link rel="stylesheet" href="assets/css/gen1.css">
 <link rel="stylesheet" href="assets/css/moves.css">
+<link rel="stylesheet" href="assets/css/items.css">
 </head>
 <body>
 
@@ -128,7 +129,7 @@
     <div class="a-head"><span data-i18n="about_title">ABOUT</span><button class="sbtn" id="aboutClose">&#10005;</button></div>
     <div class="a-body">
       <p data-i18n="about_p1">A fan-made, offline Pokédex covering all 151 Pokémon of Generation I — all four Game Boy games in one dex. Data, sprites, cries and fonts live in local files next to the page — everything runs without internet.</p>
-      <p data-i18n="about_p2"><span class="kbd">&uarr; &darr;</span> browse &nbsp; <span class="kbd">/</span> search &nbsp; <span class="kbd">C</span> cry &nbsp; <span class="kbd">T</span> game &nbsp; <span class="kbd">P</span> palette &nbsp; <span class="kbd">R</span> random &nbsp; <span class="kbd">Esc</span> close</p>
+      <p data-i18n="about_p2"><span class="kbd">&uarr; &darr;</span> browse &nbsp; <span class="kbd">/</span> search &nbsp; <span class="kbd">C</span> cry &nbsp; <span class="kbd">T</span> game &nbsp; <span class="kbd">M</span> moves &nbsp; <span class="kbd">I</span> items &nbsp; <span class="kbd">P</span> palette &nbsp; <span class="kbd">R</span> random &nbsp; <span class="kbd">Esc</span> close</p>
       <p data-i18n="about_p3">Mark Pokémon as Seen (automatic while browsing) and Owned (pokeball button) to fill your dex status, just like the game.</p>
       <div class="a-close"><button class="btn sec" id="aboutOk" data-i18n="ok">OK</button></div>
     </div>
@@ -138,6 +139,9 @@
 <script src="assets/js/moves-gen1.js"></script>
 <script src="assets/js/moves-fa.js"></script>
 <script src="assets/js/moves-module.js"></script>
+<script>window.ITEM_DEX_CONFIG = { games:"by", label:"R/B/Y", gen:1, icons:"gb" };</script>
+<script src="assets/js/items-data.js"></script>
+<script src="assets/js/items-module.js"></script>
 <script src="assets/js/gen1.js"></script>
 </body>
 </html>

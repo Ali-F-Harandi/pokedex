@@ -684,6 +684,7 @@ function applyLang(){
   renderTabs(); renderChips(); renderList(); renderSpritePane(); renderDetail(); renderCounters();
   refreshMenuLabels();
   if (typeof MovesUI !== "undefined") MovesUI.applyLang();
+  if (window.ItemsUI) ItemsUI.applyLang();
 }
 function toggleLang(){
   state.lang = state.lang === "en" ? "fa" : "en";

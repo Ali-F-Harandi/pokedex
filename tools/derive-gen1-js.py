@@ -278,7 +278,8 @@ function cycleSet(){
   applyLang();''')
     src = sub(src, '''  renderTabs(); renderChips(); renderList(); renderSpritePane(); renderDetail(); renderCounters();
   refreshMenuLabels();
-  if (typeof MovesUI !== "undefined") MovesUI.applyLang();''',
+  if (typeof MovesUI !== "undefined") MovesUI.applyLang();
+  if (window.ItemsUI) ItemsUI.applyLang();''',
               '''  renderTabs(); renderChips(); renderList(); renderThemeRow(); renderSetRow(); renderSpritePane(); renderDetail(); renderCounters();
   refreshMenuLabels();
   const t1 = document.querySelector("#topbar .t1");
