@@ -112,10 +112,15 @@ body.fa .tab{font-family:var(--font-fa);font-size:12.5px;letter-spacing:0}
 #main{
   display:grid;grid-template-columns:352px 246px 1fr;gap:10px;
   padding:10px;align-items:start;
+  grid-template-areas:
+    "list cfg   detail"
+    "list card  detail"
+    "list cnt   detail";
 }
 
 /* ---------- list pane ---------- */
 #listPane{
+  grid-area:list;
   background:var(--panel);border:2px solid var(--panel-edge-d);border-radius:12px;
   box-shadow:inset 0 0 0 2px #fff, 0 2px 0 rgba(0,0,0,.08);
   display:flex;flex-direction:column;overflow:hidden;
@@ -193,8 +198,10 @@ body.fa .row.sel .no{color:#ffe9a8}
 .row.sel .fav-star{color:#ffe9a8}
 
 /* ---------- sprite pane (center card, like the in-game sprite screen) ---------- */
-#spritePane{display:flex;flex-direction:column;gap:9px}
+/* the settings panel, the Pokémon card and the dex status are grid areas of
+   #main — so the phone layout can read them in any order (grid/flex order) */
 .sprCard{
+  grid-area:card;
   background:#fff;border:2px solid var(--panel-edge-d);border-radius:12px;
   box-shadow:inset 0 0 0 2px #fff, 0 2px 0 rgba(0,0,0,.08);
   padding:10px;display:flex;flex-direction:column;align-items:center;gap:9px;
@@ -220,6 +227,9 @@ body.fa .row.sel .no{color:#ffe9a8}
 .navArrow:active{transform:translateY(2px);box-shadow:0 1px 0 rgba(0,0,0,.35)}
 #sprName{font-size:15px;font-weight:700;color:#243018;text-align:center;line-height:1.5}
 body.fa #sprName{font-size:16.5px}
+/* the other language's name sits under the main one — Pokémon names only */
+#sprName .altName{display:block;margin-top:1px;font-family:var(--font-fa);font-size:11.5px;font-weight:700;color:var(--ink-soft);line-height:1.55}
+body.fa #sprName .altName{font-family:var(--font-px);font-size:8.5px;font-weight:400;letter-spacing:.5px;direction:ltr}
 #sprNo{font-family:var(--font-px);font-size:9px;color:var(--gold-d);direction:ltr}
 body.fa #sprNo{font-family:var(--font-fa);font-size:12px;font-weight:700}
 #sprTypes{display:flex;gap:5px;justify-content:center;flex-wrap:wrap}
@@ -255,6 +265,7 @@ body.fa .setchip{font-family:var(--font-fa);font-size:10px;letter-spacing:0}
 body.fa .setNote{font-size:11.5px}
 /* counters box — in-game SEEN/OWN style */
 .cntBox{
+  grid-area:cnt;
   background:#fff;border:2px solid var(--panel-edge-d);border-radius:12px;
   box-shadow:inset 0 0 0 2px #fff, 0 2px 0 rgba(0,0,0,.08);
   padding:10px 12px;
@@ -283,6 +294,7 @@ body.fa .htwt .k{font-family:var(--font-fa);font-size:11px;letter-spacing:0;dire
 
 /* ---------- detail pane ---------- */
 #detailPane{
+  grid-area:detail;
   background:#fff;border:2px solid var(--panel-edge-d);border-radius:12px;
   box-shadow:inset 0 0 0 2px #fff, 0 2px 0 rgba(0,0,0,.08);
   padding:14px 16px 16px;overflow-y:auto;max-height:calc(100vh - 205px);
@@ -484,22 +496,27 @@ body.fa #startBtn{font-family:var(--font-fa);font-size:12px;letter-spacing:0;dir
 
 /* ---------- mobile ---------- */
 @media (max-width:1120px){
-  #main{grid-template-columns:320px 1fr}
-  #spritePane{grid-column:1;grid-row:2}
-  #detailPane{grid-column:2;grid-row:1 / span 2}
+  #main{
+    grid-template-columns:320px 1fr;
+    grid-template-areas:
+      "list detail"
+      "cfg  detail"
+      "card detail"
+      "cnt  detail";
+  }
 }
 @media (max-width:860px){
   body{padding:8px 6px 14px}
   #shell{border-radius:16px;padding:7px}
   #topbar{gap:8px;padding:9px 10px}
   #kbHint{display:none}
+  /* phone reading order: DEX STATUS → search box → SETTINGS → Pokémon card → full details */
   #main{display:flex;flex-direction:column}
+  .cntBox{order:1}
   #listPane{order:2}
-  #spritePane{order:1;flex-direction:row;flex-wrap:wrap}
-  .sprCard{flex:1 1 240px}
-  #gameCfg{flex:1 1 100%}
-  .cntBox{flex:1 1 150px}
-  #detailPane{order:3;max-height:none}
+  #gameCfg{order:3}
+  .sprCard{order:4}
+  #detailPane{order:5;max-height:none}
   #list{max-height:48vh}
   .row.sel::before{inset-inline-start:1px}
   .navArrow{display:inline-flex}
@@ -638,6 +655,7 @@ body.fa .vbtn{font-family:var(--font-fa);font-size:10px;letter-spacing:0}
    ============================================================ */
 /* ---- settings panel: sits OUTSIDE the Pokémon card ---- */
 #gameCfg{
+  grid-area:cfg;
   background:#fff;border:2px solid var(--panel-edge-d);border-radius:12px;
   box-shadow:inset 0 0 0 2px #fff, 0 2px 0 rgba(0,0,0,.08);
   padding:10px 10px 8px;display:flex;flex-direction:column;gap:8px;

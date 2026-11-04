@@ -481,7 +481,11 @@ function renderSpritePane(){
   img.src = spriteURL(p.id, null, state.back);
   img.alt = dispName(p);
   $("#sprNo").textContent = "#" + pad3(p.id);
-  $("#sprName").textContent = dispName(p);
+  /* bilingual name — ONLY the Pokémon's name carries both languages (FA main
+     + EN beneath, or EN main + FA beneath); everything else stays monolingual */
+  const nameAlt = state.lang === "fa" ? p.display : (p.fa || "");
+  $("#sprName").innerHTML = "<bdi>" + esc(dispName(p)) + "</bdi>" +
+    (nameAlt ? '<span class="altName"><bdi>' + esc(nameAlt) + "</bdi></span>" : "");
   $("#sprTypes").innerHTML = p.types.map(tp =>
     '<span class="tbadge T-' + tp + '">' + esc(typeName(tp)) + '</span>').join("");
   renderSetRow();
