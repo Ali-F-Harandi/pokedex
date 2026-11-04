@@ -13,8 +13,12 @@ variants whose cut-out is authoritative, so we no longer invent our own:
                           sprite (96x96, art at 2x -> downscaled 2:1 with BOX).
                           The mask is aligned onto the native sprite by a
                           dark-pixel bbox search (+-2 px, scored); dark pixels
-                          are never dropped (safety net). Padded to 40x40.
+                          are never dropped (safety net). Art is then doubled
+                          with NEAREST (the games render backs at 2x) and
+                          bottom-centered on the native 56x56 canvas — the
+                          same scale as the Japan Green backs.
   gen-1 GREEN (4 sets)  : the red-green-japan sources are already transparent
+                          and already on the full 56x56 tile canvas
                           -> used as-is, only recolored onto the DMG / Pocket
                           ramps. Zero transparency processing.
   gen-2 BACKS (+shiny)  : native 48x48 white-bg source + mask from the
@@ -134,6 +138,22 @@ def pad_to(im, size):
     return out
 
 
+def back_to_56(im):
+    """Gen-1 back: games render the half-res art at 2x — crop, double
+    (NEAREST, the authentic chunky look), clamp, bottom-center on 56x56.
+    Matches the Japan Green back canvases 1:1 in scale."""
+    bb = im.getbbox()
+    if bb is None:
+        return pad_to(im, 56)
+    art = im.crop(bb)
+    w, h = art.size
+    w2, h2 = w * 2, h * 2
+    if w2 > 56 or h2 > 56:
+        r = min(56 / w2, 56 / h2)
+        w2, h2 = max(1, round(w2 * r)), max(1, round(h2 * r))
+    return pad_to(art.resize((w2, h2), Image.NEAREST), 56)
+
+
 def save(im, d, pid):
     os.makedirs(f'{SPR}/{d}', exist_ok=True)
     im.save(f'{SPR}/{d}/{pid}.png', optimize=True)
@@ -230,7 +250,16 @@ def build_gen1(pid, refresh=False):
             im = recolor_gray(im, RAMP_DMG)
         elif ramp == 'pocket':
             im = recolor_gray(im, RAMP_POCKET)
-        save(pad_to(normalize_alpha(im), 40), d, pid)
+        # green sets ship native (fronts AND backs already on the full
+        # 56x56 tile canvas) — international backs carry half-res art
+        # that the games render at 2x.
+        if d.startswith('gen1-green'):
+            out = pad_to(normalize_alpha(im), 56)
+        elif d.endswith('-back'):
+            out = back_to_56(normalize_alpha(im))
+        else:
+            out = pad_to(normalize_alpha(im), 56)
+        save(out, d, pid)
     return 'ok'
 
 
@@ -279,7 +308,7 @@ def fix_front(pid):
         if ro >= oo * 0.98 or oo == 0:
             continue
         im = apply_official_mask(load(npath), off, False)
-        save(normalize_alpha(im), d, pid)
+        save(pad_to(normalize_alpha(im), 56), d, pid)  # uniform 56x56 canvas (green convention)
         fixed.append((d, ro, oo))
     return fixed
 
