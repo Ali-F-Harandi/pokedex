@@ -99,6 +99,20 @@ def run():
               page.evaluate("document.querySelector('#sprImg').src").find('gen2-crystal') is not None)
         check('CRYSTAL text selected by default',
               page.evaluate("document.querySelector('#detailPane [data-txt=c]').classList.contains('on')"))
+
+        # --- Gen-2 phase 3: CRYSTAL gets its own move data (label + Move Tutor)
+        mv_lbl = page.evaluate("(document.querySelector('.mv-game')||{textContent:''}).textContent")
+        check('moves label follows theme to CRYSTAL', mv_lbl == 'CRYSTAL', str(mv_lbl))
+        page.evaluate("select(155)")   # Cyndaquil learns Flamethrower from Crystal's tutor
+        page.wait_for_timeout(200)
+        tabs = page.evaluate("[...document.querySelectorAll('#movesSec .mtab')].map(b=>b.dataset.mt)")
+        check('Crystal: Cyndaquil gains the TUTOR tab', 'tutor' in tabs, str(tabs))
+        page.click('#movesSec [data-mt=tutor]')
+        page.wait_for_timeout(150)
+        tr = page.evaluate("[...document.querySelectorAll('#movesSec .mrow .mv-en')].map(b=>b.textContent.trim())")
+        check('Cyndaquil\'s Crystal tutor move is Flamethrower',
+              len(tr) == 1 and tr[0] == 'FLAMETHROWER', str(tr))
+
         check('ANIM chip visible on Crystal',
               page.evaluate("document.querySelector('#chipAnim') !== null"))
         page.click('#chipAnim')
@@ -141,6 +155,75 @@ def run():
         page.click('#btnShiny')
         page.wait_for_timeout(150)
 
+        # --- MOVES (Gen-2 phase 3): per-game learnsets wired to the theme
+        page.evaluate("select(155)")   # Cyndaquil
+        page.wait_for_timeout(200)
+        mv_lbl = page.evaluate("(document.querySelector('.mv-game')||{textContent:''}).textContent")
+        check('MOVES section on gen2.html shows GOLD/SILVER', mv_lbl == 'GOLD/SILVER', str(mv_lbl))
+        tabs = page.evaluate("[...document.querySelectorAll('#movesSec .mtab')].map(b=>b.dataset.mt)")
+        check('G/S: no tutor tab (Gold/Silver had no Move Tutor)',
+              'tutor' not in tabs, str(tabs))
+
+        # data: learnsets for all 251 per game; every move bilingual (FA name + FA description)
+        md_bad = page.evaluate("""(function(){
+          const bad=[];
+          [MD_GS, MD_CRYSTAL].forEach(function(M){
+            if (Object.keys(M.learn).length !== 251) bad.push(M.game + ':learn=' + Object.keys(M.learn).length);
+            Object.keys(M.moves).forEach(function(id){
+              const s = M.moves[id][0], inf = MOVE_INFO[s];
+              if (!inf) { bad.push(M.game + ':noinfo:' + s); return; }
+              if (!inf[0]) bad.push('noEN:' + s);
+              if (!inf[1] || !/[\\u0600-\\u06FF]/.test(inf[1])) bad.push('noFAname:' + s);
+              if (!inf[3] || !/[\\u0600-\\u06FF]/.test(inf[3])) bad.push('noFAdesc:' + s);
+            });
+          });
+          return bad; })()""")
+        check('251 learnsets per game + every move bilingual (FA name + FA description)',
+              not md_bad, '; '.join(md_bad[:4]))
+
+        # data: Crystal move tutor = Flamethrower / Thunderbolt / Ice Beam; none in G/S
+        tutor = page.evaluate("""(function(){
+          const ids=[53,58,85];
+          const names=ids.map(function(i){ return MD_GS.moves[i][0]; }).sort().join(',');
+          const gsT=Object.keys(MD_GS.learn).filter(function(p){ return MD_GS.learn[p].tutor.length > 0; }).length;
+          const crT=Object.keys(MD_CRYSTAL.learn).filter(function(p){ return MD_CRYSTAL.learn[p].tutor.length > 0; }).length;
+          return { names: names, gsT: gsT, crT: crT }; })()""")
+        check('Crystal tutor teaches Flamethrower/Ice Beam/Thunderbolt to 150+ mons, none in G/S',
+              tutor['names'] == 'flamethrower,ice-beam,thunderbolt' and tutor['gsT'] == 0 and tutor['crT'] >= 150,
+              str(tutor))
+
+        # data: TM/HM machines — authentic (Crystal kept the Gold/Silver machines)
+        mach = page.evaluate("""(function(){
+          const a = JSON.stringify(MD_GS.tm) + JSON.stringify(MD_GS.hm);
+          const b = JSON.stringify(MD_CRYSTAL.tm) + JSON.stringify(MD_CRYSTAL.hm);
+          return { same: a === b, tm: Object.keys(MD_GS.tm).length, hm: Object.keys(MD_GS.hm).length }; })()""")
+        check('TM/HM lists authentic and complete (50 TM + 7 HM, same in G/S and Crystal)',
+              mach['same'] and mach['tm'] == 50 and mach['hm'] == 7, str(mach))
+
+        # START menu entries + Moves Dex overlay (M shortcut)
+        page.click('#startBtn')
+        page.wait_for_timeout(250)
+        acts = page.evaluate("[...document.querySelectorAll('#menuPop .m-item')].map(b=>b.dataset.act)")
+        check('START menu has MOVES DEX + TM/HM entries',
+              'movesdex' in acts and 'tmhm' in acts, str(acts))
+        page.keyboard.press('Escape')
+        page.wait_for_timeout(200)
+        page.keyboard.press('m')
+        page.wait_for_timeout(400)
+        head = page.evaluate("(document.querySelector('#mvHeadT')||{textContent:''}).textContent")
+        check('Moves Dex overlay shows GOLD/SILVER', 'GOLD/SILVER' in head, head)
+        ov_n = page.evaluate("document.querySelectorAll('#movesWrap .mcard').length")
+        check('Moves Dex overlay lists all 251 Gen-2 moves', ov_n == 251, f'cards={ov_n}')
+        en_fa = page.evaluate("""(function(){
+          const c = document.querySelector('#movesWrap .mcard');
+          if (!c) return { en: false, fa: false };
+          return { en: (c.querySelector('.mv-en')||{textContent:''}).textContent.length > 0,
+                   fa: /[\\u0600-\\u06FF]/.test((c.querySelector('.mv-fa')||{textContent:''}).textContent) }; })()""")
+        check('overlay move cards are bilingual (EN + FA names)', en_fa['en'] and en_fa['fa'], str(en_fa))
+        page.screenshot(path=f'{SHOT}/movesdex.png')
+        page.keyboard.press('Escape')
+        page.wait_for_timeout(200)
+
         # --- evolution: Pichu -> Pikachu -> Raichu (Gen-2 baby chain)
         page.evaluate("select(172)")
         page.wait_for_timeout(200)
@@ -175,6 +258,20 @@ def run():
         fa_alt = page.evaluate("document.querySelector('#sprName .altName') && document.querySelector('#sprName .altName').textContent")
         check('FA card shows EN name under the FA name', fa_alt and fa_alt.isascii(), str(fa_alt))
         check('FA dark type label', page.evaluate("I18N.fa.types.dark") == 'تاریک')
+        # FA moves (phase 3): section, rows and the move card all Persian
+        fa_sec = page.evaluate("(document.querySelector('.mv-sec-title')||{textContent:''}).textContent")
+        check('FA moves section title in Persian', 'حرکت' in fa_sec, fa_sec)
+        fa_mv = page.evaluate("/[\\u0600-\\u06FF]/.test((document.querySelector('#movesSec .mrow .mv-fa')||{textContent:''}).textContent)")
+        check('FA move names in Persian in the learnset', fa_mv)
+        page.evaluate("document.querySelector('#movesSec .mrow').click()")
+        page.wait_for_timeout(350)
+        fa_desc = page.evaluate("/[\\u0600-\\u06FF]/.test((document.querySelector('#mvBody')||{textContent:''}).textContent)")
+        check('FA move description in the move card', fa_desc)
+        fa_menu = page.evaluate("[...document.querySelectorAll('.mv-menu-l')].map(s=>s.textContent)")
+        check('FA START menu moves entries in Persian',
+              len(fa_menu) == 2 and all('\u0600' <= s[0] <= '\u06FF' for s in fa_menu), str(fa_menu))
+        page.keyboard.press('Escape')
+        page.wait_for_timeout(150)
         page.screenshot(path=f'{SHOT}/fa.png')
 
         browser.close()
