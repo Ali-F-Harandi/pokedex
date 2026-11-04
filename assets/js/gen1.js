@@ -53,7 +53,7 @@ en:{
   about_title:"ABOUT", ok:"OK",
   about_p1:"A fan-made, offline Pokédex covering all 151 Pokémon of Generation I — all four Game Boy games in one dex. Data, sprites, cries and fonts live in local files next to the page — everything runs without internet.",
   about_p2:"",
-  about_p3:"Mark Pokémon as Seen (automatic while browsing) and Owned (pokeball button) to fill your dex status, just like the game. The GAME chips (or key T) switch this dex between the four Gen-1 releases: RED and BLUE (the international pair), GREEN (the Japan-only 1996 version with its older artwork) and YELLOW (its own redrawn sprites and its own rewritten dex texts). Within each game the MONO / COLOR chips pick the sprite set, and every dex entry can be read in either the Red/Blue or the Yellow wording with the R/B · YELLOW selector. The Back button (key B) flips to the in-game back side.",
+  about_p3:"Mark Pokémon as Seen (automatic while browsing) and Owned (pokeball button) to fill your dex status, just like the game. The GAME chips (or key T) switch this dex between the four Gen-1 releases: RED and BLUE (the international pair), GREEN (the Japan-only 1996 version with its older artwork) and YELLOW (its own redrawn sprites and its own rewritten dex texts). Within each game the MONO / COLOR chips pick the sprite set, and every dex entry can be read in either the Red/Blue or the Yellow wording with the R/B · YELLOW selector. The Back button (key B) flips to the in-game back side. The HOW TO CATCH section and the Location Dex (key L) show where every Pokémon lives in each of the four games — wild tables, fishing rods, gifts, trades, Game Corner prizes and fixed encounters, read straight from the original game data. Your settings (game, MONO/COLOR, palette, language, sort, last Pokémon) are remembered between visits.",
   foot_disclaimer:"Fan-made, non-commercial project. Pokémon © Nintendo / Creatures Inc. / GAME FREAK inc.",
   foot_offline:"Runs 100% offline · static site", all_games:"All games",
   reset_confirm:"Reset all Seen/Owned progress?",
@@ -128,7 +128,7 @@ fa:{
   about_title:"درباره", ok:"باشه",
   about_p1:"پوکیدکس طرفداری و آفلاین برای هر ۱۵۱ پوکمون نسل اول، با ظاهر پوکیدکس داخل بازی‌های Pokémon Red و Blue. داده‌ها، اسپرایت‌ها، صدای پوکمون‌ها و فونت‌ها در فایل‌های کنار صفحه ذخیره شده‌اند و همه‌چیز بدون اینترنت کار می‌کند.",
   about_p2:"",
-  about_p3:"با مرور هر پوکمون، به‌طور خودکار «دیده‌شده» ثبت می‌شود و با دکمه پوکربال می‌توانید آن را «گرفته‌شده» علامت بزنید تا وضعیت پوکیدکس مثل خود بازی پر شود. متن توضیحات مثل بازی صفحه‌ور می‌خورد — روی جعبه متن کلیک کنید. چیپ‌های بازی (یا کلید T) این دکس را بین چهار نسخه‌ی نسل اول جابه‌جا می‌کنند: قرمز و آبی (نسخه‌های جهانی)، سبز (نسخه‌ی ۱۹۹۶ ژاپن با طرح‌های قدیمی‌تر) و زرد (اسپرایت‌های بازطراحی‌شده و متن‌های بازنویسی‌شده‌ی خودش). داخل هر بازی، چیپ‌های تک‌رنگ/رنگی مجموعه اسپرایت را عوض می‌کنند و با انتخابگر R/B · YELLOW می‌توان هر توضیح را با متن قرمز/آبی یا زرد خواند. دکمه پشت (کلید B) اسپرایت را به نمای پشت بازی برمی‌گرداند.",
+  about_p3:"با مرور هر پوکمون، به‌طور خودکار «دیده‌شده» ثبت می‌شود و با دکمه پوکربال می‌توانید آن را «گرفته‌شده» علامت بزنید تا وضعیت پوکیدکس مثل خود بازی پر شود. متن توضیحات مثل بازی صفحه‌ور می‌خورد — روی جعبه متن کلیک کنید. چیپ‌های بازی (یا کلید T) این دکس را بین چهار نسخه‌ی نسل اول جابه‌جا می‌کنند: قرمز و آبی (نسخه‌های جهانی)، سبز (نسخه‌ی ۱۹۹۶ ژاپن با طرح‌های قدیمی‌تر) و زرد (اسپرایت‌های بازطراحی‌شده و متن‌های بازنویسی‌شده‌ی خودش). داخل هر بازی، چیپ‌های تک‌رنگ/رنگی مجموعه اسپرایت را عوض می‌کنند و با انتخابگر R/B · YELLOW می‌توان هر توضیح را با متن قرمز/آبی یا زرد خواند. دکمه پشت (کلید B) اسپرایت را به نمای پشت بازی برمی‌گرداند. بخش «نحوه‌ی به‌دست‌آوردن» و دکس مکان‌ها (کلید L) نشان می‌دهند هر پوکمون در هر چهار بازی کجا زندگی می‌کند — جدول‌های وحشی، ماهیگیری، هدیه‌ها، تبادل‌ها، جوایز گیم‌کرنر و مواجهه‌های ثابت، مستقیم از داده‌های اصلی بازی. تنظیمات شما (بازی، تک‌رنگ/رنگی، پالت، زبان، ترتیب، آخرین پوکمون) بین دیدارها به خاطر سپرده می‌شود.",
   foot_disclaimer:"پروژه‌ای غیرتجاری ساخته‌ی طرفداران. پوکمون © نینتندو / کرچرز / گیم‌فریک.",
   foot_offline:"کاملاً آفلاین · سایت استاتیک", all_games:"همه بازی‌ها",
   reset_confirm:"همه پیشرفت دیده‌شده/گرفته‌شده پاک شود؟",
@@ -223,13 +223,14 @@ const store = (k, d) => { try { const v = JSON.parse(localStorage.getItem(k) || 
 const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch(e){} };
 const state = {
   lang: store("pkd_lang", "en") === "fa" ? "fa" : "en",
-  sel: 25, q: "", mode: "kanto", type: null, sort: "id",
+  sel: 25, q: "", mode: "kanto", type: null,
   pal: store("pkd_g1_pal", "dmg") === "pocket" ? "pocket" : "dmg",
   theme: ["red","blue","green","yellow"].indexOf(store("pkd_g1_theme", "red")) !== -1 ? store("pkd_g1_theme", "red") : "red",
   set: ["rb","rbc","green","y","yc"].indexOf(store("pkd_g1_set", "rb")) !== -1 ? store("pkd_g1_set", "rb") : "rb",
-  text: store("pkd_g1_text", null) === "y" ? "y" : "rb",
+  text: store("pkd_g1_text", null) === "y" ? "y" : (store("pkd_g1_text", null) === "rb" ? "rb" : null),
   back: store("pkd_g1_back", "front") === "back",
-  favOnly: false,
+  favOnly: store("pkd_g1_favonly", false) === true,
+  sort: ["id","name","total"].indexOf(store("pkd_g1_sort", "id")) !== -1 ? store("pkd_g1_sort", "id") : "id",
   page: 1,
   favs: new Set(store("pkd_g1_favs", [])),
   seen: new Set(store("pkd_g1_seen", [])),
@@ -252,7 +253,20 @@ function applyTheme(){
   const th = THEMES[state.theme] || THEMES.red;
   document.body.classList.remove("theme-red","theme-blue","theme-green","theme-yellow");
   document.body.classList.add(th.cls);
-  if (th.sets.indexOf(state.set) === -1){ state.set = th.def; save("pkd_g1_set", state.set); }
+  /* switching games keeps the user's MONO/COLOR preference when the new
+     game has both sets (green is mono-only) — pkd_g1_color */
+  if (th.sets.indexOf(state.set) === -1){
+    const pref = store("pkd_g1_color", null);
+    let pick = th.def;
+    if (pref === "color" || pref === "mono"){
+      const match = th.sets.filter(s => (SPRITE_SETS[s].color === true) === (pref === "color"));
+      if (match.length) pick = match[0];
+    }
+    state.set = pick;
+    save("pkd_g1_set", state.set);
+  }
+  /* dex text follows the game unless the reader picked a wording explicitly */
+  if (state.text === null) state.text = th.text;
   if (typeof MovesUI !== "undefined"){
     const md = activeMoves();
     if (md) MovesUI.setGame(md);
@@ -264,13 +278,15 @@ function toggleTheme(th){
   if (!THEMES[th] || th === state.theme) return;
   state.theme = th;
   save("pkd_g1_theme", th);
-  state.text = THEMES[th].text;          /* each game opens on its own texts */
-  save("pkd_g1_text", state.text);
+  /* state.text: null = follow each game's own wording; an explicit R/B ·
+     YELLOW choice is remembered across games (pkd_g1_text) */
+  if (store("pkd_g1_text", null) === null) state.text = null;
   state.page = 1;
   applyTheme();
   renderThemeRow(); renderSetRow();
   renderSpritePane(); renderDetail();
   refreshMenuLabels();
+  if (typeof LocUI !== "undefined" && LocUI.syncGame) LocUI.syncGame();
 }
 function cycleTheme(){
   const i = THEME_ORDER.indexOf(state.theme);
@@ -479,6 +495,7 @@ function toggleSet(s){
   if (THEMES[state.theme].sets.indexOf(s) === -1) return;   /* other games' sets live behind their theme */
   state.set = s;
   save("pkd_g1_set", state.set);
+  save("pkd_g1_color", SPRITE_SETS[s].color ? "color" : "mono");   /* remembered across games */
   renderSpritePane();
   renderDetail();
   /* item icons ride the same MONO/COLOR switch as the sprites */
@@ -540,6 +557,7 @@ function renderDetail(){
     (multi ? '<span class="pgno">' + tpl(t("page"), {a:num(pg), b:num(pages.length)}) + '</span>' : '') +
     '</div>';
   const T = total(p);
+  const curText = state.text || THEMES[state.theme].text;   /* null = follow the game's own wording */
   const statRows = ["hp","atk","def","spa","spd","spe"].map(k =>
     '<div class="statrow"><span class="stat-l">' + esc(statName(k)) + '</span>' +
     '<span class="stat-track"><span class="stat-fill" style="width:' + Math.min(100, p.stats[k]/1.6) + '%;background:linear-gradient(90deg,' + STAT_COLOR[k] + 'cc,' + STAT_COLOR[k] + ')"></span></span>' +
@@ -572,8 +590,8 @@ function renderDetail(){
 
     '<div class="sec"><div class="sec-t"><span>' + esc(t("entry_t")) + '</span>' +
       '<span class="verSel" role="group" aria-label="' + esc(t("text_ver")) + '" title="' + esc(t("text_ver")) + '">' +
-        '<button class="vbtn' + (state.text === "rb" ? " on" : "") + '" data-txt="rb">R/B</button>' +
-        '<button class="vbtn' + (state.text === "y" ? " on" : "") + '" data-txt="y">YELLOW</button>' +
+        '<button class="vbtn' + (curText === "rb" ? " on" : "") + '" data-txt="rb">R/B</button>' +
+        '<button class="vbtn' + (curText === "y" ? " on" : "") + '" data-txt="y">YELLOW</button>' +
       '</span></div>' + flavorHtml + '</div>' +
 
     '<div class="sec"><div class="sec-t">' + esc(t("stats_t")) + '</div>' + statRows +
@@ -598,6 +616,8 @@ function renderDetail(){
 
         (typeof MovesUI !== "undefined" ? MovesUI.sectionHTML(p) : "") +
 
+        (typeof LocUI !== "undefined" && LocUI.sectionHTML ? LocUI.sectionHTML(p) : "") +
+
     '<div class="d-nav">' +
       '<button class="btn" id="bPrev">' + ICON.left + ' <span>' + esc(t("prev")) + '</span></button>' +
       '<button class="btn" id="bNext"><span>' + esc(t("next")) + '</span> ' + ICON.right + '</button>' +
@@ -614,6 +634,7 @@ function renderDetail(){
   document.querySelectorAll("#detailPane .evo").forEach(el =>
     el.addEventListener("click", () => select(parseInt(el.dataset.id, 10))));
   if (typeof MovesUI !== "undefined") MovesUI.wire(p);
+  if (typeof LocUI !== "undefined" && LocUI.wire) LocUI.wire(p);
 
 }
 
@@ -643,6 +664,7 @@ function markSeen(id){
 function select(id, opts){
   state.sel = id;
   state.page = 1;
+  save("pkd_g1_sel", id);
   markSeen(id);
   renderList();
   renderSpritePane();
@@ -749,6 +771,7 @@ function toggleLang(){
 /* ===== sort cycle ===== */
 function cycleSort(){
   state.sort = state.sort === "id" ? "name" : state.sort === "name" ? "total" : "id";
+  save("pkd_g1_sort", state.sort);
   $("#sortBtn").title = tpl(t("m_sort_tpl"), {v: t("sort_"+state.sort)});
   renderList();
 }
@@ -775,6 +798,7 @@ function bind(){
   $("#sortBtn").addEventListener("click", cycleSort);
   $("#favBtn").addEventListener("click", () => {
     state.favOnly = !state.favOnly;
+    save("pkd_g1_favonly", state.favOnly);
     $("#favBtn").classList.toggle("on", state.favOnly);
     renderList();
   });
@@ -807,7 +831,7 @@ function bind(){
     else if (act === "game") cycleTheme();
     else if (act === "pal") togglePalette();
     else if (act === "back") toggleBack();
-    else if (act === "fav"){ state.favOnly = !state.favOnly; $("#favBtn").classList.toggle("on", state.favOnly); renderList(); }
+    else if (act === "fav"){ state.favOnly = !state.favOnly; save("pkd_g1_favonly", state.favOnly); $("#favBtn").classList.toggle("on", state.favOnly); renderList(); }
     else if (act === "sort") cycleSort();
     else if (act === "lang") toggleLang();
     else if (act === "reset"){
@@ -877,6 +901,8 @@ function killSplash(){
 function init(){
   const h = parseInt((location.hash || "").replace("#",""), 10);
   if (h >= 1 && h <= 151 && PMAP[h]) state.sel = h;
+  else { const s = parseInt(store("pkd_g1_sel", 25), 10); if (s >= 1 && s <= 151 && PMAP[s]) state.sel = s; }
+  $("#favBtn").classList.toggle("on", state.favOnly);
   applyPalette();
   applyTheme();
   applyLang();

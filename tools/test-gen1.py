@@ -67,8 +67,20 @@ def run():
         check('YELLOW theme class applied', page.evaluate("document.body.classList.contains('theme-yellow')"))
         check('YELLOW sprite set active', page.evaluate("document.querySelector('#sprImg').src").find('gen1-y-') or
               page.evaluate("document.querySelector('#sprImg').src").find('gen1-yellow'))
-        y_sel = page.evaluate("document.querySelector('#detailPane [data-txt=y]').classList.contains('on')")
-        check('YELLOW theme opens on YELLOW text', y_sel)
+        # new spec (Phase 4): an EXPLICIT R/B · YELLOW choice is remembered across
+        # games — the earlier explicit [data-txt=rb] click must now stick on YELLOW
+        rb_sel = page.evaluate("document.querySelector('#detailPane [data-txt=rb]').classList.contains('on')")
+        check('explicit R/B text choice persists on YELLOW theme', rb_sel)
+        # …but a reader who never touched the selector still gets each game's own wording
+        fresh_ctx = browser.new_context(viewport={'width': 1280, 'height': 900})
+        fresh = fresh_ctx.new_page()
+        fresh.goto(f'file://{R}/gen1.html')
+        fresh.wait_for_timeout(1500)
+        fresh.click('#themeRow [data-th="yellow"]')
+        fresh.wait_for_timeout(250)
+        y_sel = fresh.evaluate("document.querySelector('#detailPane [data-txt=y]').classList.contains('on')")
+        check('fresh visitor: YELLOW theme opens on YELLOW text', y_sel)
+        fresh_ctx.close()
         label = page.evaluate("document.querySelector('.mv-game') && document.querySelector('.mv-game').textContent")
         check('moves section shows YELLOW game', label == 'YELLOW', str(label))
         page.screenshot(path=f'{SHOT}/yellow.png')

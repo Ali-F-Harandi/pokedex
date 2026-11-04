@@ -47,6 +47,9 @@ Every dex shares one structure and feature set; only the theme changes per game.
   - **YELLOW** — its own gold shell, its own redrawn sprites (`MONO` + `COLOR`), its own dex texts and its own moves
 - **Touch-friendly browsing** — on phones, big round arrows flank the Pokémon and **swiping the sprite** goes to the next/previous one (like a slider); the arrows keep their physical direction in the Persian (RTL) layout too
 - **Paper-white sprite backdrop** — every sprite (and evolution sprite) sits on a light card so even the palest sprites read clearly; the LCD screen keeps its authentic green
+- **HOW TO CATCH section** on every Pokémon — where it actually lives in the selected game: wild tables (grass / surf / Super Rod with the real slot chances), every special way (starters, gifts, in-game trades with their nicknames, Game Corner prizes, fossil revivals, fixed encounters) and, when a Pokémon only comes by evolving, the full evolve path from its earliest obtainable form — Pokémon that are impossible in that game say so and name the games that have them
+- **Location Dex** (`L` key or START menu) — all 68 Kanto locations of the four games with per-game encounter tables, encounter rates, fishing notes and their special encounters; click any Pokémon to jump to its dex page
+- **Settings are remembered** — the game, the MONO/COLOR choice (kept when you switch games, e.g. Red COLOR → Yellow COLOR), screen palette, front/back, language, sort order, favorites filter and the last-viewed Pokémon all survive reloads
 - **Back sprites for every Pokémon in every set** — the `Back` button, START menu or key `B` flips to the in-game back side; international backs are rendered at the games' authentic 2× scale, matching the Japan Green backs pixel-for-pixel
 - **Dex-text version selector**: Yellow rewrote **all 151** entries — small `R/B` / `YELLOW` buttons on the entry box switch between the authentic Red/Blue and Yellow texts (the choice follows the active game and can be overridden anytime)
 - **Moves follow the selected game** — the learnset panel, Moves Dex and TM/HM list switch between the Red/Blue and Yellow data with the theme
@@ -103,6 +106,18 @@ Every dex shares one structure and feature set; only the theme changes per game.
 - **Fully bilingual**: all 181 Persian item names + all 161 descriptions translated; search works in EN and FA; category chips localized
 - Reproducible: `python3 tools/build-items.py` regenerates the data and icons from `pret` + PokeAPI
 
+### Location Dex & How to Catch (Gen-1 dex — Pokédex Plus, Phase 4)
+
+- **68 Kanto locations** — every route, city, cave, floor, the Safari Zone areas, the Power Plant, Pokémon Tower, Seafoam Islands, Pokémon Mansion, Cerulean Cave, Victory Road, even the fishable **Cerulean Gym** and **Vermilion Dock** — each with its EN/FA name and a story-order sort
+- **Authentic per-game encounter tables** read from the `pret` decompiles (`pokered` for Red/Blue, `pokeyellow` for Yellow): grass and surfing tables with the real 10-slot chances (19.9/19.9/15.2/9.8/9.8/9.8/5.1/5.1/4.3/1.2 %), encounter-rate bytes (shown as `25/255 ≈ 10% per step`), Red-vs-Blue exclusive slots and Yellow's own tables
+- **Fishing, exactly as the games coded it**: Old Rod = Magikarp L5 anywhere; Good Rod = a global 50/50 Goldeen/Poliwag L10; Super Rod = Red/Blue's per-map fishing groups and Yellow's own per-route 4-slot tables with 40/30/20/10 % chances
+- **Green (Japan) honestly**: Bulbapedia documents that Japanese Green shares the international Blue's Pokémon distribution — Green shows the Blue tables and says so (the international Red/Blue kept the Japanese Red/Green wild data, which is exactly what `pokered` contains)
+- **Every special way to obtain**: the three starters (L5, Oak's lab), Yellow's Pikachu starter and its gift Bulbasaur/Charmander/Squirtle, Eevee, Lapras, the Hitmon choice, the ¥500 Magikarp salesman, all 9+7 in-game trades (give/receive, same level, real nicknames TERRY/DUX/LOLA…), Game Corner prizes per game with real coin prices and levels, the Mt. Moon fossil choice and Old Amber revivals (L30), and the fixed encounters — Mewtwo L70, the three birds L50, both Snorlax L30 and the Power Plant's item-ball Voltorb/Electrode
+- **The Yellow quirks are honoured**: Raichu is impossible in Yellow (the starter Pikachu refuses the Thunder Stone) — the dex says so instead of pretending; Weedle/Ekans/Meowth/Koffing lines, Jynx, Electabuzz and Magmar correctly show as trade-only in Yellow
+- **Mew** is labelled event/glitch-only, as it was
+- **Two-way navigation**: the Location Dex opens straight onto any location named in the HOW TO CATCH rows, and every species inside a location jumps back to its dex page
+- Fully bilingual (all location names, methods and special-ways texts in EN/FA, Persian digits everywhere); reproducible: `python3 tools/build-locations.py` regenerates everything from `pret`
+
 ### All dexes
 
 - **Bilingual: English (primary) + Persian (فارسی)** — full RTL, Persian digits, translated names/types/entries/abilities/evolutions
@@ -124,6 +139,7 @@ Every dex shares one structure and feature set; only the theme changes per game.
 - [x] **Crystal (Gen 2)** — available (Crystal's own sprites + shiny, animated battle sprites, fully rewritten dex entries)
 - [x] **Back sprites everywhere + Japan-only Green set** (Pokédex Plus, Phase 1)
 - [x] **Moves & learnsets per game (Pokédex Plus, Phase 2)** — per-game move data, learnset panel, Moves Dex & TM/HM lists on all Gen-1/2 dexes
+- [x] **Location Dex & How to Catch (Pokédex Plus, Phase 4)** — all 68 Kanto locations with per-game encounter tables, rods, special encounters and evolve paths on the Gen-1 dex
 - [ ] Ruby / Sapphire, FireRed / LeafGreen (Gen 3)
 - [ ] Gen 4–9 — planned
 
@@ -151,7 +167,7 @@ pokedex/
 ├── crystal.html                ← Gen-2 Crystal dex entry page
 └── assets/
     ├── css/                    ← one stylesheet per page (emerald / redblue / yellow / goldsilver / crystal / landing)
-    ├── js/                     ← data + logic per page (emerald / redblue / yellow / goldsilver / crystal / landing)
+    ├── js/                     ← data + logic per page (emerald / redblue / yellow / goldsilver / crystal / landing) + shared moves/items/locations modules
     ├── fonts/                  ← Press Start 2P + Vazirmatn (woff2, OFL)
     ├── img/                    ← favicon, Emerald sprite atlas, featured-card images
     ├── sprites/
@@ -190,6 +206,7 @@ Each HTML page is tiny (6–12 KB) and pulls in its own CSS/JS plus the shared `
   - `generation-ii/crystal` (+ `shiny` + `animated` + back sprites) — Crystal's own static and animated sprites
 - Pokédex entry texts, categories and in-game HT/WT from the [`pret/pokered`](https://github.com/pret/pokered) and [`pret/pokeyellow`](https://github.com/pret/pokeyellow) decompilations; Gold/Silver/Crystal EN texts per version from PokeAPI
 - Game data (stats, abilities, evolutions, genera) from [PokeAPI](https://pokeapi.co/)
+- Wild encounter tables, fishing groups, in-game trades and Game Corner prizes from the `pret` decompilations (`pokered`, `pokeyellow`) — see `tools/build-locations.py`
 - [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) (OFL) + [Vazirmatn](https://github.com/rastikerdar/vazirmatn) (OFL)
 - Persian translations: names, genera, dex entries, abilities and UI — hand-written for this project
 

@@ -1,0 +1,181 @@
+/* Pokédex Plus — location module styles (Gen-1 dex page).
+   Uses the page's existing CSS variables so it inherits the Game Boy
+   look; reuses .it-chip / .it-back / .it-count / .it-note from
+   items.css and .mv-all / .mv-note from moves.css. */
+
+/* ---------- detail-pane section ---------- */
+.lc-sec .sec-t { justify-content: space-between; }
+.lc-chips, .lchips { display: flex; flex-wrap: wrap; gap: 5px; margin: 10px 0 4px; }
+.lchip {
+  font-family: var(--font-px); font-size: 8px; letter-spacing: .8px; direction: ltr;
+  color: var(--ink-soft); background: #f4f7e8; border: 2px solid #c3cda9;
+  border-radius: 999px; padding: 4px 10px; cursor: pointer;
+}
+.lchip.on { background: var(--red); border-color: var(--red-deep); color: #fff; }
+.lc-sub {
+  display: flex; align-items: baseline; gap: 8px;
+  font-family: var(--font-px); font-size: 9px; letter-spacing: 1px; direction: ltr;
+  color: var(--ink-faint); margin: 12px 0 6px;
+}
+body.fa .lc-sub { font-family: var(--font-fa); font-weight: 700; font-size: 12px; letter-spacing: 0; direction: rtl; color: var(--ink-soft); }
+.lc-sub .lc-rate { font-family: inherit; font-size: .86em; font-style: normal; color: var(--ink-faint); }
+.lc-rows { display: flex; flex-direction: column; gap: 5px; }
+
+/* encounter / method rows */
+.lrow {
+  display: grid; grid-template-columns: auto minmax(0, 1fr) auto auto; align-items: center;
+  gap: 9px; width: 100%; text-align: start;
+  font-family: inherit; font-size: 12px; color: var(--ink);
+  background: #fbfdf0; border: 2px solid #c3cda9; border-radius: 9px;
+  padding: 7px 10px; cursor: pointer; transition: border-color .1s, transform .08s;
+}
+.lrow:hover { border-color: var(--red); transform: translateY(-1px); }
+.lrow.flat { cursor: default; }
+.lrow.flat:hover { transform: none; }
+.lrow .lrow-b { display: flex; flex-wrap: wrap; gap: 3px; max-width: 130px; }
+.lcb {
+  font-family: var(--font-px); font-size: 7px; letter-spacing: .5px; direction: ltr;
+  color: #fff; background: var(--ink-soft); border-radius: 6px; padding: 3px 6px;
+  white-space: nowrap;
+}
+body.fa .lcb { font-family: var(--font-fa); font-weight: 700; font-size: 10px; letter-spacing: 0; }
+.lcb-g     { background: #58a848; }
+.lcb-w     { background: #4890d0; }
+.lcb-f     { background: #c88a28; }
+.lcb-old   { background: #8d9683; }
+.lcb-good  { background: #8d9683; }
+.lcb-starter { background: var(--red); }
+.lcb-gift  { background: #b068c8; }
+.lcb-trade { background: #4878b8; }
+.lcb-corner{ background: #d89828; }
+.lcb-fossil{ background: #a08048; }
+.lcb-static{ background: #d84848; }
+.lcb-event { background: #7a8a9a; }
+.lcb-evoblock { background: #7a8a9a; }
+.lrow-nm { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.lrow-nm b { font-weight: 700; font-size: 12.5px; }
+.lrow-nm i { font-style: normal; font-size: 10px; color: var(--ink-faint); }
+.lrow-lv {
+  font-size: 11px; color: #243018; white-space: nowrap;
+  font-variant-numeric: tabular-nums; direction: ltr;
+}
+.lrow-pc {
+  font-family: var(--font-px); font-size: 8px; direction: ltr;
+  color: #fff; background: var(--ink-soft); border-radius: 6px;
+  padding: 3.5px 7px; white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+body.fa .lrow-pc { font-family: var(--font-fa); font-weight: 700; font-size: 11px; }
+.lrow-det { font-size: 12px; line-height: 1.75; }
+.lrow-go {
+  font-family: inherit; font-size: 11px; line-height: 1;
+  color: var(--red-deep); background: transparent; border: 2px solid var(--panel-edge);
+  border-radius: 7px; padding: 2px 7px; cursor: pointer; margin-inline-start: 6px;
+}
+.lrow-go:hover { background: #f2f5e4; }
+
+/* evolution path chips */
+.lc-evo { display: flex; flex-wrap: wrap; align-items: center; gap: 7px; margin-top: 4px; }
+.lc-evo-m {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  font-family: inherit; font-size: 11px; font-weight: 700; color: var(--ink);
+  background: #fbfdf0; border: 2px solid #c3cda9; border-radius: 9px;
+  padding: 6px 10px; cursor: pointer;
+}
+.lc-evo-m:hover { border-color: var(--red); }
+.lc-evo-m.cur { border-color: var(--red); background: #fff4e8; }
+.lc-evo-m .lc-spr { width: 40px; height: 40px; image-rendering: pixelated; object-fit: contain; }
+.lc-evo-c { font-size: 11px; color: var(--ink-faint); }
+.lc-sprph { width: 40px; height: 40px; border: 2px dashed #c3cda9; border-radius: 8px; display: inline-block; }
+
+/* not obtainable */
+.lc-none {
+  display: inline-block; font-family: var(--font-px); font-size: 9px; letter-spacing: 1px;
+  direction: ltr; color: #fff; background: var(--red-deep); border-radius: 8px;
+  padding: 5px 10px; margin-top: 6px;
+}
+body.fa .lc-none { font-family: var(--font-fa); font-weight: 700; font-size: 12px; letter-spacing: 0; }
+
+/* ---------- overlay ---------- */
+#locWrap {
+  position: fixed; inset: 0; z-index: 96; display: grid; place-items: center;
+  background: rgba(8, 10, 12, .58); padding: 14px;
+}
+#locWrap.hidden { display: none; }
+#locBox {
+  display: flex; flex-direction: column; width: min(760px, 100%);
+  max-height: min(740px, 94vh); overflow: hidden;
+  background: var(--panel, #fdfef6); border: 3px solid #23282d; border-radius: 14px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, .5);
+}
+.lc-head {
+  background: linear-gradient(180deg, #636c73, #464e55); color: #fff;
+  padding: 12px 16px; font-family: var(--font-px); font-size: 10px; letter-spacing: 1px;
+  direction: ltr; display: flex; justify-content: space-between; align-items: center; gap: 10px;
+}
+body.fa .lc-head { font-family: var(--font-fa); font-weight: 700; font-size: 14px; letter-spacing: 0; }
+.lc-viewbar {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 5px;
+  background: #fbfdf0; border-bottom: 2px solid #dfe6cb; padding: 10px 14px;
+}
+.lc-viewbar .lc-gap { flex: 1; }
+.lc-sub2 { background: #fbfdf0; border-bottom: 2px solid #dfe6cb; padding: 10px 14px; }
+.lc-sub2:empty { display: none; padding: 0; border-bottom: none; }
+.lc-body { overflow-y: auto; padding: 12px 14px 16px; }
+.lc-ltitle { display: flex; flex-direction: column; gap: 2px; margin: 2px 2px 4px; }
+.lc-ltitle b { font-size: 17px; font-weight: 700; color: var(--ink); }
+.lc-ltitle i { font-style: normal; font-size: 12px; color: var(--ink-faint); }
+.lc-rodnote {
+  font-size: 11.5px; line-height: 1.9; color: var(--ink-soft);
+  background: #f6f8ea; border: 2px dashed #c3cda9; border-radius: 9px;
+  padding: 8px 11px; margin-top: 10px;
+}
+.lc-rodnote b { font-family: var(--font-px); font-size: 8px; letter-spacing: .5px; direction: ltr; color: var(--ink); }
+body.fa .lc-rodnote b { font-family: var(--font-fa); font-weight: 700; font-size: 11px; letter-spacing: 0; }
+.lc-rodnote { margin-top: 10px; }
+
+/* location cards grid */
+.lc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 7px; }
+.lcard {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 5px;
+  font-family: inherit; text-align: start; color: var(--ink);
+  background: #fbfdf0; border: 2px solid #c3cda9; border-radius: 10px;
+  padding: 9px 11px; cursor: pointer; transition: border-color .1s, transform .08s;
+}
+.lcard:hover { border-color: var(--red); transform: translateY(-1px); }
+.lcard-nm { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.lcard-nm b { font-size: 13px; font-weight: 700; }
+.lcard-nm i { font-style: normal; font-size: 10.5px; color: var(--ink-faint); }
+.lcard-meta { display: flex; align-items: center; gap: 6px; direction: ltr; align-self: stretch; justify-content: space-between; }
+.lc-mi { width: 12px; height: 12px; border-radius: 4px; display: inline-block; }
+.lc-mi-g { background: #58a848; }
+.lc-mi-w { background: #4890d0; }
+.lc-mi-f { background: #c88a28; }
+.lc-n { font-family: var(--font-px); font-size: 9px; color: var(--ink-soft); }
+.lc-star { color: var(--gold-d); font-size: 12px; }
+
+/* species rows inside a location */
+.lrow.mon { grid-template-columns: auto minmax(0, 1fr) auto auto; }
+.lrow.mon .lc-spr { width: 38px; height: 38px; image-rendering: pixelated; object-fit: contain; }
+
+/* responsive */
+@media (max-width: 560px){
+  .lrow { grid-template-columns: minmax(0, 1fr) auto; }
+  .lrow .lrow-b { grid-column: 1 / -1; }
+  .lrow.mon { grid-template-columns: auto minmax(0, 1fr) auto; }
+  .lrow.mon .lrow-pc { grid-column: 2 / -1; justify-self: start; }
+  .lc-grid { grid-template-columns: 1fr; }
+}
+
+.lrow-det .lc-det-loc { font-weight: 700; color: var(--ink); }
+
+/* special rows in the location view: species chips + kind + detail */
+.lrow.flat.sp { grid-template-columns: auto auto minmax(0, 1fr); }
+.lrow-mons { display: flex; flex-wrap: wrap; gap: 5px; }
+.lc-spmon {
+  display: flex; align-items: center; gap: 5px;
+  font-family: inherit; font-size: 11.5px; font-weight: 700; color: var(--ink);
+  background: #fff; border: 2px solid #c3cda9; border-radius: 8px;
+  padding: 3px 8px; cursor: pointer;
+}
+.lc-spmon:hover { border-color: var(--red); }
+.lc-spr.sm { width: 26px; height: 26px; }

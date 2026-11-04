@@ -1,4 +1,5 @@
 
-# moves + items build caches
+# moves + items + locations build caches
 tools/moves-cache/
 tools/items-cache/
+tools/loc-cache/
