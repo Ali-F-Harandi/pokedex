@@ -547,10 +547,13 @@ function toggleAnim(){
   renderSpritePane();
   renderDetail();
 }
-/* hint for the Item Dex: which icon style matches the active sprite set */
+/* hint for the Item Dex: which icon style matches the active sprite look.
+   Gen-2 sprites are always COLOR, so the equivalent of gen1's MONO/COLOR
+   switch is the LCD shader: LCD on = retro GBC screen = GB menu icons,
+   LCD off = color icons. */
 window.__itemIconHint = function(){
-  try { return SPRITE_SETS[state.set] && SPRITE_SETS[state.set].color ? "color" : "gb"; }
-  catch(e){ return "gb"; }
+  try { return state.lcd ? "gb" : "color"; }
+  catch(e){ return "color"; }
 };
 function renderThemeRow(){
   const el = $("#themeRow");
@@ -770,6 +773,8 @@ function applyLcd(){
   }
   const tx = $("#lcdTxt");
   if (tx) tx.textContent = state.lcd ? t("lcd_on") : t("lcd_off");
+  /* the Item Dex icons ride the same LCD/color choice as the sprites */
+  if (typeof ItemsUI !== "undefined" && ItemsUI.syncIcons) ItemsUI.syncIcons();
 }
 function toggleLcd(){
   state.lcd = !state.lcd;

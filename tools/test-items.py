@@ -80,16 +80,18 @@ def run():
         check('icon toggle switches to color', 'itemicons/' in src and '-gb' not in src, str(src)[-40:])
         page.keyboard.press('Escape')
 
-        # ---------------- goldsilver ----------------
+        # ---------------- goldsilver (redirects to the unified gen2.html) ----------------
         print('== goldsilver.html ==')
         page.goto(f'file://{R}/goldsilver.html')
         page.wait_for_timeout(1700)
         check('goldsilver loads clean', not errors, '; '.join(errors[:2]))
         open_items(page)
+        # since the Gen-2 plan phase 1, goldsilver.html redirects to gen2.html —
+        # one unified Gen-2 page whose Item Dex covers GOLD/SILVER + CRYSTAL
         head = page.evaluate("document.querySelector('#itHeadT').textContent")
-        check('head shows GOLD/SILVER', 'GOLD/SILVER' in head, head)
+        check('head shows G/S/C (unified Gen-2 page)', 'G/S/C' in head, head)
         n = page.evaluate("document.querySelectorAll('.icard').length")
-        check('gold/silver item count = 161', n == 161, str(n))
+        check('unified Gen-2 item count = 165', n == 165, str(n))
         src = page.evaluate("document.querySelector('.icard .icn').src")
         check('color icons by default on gen2', src and 'itemicons/' in src and '-gb' not in src, str(src)[-40:])
         # hyper potion price gen2 = 1200

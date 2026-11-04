@@ -224,6 +224,75 @@ def run():
         page.keyboard.press('Escape')
         page.wait_for_timeout(200)
 
+        # --- ITEMS (Gen-2 phase 4): the Item Dex overlay, Gen-2 scoped
+        page.keyboard.press('i')
+        page.wait_for_timeout(400)
+        it_head = page.evaluate("(document.querySelector('#itHeadT')||{textContent:''}).textContent")
+        check('Item Dex overlay shows G/S/C', 'G/S/C' in it_head, it_head)
+        it_n = page.evaluate("document.querySelectorAll('#itemsWrap .icard').length")
+        check('all 165 Gen-2 items listed', it_n == 165, f'cards={it_n}')
+        it_bil = page.evaluate("""(function(){
+          const c = document.querySelector('#itemsWrap .icard');
+          if (!c) return { en: false, fa: false };
+          return { en: (c.querySelector('.icard-en')||{textContent:''}).textContent.length > 0,
+                   fa: /[\\u0600-\\u06FF]/.test((c.querySelector('.icard-fa')||{textContent:''}).textContent) }; })()""")
+        check('item cards bilingual (EN + FA names)', it_bil['en'] and it_bil['fa'], str(it_bil))
+        it_cats = page.evaluate("[...document.querySelectorAll('#itemsWrap .it-chip')].map(c=>c.textContent.trim())")
+        check('category chips include Apricorns + Berries + Mail',
+              any('Apricorn' in c for c in it_cats) and any('Berr' in c for c in it_cats)
+              and any('Mail' in c for c in it_cats), str(it_cats[:6]))
+        page.evaluate("document.querySelector('#itemsWrap .it-chip[data-c=apricorn]').click()")
+        page.wait_for_timeout(200)
+        apr_n = page.evaluate("document.querySelectorAll('#itemsWrap .icard').length")
+        check('Apricorn category shows the 7 apricorn balls', apr_n == 7, f'apr={apr_n}')
+        page.evaluate("document.querySelector('#itemsWrap .it-chip[data-c=all]').click()")
+        page.wait_for_timeout(150)
+
+        # data: every Gen-2 item has FA name + description; prices are Gen-2 (p2)
+        idata = page.evaluate("""(function(){
+          const gc = ITEMS.filter(function(it){ return it.g.indexOf('g') !== -1 || it.g.indexOf('c') !== -1; });
+          const noFA = gc.filter(function(it){ return !it.fa || !/[\\u0600-\\u06FF]/.test(it.fa); }).length;
+          const noDesc = gc.filter(function(it){ return !it.d || !it.fa2; }).length;
+          const hp = ITEMS.find(function(it){ return it.k === 'HYPER_POTION'; });
+          const gsb = ITEMS.find(function(it){ return it.k === 'GS_BALL'; });
+          return { n: gc.length, noFA: noFA, noDesc: noDesc,
+                   hpP2: hp && hp.p2, hpP1: hp && hp.p1,
+                   gsbCOnly: gsb && gsb.g === 'c', gsbP2: gsb && gsb.p2, gsbNoIcon: gsb && !gsb.i }; })()""")
+        check('165 Gen-2 items, all with FA name + description',
+              idata['n'] == 165 and idata['noFA'] == 0 and idata['noDesc'] == 0, str(idata))
+        check('prices are Gen-2 (HYPER POTION ¥1200 in G/S/C, was ¥1500 in R/B)',
+              idata['hpP2'] == 1200 and idata['hpP1'] == 1500, str(idata))
+        check('GS BALL: Crystal-only, not for sale, dashed placeholder icon',
+              idata['gsbCOnly'] and idata['gsbP2'] == 0 and idata['gsbNoIcon'], str(idata))
+
+        # detail view: search an item, open the card (description + prices + availability)
+        page.fill('#itemsWrap #itQ', 'hyper')
+        page.wait_for_timeout(200)
+        page.evaluate("document.querySelector('#itemsWrap .icard').click()")
+        page.wait_for_timeout(250)
+        idet = page.evaluate("(document.querySelector('#itemsWrap .id-card')||{textContent:''}).textContent")
+        idet_fa = page.evaluate("/[\\u0600-\\u06FF]/.test((document.querySelector('#itemsWrap .d-fa')||{textContent:''}).textContent)")
+        idet_chips = page.evaluate("[...document.querySelectorAll('#itemsWrap .id-gchip.on')].map(c=>c.textContent.trim())")
+        check('item detail: Gen-2 price, FA description, availability chips G/S + CRYSTAL',
+              '1200' in idet and idet_fa and 'GOLD/SILVER' in idet_chips and 'CRYSTAL' in idet_chips,
+              f'chips={idet_chips} fa={idet_fa}')
+        page.keyboard.press('Escape')
+        page.wait_for_timeout(150)
+
+        # icons ride the LCD shader (gen2's analog of gen1's MONO/COLOR)
+        page.click('#btnLcd')          # LCD on
+        page.wait_for_timeout(200)
+        page.keyboard.press('i')
+        page.wait_for_timeout(300)
+        it_style = page.evaluate("(document.querySelector('#itStyle')||{textContent:''}).textContent")
+        it_src = page.evaluate("(document.querySelector('#itemsWrap img')||{src:''}).src")
+        check('LCD on switches item icons to GB style',
+              'GB' in it_style and '/itemicons-gb/' in it_src, f'{it_style} {it_src[-34:]}')
+        page.keyboard.press('Escape')
+        page.wait_for_timeout(150)
+        page.click('#btnLcd')          # LCD off (restore)
+        page.wait_for_timeout(150)
+
         # --- evolution: Pichu -> Pikachu -> Raichu (Gen-2 baby chain)
         page.evaluate("select(172)")
         page.wait_for_timeout(200)
@@ -270,6 +339,29 @@ def run():
         fa_menu = page.evaluate("[...document.querySelectorAll('.mv-menu-l')].map(s=>s.textContent)")
         check('FA START menu moves entries in Persian',
               len(fa_menu) == 2 and all('\u0600' <= s[0] <= '\u06FF' for s in fa_menu), str(fa_menu))
+        # FA items (phase 4): overlay head, chips, cards and prices all Persian
+        page.keyboard.press('i')
+        page.wait_for_timeout(400)
+        fa_it_head = page.evaluate("(document.querySelector('#itHeadT')||{textContent:''}).textContent")
+        check('FA item dex head in Persian', 'دکس آیتم' in fa_it_head, fa_it_head)
+        fa_it_card = page.evaluate("""(function(){
+          const c = document.querySelector('#itemsWrap .icard');
+          return { fa: /[\\u0600-\\u06FF]/.test((c.querySelector('.icard-fa')||{textContent:''}).textContent),
+                   en: (c.querySelector('.icard-en')||{textContent:''}).textContent.length > 0,
+                   price: (c.querySelector('.it-price')||{textContent:''}).textContent }; })()""")
+        check('FA item cards: FA + EN names present',
+              fa_it_card['fa'] and fa_it_card['en'], str(fa_it_card))
+        fa_it_menu = page.evaluate("[...document.querySelectorAll('.it-menu-l')].map(s=>s.textContent)")
+        check('FA START menu item entry in Persian',
+              len(fa_it_menu) == 1 and '\u0600' <= fa_it_menu[0][0] <= '\u06FF', str(fa_it_menu))
+        # FA price digits on a priced item (HYPER POTION ¥1200 -> Persian digits)
+        page.fill('#itemsWrap #itQ', 'hyper')
+        page.wait_for_timeout(250)
+        fa_price = page.evaluate("(document.querySelector('#itemsWrap .icard .it-price')||{textContent:''}).textContent")
+        check('FA price rendered with Persian digits (¥۱۲۰۰)',
+              '¥' in fa_price and any('\u06F0' <= ch <= '\u06F9' for ch in fa_price), fa_price)
+        page.fill('#itemsWrap #itQ', '')
+        page.wait_for_timeout(200)
         page.keyboard.press('Escape')
         page.wait_for_timeout(150)
         page.screenshot(path=f'{SHOT}/fa.png')
