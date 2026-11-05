@@ -117,13 +117,19 @@ def run():
         check('y: THUNDERBOLT in lv list', 'THUNDERBOLT' in body_txt.upper())
         check('y: Lv.26 badge', '26' in body_txt)
 
-        # ---------------- goldsilver ----------------
+        # ---------------- goldsilver (redirects to the unified gen2.html) ----------------
         print('== goldsilver.html ==')
         errors.clear()
         page.goto(f'file://{R}/goldsilver.html#1')
-        page.wait_for_timeout(900)
+        page.wait_for_timeout(1700)
+        # since the Gen-2 plan phase 1, goldsilver.html redirects to gen2.html —
+        # the unified Gen-2 page; G/S moves come from its GOLD/SILVER label
         check('gs: no js errors', not [e for e in errors if 'favicon' not in e], errors[:3])
-        check('gs: moves section', page.locator('#movesSec').count() == 1)
+        check('gs: moves section on the unified page', page.locator('#movesSec').count() == 1)
+        mv_lbl = page.evaluate("(document.querySelector('#movesSec .mv-game')||{textContent:''}).textContent")
+        check('gs: moves label shows GOLD/SILVER', 'GOLD/SILVER' in mv_lbl, mv_lbl)
+        page.evaluate("select(1)")   # Bulbasaur (the redirect drops the #1 anchor)
+        page.wait_for_timeout(250)
         tabs = page.locator('#movesSec .mtab').count()
         check('gs: 3 tabs for bulbasaur (lv/tm/egg — tutor is Crystal-only)', tabs == 3, f'{tabs}')
         page.click('#movesSec .mtab[data-mt="egg"]')
@@ -148,12 +154,18 @@ def run():
         page.screenshot(path=f'{SHOT}/gs-curse.png')
         page.click('#movesWrap .mv-close')
 
-        # ---------------- crystal ----------------
+        # ---------------- crystal (redirects to the unified gen2.html) ----------------
         print('== crystal.html ==')
         errors.clear()
+        ctx3 = browser.new_context(viewport={'width': 1280, 'height': 900}); ctx3.add_init_script("try{localStorage.setItem('pkd_g2_theme', JSON.stringify('crystal'))}catch(e){}"); page3 = ctx3.new_page(); page3.on('console', lambda m: errors.append(m.text) if m.type == 'error' else None); page3.on('pageerror', lambda e: errors.append(str(e))); page = page3
         page.goto(f'file://{R}/crystal.html#25')
-        page.wait_for_timeout(900)
+        page.wait_for_timeout(1700)
         check('c: no js errors', not [e for e in errors if 'favicon' not in e], errors[:3])
+        check('c: redirected page runs the crystal theme', page.evaluate("document.body.classList.contains('theme-crystal')"))
+        mv_lbl = page.evaluate("(document.querySelector('#movesSec .mv-game')||{textContent:''}).textContent")
+        check('c: moves label shows CRYSTAL', 'CRYSTAL' in mv_lbl, mv_lbl)
+        page.evaluate("select(25)")   # Pikachu (the redirect drops the #25 anchor)
+        page.wait_for_timeout(250)
         tabs = page.locator('#movesSec .mtab').count()
         check('c: pikachu crystal has tutor tab', page.locator('#movesSec .mtab[data-mt="tutor"]').count() == 1, f'{tabs}')
         page.click('#movesSec .mtab[data-mt="tutor"]')

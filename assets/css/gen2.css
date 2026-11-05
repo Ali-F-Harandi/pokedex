@@ -730,3 +730,28 @@ body.lcd-on #sprBox::after, body.lcd-on .evo .espr::after{
     linear-gradient(0deg, rgba(150,178,108,.12), rgba(150,178,108,.12));
 }
 body.lcd-on #sprBox img, body.lcd-on .evo .espr img{filter:contrast(1.05) saturate(.92)}
+
+/* ============ Location Dex (phase 5) — gen-2 extensions ============
+   The shared locations.css covers .lrow/.lcard/.lcb-* basics; the
+   Gen-2 encounter model adds these: */
+.lcb-hb     { background: #7a9a3a; }   /* headbutt   */
+.lcb-rk     { background: #a08868; }   /* rock smash */
+.lcb-sw     { background: #d87848; }   /* swarm      */
+.lcb-ct     { background: #48a8a0; }   /* bug contest*/
+.lcb-egg    { background: #e8a8b8; color: #40242c; }   /* eggs   */
+.lcb-roamer { background: #9068c8; }   /* roaming beasts */
+.lc-mi-hb { background: #7a9a3a; }
+.lc-mi-rk { background: #a08868; }
+.lc-mi-sw { background: #d87848; }
+.lc-mi-ct { background: #48a8a0; }
+.lc-times { display: flex; gap: 5px; margin: 2px 0 6px; }
+.lc-sub2b {
+  font: 700 11px/1 var(--font-lcd, inherit);
+  letter-spacing: .08em; color: var(--dim, #666);
+  margin: 10px 0 4px; text-transform: uppercase;
+}
+body.fa .lc-sub2b { font-family: var(--font-fa); letter-spacing: 0; text-transform: none; }
+.lc-reg { margin-inline-start: 8px; }
+.lc-note2 { font-style: italic; opacity: .85; }
+.lc-tsep { opacity: .55; margin: 0 4px; }
+body.fa .lrow-lv, body.fa .lc-rate { font-family: var(--font-fa); }

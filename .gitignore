@@ -3,3 +3,5 @@
 tools/moves-cache/
 tools/items-cache/
 tools/loc-cache/
+# gen2 locations build cache
+tools/loc2-cache/

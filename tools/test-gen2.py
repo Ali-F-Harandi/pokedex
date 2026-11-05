@@ -293,6 +293,144 @@ def run():
         page.click('#btnLcd')          # LCD off (restore)
         page.wait_for_timeout(150)
 
+        # ===== Phase 5: HOW TO CATCH + Location Dex (Johto & Kanto, G/S/C) =====
+        check('START menu has Location Dex entry',
+              page.evaluate("!!document.querySelector('#menuPop [data-act=locdex]')"))
+        check('HOW TO CATCH section in the detail pane',
+              page.evaluate("!!document.querySelector('#locSec')"))
+        check('section follows the active game (GOLD chip on)',
+              page.evaluate("[...document.querySelectorAll('#locSec .lchip')].find(x=>x.dataset.lg==='gold').classList.contains('on')"))
+
+        # data-level checks straight from LOC2 (bilingual meta, authentic spots)
+        ldata = page.evaluate("""(function(){
+          const noFA = LOC2.locs.filter(function(l){ return !l.fa || !/[\u0600-\u06FF]/.test(l.fa); }).length;
+          const ids = LOC2.locs.map(function(l){ return l.id; });
+          const r29g = LOC2.locs.find(function(l){ return l.id === 'ROUTE_29'; }).t.g.m.s;
+          const noStarter = LOC2.locs.every(function(l){
+            return Object.values(l.t || {}).every(function(tb){
+              return ['m','d','n'].every(function(k){
+                return !tb || !tb[k] || tb[k].s.every(function(e){ return e[0] !== 152 && e[0] !== 155 && e[0] !== 158; }); }); }); });
+          const r35c = LOC2.locs.find(function(l){ return l.id === 'ROUTE_35'; }).t.c;
+          const gy = LOC2.sp.find(function(s){ return s.m && s.m[0][0] === 130; });
+          const ho = {}; const lu = {};
+          LOC2.sp.forEach(function(s){ if (s.m && s.m[0][0] === 250) ho[s.v[0]] = s.m[0][1]; if (s.m && s.m[0][0] === 249) lu[s.v[0]] = s.m[0][1]; });
+          const odd = LOC2.sp.filter(function(s){ return s.k === 'egg' && s.v.length === 1 && s.v[0] === 'crystal'; });
+          const trG = LOC2.sp.filter(function(s){ return s.k === 'trade' && s.v.length === 2; }).length;
+          const trC = LOC2.sp.filter(function(s){ return s.k === 'trade' && s.v.length === 1 && s.v[0] === 'crystal'; }).length;
+          const r32 = LOC2.locs.find(function(l){ return l.id === 'ROUTE_32'; });
+          const fish0 = LOC2.fish[0];
+          const reg = { j: LOC2.locs.filter(function(l){ return l.r === 'j'; }).length, k: LOC2.locs.filter(function(l){ return l.r === 'k'; }).length };
+          const spFA = LOC2.sp.every(function(s){ return s.d.fa && /[\u0600-\u06FF]/.test(s.d.fa); });
+          return { n: LOC2.locs.length, noFA: noFA, uniq: new Set(ids).size,
+                   r29sent: r29g.some(function(e){ return e[0] === 161; }),
+                   noStarter: noStarter,
+                   r35swarm: r35c && r35c.swg && r35c.swg.m.s.some(function(e){ return e[0] === 193; }),
+                   gyar: gy && gy.loc === 'LAKE_OF_RAGE' && gy.m[0][1] === 30,
+                   hooh: JSON.stringify(ho), lugia: JSON.stringify(lu),
+                   oddN: odd.length && odd[0].m.length,
+                   trG: trG, trC: trC,
+                   r32swf: r32.t.g.swf, r32hb: r32.t.g.hb, r32fish: r32.t.g.f,
+                   fish0old: JSON.stringify(fish0.o), fish0bite: fish0.bite,
+                   contest: LOC2.contest.length,
+                   ctHas: LOC2.contest.some(function(r){ return r[0] === 123; }) && LOC2.contest.some(function(r){ return r[0] === 127; }),
+                   ctVenomoth: LOC2.contest.some(function(r){ return r[0] === 49; }),
+                   reg: reg, spFA: spFA,
+                   trees: Object.keys(LOC2.trees).join(',') }; })()""")
+        check('119 locations, all bilingual, unique ids',
+              ldata['n'] >= 110 and ldata['noFA'] == 0 and ldata['uniq'] == ldata['n'], str(ldata['n']) + '/' + str(ldata['noFA']))
+        check('both regions covered (Johto + Kanto)',
+              ldata['reg']['j'] >= 60 and ldata['reg']['k'] >= 40, str(ldata['reg']))
+        check('Route 29 gold-morning table has Sentret', ldata['r29sent'])
+        check('no wild starters anywhere (Chikorita/Cyndaquil/Totodile)', ldata['noStarter'])
+        check('Crystal: Route 35 Yanma swarm present', ldata['r35swarm'])
+        check('Red Gyarados: fixed Lv 30 at Lake of Rage', ldata['gyar'])
+        check('Ho-Oh levels authentic per version (40/70/60)', ldata['hooh'] == '{"gold":40,"silver":70,"crystal":60}', ldata['hooh'])
+        check('Lugia levels authentic per version (70/40/60)', ldata['lugia'] == '{"gold":70,"silver":40,"crystal":60}', ldata['lugia'])
+        check('Odd Egg: Crystal-only, hatches one of 7 babies', ldata['oddN'] == 7, str(ldata['oddN']))
+        check('in-game trades: 6 in G/S + 7 in Crystal (Kenya era)', ldata['trG'] == 6 and ldata['trC'] == 7,
+              f"gs={ldata['trG']} c={ldata['trC']}")
+        check('Route 32: Qwilfish swarm fish group + headbutt + own fish group',
+              ldata['r32swf'] == 5 and ldata['r32hb'] == 'CANYON' and ldata['r32fish'] == 10,
+              f"swf={ldata['r32swf']} hb={ldata['r32hb']} f={ldata['r32fish']}")
+        check('fishing authentic: Shore Old Rod = Magikarp/Magikarp/Krabby @70.3/14.8/14.8, bite 50%',
+              ldata['fish0old'] == '[[129,10,70.3],[129,10,14.8],[98,10,14.8]]' and ldata['fish0bite'] == 128,
+              ldata['fish0old'])
+        check('Bug-Catching Contest: 10 rows, Scyther+Pinsir in, no Venomoth',
+              ldata['contest'] == 10 and ldata['ctHas'] and not ldata['ctVenomoth'],
+              str(ldata['contest']))
+        check('every special way carries a Persian description', ldata['spFA'])
+
+        # HOW TO CATCH per Pokémon
+        page.evaluate("select(161)")   # Sentret — Route 29 wild (gold)
+        page.wait_for_timeout(250)
+        sent = page.evaluate("document.querySelector('#locSec').textContent")
+        check('Sentret HOW TO CATCH lists Route 29 (bilingual)',
+              'Route 29' in sent and 'مسیر ۲۹' in sent, sent[:70])
+        page.evaluate("select(249)")   # Lugia — version-dependent static
+        page.wait_for_timeout(250)
+        lug = page.evaluate("document.querySelector('#locSec').textContent")
+        check('Lugia shows the Lv 70 static (Gold)', '70' in lug and 'Whirl Islands' in lug, lug[:80])
+        page.evaluate("[...document.querySelectorAll('#locSec .lchip')].find(x=>x.dataset.lg==='silver').click()")
+        page.wait_for_timeout(250)
+        lug_s = page.evaluate("document.querySelector('#locSec').textContent")
+        check('Lugia chip switch shows Lv 40 (Silver)', '40' in lug_s, lug_s[:80])
+        page.evaluate("[...document.querySelectorAll('#locSec .lchip')].find(x=>x.dataset.lg==='crystal').click()")
+        page.wait_for_timeout(250)
+        lug_c = page.evaluate("document.querySelector('#locSec').textContent")
+        check('Lugia chip switch shows Lv 60 (Crystal)', '60' in lug_c, lug_c[:80])
+        page.evaluate("select(192)")   # Yanma — obtainable only via Crystal swarm / normal tables?
+        page.wait_for_timeout(250)
+        yan = page.evaluate("document.querySelector('#locSec').textContent")
+        check('Yanma has obtainment info (wild or swarm/swarm note)',
+              len(yan) > 40, yan[:60])
+        page.evaluate("select(251)")   # Celebi — event only
+        page.wait_for_timeout(250)
+        cel = page.evaluate("document.querySelector('#locSec').textContent")
+        check('Celebi shows EVENT row only', 'EVENT' in cel.upper() and 'Ilex' in cel, cel[:90])
+
+        # Location Dex overlay
+        page.keyboard.press('l')
+        page.wait_for_timeout(350)
+        check('overlay opens with L', page.evaluate("!document.querySelector('#locWrap').classList.contains('hidden')"))
+        ov_n = page.evaluate("document.querySelectorAll('#locWrap .lcard').length")
+        check('overlay lists every location', ov_n >= 110, f'cards={ov_n}')
+        ov_head = page.evaluate("document.querySelector('#lcHeadT').textContent")
+        check('overlay head follows the theme game at open (GOLD)', 'GOLD' in ov_head, ov_head)
+        page.evaluate("[...document.querySelectorAll('#lcViewbar .gchip')].find(x=>x.dataset.gm==='crystal').click()")
+        page.wait_for_timeout(250)
+        ov_head2 = page.evaluate("document.querySelector('#lcHeadT').textContent")
+        check('overlay game chip switches to CRYSTAL', 'CRYSTAL' in ov_head2, ov_head2)
+        page.evaluate("LocUI.openDex('ROUTE_29')")
+        page.wait_for_timeout(300)
+        r29 = page.evaluate("document.querySelector('#lcBody').textContent")
+        check('Route 29 view: grass + time tabs + Persian name',
+              'GRASS' in r29 and 'مسیر ۲۹' in r29 and 'SENTRET' in r29.upper(), r29[:70].replace('\n', ' '))
+        check('time tabs present (MORN/DAY/NITE)',
+              page.evaluate("document.querySelectorAll('#lcBody .tchip').length") >= 3)
+        page.evaluate("document.querySelector('#lcBody .tchip[data-t=n]').click()")
+        page.wait_for_timeout(250)
+        r29n = page.evaluate("document.querySelector('#lcBody').textContent")
+        check('night tab swaps the table (Hoothoot in, Sentret out)',
+              'HOOTHOOT' in r29n.upper() and 'SENTRET' not in r29n.upper(), r29n[:70])
+        page.screenshot(path=f'{SHOT}/loc_route29.png')
+        page.evaluate("LocUI.openDex('NATIONAL_PARK')")
+        page.wait_for_timeout(300)
+        np = page.evaluate("document.querySelector('#lcBody').textContent")
+        check('National Park view: Bug-Catching Contest table',
+              'SCYTHER' in np.upper() and 'PINSIR' in np.upper(), np[:70])
+        page.evaluate("LocUI.openDex('DARK_CAVE_VIOLET_ENTRANCE')")
+        page.wait_for_timeout(300)
+        dc = page.evaluate("document.querySelector('#lcBody').textContent")
+        check('Dark Cave view: Dunsparce swarm section on Crystal',
+              'SWARM' in dc.upper() and 'DUNSPARCE' in dc.upper(), dc[:70])
+        page.evaluate("LocUI.openDex('GOLDENROD_CITY')")
+        page.wait_for_timeout(300)
+        gc = page.evaluate("document.querySelector('#lcBody').textContent")
+        check('Goldenrod Game Corner view: prize specials',
+              'GAME CORNER' in gc.upper() and 'ABRA' in gc.upper(), gc[:70])
+        page.keyboard.press('Escape')
+        page.wait_for_timeout(200)
+
         # --- evolution: Pichu -> Pikachu -> Raichu (Gen-2 baby chain)
         page.evaluate("select(172)")
         page.wait_for_timeout(200)
