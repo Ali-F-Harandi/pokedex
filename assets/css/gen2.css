@@ -539,7 +539,7 @@ body.fa .shbtn-on-note{font-size:11px}
   #topbar{gap:8px;padding:9px 10px}
   #kbHint{display:none}
   /* phone reading order: DEX STATUS → search box → SETTINGS → Pokémon card → full details */
-  #main{display:flex;flex-direction:column}
+  #main{display:flex;flex-direction:column;align-items:stretch}
   .cntBox{order:1}
   #listPane{order:2}
   #gameCfg{order:3}
