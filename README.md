@@ -10,9 +10,7 @@ Every dex shares one structure and feature set; only the theme changes per game.
 >
 > ▶️ **Generation I dex — Red · Blue · Green · Yellow in one page:** https://ali-f-harandi.github.io/pokedex/gen1.html
 >
-> ▶️ **Gold/Silver dex (Gen 2):** https://ali-f-harandi.github.io/pokedex/goldsilver.html
->
-> ▶️ **Crystal dex (Gen 2):** https://ali-f-harandi.github.io/pokedex/crystal.html
+> ▶️ **Generation II dex — Gold · Silver · Crystal in one page:** https://ali-f-harandi.github.io/pokedex/gen2.html
 
 ---
 
@@ -22,10 +20,9 @@ Every dex shares one structure and feature set; only the theme changes per game.
 |------|-----------|------|--------|
 | **Pokémon Emerald** | Gen 3 (Hoenn) | [`emerald.html`](https://ali-f-harandi.github.io/pokedex/emerald.html) | ✅ Available |
 | **Generation I — Red · Blue · Green · Yellow** | Gen 1 (Kanto) | [`gen1.html`](https://ali-f-harandi.github.io/pokedex/gen1.html) | ✅ Available |
-| **Pokémon Gold/Silver** | Gen 2 (Johto) | [`goldsilver.html`](https://ali-f-harandi.github.io/pokedex/goldsilver.html) | ✅ Available |
-| **Pokémon Crystal** | Gen 2 (Johto) | [`crystal.html`](https://ali-f-harandi.github.io/pokedex/crystal.html) | ✅ Available |
+| **Generation II — Gold · Silver · Crystal** | Gen 2 (Johto + Kanto) | [`gen2.html`](https://ali-f-harandi.github.io/pokedex/gen2.html) | ✅ Available |
 
-(`red-blue.html` and `yellow.html` now redirect to `gen1.html` — the whole generation lives in one dex.)
+(`red-blue.html` / `yellow.html` redirect to `gen1.html`, and `goldsilver.html` / `crystal.html` redirect to `gen2.html` — each generation lives in one dex.)
 
 ### Emerald Dex — features
 
@@ -56,28 +53,22 @@ Every dex shares one structure and feature set; only the theme changes per game.
 - **Moves follow the selected game** — the learnset panel, Moves Dex and TM/HM list switch between the Red/Blue and Yellow data with the theme
 - **Authentic Gen-1 cries** (local OGG files); Pokédex entries transcribed from the [`pret/pokered`](https://github.com/pret/pokered) and [`pret/pokeyellow`](https://github.com/pret/pokeyellow) decompilations (original 2-page texts, authentic categories); authentic **Gen-1 type chart** (Ghost ×0 vs Psychic, Bug ×2 vs Poison quirks included); page-flipping entries; seen/owned tracking
 
-### Gold/Silver Dex — features
+### Generation II Dex — features (Gold · Silver · Crystal in one page)
 
-- A **dedicated Pokédex for Pokémon Gold & Silver** (all **251 Johto + Kanto Pokémon**), same structure as the other dexes, themed after the Game Boy Color era: a **grape-purple Game Boy Color shell** with the multicolor `GAME BOY COLOR` wordmark and POWER led on the bezel, plus a **Gold accent**
-- **Each version's own in-game sprites**, switchable from the sprite card or the START menu:
-  - `GOLD` — Gold's own sprites
-  - `SILVER` — Silver's own sprites (Gold and Silver redrew many of them)
-- **Shiny sprites** for every Pokémon — shiny Pokémon were introduced in this generation (`Shiny` button, START menu or key `S`)
-- **Back sprites** for every Pokémon, normal **and** shiny — `Back` button, START menu or key `B`
-- **Both versions' dex entry texts**: Gold and Silver rewrote most entries — small `GOLD` / `SILVER` buttons on the entry box switch between the two authentic texts (EN); the box still flips pages like the original
-- The **Palette/Version button** recolors the whole dex between Gold and Silver accents
+- All **251 Johto + Kanto Pokémon** and **all three Gen-2 games in a single dex**, themed after the Game Boy Color era — each game repaints the whole console like its own cartridge: **GOLD** (grape-purple GBC shell, gold accents), **SILVER** (bluish-silver shell) and **CRYSTAL** (teal shell, ice-blue accents), with the multicolor `GAME BOY COLOR` wordmark and POWER LED on the bezel. The GAME chips live in their own SETTINGS panel and are also reachable from the START menu or key `T`
+- **Each version's own in-game sprites** — Gold, Silver and Crystal each redrew the set, and the dex swaps banks with the theme:
+  - **Shiny sprites for every Pokémon in every bank** — shiny Pokémon were introduced in this very generation (`Shiny` button, START menu or key `S`); the audit proved **0 of 753 shiny sprites** (front + back × 3 games) is identical to its normal counterpart
+  - **Back sprites** for every Pokémon, normal **and** shiny (`Back` button, START menu or key `B`)
+  - **Animated battle sprites on CRYSTAL** — Crystal introduced the series' very first animated Pokémon sprites; all 251 authentic animations are included as lossless WebP with a toggle (`Anim` button, START menu or key `A`) — fronts only, exactly like the game
+- **Dex-text version selector**: Gold, Silver and Crystal each carry their own entry texts — small `GOLD` / `SILVER` / `CRYSTAL` buttons on the entry box switch between the three authentic wordings (Crystal rewrote **every single** entry: all 251 differ from both Gold and Silver); the box flips pages like the original
+- **HOW TO CATCH section on every Pokémon** — where it actually lives in the selected game: wild grass (morning / day / night tables where they differ), surfing, the three rods with the real bite chances, Headbutt and Rock Smash trees (common/rare sets), radio swarms, the Bug-Catching Contest, every special way (Elm's starters, Togepi egg, Crystal's Odd Egg, gifts, in-game trades with their NPC houses, Game Corner prizes per version, Red Gyarados, per-version static levels — Lugia 70/40/60 and Ho-Oh 40/70/60 across G/S/C — the roaming beasts, Celebi's event shrine) and, when a Pokémon only comes by evolving, the full path including Gen-2's happiness (day/night), beauty, shed-shell and trade-item evolutions — impossible-in-that-game Pokémon say so and name the games that have them
+- **Location Dex** (`L` key or START menu) — **119 Johto + Kanto locations** with per-game encounter tables: grass in three time-of-day tabs (`MORN / DAY / NITE`), surfing, 13 fishing groups (Old/Good/Super Rod with bite % and level spreads), Headbutt and Rock Smash trees, Crystal's grass swarms, the Bug-Catching Contest table, region chips `JOHTO / KANTO`; click any Pokémon to jump to its dex page
+- **Moves follow the selected game** — the learnset panel, Moves Dex and TM/HM list switch between the G/S and Crystal data with the theme; the Goldenrod **Move Tutor** (Flamethrower / Thunderbolt / Ice Beam) exists on Crystal only
+- **Item Dex** — every bag item of the selected game (161 in Gold/Silver, 165 in Crystal; the four Crystal-only items included), Apricorn balls, berries, held items and Mail with the **Gen-2 prices** (HYPER POTION ¥1200, not R/B's ¥1500) — see the *Item Dex* section below
+- **Optional LCD screen shader that the Item Dex icons follow** — LCD on shows the 4-shade Game Boy item icons, LCD off the colorized ones, mirroring how the games themselves could only show mono
 - Counters split like the game: **Kanto / Johto / Total** seen & owned
 - Authentic **Gen-2 type chart** — Dark & Steel types included, `Ghost ×2 vs Psychic` fixed
-- **Authentic cries** for all 251 (local OGG files) · seen/owned tracking · full detail grid (catch rate, happiness, growth, egg groups, habitat, gender)
-
-### Crystal Dex — features
-
-- A **dedicated Pokédex for Pokémon Crystal** (all **251 Johto + Kanto Pokémon**), same structure as the other dexes, with its own **teal Game Boy Color shell** and Crystal's **ice-blue accent**
-- **Crystal's own in-game sprites** — Crystal redrew the Gen-2 sprites again — with **shiny variants** (`Shiny` button or key `S`)
-- **Animated battle sprites** — Crystal introduced the series' very first animated Pokémon sprites; all 251 authentic animations are included as lossless WebP with a toggle (`Anim` button, START menu or key `A`), exactly like the Emerald dex
-- **Back sprites** for every Pokémon, normal and shiny — static, exactly like the game (Crystal only animated its fronts); `Back` button, START menu or key `B`
-- **Crystal's rewritten dex entries** — Crystal rewrote every single entry text (all 251 differ from both Gold and Silver); the box flips pages like the original
-- Counters split like the game: **Kanto / Johto / Total** seen & owned · authentic **Gen-2 type chart** · authentic cries · seen/owned tracking · full detail grid
+- **Authentic cries** for all 251 (local OGG files) · seen/owned tracking · full detail grid (catch rate, happiness, growth, egg groups, habitat, gender) · deep links (`gen2.html#025`)
 
 ### Uniform sprite scale (all dexes)
 
@@ -107,7 +98,7 @@ Every dex shares one structure and feature set; only the theme changes per game.
 - **Fully bilingual**: all 181 Persian item names + all 161 descriptions translated; search works in EN and FA; category chips localized
 - Reproducible: `python3 tools/build-items.py` regenerates the data and icons from `pret` + PokeAPI
 
-### Location Dex & How to Catch (Gen-1 dex — Pokédex Plus, Phase 4)
+### Location Dex & How to Catch (Gen-1 dex — Pokédex Plus, Phase 4; Gen-2 dex — Phase 5)
 
 - **68 Kanto locations** — every route, city, cave, floor, the Safari Zone areas, the Power Plant, Pokémon Tower, Seafoam Islands, Pokémon Mansion, Cerulean Cave, Victory Road, even the fishable **Cerulean Gym** and **Vermilion Dock** — each with its EN/FA name and a story-order sort
 - **Authentic per-game encounter tables** read from the `pret` decompiles (`pokered` for Red/Blue, `pokeyellow` for Yellow): grass and surfing tables with the real 10-slot chances (19.9/19.9/15.2/9.8/9.8/9.8/5.1/5.1/4.3/1.2 %), encounter-rate bytes (shown as `25/255 ≈ 10% per step`), Red-vs-Blue exclusive slots and Yellow's own tables
@@ -141,6 +132,10 @@ Every dex shares one structure and feature set; only the theme changes per game.
 - [x] **Back sprites everywhere + Japan-only Green set** (Pokédex Plus, Phase 1)
 - [x] **Moves & learnsets per game (Pokédex Plus, Phase 2)** — per-game move data, learnset panel, Moves Dex & TM/HM lists on all Gen-1/2 dexes
 - [x] **Location Dex & How to Catch (Pokédex Plus, Phase 4)** — all 68 Kanto locations with per-game encounter tables, rods, special encounters and evolve paths on the Gen-1 dex
+- [x] **Generation II unified dex (Pokédex Plus)** — Gold · Silver · Crystal in one Game Boy Color-styled page with per-version sprites (incl. shiny + back + Crystal animations), three dex-text wordings, corrected Gen-2 type chart
+- [x] **Moves & learnsets on the Gen-2 dex** — 251 moves, per-game learnsets, Crystal-only Move Tutor, authentic 50+7 TM/HM list
+- [x] **Item Dex on the Gen-2 dex** — 161 Gold/Silver + 165 Crystal items with Gen-2 prices and LCD-coupled icons
+- [x] **Location Dex & How to Catch on the Gen-2 dex** — 119 Johto + Kanto locations with time-of-day tables, rods, Headbutt/Rock Smash, swarms, the Bug-Catching Contest and 51 special encounters
 - [ ] Ruby / Sapphire, FireRed / LeafGreen (Gen 3)
 - [ ] Gen 4–9 — planned
 
@@ -151,7 +146,7 @@ No installation needed:
 ```bash
 git clone https://github.com/Ali-F-Harandi/pokedex.git
 cd pokedex
-# open index.html (or emerald.html / red-blue.html / yellow.html / goldsilver.html / crystal.html) directly in any browser —
+# open index.html (or emerald.html / gen1.html / gen2.html) directly in any browser —
 # everything works offline, even over file://
 ```
 
@@ -164,11 +159,12 @@ pokedex/
 ├── gen1.html                   ← Generation I dex — Red · Blue · Green · Yellow in one page
 ├── red-blue.html               ← redirect → gen1.html
 ├── yellow.html                 ← redirect → gen1.html
-├── goldsilver.html             ← Gen-2 Gold/Silver dex entry page
-├── crystal.html                ← Gen-2 Crystal dex entry page
+├── gen2.html                   ← Generation II dex — Gold · Silver · Crystal in one page
+├── goldsilver.html             ← redirect → gen2.html
+├── crystal.html                ← redirect → gen2.html
 └── assets/
-    ├── css/                    ← one stylesheet per page (emerald / redblue / yellow / goldsilver / crystal / landing)
-    ├── js/                     ← data + logic per page (emerald / redblue / yellow / goldsilver / crystal / landing) + shared moves/items/locations modules
+    ├── css/                    ← one stylesheet per page (emerald / gen1 / gen2 / landing)
+    ├── js/                     ← data + logic per page (emerald / gen1 / gen2 / landing) + shared moves/items/locations modules
     ├── fonts/                  ← Press Start 2P + Vazirmatn (woff2, OFL)
     ├── img/                    ← favicon, Emerald sprite atlas, featured-card images
     ├── sprites/
@@ -207,7 +203,7 @@ Each HTML page is tiny (6–12 KB) and pulls in its own CSS/JS plus the shared `
   - `generation-ii/crystal` (+ `shiny` + `animated` + back sprites) — Crystal's own static and animated sprites
 - Pokédex entry texts, categories and in-game HT/WT from the [`pret/pokered`](https://github.com/pret/pokered) and [`pret/pokeyellow`](https://github.com/pret/pokeyellow) decompilations; Gold/Silver/Crystal EN texts per version from PokeAPI
 - Game data (stats, abilities, evolutions, genera) from [PokeAPI](https://pokeapi.co/)
-- Wild encounter tables, fishing groups, in-game trades and Game Corner prizes from the `pret` decompilations (`pokered`, `pokeyellow`) — see `tools/build-locations.py`
+- Wild encounter tables, fishing groups, in-game trades and Game Corner prizes from the `pret` decompilations (`pokered`, `pokeyellow` for Kanto; `pokegold` / `pokesilver` / `pokecrystal` for Johto + Kanto) — see `tools/build-locations.py` and `tools/build-locations-gen2.py`
 - [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) (OFL) + [Vazirmatn](https://github.com/rastikerdar/vazirmatn) (OFL)
 - Persian translations: names, genera, dex entries, abilities and UI — hand-written for this project
 
