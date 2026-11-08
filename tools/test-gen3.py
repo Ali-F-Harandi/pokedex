@@ -553,7 +553,7 @@ with sync_playwright() as pw:
       const lvl = (id, v) => { const s=H.sp.find(s=>s.m&&s.m[0][0]===id&&s.v.includes(v)); return s?s.m[0][1]:null; };
       const trades = { rs: H.sp.filter(s=>s.k==='trade'&&s.v.includes('ruby')).length,
                        em: H.sp.filter(s=>s.k==='trade'&&s.v.includes('emerald')).length };
-      const fishAllMagikarp = H.fish.every(f=>(f.o||[]).every(r=>r[0]===129));
+      const fishAllMagikarp = H.fish.every(f=>f.o && f.o[0] && f.o[0][0]===129 && f.o.length<=2 && f.o.every(r=>r[0]===129 || r[0]===118 || r[0]===72));
       const uw = {}; ['MAPSEC_UNDERWATER_124','MAPSEC_UNDERWATER_125','MAPSEC_UNDERWATER_126'].forEach(id=>{
         const l=H.locs.find(x=>x.id===id); uw[id]=l?Object.keys(l.t):null; });
       const spFA = H.sp.every(s=>s.d.fa && /[\\u0600-\\u06FF]/.test(s.d.fa));
@@ -580,7 +580,7 @@ with sync_playwright() as pw:
                notes: H.locs.filter(l=>l.note).map(l=>l.id),
                noTimeTabs: true,
                dedup: H.locs.filter(l=>l.t.sapphire===undefined && l.t.ruby!==undefined).length,
-               kantoNull: LOC3.regions.kanto === null }; })()""")
+               kantoGames: (LOC3.regions.kanto || {}).games || null }; })()""")
     check('80 locations, all bilingual, unique ids', ldata['n'] == 80 and ldata['noFA'] == 0 and ldata['uniq'] == 80, str(ldata['n']))
     check('every group represented (routes/cities/caves/water/safari/island/building)',
           all(g in ldata['groups'] for g in ['route','city','cave','water','safari','island','building']), str(ldata['groups']))
@@ -606,7 +606,7 @@ with sync_playwright() as pw:
           (ldata['mew'], ldata['lugia'], ldata['hooh'], ldata['deoxys']) == (30, 70, 70, 30) and not ldata['deoxysRS'])
     check('Emerald swarms: Seedot3/R102 · Skitty8/R116 · Seedot13/R117 · Nuzleaf15/R114 · Seedot25/R120',
           ldata['swarms'] == [[273, 3, 'MAPSEC_ROUTE_102'], [300, 8, 'MAPSEC_ROUTE_116'], [273, 13, 'MAPSEC_ROUTE_117'], [274, 15, 'MAPSEC_ROUTE_114'], [273, 25, 'MAPSEC_ROUTE_120']], str(ldata['swarms']))
-    check('fishing: Old Rod hooks only Magikarp everywhere · bite 50%',
+    check('fishing: Old Rod = Magikarp 70% + engine second slot (Goldeen/Tentacool 30% in R/S/E) · bite 50%',
           ldata['fishAllMagikarp'] and ldata['bite'] == 50)
     check('underwater coverage: R/S 124+125 · Emerald 124+126 (sapphire deduped to ruby)',
           ldata['uw']['MAPSEC_UNDERWATER_124'] == ['ruby', 'emerald'] and
@@ -617,7 +617,7 @@ with sync_playwright() as pw:
           sorted(ldata['notes']) == ['MAPSEC_ALTERING_CAVE', 'MAPSEC_ROUTE_119', 'MAPSEC_SHOAL_CAVE'], str(ldata['notes']))
     check('R/S dedupe: identical Sapphire tables omitted (fallback to ruby)',
           ldata['dedup'] >= 30, str(ldata['dedup']))
-    check('kanto region stays null until phase 6 (FRLG hidden)', ldata['kantoNull'])
+    check('kanto region now live for FireRed/LeafGreen (phase 6)', ldata['kantoGames'] == ['firered', 'leafgreen'], str(ldata['kantoGames']))
 
     # HOW TO CATCH per Pokémon
     lp.evaluate("select(304)")   # Aron — Granite Cave wild
@@ -737,16 +737,185 @@ with sync_playwright() as pw:
     lp.wait_for_timeout(200)
     check('Escape closes the overlay', lp.evaluate("document.querySelector('#locWrap').classList.contains('hidden')"))
 
-    # FRLG: no Hoenn section (kanto lands in phase 6)
+    # ==================== PHASE 6 — Location Dex + How to Catch (Kanto + Sevii, FRLG) ====================
     lp.evaluate("toggleTheme('firered')")
+    lp.wait_for_timeout(500)
+    check('FRLG: HOW TO CATCH section now visible (kanto region live)',
+          lp.evaluate("!!document.querySelector('#locSec')"))
+    check('FRLG: START menu entry shown', lp.evaluate("document.querySelector('#menuPop [data-act=locdex]').style.display !== 'none'"))
+    check('FRLG: section follows the active game (FIRERED chip on)',
+          lp.evaluate('(()=>{const c=[...document.querySelectorAll("#locSec .lchip")].find(x=>x.dataset.lg==="firered");return c && c.classList.contains("on");})()'))
+
+    # data-level checks straight from LOC3.regions.kanto
+    kdata = lp.evaluate("""(function(){
+      const K = LOC3.regions.kanto;
+      const noFA = K.locs.filter(l=>!l.fa || !/[\\u0600-\\u06FF]/.test(l.fa)).length;
+      const ids = K.locs.map(l=>l.id);
+      const groups = {}; K.locs.forEach(l=>groups[l.g]=(groups[l.g]||0)+1);
+      const r1 = K.locs.find(l=>l.id==='MAPSEC_ROUTE_1');
+      const isStart = id => id===1 || id===4 || id===7;
+      const noStarter = K.locs.every(l=>Object.values(l.t||{}).every(rooms=>!rooms || rooms.every(rm=>
+        !(rm.land && rm.land.s.some(e=>isStart(e[0]))) &&
+        !(rm.surf && rm.surf.w.some(e=>isStart(e[0]))) &&
+        !(rm.rk && rm.rk.s2.some(e=>isStart(e[0]))))));
+      const saf = K.locs.find(l=>l.id==='MAPSEC_KANTO_SAFARI_ZONE');
+      const lvl = (id, v) => { const s=K.sp.find(s=>s.m&&s.m[0][0]===id&&s.v.includes(v)); return s?s.m[0][1]:null; };
+      const tradesFR = K.sp.filter(s=>s.k==='trade'&&s.v.includes('firered')).length;
+      const tradesLG = K.sp.filter(s=>s.k==='trade'&&s.v.includes('leafgreen')).length;
+      const roomN = (lid, g) => { const l=K.locs.find(x=>x.id===lid); const r=(l.t[g]!==undefined)?l.t[g]:l.t.firered; return r?r.length:null; };
+      const spFA = K.sp.every(s=>s.d.fa && /[\\u0600-\\u06FF]/.test(s.d.fa));
+      const fishAllMagikarp = K.fish.every(f=>(f.o||[]).every(r=>r[0]===129));
+      const monean = K.locs.find(l=>l.id==='MAPSEC_MONEAN_CHAMBER');
+      const moneanUnown = monean.t.firered[0].land.s.every(e=>e[0]===201);
+      const deox = K.sp.filter(s=>s.m[0][0]===386 && s.k==='event');
+      const roam = K.sp.find(s=>s.k==='roamer');
+      const snor = K.sp.filter(s=>s.m[0][0]===143);
+      const abra = K.sp.filter(s=>s.m[0][0]===63 && s.k==='gift');
+      const dedup = K.locs.filter(l=>l.t.leafgreen===undefined && l.t.firered!==undefined).length;
+      const lgDiff = K.locs.filter(l=>l.t.leafgreen!==undefined).length;
+      const notes = K.locs.filter(l=>l.note).map(l=>l.id);
+      return { n: K.locs.length, noFA, uniq: new Set(ids).size, groups, noStarter,
+               r1fr: r1.t.firered[0].land.s.slice(0,4).map(e=>e[0]+':'+e[1]),
+               r1lgDeduped: r1.t.leafgreen===undefined,
+               saf: saf ? saf.t.firered.length : null,
+               safariNote: K.locs.find(l=>l.id==='MAPSEC_KANTO_SAFARI_ZONE').note.en.includes('600 steps'),
+               mewtwo: lvl(150,'firered'), articuno: lvl(144,'firered'), zapdos: lvl(145,'firered'),
+               moltres: lvl(146,'firered'), moltresLoc: K.sp.find(s=>s.m[0][0]===146).loc,
+               tradesFR, tradesLG,
+               ccRooms: roomN('MAPSEC_CERULEAN_CAVE','firered'), sfRooms: roomN('MAPSEC_SEAFOAM_ISLANDS','firered'),
+               lostRooms: roomN('MAPSEC_LOST_CAVE','firered'), iceRooms: roomN('MAPSEC_ICEFALL_CAVE','firered'),
+               mtERooms: roomN('MAPSEC_MT_EMBER','firered'), towerRooms: roomN('MAPSEC_POKEMON_TOWER','firered'),
+               moneanUnown, moneanNote: monean.note,
+               deoxFR: deox.filter(s=>s.v.includes('firered')&&!s.v.includes('leafgreen')).map(s=>[s.loc,s.m[0][1]]),
+               deoxLG: deox.filter(s=>s.v.includes('leafgreen')&&!s.v.includes('firered')).map(s=>[s.loc,s.m[0][1]]),
+               roamer: roam ? [roam.m.map(x=>x[0]), roam.m.every(x=>x[1]===50), roam.v.length] : null,
+               snorlax: snor.map(s=>s.loc), hypno: lvl(97,'firered'),
+               abraFR: abra.find(s=>s.v.includes('firered')).m[0][1],
+               abraLG: abra.find(s=>s.v.includes('leafgreen')).m[0][1],
+               scytherFR: K.sp.some(s=>s.m[0][0]===123 && s.v.join()=='firered'),
+               pinsirLG: K.sp.some(s=>s.m[0][0]===127 && s.v.join()=='leafgreen'),
+               lapras: lvl(131,'firered'), hitmons: K.sp.some(s=>s.k==='gift'&&s.m[0][0]===106&&s.m[1][0]===107),
+               togepi: K.sp.some(s=>s.k==='egg'&&s.m[0][0]===175&&s.loc==='MAPSEC_WATER_LABYRINTH'),
+               karpSale: K.sp.some(s=>s.m[0][0]===129&&s.k==='gift'&&s.loc==='MAPSEC_ROUTE_4'),
+               spFA, fishAllMagikarp,
+               trainerTower: K.locs.some(l=>l.id==='MAPSEC_TRAINER_TOWER' && l.note && l.note.en.includes('no wild')),
+               alteringNote: K.locs.find(l=>l.id==='MAPSEC_ALTERING_CAVE').note.en.includes('e-Reader'),
+               emberNote: K.locs.find(l=>l.id==='MAPSEC_MT_EMBER').note.en.includes('RUBY gem'),
+               dedup, lgDiff,
+               seviiIslands: ['MAPSEC_ONE_ISLAND','MAPSEC_TWO_ISLAND','MAPSEC_THREE_ISLAND','MAPSEC_FOUR_ISLAND','MAPSEC_FIVE_ISLAND','MAPSEC_SIX_ISLAND','MAPSEC_SEVEN_ISLAND'].every(id=>ids.includes(id)),
+               navel: K.sp.filter(s=>s.loc==='MAPSEC_NAVEL_ROCK').map(s=>s.m[0][0]+':'+s.m[0][1]),
+               kantoSeviiFA: K.locs.every(l=>/[\\u0600-\\u06FF]/.test(l.fa)) }; })()""")
+    check('87 Kanto+Sevii locations, all bilingual, unique ids', kdata['n'] == 87 and kdata['noFA'] == 0 and kdata['uniq'] == 87, str(kdata['n']))
+    check('kanto groups: routes/cities/caves/forest/safari/islands/buildings',
+          all(g in kdata['groups'] for g in ['route','city','cave','forest','safari','island','building']), str(kdata['groups']))
+    check('no wild starters anywhere (Bulbasaur/Charmander/Squirtle)', kdata['noStarter'])
+    check('FRLG Route 1 is the FRLG redesign: Pidgey 16 + Rattata 19 at Lv 2-5 (not gen1 tables)',
+          kdata['r1fr'] == ['16:3', '19:3', '16:3', '19:3'] and kdata['r1lgDeduped'], str(kdata['r1fr']))
+    check('Safari Zone: 4 areas (Center/East/North/West) + 600-steps note',
+          kdata['saf'] == 4 and kdata['safariNote'], f"rooms={kdata['saf']}")
+    check('Mewtwo Lv 70 · birds Lv 50 (FRLG levels) · Moltres moved to Mt. Ember',
+          kdata['mewtwo'] == 70 and kdata['articuno'] == 50 and kdata['zapdos'] == 50 and
+          kdata['moltres'] == 50 and kdata['moltresLoc'] == 'MAPSEC_MT_EMBER', str((kdata['mewtwo'], kdata['articuno'], kdata['moltresLoc'])))
+    check('Cerulean Cave 3 rooms · Seafoam 5 · Mt. Ember 10 (Exterior+Summit 3+Ruby Path 6) · Tower 5 wild floors',
+          kdata['ccRooms'] == 3 and kdata['sfRooms'] == 5 and kdata['mtERooms'] == 10 and kdata['towerRooms'] == 5,
+          str((kdata['ccRooms'], kdata['sfRooms'], kdata['mtERooms'], kdata['towerRooms'])))
+    check('Sevii caves: Lost Cave 14 rooms · Icefall 4 rooms', kdata['lostRooms'] == 14 and kdata['iceRooms'] == 4,
+          str((kdata['lostRooms'], kdata['iceRooms'])))
+    check('in-game trades: 12 entries — 9 per game (6 shared + 3 exclusive each)',
+          kdata['tradesFR'] == 9 and kdata['tradesLG'] == 9, str((kdata['tradesFR'], kdata['tradesLG'])))
+    check('Monean Chamber: all 12 slots UNOWN Lv 25 + letter-set note (A ×11 + ?)',
+          kdata['moneanUnown'] and 'A ×11 + ?' in kdata['moneanNote']['en'] and 'A ×۱۱' in kdata['moneanNote']['fa'], str(kdata['moneanNote']))
+    check('Deoxys forme rides the cartridge: FR=Attack / LG=Defense, both Lv 30 @Birth Island',
+          kdata['deoxFR'] == [['MAPSEC_BIRTH_ISLAND', 30]] and kdata['deoxLG'] == [['MAPSEC_BIRTH_ISLAND', 30]], str((kdata['deoxFR'], kdata['deoxLG'])))
+    check('roaming beast: Raikou/Entei/Suicune Lv 50, one entry, both games',
+          kdata['roamer'] == [[243, 244, 245], True, 2], str(kdata['roamer']))
+    check('two Snorlax (Route 12 + Route 16) · Berry Forest Hypno Lv 30',
+          kdata['snorlax'] == ['MAPSEC_ROUTE_12', 'MAPSEC_ROUTE_16'] and kdata['hypno'] == 30, str(kdata['snorlax']))
+    check('Game Corner: Abra Lv 9 FR / Lv 7 LG · Scyther FR-only · Pinsir LG-only',
+          kdata['abraFR'] == 9 and kdata['abraLG'] == 7 and kdata['scytherFR'] and kdata['pinsirLG'], str((kdata['abraFR'], kdata['abraLG'])))
+    check('Lapras L25 @Silph · Hitmon pair @Saffron · Togepi egg @Water Labyrinth · Magikarp sale @Route 4',
+          kdata['lapras'] == 25 and kdata['hitmons'] and kdata['togepi'] and kdata['karpSale'])
+    check('Navel Rock event: Lugia 70 + Ho-Oh 70', sorted(kdata['navel']) == ['249:70', '250:70'], str(kdata['navel']))
+    check('all 7 Sevii Islands present', kdata['seviiIslands'])
+    check('honest notes: Safari 600 steps · Altering Cave e-Reader · Mt. Ember RUBY quest · Trainer Tower no-wilds',
+          kdata['safariNote'] and kdata['alteringNote'] and kdata['emberNote'] and kdata['trainerTower'])
+    check('every FRLG special way carries a Persian description', kdata['spFA'])
+    check('kanto fishing: Old Rod hooks only Magikarp everywhere (real slot check)', kdata['fishAllMagikarp'])
+    check('FR/LG dedupe: 69 tables differ between the cartridges, 14 identical LG tables omitted (fallback)',
+          kdata['dedup'] >= 10 and kdata['lgDiff'] >= 50, f"dedup={kdata['dedup']} lg-specific={kdata['lgDiff']}")
+
+    # overlay on FRLG: region chips + kanto list
+    lp.keyboard.press('l')
     lp.wait_for_timeout(400)
-    check('FRLG: HOW TO CATCH section hidden (no invented data)',
-          lp.evaluate("!document.querySelector('#locSec')"))
-    check('FRLG: START menu entry hidden', lp.evaluate("document.querySelector('#menuPop [data-act=locdex]').style.display === 'none'"))
-    check('FRLG: openDex is a no-op', lp.evaluate("LocUI.openDex(), document.querySelector('#locWrap').classList.contains('hidden')"))
+    lp.fill('#lcQ', '')          # phase-5 FA search left view.q set
+    lp.wait_for_timeout(250)
+    check('FRLG overlay opens with L', lp.evaluate("!document.querySelector('#locWrap').classList.contains('hidden')"))
+    check('region chips: HOENN + KANTO both visible',
+          lp.evaluate('(()=>{const b=[...document.querySelectorAll("#lcViewbar .it-chip[data-reg]")];return b.length===2 && b.some(x=>x.dataset.reg==="hoenn") && b.some(x=>x.dataset.reg==="kanto");})()'))
+    ko = lp.evaluate("document.querySelectorAll('#lcBody .lcard').length")
+    check('FRLG overlay lists all 87 kanto+sevii locations', ko == 87, f'cards={ko}')
+    lp.evaluate("LocUI.openDex('MAPSEC_ROUTE_1')")
+    lp.wait_for_timeout(300)
+    kr1 = lp.evaluate("document.querySelector('#lcBody').textContent")
+    check('Route 1 view: grass rows + Persian name + Pidgey',
+          'GRASS' in kr1 and 'مسیر ۱' in kr1 and 'Pidgey' in kr1, kr1[:70].replace('\n', ' '))
+    lp.evaluate("LocUI.openDex('MAPSEC_CERULEAN_CAVE')")
+    lp.wait_for_timeout(300)
+    kcc = lp.evaluate("document.querySelector('#lcBody').textContent")
+    check('Cerulean Cave: room labels 1F/2F/B1F + Mewtwo special + strong-habitat note',
+          'B1F' in kcc and 'MEWTWO' in kcc.upper() and 'strongest wild habitat' in kcc, kcc[:90].replace('\n', ' '))
+    lp.evaluate("LocUI.openDex('MAPSEC_MT_EMBER')")
+    lp.wait_for_timeout(300)
+    kme = lp.evaluate("document.querySelector('#lcBody').textContent")
+    check('Mt. Ember: Ruby Path rooms + RUBY gem quest note + Moltres Lv 50',
+          'Ruby Path' in kme and 'RUBY gem' in kme and 'MOLTRES' in kme.upper(), kme[:90].replace('\n', ' '))
+    lp.evaluate("LocUI.openDex('MAPSEC_MONEAN_CHAMBER')")
+    lp.wait_for_timeout(300)
+    ku = lp.evaluate("document.querySelector('#lcBody').textContent")
+    check('Monean Chamber: Unown rows + letter-set note', 'Unown' in ku and 'A ×11 + ?' in ku, ku[:90].replace('\n', ' '))
+    lp.screenshot(path=f'{SHOT}/loc_kanto_monean.png')
+    lp.evaluate("LocUI.openDex()")   # back to the list view (region chips live there)
+    lp.wait_for_timeout(300)
+    # region chip switch: kanto -> hoenn keeps working both ways
+    lp.evaluate("[...document.querySelectorAll('#lcViewbar .it-chip[data-reg]')].find(x=>x.dataset.reg==='hoenn').click()")
+    lp.wait_for_timeout(300)
+    check('region switch kanto→hoenn: list back to 80',
+          lp.evaluate("document.querySelectorAll('#lcBody .lcard').length") == 80)
+    lp.evaluate("[...document.querySelectorAll('#lcViewbar .it-chip[data-reg]')].find(x=>x.dataset.reg==='kanto').click()")
+    lp.wait_for_timeout(300)
+    check('region switch hoenn→kanto: list back to 87',
+          lp.evaluate("document.querySelectorAll('#lcBody .lcard').length") == 87)
+    lp.keyboard.press('Escape')
+    lp.wait_for_timeout(200)
+
+    # HOW TO CATCH for kanto-only species
+    lp.evaluate("select(131)")   # Lapras — Silph gift, no kanto wilds
+    lp.wait_for_timeout(250)
+    txt = lp.evaluate("document.querySelector('#locSec').textContent")
+    check('Lapras (FIRERED): gift row at Silph Co. Lv 25', 'Silph' in txt and '25' in txt, txt[:80])
+    lp.evaluate("select(149)")   # Dragonite — kanto dex: evo chain from Dragonair (Safari fishing)
+    lp.wait_for_timeout(250)
+    txt = lp.evaluate("document.querySelector('#locSec').textContent")
+    check('Dragonite (FIRERED): evo chain from Dragonair (Safari Super Rod)', 'Dragonair' in txt and 'BY EVOLUTION' in txt.upper(), txt[:80])
+    lp.evaluate("select(63)")   # Abra — Game Corner FR + wild? FR Route 24/25? assert kanto wording on none-note when absent
+    lp.wait_for_timeout(250)
+    txt = lp.evaluate("document.querySelector('#locSec').textContent")
+    check('Abra (FIRERED): Game Corner gift row', 'Game Corner' in txt and '180' in txt, txt[:80])
+    lp.evaluate("[...document.querySelectorAll('#locSec .lchip')].find(x=>x.dataset.lg==='leafgreen').click()")
+    lp.wait_for_timeout(250)
+    txt = lp.evaluate("document.querySelector('#locSec').textContent")
+    check('Abra (LEAFGREEN): LG wording 120 coins + Lv 7', '120' in txt and '7' in txt, txt[:80])
+    lp.evaluate("select(386)")   # Deoxys — event, FR Attack wording
+    lp.wait_for_timeout(250)
+    lp.evaluate("[...document.querySelectorAll('#locSec .lchip')].find(x=>x.dataset.lg==='firered').click()")
+    lp.wait_for_timeout(250)
+    txt = lp.evaluate("document.querySelector('#locSec').textContent")
+    check('Deoxys (FIRERED): event row names the ATTACK forme', 'ATTACK' in txt.upper() and 'Birth Island' in txt, txt[:80])
+    lp.keyboard.press('Escape'); lp.wait_for_timeout(150)
+    lp.keyboard.press('Escape'); lp.wait_for_timeout(150)
     lp.evaluate("toggleTheme('ruby')")
     lp.wait_for_timeout(300)
-    check('back on RUBY: section + menu return', lp.evaluate("!!document.querySelector('#locSec')") and
+    check('back on RUBY: hoenn section + menu return', lp.evaluate("!!document.querySelector('#locSec')") and
           lp.evaluate("document.querySelector('#menuPop [data-act=locdex]').style.display !== 'none'"))
 
     # mobile: full-width panels (the b0e9a15 lesson) + overlay fits
@@ -790,8 +959,8 @@ with sync_playwright() as pw:
     lfp.evaluate("select(130)")
     lfp.wait_for_timeout(250)
     fa_wild = lfp.evaluate("document.querySelector('#locSec').textContent")
-    check('locations FA: Gyarados via Magikarp evolution (Lv 20, no wild Gyarados in Hoenn)',
-          'با تکامل' in fa_wild and 'ماجیکارپ' in fa_wild and 'سطح ۲۰' in fa_wild, fa_wild[:80])
+    check('locations FA: Gyarados via Sootopolis Super Rod (fishing tables now indexed in the wild list)',
+          'سوپر راد' in fa_wild and 'شهر سووتوپلیس' in fa_wild, fa_wild[:80])
     lfp.evaluate("LocUI.openDex()")
     lfp.wait_for_timeout(400)
     check('locations FA: overlay head + cards in Persian',
@@ -804,6 +973,28 @@ with sync_playwright() as pw:
     check('locations FA: Feebas note in Persian with Persian digits',
           'فِیباس' in fa_note and '۵۰٪' in fa_note, fa_note[:90])
     lfp.screenshot(path=f'{SHOT}/loc_fa.png')
+
+    # FRLG / kanto FA pass (phase 6)
+    lfp.evaluate("toggleTheme('leafgreen')")
+    lfp.wait_for_timeout(400)
+    lfp.evaluate("select(143)")
+    lfp.wait_for_timeout(250)
+    fa_k = lfp.evaluate("document.querySelector('#locSec').textContent")
+    check('locations FA (LG): Snorlax static rows in Persian',
+          'اسنورلاکس' in fa_k and 'مواجهه‌ی ثابت' in fa_k, fa_k[:80])
+    lfp.evaluate("select(243)")
+    lfp.wait_for_timeout(250)
+    fa_r = lfp.evaluate("document.querySelector('#locSec').textContent")
+    check('locations FA (LG): roaming beast entry in Persian with starter rule',
+          'سرگردان' in fa_r and 'رایکو' in fa_r and 'استارتر' in fa_r, fa_r[:80])
+    lfp.evaluate("LocUI.openDex('MAPSEC_MT_EMBER')")
+    lfp.wait_for_timeout(300)
+    fa_mt = lfp.evaluate("document.querySelector('#lcBody').textContent")
+    check('locations FA (LG): Mt. Ember Persian name + Ruby Path FA labels',
+          'کوه امبر' in fa_mt and 'جاده یاقوت' in fa_mt, fa_mt[:90].replace('\n', ' '))
+    check('locations FA (LG): Persian digits render in kanto views',
+          any('\u06F0' <= ch <= '\u06F9' for ch in fa_mt))
+    lfp.screenshot(path=f'{SHOT}/loc_fa_kanto.png')
     lfctx.close()
     lctx.close()
 

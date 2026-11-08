@@ -59,7 +59,7 @@ updates the statuses below. Work through the phases IN ORDER.
 | 3 | Moves Dex wiring (R/S · EMERALD · FRLG) + contest data + verification | DONE | see phase notes below |
 | 4 | Item Dex wiring (Gen 3, per-game lists + prices, berries) + verification | DONE | see phase notes below |
 | 5 | Location Dex + How to Catch — Hoenn (R/S/E) | DONE | see phase notes below |
-| 6 | Location Dex + How to Catch — Kanto + Sevii (FRLG) | TODO | |
+| 6 | Location Dex + How to Catch — Kanto + Sevii (FRLG) | DONE | see phase notes below |
 | 7 | Gen-3 signature: Ability Dex overlay + Natures (25, interactive) + contest polish | TODO | |
 | 8 | Final QA (all-gen regression, VLM visual audit EN/FA, README, landing) + delete cron | TODO | |
 
@@ -479,6 +479,87 @@ phase).
 - FA everything; extend test-gen3.py (FRLG Kanto tables differ from gen1's —
   assert a known difference; Sevii present; Deoxys FR=Attack/LG=Defense
   formes; per-starter roaming rule).
+
+### Phase 6 — RESULT (2026-11-09, this run)
+DONE. Delivered: `LOC3.regions.kanto` (FireRed/LeafGreen — Kanto + Sevii
+Islands) inside `assets/js/locations-gen3.js`; curated bilingual tables in
+the new `tools/loc3_frlg.py` (names/rooms/specials/notes/Unown sets/hand
+list order); `tools/build-locations-gen3.py` gained `parse_frlg_with_labels`
++ `build_kanto()` (pokefirered tarball cached in tools/loc3-cache/). The
+module got the KANTO/هوئن+کانتو region chips and kanto-flavored
+not-obtainable notes (none_event_k / none_nowhere_k EN+FA) — everything else
+(region chips, game chips, sections, START entry, L hotkey, mobile) was
+already region-agnostic and lit up automatically.
+
+Data (all parsed from the pokefirered decomp; FRLG's Kanto is the Gen-3
+REDESIGN — nothing reused from gen1):
+- 87 Kanto+Sevii locations, all bilingual EN/FA, hand-ordered Kanto
+  north→south then Sevii One→Seven then ticket islands; groups route/city/
+  cave/forest/safari/island/building; 59 bilingual room labels (Mt. Moon 3,
+  Mt. Ember 10 = Exterior + Summit Path 3 + Ruby Path 6, Safari 4 areas,
+  Victory Road 3, Pokémon Tower 5 wild floors, Pokémon Mansion 4, Seafoam 5,
+  Cerulean Cave 3, Rock Tunnel 2, Icefall 4, Lost Cave 14, Route 21 N/S).
+- FR/LG dedupe: 69 locations where the cartridge tables genuinely differ
+  (Tanoby sea: LG adds Krabby/Kingler/Mantine/Slowpoke/Remoraid; Route 22
+  etc.), 14 identical LG tables omitted (module falls back leafgreen→
+  firered like sapphire→ruby).
+- Specials 43: Oak starter Lv 5 · Eevee 25 (Condominiums roof) · Lapras 25
+  (Silph 7F) · Hitmonlee/Hitmonchan 25 (Saffron Dojo) · Togepi egg (Water
+  Labyrinth) · fossils Lv 5 (Helix/Dome @Mt. Moon choice, Old Amber @Pewter
+  Museum → Cinnabar Lab revive) · Magikarp salesman (Route 4 PC, ₽500,
+  verified: MAGIKARP_PRICE + givemon in Route4_PokemonCenter_1F) · Game
+  Corner per-species rows (Abra 180/9 FR vs 120/7 LG, Clefairy 500/8 vs
+  750/12, Dratini 2800/18 vs 4600/24, Scyther 5500/25 FR-only, Pinsir
+  2500/18 LG-only, Porygon 9999/26 vs 9999/18) · 12 trade entries = 9 per
+  game (Reyley Abra→Mr. Mime R2, Dontae Poliwhirl→Jynx Cerulean, Saige
+  Nidoran swap Underground Path FR/LG, Elyssa Spearow→Farfetch'd Vermilion,
+  Turner Nidorino↔Nidorina R11 gate, Haden Golduck/Slowbro→Lickitung R18
+  gate, Clifton Raichu→Electrode + Norma Venonat→Tangela + Garett
+  Ponyta→Seel @Cinnabar Lab) — all from src/data/ingame_trades.h + map
+  scripts · statics from setwildbattle: Mewtwo 70 (Cerulean Cave B1F),
+  Articuno 50 (Seafoam B4F), Zapdos 50 + 2× Electrode 34 (Power Plant),
+  Moltres 50 (Mt. Ember SUMMIT — FRLG moved it off Victory Road), Snorlax
+  30 ×2 (R12 + R16), Hypno 30 (Berry Forest) · roamer: ONE entry
+  [Raikou/Entei/Suicune] 50, both games, description carries the authentic
+  per-starter rule from src/roamer.c GetRoamerSpecies (Squirtle→Raikou,
+  Charmander→Suicune, Bulbasaur→Entei; starts after Celio's machine links
+  with Hoenn — special InitRoamer in OneIsland_PokemonCenter_1F) · events:
+  Navel Rock Lugia 70 + Ho-Oh 70 (Mystic Ticket), Birth Island Deoxys 30
+  with the forme riding the cartridge (FR=Attack / LG=Defense, AURORA
+  Ticket) — separate FR/LG entries.
+- Honest notes: Safari Zone 30 balls + 600 steps (src/safari_zone.c),
+  Altering Cave 9 Mystery-Gift/e-Reader sets (default Zubat 10), Mt. Ember
+  RUBY quest (opens Cerulean Cave + starts the roamer), Cerulean Cave
+  strongest-habitat, Trainer Tower no-wilds-inside (its sea frontage does
+  have Tentacool tables — included), Birth Island triangle puzzle, and the
+  7 Tanoby chambers each carry their authentic Unown letter set
+  (sUnownLetterSlots: Monean A×11+?, Liptoo C D H U O, Weepth N S I E,
+  Dilford P L J R Q, Scufib Y T G F K, Rixy V W X M B, Viapois Z×11+! — FA
+  keeps the LATIN letters on purpose; Unown bodies are Latin-shaped).
+- Sevii towns with no wilds and no specials (Two/Three/Six/Seven Island)
+  are force-included with factual notes (Cape Brink ultimate-move tutor,
+  Lostelle quest, Dotted Hole's Sapphire, Tanoby gateway) — the plan's
+  Four–Seven sweep stays complete.
+- FISH-TABLE FIX (phase-5 latent bug, caught by the phase-6 work): fish
+  tables were stored as flat 10-row lists while the module renders
+  {o,g,s}-shaped objects — fishing rows silently never rendered and the
+  phase-5 "Old Rod only Magikarp" test passed vacuously. Fish tables are
+  now {o:[2], g:[3], s:[5]} per the engine's rod groups (field groups in
+  wild_encounters.json); fishing appears in the WILD index and the overlay.
+  The honest R/S/E behavior surfaced: Old Rod = Magikarp 70% + Goldeen/
+  Tentacool 30% second slot (fresh/salt water); FRLG's Old Rod tables are
+  genuinely all-Magikarp — both asserted in tests.
+- Hoenn sort now deterministic (ties broken by id — PYTHONHASHSEED was
+  reordering equal-o locations between builds; hoenn content unchanged).
+- Tests: test-gen3.py extended to 228 checks (67 phase-6: data-level
+  FR/LG table verification incl. FRLG Route 1 redesign Pidgey/Rattata
+  2–5, room counts, trades 9-per-game, per-chamber Unown sets, Deoxys
+  FR/LG split, roamer rule, Game Corner FR/LG levels, Safari note,
+  forced Sevii towns, region-chip switching both ways, HOW TO CATCH rows
+  for Lapras/Dragonite/Abra/Deoxys, kanto FA pass with Persian digits,
+  overlay counts 80/87). All-gen regression green: gen1 24 · gen2 103 ·
+  order 20 · gen2-order 9 · gen2-sprites 30 · gen3-sprites 50 · items 27
+  · moves 44 · locations 42 · gen3 228.
 
 ### Phase 7 — Gen-3 signature: Ability Dex + Natures + contest polish
 - Abilities (era-authentic): per-mon 1-2 slots, NO hidden (already fixed in

@@ -24,8 +24,9 @@
        Sapphire table when identical to Ruby
 
    Regions: ruby/sapphire/emerald -> LOC3.regions.hoenn (phase 5);
-   FireRed/LeafGreen -> LOC3.regions.kanto (lands in phase 6 —
-   while null, the section and the START-menu entry stay hidden).
+   FireRed/LeafGreen -> LOC3.regions.kanto (phase 6: Kanto + Sevii
+   Islands, tables parsed fresh from pokefirered — never reused from
+   gen1; leafgreen falls back to firered like sapphire to ruby).
 
    Everything user-visible is bilingual EN/FA (LI table below). */
 
@@ -37,7 +38,7 @@ const LocUI = (() => {
       dex_t: "LOCATION DEX", sec_t: "HOW TO CATCH", close: "Close", back: "◂ BACK",
       search_ph: "Search a location…", no_results: "No locations found.",
       count: "{a} locations", all: "ALL",
-      regions: { h: "HOENN" },
+      regions: { h: "HOENN", k: "KANTO" },
       groups: { route: "Routes", city: "Cities & towns", cave: "Caves", forest: "Forests",
                 water: "Underwater", safari: "Safari Zone", island: "Islands", building: "Buildings" },
       games: { ruby: "RUBY", sapphire: "SAPPHIRE", emerald: "EMERALD", firered: "FIRERED", leafgreen: "LEAFGREEN" },
@@ -51,6 +52,8 @@ const LocUI = (() => {
       none_note: "This Pokémon cannot be obtained in {g} alone — it lives in {list}. Trade with a friend!",
       none_event: "No normal encounter in Hoenn — only the ticket events listed above.",
       none_nowhere: "Not obtainable in the Hoenn games — trade it in from another Generation III cartridge (FireRed · LeafGreen, or the GameCube games).",
+      none_event_k: "No normal encounter in Kanto — only the ticket events listed above.",
+      none_nowhere_k: "Not obtainable in FireRed · LeafGreen — trade it in from Ruby · Sapphire · Emerald (or the GameCube games).",
       lvl: "Lv {n}", lvl_rng: "Lv {a}–{b}",
       common: "common", pct_of: "{p}%",
       menu_locations: "Location Dex", all_locations: "ALL LOCATIONS",
@@ -77,7 +80,7 @@ const LocUI = (() => {
       dex_t: "دکس مکان‌ها", sec_t: "نحوه‌ی به‌دست‌آوردن", close: "بستن", back: "◂ بازگشت",
       search_ph: "جست‌وجوی مکان…", no_results: "مکانی پیدا نشد.",
       count: "{a} مکان", all: "همه",
-      regions: { h: "هوئن" },
+      regions: { h: "هوئن", k: "کانتو" },
       groups: { route: "مسیرها", city: "شهرها", cave: "غارها", forest: "جنگل‌ها",
                 water: "زیر آب", safari: "منطقه‌ی سافاری", island: "جزیره‌ها", building: "ساختمان‌ها" },
       games: { ruby: "یاقوت", sapphire: "یاقوت کبود", emerald: "زمرد", firered: "آتشین", leafgreen: "برگ سبز" },
@@ -91,6 +94,8 @@ const LocUI = (() => {
       none_note: "این پوکمون در نسخه‌ی {g} به‌تنهایی به دست نمی‌آید — در {list} زندگی می‌کند. با دوستتان تبادل کنید!",
       none_event: "در هوئن مواجهه‌ی عادی ندارد — فقط ایونت‌های بلیطی که بالا آمده.",
       none_nowhere: "در نسخه‌های هوئن به دست نمی‌آید — با تبادل از یک کارتریج دیگر نسل ۳ بیاورید (فایررد/لیف‌گرین کانتو یا بازی‌های گیم‌کیوب).",
+      none_event_k: "در کانتو مواجهه‌ی عادی ندارد — فقط ایونت‌های بلیطی که بالا آمده.",
+      none_nowhere_k: "در فایررد/لیف‌گرین به دست نمی‌آید — با تبادل از یاقوت/یاقوت کبود/زمرد (یا بازی‌های گیم‌کیوب) بیاورید.",
       lvl: "سطح {n}", lvl_rng: "سطح {a}–{b}",
       common: "معمولی", pct_of: "{p}٪",
       menu_locations: "دکس مکان‌ها", all_locations: "همه‌ی مکان‌ها",
@@ -329,10 +334,12 @@ const LocUI = (() => {
     if (!wild.length && !obtainableWays.length && !path){
       const others = DATA[reg].games.filter(x => x !== g && obtainable(x, p.id));
       const onlyEvents = spec.length > 0;
+      const kanto = reg === "kanto";
       h += '<div class="lc-none">' + esc(t("none_t")) + "</div>" +
         '<div class="mv-note">' + esc(others.length
           ? tpl(t("none_note"), { g: t("games." + g), list: others.map(x => t("games." + x)).join(lang() === "fa" ? "، " : " / ") })
-          : onlyEvents ? t("none_event") : t("none_nowhere")) + "</div>";
+          : onlyEvents ? t(kanto ? "none_event_k" : "none_event")
+                       : t(kanto ? "none_nowhere_k" : "none_nowhere")) + "</div>";
     }
     h += "</div>";
     return h;
