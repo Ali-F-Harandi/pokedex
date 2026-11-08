@@ -96,7 +96,7 @@ with sync_playwright() as pw:
     check('deoxys EMERALD: Speed 50/95/90/95/90/180',
           json.loads(stats()) == {'hp': 50, 'atk': 95, 'def': 90, 'spa': 95, 'spd': 90, 'spe': 180}, stats())
     src_em = page.get_attribute('#sprImg', 'src')
-    check('deoxys EMERALD: speed sprite in emerald bank', 'gen3-emerald/386.png' in src_em, src_em)
+    check('deoxys EMERALD: speed sprite (forme id 10015)', 'gen3-emerald/10015.png' in src_em, src_em)
     page.click('.tchip[data-th=firered]'); page.wait_for_timeout(200)
     check('deoxys FIRERED: Attack 50/180/20/180/20/150',
           json.loads(stats()) == {'hp': 50, 'atk': 180, 'def': 20, 'spa': 180, 'spd': 20, 'spe': 150}, stats())
@@ -173,11 +173,34 @@ with sync_playwright() as pw:
     page.click('.tchip[data-th=ruby]')
     page.wait_for_timeout(300)
     check('FA: rs wording also Persian', any('\u0600' <= c <= '\u06FF' for c in page.text_content('#flavorBox')))
-    # frlg wording falls back to EN until its FA lands (gen2 fallback pattern)
+    # frlg wording: Persian since phase 2 (fa_frlg follows the FireRed wording)
     page.click('.tchip[data-th=firered]')
     page.wait_for_timeout(300)
     fr_text = page.text_content('#flavorBox')
-    check('FA: frlg wording falls back to EN (fa_frlg pending)', fr_text and not any('\u0600' <= c <= '\u06FF' for c in fr_text))
+    check('FA: frlg wording is Persian (fa_frlg)', fr_text and any('\u0600' <= c <= '\u06FF' for c in fr_text), (fr_text or '')[:60])
+    # FA leafgreen wording group: still the same FA group text (fa_rs pattern)
+    page.click('.tchip[data-th=leafgreen]')
+    page.wait_for_timeout(300)
+    lg_text = page.text_content('#flavorBox')
+    check('FA: leafgreen wording is Persian too', lg_text and any('\u0600' <= c <= '\u06FF' for c in lg_text), (lg_text or '')[:60])
+
+    # Deoxys on the EMERALD chip must never show the NORMAL-forme animation —
+    # animURL() returns "" for it, so the era Speed-forme still renders.
+    page.click('.tchip[data-th=emerald]')
+    page.wait_for_timeout(300)
+    page.evaluate("select(386,{scroll:false})")
+    page.evaluate("if(!state.anim) toggleAnim()")
+    page.wait_for_timeout(400)
+    src386 = page.evaluate("document.querySelector('#sprImg').getAttribute('src')")
+    check('Deoxys EMERALD anim-guard: still, not wrong-forme webp',
+          src386 and 'gen3-emerald-anim' not in src386 and 'gen3-emerald/10015.png' in src386, str(src386))
+    # and SHINY on EMERALD resolves to the genuine speed-forme shiny view
+    page.evaluate("if(!state.shiny) toggleShiny()")
+    page.wait_for_timeout(300)
+    src386s = page.evaluate("document.querySelector('#sprImg').getAttribute('src')")
+    check('Deoxys EMERALD shiny: speed-forme shiny still',
+          src386s and 'gen3-emerald-shiny/10015.png' in src386s, str(src386s))
+    page.evaluate("if(state.shiny) toggleShiny()")
 
     # ---------- persistence ----------
     seed(page, lang='en', theme='leafgreen')

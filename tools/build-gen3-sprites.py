@@ -10,11 +10,14 @@ PokeAPI sprites repo (era-authentic 64x64 Game Boy Advance sprites):
   * Deoxys formes ride the cartridge in Gen 3 (R/S=Normal, FR=Attack,
     LG=Defense, E=Speed): the forme sprites are stored under their PokeAPI
     form ids (10013 attack / 10014 defense / 10015 speed) in the FR bank
-    (normal+attack+defense) and RS bank (speed, used by the EMERALD chip).
+    (normal+attack+defense) and RS bank (speed, used by the EMERALD chip's
+    back view). The EMERALD front bank also carries 10015 (speed front);
+    its speed SHINY views come from pokemondb — PokeAPI's forme-id shiny
+    slots are normal-art placeholders (phase-2 audit).
 
   gen3-emerald                            <- stills cut from the existing
     emerald-atlas.png (64x64 cells, COLS=20, id-ordered — the same art the
-    approved emerald page uses); #386 overridden with the Speed forme.
+    approved emerald page uses); uniform ids 1..386 + the forme id 10015.
 
 All outputs are re-encoded onto a uniform 64x64 RGBA canvas.
 Usage: python3 tools/build-gen3-sprites.py [--skip-net]
@@ -80,7 +83,8 @@ def emerald_stills():
     """Cut 64x64 stills from the emerald atlas (the approved emerald-page art).
     Atlas layout (from emerald.js spriteCell): rows 0-19 normal, rows 20-39
     shiny — the shiny stills ride along so the EMERALD chip keeps its
-    shiny switch, exactly like the legacy page."""
+    shiny switch, exactly like the legacy page. Ids stay uniform 1..386;
+    the Deoxys SPEED forme rides the forme id 10015 (see forme_files)."""
     out = f'{SPR}/gen3-emerald'
     out_s = f'{SPR}/gen3-emerald-shiny'
     os.makedirs(out, exist_ok=True)
@@ -101,11 +105,39 @@ def emerald_stills():
             atlas.crop((col * CELL, (row + 20) * CELL, col * CELL + CELL, (row + 20) * CELL + CELL)).save(dst_s)
             made += 1
     print(f'gen3-emerald(-shiny): {made} stills cut from atlas')
-    # Deoxys: the atlas stills are the Normal forme; Emerald's dex shows the
-    # SPEED forme — store the era 64x64 speed sprites under 386.png.
-    save64(fetch('ruby-sapphire/10015.png'), f'{out}/386.png')
-    save64(fetch('ruby-sapphire/back/shiny/10015.png'), f'{out_s}/386.png')
-    print('gen3-emerald/386.png = Deoxys Speed forme (era-authentic)')
+
+
+def forme_files():
+    """Deoxys forme views (phase-2 audit layout). The forme id is 10015
+    (speed) for the EMERALD chip: front normal from the PokeAPI
+    ruby-sapphire folder; front+back SHINY from pokemondb (PokeAPI's own
+    shiny slots for the forme ids ship normal-art placeholders, verified
+    pixel-identical 2026-11). The speed back normal comes from the rs bank
+    plan (PokeAPI back/10015, genuine). Attack (10013) / Defense (10014)
+    shiny slots keep PokeAPI's placeholder normal art — no authentic Gen-3
+    shiny forme art exists for them anywhere; the audit documents this
+    exception instead of inventing art."""
+    save64(fetch('ruby-sapphire/10015.png'), f'{SPR}/gen3-emerald/10015.png')
+    save64(fetch('https://img.pokemondb.net/sprites/emerald/shiny/deoxys-speed.png'),
+           f'{SPR}/gen3-emerald-shiny/10015.png')
+    save64(fetch('https://img.pokemondb.net/sprites/emerald/back-shiny/deoxys-speed.png'),
+           f'{SPR}/gen3-rs-back-shiny/10015.png')
+    print('Deoxys speed forme views installed under id 10015 (emerald + rs-back-shiny)')
+
+
+def shiny_fixes():
+    """Genuine era art for the spots where PokeAPI's own shiny slots ship
+    normal-art placeholders (all verified pixel-identical, 2026-11):
+      - ruby-sapphire back shiny for Diglett 50 / Dugtrio 51 (pokemondb)
+      - the rs bank's speed shiny (10015) rides the pokemondb emerald art
+    The frlg 10013/10014 shiny+back-shiny slots stay PokeAPI placeholders —
+    no authentic Gen-3 shiny attack/defense forme art exists anywhere."""
+    PDB = 'https://img.pokemondb.net/sprites'
+    save64(fetch(f'{PDB}/emerald/shiny/deoxys-speed.png'), f'{SPR}/gen3-rs-shiny/10015.png')
+    for i, name in ((50, 'diglett'), (51, 'dugtrio')):
+        save64(fetch(f'{PDB}/ruby-sapphire/back-shiny/{name}.png'),
+               f'{SPR}/gen3-rs-back-shiny/{i}.png')
+    print('shiny placeholder fixes installed (rs-back-shiny 50/51, rs-shiny 10015)')
 
 def main():
     ap = argparse.ArgumentParser()
@@ -145,6 +177,8 @@ def main():
                     print(f'  {n}/{len(jobs)}')
         print(f'sprites fetched: {len(jobs)}')
     emerald_stills()
+    forme_files()
+    shiny_fixes()
     print('gen3 sprite banks complete')
 
 if __name__ == '__main__':

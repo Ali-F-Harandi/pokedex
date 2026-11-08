@@ -55,7 +55,7 @@ updates the statuses below. Work through the phases IN ORDER.
 | # | Phase | Status | Notes |
 |---|-------|--------|-------|
 | 1 | Landing + `gen3.html` unified dex (GBA styling, 5 themes RUBY/SAPPHIRE/EMERALD/FIRERED/LEAFGREEN, 386 data + per-game dex-text wordings R/S·EMERALD·FRLG, Deoxys per-game formes, full i18n + persistence) | DONE | see phase notes below |
-| 2 | Sprite & cry completeness audit (every variant × 386) + fixes | TODO | |
+| 2 | Sprite & cry completeness audit (every variant × 386) + fixes | DONE | see phase notes below |
 | 3 | Moves Dex wiring (R/S · EMERALD · FRLG) + contest data + verification | TODO | |
 | 4 | Item Dex wiring (Gen 3, per-game lists + prices, berries) + verification | TODO | |
 | 5 | Location Dex + How to Catch — Hoenn (R/S/E) | TODO | |
@@ -151,6 +151,55 @@ STAGED to phase 2 (tracked there): the FRLG Persian wording group
 (`fa_frlg`) — FA mode honestly falls back to the EN text for FRLG until
 then (the gen2 fallback pattern); the Deoxys SPEED *animated* webp (the
 anim set's 386.webp is still the normal forme; the still bank is correct).
+
+### Phase 2 — RESULT (2026-11-08, this run)
+DONE. `tools/test-gen3-sprites.py` (50 checks, all green) audits: 10 static
+banks × their ids (exists / non-empty / PIL-decode / 64×64 / alpha in use;
+rs banks +10015, frlg +10013+10014), full shiny≠normal pair diffs on all 5
+shiny pairs, the Deoxys forme matrix, gen3-emerald-anim ×386 multi-frame,
+cries 252..386 >2KB with 1..251 blob-identical to HEAD, SPRITE_SETS wiring,
+and browser behavior (pixelated on #sprImg + evo sprites, webp PLAYS in
+Chromium AND Firefox, every bank reachable through the UI on all three
+cartridge groups, per-cartridge Deoxys routing).
+FIXES the audit surfaced:
+1. Real phase-1 bug: `gen3-emerald-shiny/386.png` was a back-view crop
+   (back/shiny/10015 in the front-shiny slot). Emerald banks re-keyed to the
+   uniform layout — 1..386 atlas stills (normal-forme 386 restored) + forme
+   id **10015** carries the speed-forme views; `FORME_GAME.em` added so
+   spriteId resolves EMERALD Deoxys to 10015 across front/back/shiny; the
+   speed back normal is PokeAPI's genuine back/10015 (via rs-back bank).
+2. PokeAPI shiny placeholders replaced with GENUINE era art (pokemondb,
+   pixel-verified): speed shiny front (emerald + rs banks), speed shiny
+   back (rs-back-shiny), and ruby-sapphire back-shiny Diglett 50 / Dugtrio
+   51 (PokeAPI ships normal art there too). All wired into
+   build-gen3-sprites.py (`forme_files` + `shiny_fixes`) — reproducible.
+3. Documented exception (audited, whitelisted): the FRLG 10013/10014 shiny
+   + back-shiny slots keep PokeAPI's placeholder-normal art — no authentic
+   Gen-3 shiny attack/defense forme art exists anywhere (PokeAPI,
+   pokemondb, Bulbagarden all checked 2026-11); inventing art is worse.
+4. Deoxys anim guard: the anim bank's 386.webp is the NORMAL-forme rip and
+   no genuine Emerald speed-forme ANIMATION could be sourced (Showdown's
+   /ani is Gen-5 art; Spriters Resource is Cloudflare-gated; Bulbagarden
+   403) — `animURL()` now returns "" for Deoxys, so the EMERALD chip shows
+   the authentic Speed STILL instead of the wrong-forme animation. The
+   other 385 animate as before.
+5. fa_frlg delivered: `tools/gen3-fa-frlg.json` — 386 hand-written Persian
+   FRLG wordings (all 386 differ from the R/S and Emerald wordings, so no
+   dedupe reuse was possible), following the FIRERED wording like fa_rs
+   follows RUBY; wired as the `fa_frlg` field by build-gen3-data.py
+   (header updated); the phase-1 EN-fallback test now asserts Persian for
+   both FIRERED and LEAFGREEN chips; +Deoxys anim-guard and speed-shiny
+   checks in test-gen3.py.
+6. build-gen3-data.py self-heals its gitignored cache now (fetches cached
+   species JSONs + pret species.h/species_info.h on demand); the rebuild
+   was diffed against the committed file — zero unexpected changes.
+Regression: test-gen3-sprites 50/50 (new), test-gen3 64/64, gen2 103,
+gen2-sprites 30, gen2-order 9, gen1 24, order 20, items 27, moves 44,
+locations 42 — all green.
+STAGED to later phases (not blockers): a genuine Emerald speed-forme
+ANIMATION would still be welcome if a source surfaces (the guard makes the
+chip correct meanwhile); the FRLG 10013/10014 shiny slots stay placeholders
+until authentic art appears (if ever).
 
 ### Phase 2 — sprite & cry completeness audit (gen3)
 - Audit every bank × 386: gen3-rs, gen3-rs-shiny, gen3-rs-back,

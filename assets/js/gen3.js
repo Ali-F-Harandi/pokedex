@@ -231,10 +231,12 @@ DATA.forEach(p => PMAP[p.id] = p);
 const MODE_RANGE = { hoenn:[1,386] };
 /* Deoxys rides the cartridge: per-game stats + forme sprite id.
    The stats remap applies on all three games that carry a special forme;
-   the sprite remap only on FR/LG — the emerald bank already stores the
-   Speed forme under 386.png (built by tools/build-gen3-sprites.py). */
+   the sprite remap now covers FR/LG and EMERALD (the speed-forme views live
+   under id 10015 — see the phase-2 sprite audit in tools/gen3-plan.md). */
 const FORME_STATS = { firered:"fr", leafgreen:"lg", emerald:"em" };
-const FORME_GAME = { firered:"fr", leafgreen:"lg" };
+/* emerald rides the forme sprite ids too: gen3-emerald(-shiny)/10015.png and
+   the rs-back(-shiny) banks carry the SPEED-forme views (see phase-2 audit). */
+const FORME_GAME = { firered:"fr", leafgreen:"lg", emerald:"em" };
 function statsOf(p){
   const fk = FORME_STATS[state.theme];
   if (p.formes && fk && p.formes[fk]) return p.formes[fk].stats;
@@ -246,7 +248,7 @@ const total = p => { const s = statsOf(p); return s.hp + s.atk + s.def + s.spa +
    SPRITE_SETS folders are path templates with __ID__ (built by
    tools/build-gen3-data.py). Deoxys's forme sprite rides the cartridge:
    Normal=386 (rs bank), Attack=10013 / Defense=10014 (frlg bank),
-   Speed=386.png in the emerald bank (already the Speed forme). */
+   Speed=10015 in the emerald + rs-back banks (phase-2 audit layout). */
 function spriteId(p){
   const fk = FORME_GAME[state.theme];
   return (p.formes && fk && p.formes[fk]) ? p.formes[fk].sprite : p.id;
@@ -259,7 +261,13 @@ function spriteURL(id, back){
 }
 function animURL(id){
   const set = SPRITE_SETS[state.set];
-  return (set && set.anim) ? set.anim.replace("__ID__", String(spriteId(PMAP[id] || {id}))) : "";
+  if (!set || !set.anim) return "";
+  /* Deoxys: the anim bank's 386.webp is the NORMAL-forme rip, but Emerald's
+     dex shows the SPEED forme (see build-gen3-sprites.py). Never animate the
+     wrong forme — Deoxys rides the era-authentic Speed still instead. */
+  const p = PMAP[id];
+  if (p && p.formes) return "";
+  return set.anim.replace("__ID__", String(spriteId(p || {id})));
 }
 function cryURL(id){
   return "assets/audio/cries/" + id + ".ogg";

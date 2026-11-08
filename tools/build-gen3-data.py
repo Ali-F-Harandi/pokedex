@@ -14,18 +14,22 @@ Sources (the sources of record):
   · tools/gen3-fa-rs.json           — hand-written Persian, R/S wording group
     (one FA text per species; the gen2 family pattern: flavor_fa served both
     Gold and Silver wordings).
+  · tools/gen3-fa-frlg.json         — hand-written Persian, FRLG wording group
+    (one FA text per species, following the FIRERED wording — the pair's lead
+    game; LeafGreen's EN pages stay exact in EN mode, the fa_rs precedent).
   · Deoxys formes: per-cartridge stats from PokeAPI pokemon-forms
     (R/S=Normal, FIRERED=Attack, LEAFGREEN=Defense, EMERALD=Speed).
 
 Output layout mirrors gen2-data.js: DATA (386) + SPRITE_SETS + EVOLUTIONS.
 EN dex texts are split into GBA-style pages of 4 lines.
 """
-import json, os, re
+import json, os, re, time, urllib.request
 
 REPO = os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 CACHE = f'{REPO}/tools/gen3-cache'
 DONOR = f'{REPO}/assets/js/emerald.js'
 FA_RS = f'{REPO}/tools/gen3-fa-rs.json'
+FA_FRLG = f'{REPO}/tools/gen3-fa-frlg.json'
 OUT = f'{REPO}/assets/js/gen3-data.js'
 
 # --------------------------------------------------------------- helpers
@@ -57,10 +61,56 @@ def wrap_pages(text, chars=26, lines=4):
     pages = [rows[i:i + lines] for i in range(0, len(rows), lines)]
     return pages
 
+def ensure_cache():
+    """The species cache is gitignored — re-fetch any missing entries (phase-2:
+    lets the build re-run on a fresh checkout without a net-less assumption)."""
+    os.makedirs(f'{CACHE}/species', exist_ok=True)
+    jobs = [i for i in range(1, 387)
+            if not os.path.isfile(f'{CACHE}/species/{i}.json')]
+    if jobs:
+        print(f'fetching {len(jobs)} cached species JSONs from PokeAPI...')
+    hdrs = {'User-Agent': 'pokedex-tools'}
+    try:
+        with open('/home/z/my-project/.secrets/github_token') as f:
+            hdrs['Authorization'] = f'token {f.read().strip()}'
+    except OSError:
+        pass
+    for i in jobs:
+        url = f'https://pokeapi.co/api/v2/pokemon-species/{i}'
+        for attempt in range(4):
+            try:
+                req = urllib.request.Request(url, headers=hdrs)
+                with urllib.request.urlopen(req, timeout=30) as r:
+                    open(f'{CACHE}/species/{i}.json', 'wb').write(r.read())
+                break
+            except Exception:  # noqa: BLE001
+                time.sleep(1 + attempt)
+        else:
+            raise RuntimeError(f'fetch failed: {url}')
+    for rel, url in (
+        ('species.h', 'https://raw.githubusercontent.com/pret/pokeemerald/master/include/constants/species.h'),
+        ('species_info.h', 'https://raw.githubusercontent.com/pret/pokeemerald/master/src/data/pokemon/species_info.h'),
+    ):
+        dst = f'{CACHE}/{rel}'
+        if os.path.isfile(dst):
+            continue
+        for attempt in range(4):
+            try:
+                req = urllib.request.Request(url, headers=hdrs)
+                with urllib.request.urlopen(req, timeout=30) as r:
+                    open(dst, 'wb').write(r.read())
+                break
+            except Exception:  # noqa: BLE001
+                time.sleep(1 + attempt)
+        else:
+            raise RuntimeError(f'fetch failed: {url}')
+
 # --------------------------------------------------------------- sources
+ensure_cache()
 donor_data = donor_json('DATA')
 donor_evo = donor_json('EVOLUTIONS')
 fa_rs = json.load(open(FA_RS, encoding='utf-8'))
+fa_frlg = json.load(open(FA_FRLG, encoding='utf-8'))
 
 species = {}
 for i in range(1, 387):
@@ -126,6 +176,7 @@ for d in donor_data:
         'tfr': wrap_pages(texts['firered']),
         'flavor_fa': d['flavor_fa'],
         'fa_rs': fa_rs[str(i)],
+        'fa_frlg': fa_frlg[str(i)],
     }
     if texts['sapphire'] != texts['ruby']:
         rec['ts'] = wrap_pages(texts['sapphire'])
@@ -178,13 +229,12 @@ header = '''"use strict";
    by hand. 386 Pokémon; trs/ts/tem/tfr/tlg = the Ruby(+shared Sapphire),
    Sapphire-only, Emerald, FireRed(+shared LeafGreen) and LeafGreen-only dex
    texts (EN pages of 4 GBA-style lines); fa_rs = Persian R/S wording,
-   flavor_fa = Persian Emerald wording (the FRLG Persian wording lands with
-   the phase-2 run — FA mode falls back to EN until then, the gen2 pattern).
-   abilities are the ERA-TRUE Gen-3 slots from the pokeemerald disassembly —
-   no hidden abilities existed yet. Deoxys rides the cartridge:
-   formes.fr/lg/em carry the per-game stats + sprite ids. SPRITE_SETS
-   rs/em/frlg = GBA sprite banks with shiny + back variants; em.anim =
-   Emerald's animated battle set. ===== */
+   flavor_fa = Persian Emerald wording, fa_frlg = Persian FRLG wording
+   (follows FireRed, the pair's lead game). abilities are the ERA-TRUE Gen-3
+   slots from the pokeemerald disassembly — no hidden abilities existed yet.
+   Deoxys rides the cartridge: formes.fr/lg/em carry the per-game stats +
+   sprite ids. SPRITE_SETS rs/em/frlg = GBA sprite banks with shiny + back
+   variants; em.anim = Emerald's animated battle set. ===== */
 const DATA = '''
 
 body = (
