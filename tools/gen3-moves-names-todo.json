@@ -1,0 +1,517 @@
+[
+ {
+  "id": 252,
+  "slug": "fake-out",
+  "en": "Fake Out"
+ },
+ {
+  "id": 253,
+  "slug": "uproar",
+  "en": "Uproar"
+ },
+ {
+  "id": 254,
+  "slug": "stockpile",
+  "en": "Stockpile"
+ },
+ {
+  "id": 255,
+  "slug": "spit-up",
+  "en": "Spit Up"
+ },
+ {
+  "id": 256,
+  "slug": "swallow",
+  "en": "Swallow"
+ },
+ {
+  "id": 257,
+  "slug": "heat-wave",
+  "en": "Heat Wave"
+ },
+ {
+  "id": 258,
+  "slug": "hail",
+  "en": "Hail"
+ },
+ {
+  "id": 259,
+  "slug": "torment",
+  "en": "Torment"
+ },
+ {
+  "id": 260,
+  "slug": "flatter",
+  "en": "Flatter"
+ },
+ {
+  "id": 261,
+  "slug": "will-o-wisp",
+  "en": "Will-O-Wisp"
+ },
+ {
+  "id": 262,
+  "slug": "memento",
+  "en": "Memento"
+ },
+ {
+  "id": 263,
+  "slug": "facade",
+  "en": "Facade"
+ },
+ {
+  "id": 264,
+  "slug": "focus-punch",
+  "en": "Focus Punch"
+ },
+ {
+  "id": 265,
+  "slug": "smelling-salts",
+  "en": "Smelling Salts"
+ },
+ {
+  "id": 266,
+  "slug": "follow-me",
+  "en": "Follow Me"
+ },
+ {
+  "id": 267,
+  "slug": "nature-power",
+  "en": "Nature Power"
+ },
+ {
+  "id": 268,
+  "slug": "charge",
+  "en": "Charge"
+ },
+ {
+  "id": 269,
+  "slug": "taunt",
+  "en": "Taunt"
+ },
+ {
+  "id": 270,
+  "slug": "helping-hand",
+  "en": "Helping Hand"
+ },
+ {
+  "id": 271,
+  "slug": "trick",
+  "en": "Trick"
+ },
+ {
+  "id": 272,
+  "slug": "role-play",
+  "en": "Role Play"
+ },
+ {
+  "id": 273,
+  "slug": "wish",
+  "en": "Wish"
+ },
+ {
+  "id": 274,
+  "slug": "assist",
+  "en": "Assist"
+ },
+ {
+  "id": 275,
+  "slug": "ingrain",
+  "en": "Ingrain"
+ },
+ {
+  "id": 276,
+  "slug": "superpower",
+  "en": "Superpower"
+ },
+ {
+  "id": 277,
+  "slug": "magic-coat",
+  "en": "Magic Coat"
+ },
+ {
+  "id": 278,
+  "slug": "recycle",
+  "en": "Recycle"
+ },
+ {
+  "id": 279,
+  "slug": "revenge",
+  "en": "Revenge"
+ },
+ {
+  "id": 280,
+  "slug": "brick-break",
+  "en": "Brick Break"
+ },
+ {
+  "id": 281,
+  "slug": "yawn",
+  "en": "Yawn"
+ },
+ {
+  "id": 282,
+  "slug": "knock-off",
+  "en": "Knock Off"
+ },
+ {
+  "id": 283,
+  "slug": "endeavor",
+  "en": "Endeavor"
+ },
+ {
+  "id": 284,
+  "slug": "eruption",
+  "en": "Eruption"
+ },
+ {
+  "id": 285,
+  "slug": "skill-swap",
+  "en": "Skill Swap"
+ },
+ {
+  "id": 286,
+  "slug": "imprison",
+  "en": "Imprison"
+ },
+ {
+  "id": 287,
+  "slug": "refresh",
+  "en": "Refresh"
+ },
+ {
+  "id": 288,
+  "slug": "grudge",
+  "en": "Grudge"
+ },
+ {
+  "id": 289,
+  "slug": "snatch",
+  "en": "Snatch"
+ },
+ {
+  "id": 290,
+  "slug": "secret-power",
+  "en": "Secret Power"
+ },
+ {
+  "id": 291,
+  "slug": "dive",
+  "en": "Dive"
+ },
+ {
+  "id": 292,
+  "slug": "arm-thrust",
+  "en": "Arm Thrust"
+ },
+ {
+  "id": 293,
+  "slug": "camouflage",
+  "en": "Camouflage"
+ },
+ {
+  "id": 294,
+  "slug": "tail-glow",
+  "en": "Tail Glow"
+ },
+ {
+  "id": 295,
+  "slug": "luster-purge",
+  "en": "Luster Purge"
+ },
+ {
+  "id": 296,
+  "slug": "mist-ball",
+  "en": "Mist Ball"
+ },
+ {
+  "id": 297,
+  "slug": "feather-dance",
+  "en": "Feather Dance"
+ },
+ {
+  "id": 298,
+  "slug": "teeter-dance",
+  "en": "Teeter Dance"
+ },
+ {
+  "id": 299,
+  "slug": "blaze-kick",
+  "en": "Blaze Kick"
+ },
+ {
+  "id": 300,
+  "slug": "mud-sport",
+  "en": "Mud Sport"
+ },
+ {
+  "id": 301,
+  "slug": "ice-ball",
+  "en": "Ice Ball"
+ },
+ {
+  "id": 302,
+  "slug": "needle-arm",
+  "en": "Needle Arm"
+ },
+ {
+  "id": 303,
+  "slug": "slack-off",
+  "en": "Slack Off"
+ },
+ {
+  "id": 304,
+  "slug": "hyper-voice",
+  "en": "Hyper Voice"
+ },
+ {
+  "id": 305,
+  "slug": "poison-fang",
+  "en": "Poison Fang"
+ },
+ {
+  "id": 306,
+  "slug": "crush-claw",
+  "en": "Crush Claw"
+ },
+ {
+  "id": 307,
+  "slug": "blast-burn",
+  "en": "Blast Burn"
+ },
+ {
+  "id": 308,
+  "slug": "hydro-cannon",
+  "en": "Hydro Cannon"
+ },
+ {
+  "id": 309,
+  "slug": "meteor-mash",
+  "en": "Meteor Mash"
+ },
+ {
+  "id": 310,
+  "slug": "astonish",
+  "en": "Astonish"
+ },
+ {
+  "id": 311,
+  "slug": "weather-ball",
+  "en": "Weather Ball"
+ },
+ {
+  "id": 312,
+  "slug": "aromatherapy",
+  "en": "Aromatherapy"
+ },
+ {
+  "id": 313,
+  "slug": "fake-tears",
+  "en": "Fake Tears"
+ },
+ {
+  "id": 314,
+  "slug": "air-cutter",
+  "en": "Air Cutter"
+ },
+ {
+  "id": 315,
+  "slug": "overheat",
+  "en": "Overheat"
+ },
+ {
+  "id": 316,
+  "slug": "odor-sleuth",
+  "en": "Odor Sleuth"
+ },
+ {
+  "id": 317,
+  "slug": "rock-tomb",
+  "en": "Rock Tomb"
+ },
+ {
+  "id": 318,
+  "slug": "silver-wind",
+  "en": "Silver Wind"
+ },
+ {
+  "id": 319,
+  "slug": "metal-sound",
+  "en": "Metal Sound"
+ },
+ {
+  "id": 320,
+  "slug": "grass-whistle",
+  "en": "Grass Whistle"
+ },
+ {
+  "id": 321,
+  "slug": "tickle",
+  "en": "Tickle"
+ },
+ {
+  "id": 322,
+  "slug": "cosmic-power",
+  "en": "Cosmic Power"
+ },
+ {
+  "id": 323,
+  "slug": "water-spout",
+  "en": "Water Spout"
+ },
+ {
+  "id": 324,
+  "slug": "signal-beam",
+  "en": "Signal Beam"
+ },
+ {
+  "id": 325,
+  "slug": "shadow-punch",
+  "en": "Shadow Punch"
+ },
+ {
+  "id": 326,
+  "slug": "extrasensory",
+  "en": "Extrasensory"
+ },
+ {
+  "id": 327,
+  "slug": "sky-uppercut",
+  "en": "Sky Uppercut"
+ },
+ {
+  "id": 328,
+  "slug": "sand-tomb",
+  "en": "Sand Tomb"
+ },
+ {
+  "id": 329,
+  "slug": "sheer-cold",
+  "en": "Sheer Cold"
+ },
+ {
+  "id": 330,
+  "slug": "muddy-water",
+  "en": "Muddy Water"
+ },
+ {
+  "id": 331,
+  "slug": "bullet-seed",
+  "en": "Bullet Seed"
+ },
+ {
+  "id": 332,
+  "slug": "aerial-ace",
+  "en": "Aerial Ace"
+ },
+ {
+  "id": 333,
+  "slug": "icicle-spear",
+  "en": "Icicle Spear"
+ },
+ {
+  "id": 334,
+  "slug": "iron-defense",
+  "en": "Iron Defense"
+ },
+ {
+  "id": 335,
+  "slug": "block",
+  "en": "Block"
+ },
+ {
+  "id": 336,
+  "slug": "howl",
+  "en": "Howl"
+ },
+ {
+  "id": 337,
+  "slug": "dragon-claw",
+  "en": "Dragon Claw"
+ },
+ {
+  "id": 338,
+  "slug": "frenzy-plant",
+  "en": "Frenzy Plant"
+ },
+ {
+  "id": 339,
+  "slug": "bulk-up",
+  "en": "Bulk Up"
+ },
+ {
+  "id": 340,
+  "slug": "bounce",
+  "en": "Bounce"
+ },
+ {
+  "id": 341,
+  "slug": "mud-shot",
+  "en": "Mud Shot"
+ },
+ {
+  "id": 342,
+  "slug": "poison-tail",
+  "en": "Poison Tail"
+ },
+ {
+  "id": 343,
+  "slug": "covet",
+  "en": "Covet"
+ },
+ {
+  "id": 344,
+  "slug": "volt-tackle",
+  "en": "Volt Tackle"
+ },
+ {
+  "id": 345,
+  "slug": "magical-leaf",
+  "en": "Magical Leaf"
+ },
+ {
+  "id": 346,
+  "slug": "water-sport",
+  "en": "Water Sport"
+ },
+ {
+  "id": 347,
+  "slug": "calm-mind",
+  "en": "Calm Mind"
+ },
+ {
+  "id": 348,
+  "slug": "leaf-blade",
+  "en": "Leaf Blade"
+ },
+ {
+  "id": 349,
+  "slug": "dragon-dance",
+  "en": "Dragon Dance"
+ },
+ {
+  "id": 350,
+  "slug": "rock-blast",
+  "en": "Rock Blast"
+ },
+ {
+  "id": 351,
+  "slug": "shock-wave",
+  "en": "Shock Wave"
+ },
+ {
+  "id": 352,
+  "slug": "water-pulse",
+  "en": "Water Pulse"
+ },
+ {
+  "id": 353,
+  "slug": "doom-desire",
+  "en": "Doom Desire"
+ },
+ {
+  "id": 354,
+  "slug": "psycho-boost",
+  "en": "Psycho Boost"
+ }
+]

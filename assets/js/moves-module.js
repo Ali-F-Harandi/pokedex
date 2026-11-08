@@ -43,7 +43,11 @@ const MovesUI = (() => {
       green_note: "The Japan-only Green version follows Red/Blue move data.",
       tutor_note: "Crystal's Move Tutor in Goldenrod City teaches Flamethrower, Thunderbolt and Ice Beam for a price.",
       never_miss: "Never misses", menu_moves: "Moves Dex", menu_tmhm: "TM / HM list",
-      unknown_type: "???", from_egg: "via breeding", lv_prefix: "Lv."
+      unknown_type: "???", from_egg: "via breeding", lv_prefix: "Lv.",
+      contest_t: "CONTEST", c_0: "COOL", c_1: "BEAUTY", c_2: "CUTE", c_3: "SMART", c_4: "TOUGH",
+      jam: "jam",
+      tutor_note_em: "Most of these are taught by the Move Tutors of the Battle Frontier, for Battle Points.",
+      tutor_note_frlg: "Taught only by Move Tutors. The tutor at Cape Brink also teaches Venusaur, Charizard and Blastoise their ultimate move."
     },
     fa: {
       moves_t: "حرکت‌ها", all_moves: "◂ همه حرکت‌ها",
@@ -58,7 +62,11 @@ const MovesUI = (() => {
       green_note: "نسخه‌ی سبزِ ژاپنی همان داده‌ی حرکتی قرمز/آبی را دارد.",
       tutor_note: "در کریستال، «معلم حرکت» در شهر گلدن‌راد، حرکت‌های پرتاب شعله، رعد و برق و پرتو یخی را در ازای پول یاد می‌دهد.",
       never_miss: "هرگز خطا نمی‌رود", menu_moves: "دکس حرکت‌ها", menu_tmhm: "لیست TM / HM",
-      unknown_type: "؟؟؟", from_egg: "از طریق تخم‌گذاری", lv_prefix: "سطح "
+      unknown_type: "؟؟؟", from_egg: "از طریق تخم‌گذاری", lv_prefix: "سطح ",
+      contest_t: "مسابقه", c_0: "خوش‌تیپ", c_1: "زیبایی", c_2: "بامزه", c_3: "باهوش", c_4: "سخت‌جان",
+      jam: "اخلال",
+      tutor_note_em: "بیشتر این‌ها را آموزگاران حرکتِ «مرز نبرد» در ازای امتیاز نبرد (BP) یاد می‌دهند.",
+      tutor_note_frlg: "این حرکت‌ها را فقط آموزگاران حرکت یاد می‌دهند؛ آموزگارِ دماغه‌ی برینک هم به ونوسور، چاریزد و بلاستویز حرکت نهایی‌شان را یاد می‌دهد."
     }
   };
   const mt = k => (MI18N[state.lang] || MI18N.en)[k] || k;
@@ -77,6 +85,10 @@ const MovesUI = (() => {
   const dispFA = slug => info(slug)[1];
   const descEN = slug => info(slug)[2];
   const descFA = slug => info(slug)[3];
+  /* Gen-3: per-game wording — MD.desc carries only the wordings that differ
+     from the Emerald base (moves-fa-gen3.js); gen1/gen2 have no MD.desc. */
+  const descOf = slug => (MD.desc && MD.desc[slug]) ? MD.desc[slug] : [descEN(slug), descFA(slug)];
+  const contestOf = id => (MD.contest && MD.contest[id]) || null;   /* R/S/E only */
   const typeName = tp => tp === "unknown" ? mt("unknown_type") : (t("types." + tp) || tp);
   const typeColor = tp => TYPE_COLOR[tp] || "#68A090";
   const fmtPow = p => (p && p > 1) ? num(p) : "—";
@@ -111,6 +123,15 @@ const MovesUI = (() => {
     if (!c) return '<span class="mv-class unknown">???</span>';
     return '<span class="mv-class ' + c + '" title="' + esc(mt("class_t")) + '">' +
       (c === "physical" ? "⚔ " : "✦ ") + esc(mt(c)) + "</span>";
+  }
+  /* contest chip (Gen-3 R/S/E) — category + appeal hearts + jam */
+  function contestHTML(id, compact){
+    const c = contestOf(id);
+    if (!c) return "";
+    const jam = c[2] ? '<span class="mv-jam">✖' + num(c[2]) + "</span>" : "";
+    return '<span class="mv-contest C' + c[0] + '" title="' + esc(mt("contest_t")) + '">' +
+      (compact ? "" : '<i>' + esc(mt("contest_t")) + "</i>") +
+      esc(mt("c_" + c[0])) + ' <b class="mv-hearts">' + "♥".repeat(c[1] || 0) + "</b>" + jam + "</span>";
   }
   function statCells(id){
     const r = mrow(id);
@@ -151,6 +172,8 @@ const MovesUI = (() => {
     const notes = [];
     if (MD.game === "red-blue") notes.push('<div class="mv-note">' + esc(mt("green_note")) + "</div>");
     if (MD.gen === 1) notes.push('<div class="mv-note">' + esc(mt("gen1_note")) + "</div>");
+    if (MD.game === "emerald") notes.push('<div class="mv-note">' + esc(mt("tutor_note_em")) + "</div>");
+    if (MD.game === "frlg") notes.push('<div class="mv-note">' + esc(mt("tutor_note_frlg")) + "</div>");
     return '<div class="sec mv-sec" id="movesSec">' +
       '<div class="sec-t"><span class="mv-sec-title">' + esc(mt("moves_t")) +
         ' <em class="mv-game">' + esc(MD.label) + "</em></span>" +
@@ -330,7 +353,7 @@ const MovesUI = (() => {
     grid.innerHTML = ids.map(id =>
       '<button class="mcard" data-mv="' + id + '">' +
         '<span class="mcard-name">' + moveName(id) + "</span>" +
-        '<span class="mcard-meta">' + typeBadge(mType(id)) + classChip(mType(id)) + "</span>" +
+        '<span class="mcard-meta">' + typeBadge(mType(id)) + classChip(mType(id)) + contestHTML(id, true) + "</span>" +
         '<span class="mcard-stats">' + statCells(id) + "</span>" +
       "</button>").join("");
     el.body.appendChild(grid);
@@ -355,7 +378,9 @@ const MovesUI = (() => {
     });
     el.body.innerHTML =
       '<div class="tmlist">' + rows.join("") + "</div>" +
-      (MD.game === "crystal" ? '<div class="mv-note big">' + esc(mt("tutor_note")) + "</div>" : "");
+      (MD.game === "crystal" ? '<div class="mv-note big">' + esc(mt("tutor_note")) + "</div>" : "") +
+      (MD.game === "emerald" ? '<div class="mv-note big">' + esc(mt("tutor_note_em")) + "</div>" : "") +
+      (MD.game === "frlg" ? '<div class="mv-note big">' + esc(mt("tutor_note_frlg")) + "</div>" : "");
     el.body.querySelectorAll(".mrow").forEach(r => r.addEventListener("click", () => {
       view.move = +r.dataset.mv; view.mode = "detail"; renderDex();
     }));
@@ -398,11 +423,12 @@ const MovesUI = (() => {
           '<div class="md-stat"><i>' + esc(mt("power")) + "</i><b>" + fmtPow(r[2]) + "</b></div>" +
           '<div class="md-stat"><i>' + esc(mt("acc")) + "</i><b>" + (neverMiss(id) ? esc(mt("never_miss")) : fmtAcc(r[3], r[1])) + "</b></div>" +
           '<div class="md-stat"><i>' + esc(mt("pp")) + "</i><b>" + num(r[4]) + "</b></div>" +
+          (contestOf(id) ? '<div class="md-stat md-contest"><i>' + esc(mt("contest_t")) + "</i><b>" + contestHTML(id, false) + "</b></div>" : "") +
         "</div>" +
         '<div class="mv-sec-t">' + esc(descLabel) + "</div>" +
         '<div class="md-desc">' +
-          '<p class="d-fa">' + esc(descFA(slug)) + "</p>" +
-          '<p class="d-en">' + esc(descEN(slug)) + "</p>" +
+          '<p class="d-fa">' + esc(descOf(slug)[1]) + "</p>" +
+          '<p class="d-en">' + esc(descOf(slug)[0]) + "</p>" +
         "</div>" +
         (isGen1 ? '<div class="mv-note">' + esc(mt("gen1_note")) + "</div>" : "") +
       "</div>" +

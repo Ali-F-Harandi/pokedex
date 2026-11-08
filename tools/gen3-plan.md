@@ -56,7 +56,7 @@ updates the statuses below. Work through the phases IN ORDER.
 |---|-------|--------|-------|
 | 1 | Landing + `gen3.html` unified dex (GBA styling, 5 themes RUBY/SAPPHIRE/EMERALD/FIRERED/LEAFGREEN, 386 data + per-game dex-text wordings R/S·EMERALD·FRLG, Deoxys per-game formes, full i18n + persistence) | DONE | see phase notes below |
 | 2 | Sprite & cry completeness audit (every variant × 386) + fixes | DONE | see phase notes below |
-| 3 | Moves Dex wiring (R/S · EMERALD · FRLG) + contest data + verification | TODO | |
+| 3 | Moves Dex wiring (R/S · EMERALD · FRLG) + contest data + verification | DONE | see phase notes below |
 | 4 | Item Dex wiring (Gen 3, per-game lists + prices, berries) + verification | TODO | |
 | 5 | Location Dex + How to Catch — Hoenn (R/S/E) | TODO | |
 | 6 | Location Dex + How to Catch — Kanto + Sevii (FRLG) | TODO | |
@@ -220,6 +220,47 @@ until authentic art appears (if ever).
   "falls back to EN" check to "is Persian"; and fetch/convert the Deoxys
   SPEED animated webp for gen3-emerald-anim (the anim still shows the
   normal forme on the EMERALD chip).
+
+### Phase 3 — RESULT (2026-11-08, this run)
+DONE. Delivered: `assets/js/moves-gen3.js` (MD_RS + MD_EM + MD_FRLG + `var MD`
+— the gen2 merge pattern; built by `tools/build-gen3-moves.py` from the pret
+decompiles pokeemerald/pokeruby/pokefirered + PokeAPI flavor texts) +
+`assets/js/moves-fa-gen3.js` (`var MOVE_INFO` — 354 [EN, FA, EN-Emerald-base,
+FA] rows; the shared moves-fa.js untouched). DATA (all era-verified against
+three repos, pret slug ↔ PokeAPI slug cross-checked for all 354): 354 moves ×
+3 games (power/type/accuracy/PP/priority; Gust=FLYING, Curse=???/"unknown"
+TYPE_MYSTERY), level-up learnsets 386/386 PER GAME (internal→national species
+id remap by name — Treecko is internal 277 in all three repos), egg moves,
+TM/HM compat 386/386 with 50 TMs + 8 HMs per game (TM01=Focus Punch …
+HM08=Dive), tutors: R/S none (verified — no tutor file in pokeruby),
+Emerald 372 species (Battle Frontier), FRLG 372 (the 15 classic tutors) —
+tutor tab renders only where the game has tutors. Contest data (R/S/E only,
+from pret contest tables: category + appeal + jam hearts; FRLG has none —
+authentically hidden, cell absent): Overheat=BEAUTY♥6, Pound=TOUGH♥4.
+Per-game wordings: desc keyed per MD carrying only the wordings that differ
+from the Emerald base (R/S 7 diffs, FRLG 352) — 686 unique EN wordings, all
+686 hand-translated to Persian (`tools/gen3-moves-fa-desc-p1/2/3.json`),
+103 hand-written FA names (252-354) + 251 reused from moves-fa.js where the
+name is unchanged. FRLG Cape Brink ultimate-move tutor VERIFIED in
+pokefirered field_specials.c (Venusaur/Charizard/Blastoise, friendship 255)
+and noted EN/FA in the TM/HM view; Emerald BF note likewise.
+WIRING: gen3.html loads moves.css + moves-gen3.js + moves-fa-gen3.js +
+moves-module.js; gen3.js THEMES gained `moves` keys + `activeMoves()` +
+applyTheme→MovesUI.setGame (label follows the cartridge like gen1/gen2);
+START menu entries (Moves Dex / TM·HM) injected by the module; hotkey M
+documented in the About box. moves-module.js got three backward-compatible,
+typeof-guarded extensions (gen1/gen2 behavior untouched — all 9 suites
+re-run green): per-game `MD.desc` fallback in move details, contest chip on
+list cards + CONTEST cell on the detail card, gen3 tutor notes.
+TESTS: tools/test-gen3.py extended to 91 checks (was 64): data integrity
+(354/386/50+8 per game; every learnset row a real move id; every move has FA
+name + FA desc; contest/tutor authenticity), START menu, section label per
+cartridge, 354-card bilingual overlay, overlay VISIBILITY (getBoundingClientRect
+— caught moves.css missing from gen3.html), era types, contest chip hearts,
+per-game wording fallback, theme swap, FRLG no-contest, tutor notes, FA pass
+(RTL, Persian Lv digits, Persian chip). Full regression: gen3 91, gen3-sprites
+50, gen2 103, gen2-sprites 30, gen2-order 9, gen1 24, order 20, items 27,
+moves 44, locations 42 — all green.
 
 ### Phase 3 — Moves Dex (R/S · EMERALD · FRLG) + contest data
 - Data: 354 moves (Gen-3 total; ids 1-354). Era stats from pret move tables

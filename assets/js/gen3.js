@@ -310,13 +310,19 @@ const isMobile = () => window.matchMedia("(max-width:860px)").matches;
    Each pair shares a cartridge's sprite bank (like the real carts) but every
    game reads its own dex texts; Emerald adds the animated battle sprites. */
 const THEMES = {
-  ruby:      { sets:["rs"],   def:"rs",   text:"rs", cls:"theme-ruby",      anim:false },
-  sapphire:  { sets:["rs"],   def:"rs",   text:"rs", cls:"theme-sapphire",  anim:false },
-  emerald:   { sets:["em"],   def:"em",   text:"em", cls:"theme-emerald",   anim:true },
-  firered:   { sets:["frlg"], def:"frlg", text:"fr", cls:"theme-firered",   anim:false },
-  leafgreen: { sets:["frlg"], def:"frlg", text:"fr", cls:"theme-leafgreen", anim:false }
+  ruby:      { sets:["rs"],   def:"rs",   text:"rs", moves:"MD_RS",   cls:"theme-ruby",      anim:false },
+  sapphire:  { sets:["rs"],   def:"rs",   text:"rs", moves:"MD_RS",   cls:"theme-sapphire",  anim:false },
+  emerald:   { sets:["em"],   def:"em",   text:"em", moves:"MD_EM",   cls:"theme-emerald",   anim:true },
+  firered:   { sets:["frlg"], def:"frlg", text:"fr", moves:"MD_FRLG", cls:"theme-firered",   anim:false },
+  leafgreen: { sets:["frlg"], def:"frlg", text:"fr", moves:"MD_FRLG", cls:"theme-leafgreen", anim:false }
 };
 const THEME_ORDER = ["ruby","sapphire","emerald","firered","leafgreen"];
+function activeMoves(){
+  /* the merged moves file's per-cartridge MD set — swap follows the theme */
+  try {
+    return { MD_RS: MD_RS, MD_EM: MD_EM, MD_FRLG: MD_FRLG }[THEMES[state.theme].moves] || null;
+  } catch(e){ return null; }
+}
 function applyTheme(){
   const th = THEMES[state.theme] || THEMES.ruby;
   document.body.classList.remove("theme-ruby","theme-sapphire","theme-emerald","theme-firered","theme-leafgreen");
@@ -328,6 +334,11 @@ function applyTheme(){
   }
   /* dex text follows the game unless the reader picked a wording explicitly */
   if (state.text === null) state.text = th.text;
+  /* the Moves Dex reads the active cartridge's data (moves-gen3.js) */
+  if (typeof MovesUI !== "undefined" && typeof activeMoves === "function"){
+    const md = activeMoves();
+    if (md) MovesUI.setGame(md);
+  }
   const t1 = document.querySelector("#topbar .t1");
   if (t1) t1.textContent = t("theme_tag." + state.theme);
 }

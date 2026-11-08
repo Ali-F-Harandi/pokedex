@@ -267,6 +267,122 @@ with sync_playwright() as pw:
     fa_h2 = r.eval_on_selector_all('.featured h2', 'els=>els.map(e=>e.textContent)')
     check('landing FA: gen3 card in Persian', any('نسل سوم' in x for x in fa_h2), str(fa_h2[2] if len(fa_h2) > 2 else ''))
     r.screenshot(path=f'{SHOT}/landing-fa.png')
+
+    # ==================== PHASE 3 — Moves Dex (R/S · EMERALD · FRLG) ====================
+    mctx = browser.new_context(viewport={'width': 1440, 'height': 950})
+    mp = mctx.new_page()
+    merrs = []
+    mp.on('console', lambda m: merrs.append(m.text) if m.type == 'error' else None)
+    mp.on('pageerror', lambda e: merrs.append(str(e)))
+    seed(mp, theme='ruby')
+    mp.goto(f'file://{R}/gen3.html')
+    mp.wait_for_timeout(1800)
+
+    check('moves: scripts load (module + merged data + names)',
+          mp.evaluate('typeof MovesUI!=="undefined" && typeof MD!=="undefined" && typeof MOVE_INFO!=="undefined" && typeof MD_RS!=="undefined" && typeof MD_EM!=="undefined" && typeof MD_FRLG!=="undefined"'))
+    check('moves: no console errors with moves wired', not merrs, '; '.join(merrs[:3]))
+    check('moves data: each game 354 moves / 386 learnsets / 50 TM + 8 HM',
+          mp.evaluate('[MD_RS,MD_EM,MD_FRLG].every(d=>Object.keys(d.moves).length===354 && Object.keys(d.learn).length===386 && Object.keys(d.tm).length===50 && Object.keys(d.hm).length===8)'))
+    check('moves data: every learnset row is a real move id',
+          mp.evaluate('[MD_RS,MD_EM,MD_FRLG].every(d=>Object.values(d.learn).every(e=>e.lv.every(x=>d.moves[x[1]]) && e.tm.concat(e.egg,e.tutor).every(x=>d.moves[x])))'))
+    check('moves data: every move has FA name + FA description (base or per-game)',
+          mp.evaluate('[MD_RS,MD_EM,MD_FRLG].every(d=>Object.entries(d.moves).every(([id,r])=>{const bi=MOVE_INFO[r[0]];return bi && bi[1] && bi[3] && (!d.desc || !d.desc[id] || d.desc[id][1]);}))'))
+    check('moves data: R/S has contests, Emerald has contests, FRLG has none (authentic)',
+          mp.evaluate('Object.keys(MD_RS.contest).length===354 && Object.keys(MD_EM.contest).length===354 && MD_FRLG.contest===undefined'))
+    check('moves data: R/S has NO tutors, Emerald + FRLG do',
+          mp.evaluate('Object.values(MD_RS.learn).every(e=>e.tutor.length===0) && MD_EM.learn[25].tutor.length>0 && MD_FRLG.learn[25].tutor.length>0'))
+
+    # START menu entries
+    mp.click('#startBtn')
+    mp.wait_for_timeout(300)
+    check('moves: START menu has Moves Dex + TM/HM entries (EN)',
+          mp.evaluate('[...document.querySelectorAll("#menuPop .m-item")].filter(b=>["movesdex","tmhm"].includes(b.dataset.act)).length===2')
+          and 'Moves Dex' in mp.text_content('#menuPop'))
+    mp.keyboard.press('Escape')
+
+    # detail-pane section on default RUBY
+    check('moves: detail section labels the cartridge (RUBY/SAPPHIRE)',
+          mp.evaluate('document.querySelector("#movesSec .mv-game") && document.querySelector("#movesSec .mv-game").textContent.includes("RUBY/SAPPHIRE")'))
+    check('moves: level-up rows render for the selected mon (Treecko)',
+          mp.eval_on_selector_all('#movesSec .mrow', 'els=>els.length') > 0)
+    check('moves: no TUTOR tab on R/S (the games had no tutors)',
+          mp.evaluate('!document.querySelector("#movesSec .mtab[data-mt=tutor]")'))
+
+    # overlay: 354 bilingual cards
+    mp.evaluate('MovesUI.openDex("list")')
+    mp.wait_for_timeout(400)
+    check('moves: overlay lists 354 bilingual cards',
+          mp.eval_on_selector_all('#movesBox .mcard', 'els=>els.length') == 354
+          and mp.evaluate('(()=>{const c=document.querySelector("#movesBox .mcard");return c.querySelector(".mv-en") && c.querySelector(".mv-fa");})()'))
+    check('moves: overlay is genuinely on screen (visible, covers the page)',
+          mp.evaluate('(()=>{const w=document.getElementById("movesWrap");const r=w.getBoundingClientRect();const st=getComputedStyle(w);return !w.classList.contains("hidden") && st.display!=="none" && r.width>innerWidth*0.5 && r.height>innerHeight*0.5;})()'))
+    # era type check: Gust (16) is FLYING in Gen 3 (NORMAL in Gen 1)
+    mp.evaluate('MovesUI.openDex("detail", 16)')
+    mp.wait_for_timeout(300)
+    check('moves: era type — Gust badge FLYING (Gen-3 data)',
+          mp.evaluate('document.querySelector("#movesBox .md-meta .tbadge").className.includes("T-flying")'))
+    # contest on RUBY: Overheat (315) = BEAUTY ♥6; FRLG hides the contest cell
+    mp.evaluate('MovesUI.openDex("detail", 315)')
+    mp.wait_for_timeout(300)
+    check('moves: RUBY contest — Overheat shows BEAUTY chip with appeal hearts',
+          mp.evaluate('(()=>{const c=document.querySelector("#movesBox .md-contest .mv-contest");return c && c.className.includes("C1") && c.querySelectorAll(".mv-hearts")[0].textContent.length===6;})()'))
+    check('moves: RUBY contest chip is bilingual-labelled',
+          mp.evaluate('document.querySelector("#movesBox .md-contest .mv-contest").getAttribute("title")==="CONTEST"'))
+    mp.keyboard.press('Escape')
+
+    # TM/HM list: 58 machines, TM01 = Focus Punch, HM08 = Dive
+    mp.evaluate('MovesUI.openDex("tmhm")')
+    mp.wait_for_timeout(300)
+    check('moves: TM/HM list — 50 TMs + 8 HMs, TM01=Focus Punch, HM08=Dive',
+          mp.eval_on_selector_all('#movesBox .tmrow', 'els=>els.length') == 58
+          and mp.evaluate('MD.tm[1]===264 && MD.hm[8]===291'))
+    check('moves: R/S tutor note NOT shown in TM/HM view',
+          mp.evaluate('!document.querySelector("#movesBox .mv-note")'))
+    mp.keyboard.press('Escape')
+
+    # per-game wording: FRLG Pound differs from the Emerald base; R/S shares it
+    check('moves: FRLG wording differs, R/S Pound shares the Emerald base (7 era diffs stay per-game)',
+          mp.evaluate('MD_FRLG.desc[1]!==undefined && MD_RS.desc[1]===undefined && MOVE_INFO["pound"][2]==="Pounds the foe with forelegs or tail." && Object.keys(MD_RS.desc).length===7'))
+
+    # theme swap follows the cartridge
+    mp.evaluate('toggleTheme("emerald")')
+    mp.wait_for_timeout(500)
+    check('moves: EMERALD chip swaps the moves data + shows tutor note',
+          mp.evaluate('MD.label==="EMERALD"')
+          and mp.evaluate('!!document.querySelector("#movesSec .mv-game")') and 'EMERALD' in mp.text_content('#movesSec .mv-game')
+          and mp.evaluate('!!document.querySelector("#movesSec .mv-note")'))
+    check('moves: EMERALD Pikachu gets a TUTOR tab (Battle Frontier tutors)',
+          mp.evaluate('select(25), !!document.querySelector("#movesSec .mtab[data-mt=tutor]")'))
+    mp.evaluate('toggleTheme("firered")')
+    mp.wait_for_timeout(500)
+    check('moves: FIRERED chip swaps to FIRERED/LEAFGREEN + hides contest',
+          mp.evaluate('MD.label==="FIRERED/LEAFGREEN"')
+          and mp.evaluate('MovesUI.openDex("detail",315), !document.querySelector("#movesBox .md-contest")'))
+    check('moves: FRLG TM/HM view shows the Cape Brink tutor note',
+          mp.evaluate('MovesUI.openDex("tmhm"), !!document.querySelector("#movesBox .mv-note")'))
+    mp.keyboard.press('Escape')
+
+    # ---------- moves FA pass ----------
+    fa2 = browser.new_context(viewport={'width': 1440, 'height': 950})
+    fp = fa2.new_page()
+    seed(fp, lang='fa', theme='ruby')
+    fp.goto(f'file://{R}/gen3.html')
+    fp.wait_for_timeout(1600)
+    check('moves FA: section title + game label in Persian UI',
+          fp.evaluate('document.body.dir==="rtl" && !!document.querySelector("#movesSec .mv-sec-title")'))
+    check('moves FA: level rows use Persian Lv digits',
+          fp.evaluate('(()=>{const b=document.querySelector("#movesSec .mrow .mv-badge");return b && /[\u06F0-\u06F9]/.test(b.textContent);})()'))
+    fp.evaluate('MovesUI.openDex("detail", 315)')
+    fp.wait_for_timeout(300)
+    check('moves FA: card shows Persian name + Persian description',
+          fp.evaluate('(()=>{const n=document.querySelector("#movesBox .md-name .mv-fa");const d=document.querySelector("#movesBox .md-desc .d-fa");return n && /[\u0600-\u06FF]/.test(n.textContent) && d && /[\u0600-\u06FF]/.test(d.textContent);})()'))
+    check('moves FA: contest chip Persian (زیبایی + Persian digit jam/none)',
+          fp.evaluate('(()=>{const c=document.querySelector("#movesBox .md-contest .mv-contest");return c && c.textContent.includes("زیبایی") && c.textContent.includes("♥");})()'))
+    fp.screenshot(path=f'{SHOT}/gen3-moves-fa.png')
+    fa2.close()
+    mp.screenshot(path=f'{SHOT}/gen3-moves-overlay-en.png')
+    mctx.close()
+
     ctx3.close()
     browser.close()
 

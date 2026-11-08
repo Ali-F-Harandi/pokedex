@@ -176,3 +176,22 @@
   .mrow .mv-stats { grid-column: 1 / -1; justify-content: flex-end; border-top: 1px dashed #dfe6cb; padding-top: 5px; }
   .md-meta { margin-inline-start: 0; }
 }
+
+/* ---------- Gen-3 contest data (R/S/E only — FRLG hides it) ---------- */
+.mv-contest {
+  display: inline-flex; align-items: center; gap: 3px;
+  font-family: var(--font-px); font-size: 8px; font-weight: 700;
+  letter-spacing: .04em; line-height: 1;
+  padding: 3px 7px; border-radius: 999px;
+  border: 1.5px solid currentColor; background: #fff;
+}
+.mv-contest i { font-style: normal; opacity: .55; }
+.mv-contest .mv-hearts { font-size: 9px; letter-spacing: 1px; }
+.mv-contest .mv-jam { font-size: 8px; opacity: .75; }
+.mv-contest.C0 { color: #d84343; }   /* COOL   — red    */
+.mv-contest.C1 { color: #3f6fd8; }   /* BEAUTY — blue   */
+.mv-contest.C2 { color: #e0679a; }   /* CUTE   — pink   */
+.mv-contest.C3 { color: #3f9a4e; }   /* SMART  — green  */
+.mv-contest.C4 { color: #d8a416; }   /* TOUGH  — yellow */
+.md-stat.md-contest b { font-size: 11px; display: flex; align-items: center; }
+[dir="rtl"] .mv-contest { direction: ltr; }
