@@ -5,3 +5,7 @@ tools/items-cache/
 tools/loc-cache/
 # gen2 locations build cache
 tools/loc2-cache/
+
+# gen3 build caches (plan tools/gen3-plan.md)
+tools/loc3-cache/
+tools/gen3-cache/
