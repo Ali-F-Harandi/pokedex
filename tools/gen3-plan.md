@@ -57,7 +57,7 @@ updates the statuses below. Work through the phases IN ORDER.
 | 1 | Landing + `gen3.html` unified dex (GBA styling, 5 themes RUBY/SAPPHIRE/EMERALD/FIRERED/LEAFGREEN, 386 data + per-game dex-text wordings R/S·EMERALD·FRLG, Deoxys per-game formes, full i18n + persistence) | DONE | see phase notes below |
 | 2 | Sprite & cry completeness audit (every variant × 386) + fixes | DONE | see phase notes below |
 | 3 | Moves Dex wiring (R/S · EMERALD · FRLG) + contest data + verification | DONE | see phase notes below |
-| 4 | Item Dex wiring (Gen 3, per-game lists + prices, berries) + verification | TODO | |
+| 4 | Item Dex wiring (Gen 3, per-game lists + prices, berries) + verification | DONE | see phase notes below |
 | 5 | Location Dex + How to Catch — Hoenn (R/S/E) | TODO | |
 | 6 | Location Dex + How to Catch — Kanto + Sevii (FRLG) | TODO | |
 | 7 | Gen-3 signature: Ability Dex overlay + Natures (25, interactive) + contest polish | TODO | |
@@ -309,6 +309,28 @@ moves 44, locations 42 — all green.
   Buy/sell columns per game, FA prices with Persian digits.
 - Verify: counts per game, version-exclusives appear only on their games,
   FA pass. Extend test-gen3.py.
+
+**Phase 4 notes — DONE.** `tools/build-items-gen3.py` (sources cached in
+`tools/items3-cache/`, FA hand-written in `tools/fa3/`) → `assets/js/items-gen3.js`
+(248 items: R/S 222 · Emerald 247 · FRLG 248). Lists/names/prices/pockets from
+the pret tables; descriptions are each cartridge GROUP's own era-true wording
+(R/S + Emerald from the decompiles, FRLG berries via PokeAPI firered-leafgreen
+texts because pokefirered ships those wordings in Japanese only). 473 distinct
+wordings each with a hand-written Persian twin; 248 FA names. All 43 berries
+carry flavor profiles + firmness straight from pret `gBerries[]` (Enigma
+honestly "unknown" — E-Reader berry). Only 1 price differs between carts
+(RETRO MAIL ¥50 on FRLG) and the dex shows buy/sell rows per cart GROUP with
+the active cartridge's wording + price; `ItemsUI.setGroup()` follows the theme
+like MovesUI.setGame. Icons: PokeAPI color menu icons, fixed — no GB toggle —
+with the honest color-only footer note EN/FA; only ITEMFINDER + the 4
+Abandoned-Ship room keys have no menu art anywhere (placeholder chip, like
+GS BALL in gen 1). Emerald genuinely ships the FRLG-era item table, so the
+Gen-1 key items appear as Emerald/FRLG items — flagged by the availability
+chips, never hidden. Config landed as `games:"rself"` (five game letters —
+cleaner than the planned `rse-frlg` string, same semantics). Tests: 32 new
+checks in test-gen3.py (counts per cart, exclusives, berry flavors, per-cart
+wordings/prices, FA pass, icons on disk, search/chips) — 122/122 green; full
+regression across all 10 suites (471 checks) green.
 
 ### Phase 5 — Location Dex + How to Catch — Hoenn (R/S/E)
 - Sources: pokeruby (Ruby+Sapphire) + pokeemerald, raw.githubusercontent.com,

@@ -1,0 +1,5006 @@
+{
+ "items": [
+  {
+   "k": "ITEM_MASTER_BALL",
+   "en": "MASTER BALL",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "ball",
+   "hold": 0,
+   "d": {
+    "rs": "The best BALL that catches a POKéMON without fail.",
+    "e": "The best BALL that catches a POKéMON without fail.",
+    "frlg": "The best BALL with the ultimate performance. It will catch any wild POKéMON without fail."
+   },
+   "i": "master-ball",
+   "cat": "ball"
+  },
+  {
+   "k": "ITEM_ULTRA_BALL",
+   "en": "ULTRA BALL",
+   "g": "rsefl",
+   "p": {
+    "rs": 1200,
+    "e": 1200,
+    "frlg": 1200
+   },
+   "pk": "ball",
+   "hold": 0,
+   "d": {
+    "rs": "A better BALL with a higher catch rate than a GREAT BALL.",
+    "e": "A better BALL with a higher catch rate than a GREAT BALL.",
+    "frlg": "A very high-grade BALL that offers a higher POKéMON catch rate than a GREAT BALL."
+   },
+   "i": "ultra-ball",
+   "cat": "ball"
+  },
+  {
+   "k": "ITEM_GREAT_BALL",
+   "en": "GREAT BALL",
+   "g": "rsefl",
+   "p": {
+    "rs": 600,
+    "e": 600,
+    "frlg": 600
+   },
+   "pk": "ball",
+   "hold": 0,
+   "d": {
+    "rs": "A good BALL with a higher catch rate than a POKé BALL.",
+    "e": "A good BALL with a higher catch rate than a POKé BALL.",
+    "frlg": "A good, quality BALL that offers a higher POKéMON catch rate than a standard POKé BALL."
+   },
+   "i": "great-ball",
+   "cat": "ball"
+  },
+  {
+   "k": "ITEM_POKE_BALL",
+   "en": "POKé BALL",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "ball",
+   "hold": 0,
+   "d": {
+    "rs": "A tool used for catching wild POKéMON.",
+    "e": "A tool used for catching wild POKéMON.",
+    "frlg": "A BALL thrown to catch a wild POKéMON. It is designed in a capsule style."
+   },
+   "i": "poke-ball",
+   "cat": "ball"
+  },
+  {
+   "k": "ITEM_SAFARI_BALL",
+   "en": "SAFARI BALL",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "ball",
+   "hold": 0,
+   "d": {
+    "rs": "A special BALL that is used only in the SAFARI ZONE.",
+    "e": "A special BALL that is used only in the SAFARI ZONE.",
+    "frlg": "A special BALL that is used only in the SAFARI ZONE. It is finished in a camouflage pattern."
+   },
+   "i": "safari-ball",
+   "cat": "ball"
+  },
+  {
+   "k": "ITEM_NET_BALL",
+   "en": "NET BALL",
+   "g": "rsefl",
+   "p": {
+    "rs": 1000,
+    "e": 1000,
+    "frlg": 1000
+   },
+   "pk": "ball",
+   "hold": 0,
+   "d": {
+    "rs": "A BALL that works well on WATER- and BUG-type POKéMON.",
+    "e": "A BALL that works well on WATER- and BUG-type POKéMON.",
+    "frlg": "A somewhat different BALL that works especially well on WATER- and BUG-type POKéMON."
+   },
+   "i": "net-ball",
+   "cat": "ball"
+  },
+  {
+   "k": "ITEM_DIVE_BALL",
+   "en": "DIVE BALL",
+   "g": "rsefl",
+   "p": {
+    "rs": 1000,
+    "e": 1000,
+    "frlg": 1000
+   },
+   "pk": "ball",
+   "hold": 0,
+   "d": {
+    "rs": "A BALL that works better on POKéMON on the ocean floor.",
+    "e": "A BALL that works better on POKéMON on the ocean floor.",
+    "frlg": "A somewhat different BALL that works especially well on POKéMON deep in the sea."
+   },
+   "i": "dive-ball",
+   "cat": "ball"
+  },
+  {
+   "k": "ITEM_NEST_BALL",
+   "en": "NEST BALL",
+   "g": "rsefl",
+   "p": {
+    "rs": 1000,
+    "e": 1000,
+    "frlg": 1000
+   },
+   "pk": "ball",
+   "hold": 0,
+   "d": {
+    "rs": "A BALL that works better on weaker POKéMON.",
+    "e": "A BALL that works better on weaker POKéMON.",
+    "frlg": "A somewhat different BALL that works especially well on weaker POKéMON."
+   },
+   "i": "nest-ball",
+   "cat": "ball"
+  },
+  {
+   "k": "ITEM_REPEAT_BALL",
+   "en": "REPEAT BALL",
+   "g": "rsefl",
+   "p": {
+    "rs": 1000,
+    "e": 1000,
+    "frlg": 1000
+   },
+   "pk": "ball",
+   "hold": 0,
+   "d": {
+    "rs": "A BALL that works better on POKéMON caught before.",
+    "e": "A BALL that works better on POKéMON caught before.",
+    "frlg": "A somewhat different BALL that works especially well on POKéMON caught before."
+   },
+   "i": "repeat-ball",
+   "cat": "ball"
+  },
+  {
+   "k": "ITEM_TIMER_BALL",
+   "en": "TIMER BALL",
+   "g": "rsefl",
+   "p": {
+    "rs": 1000,
+    "e": 1000,
+    "frlg": 1000
+   },
+   "pk": "ball",
+   "hold": 0,
+   "d": {
+    "rs": "More effective as more turns are taken in battle.",
+    "e": "A BALL that gains power in battles taking many turns.",
+    "frlg": "A somewhat different BALL that becomes progressively better the more turns there are in a battle."
+   },
+   "i": "timer-ball",
+   "cat": "ball"
+  },
+  {
+   "k": "ITEM_LUXURY_BALL",
+   "en": "LUXURY BALL",
+   "g": "rsefl",
+   "p": {
+    "rs": 1000,
+    "e": 1000,
+    "frlg": 1000
+   },
+   "pk": "ball",
+   "hold": 0,
+   "d": {
+    "rs": "A cozy BALL that makes POKéMON more friendly.",
+    "e": "A cozy BALL that makes POKéMON more friendly.",
+    "frlg": "A comfortable BALL that makes a captured wild POKéMON quickly grow friendly."
+   },
+   "i": "luxury-ball",
+   "cat": "ball"
+  },
+  {
+   "k": "ITEM_PREMIER_BALL",
+   "en": "PREMIER BALL",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "ball",
+   "hold": 0,
+   "d": {
+    "rs": "A rare BALL made in commemoration of some event.",
+    "e": "A rare BALL made in commemoration of some event.",
+    "frlg": "A rare BALL that has been specially made to commemorate an event of some sort."
+   },
+   "i": "premier-ball",
+   "cat": "ball"
+  },
+  {
+   "k": "ITEM_POTION",
+   "en": "POTION",
+   "g": "rsefl",
+   "p": {
+    "rs": 300,
+    "e": 300,
+    "frlg": 300
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Restores the HP of a POKéMON by 20 points.",
+    "e": "Restores the HP of a POKéMON by 20 points.",
+    "frlg": "A spray-type wound medicine. It restores the HP of one POKéMON by 20 points."
+   },
+   "i": "potion",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_ANTIDOTE",
+   "en": "ANTIDOTE",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Heals a poisoned POKéMON.",
+    "e": "Heals a poisoned POKéMON.",
+    "frlg": "A spray-type medicine. It heals one POKéMON from a poisoning."
+   },
+   "i": "antidote",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_BURN_HEAL",
+   "en": "BURN HEAL",
+   "g": "rsefl",
+   "p": {
+    "rs": 250,
+    "e": 250,
+    "frlg": 250
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Heals POKéMON of a burn.",
+    "e": "Heals POKéMON of a burn.",
+    "frlg": "A spray-type medicine. It heals one POKéMON of a burn."
+   },
+   "i": "burn-heal",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_ICE_HEAL",
+   "en": "ICE HEAL",
+   "g": "rsefl",
+   "p": {
+    "rs": 250,
+    "e": 250,
+    "frlg": 250
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Defrosts a frozen POKéMON.",
+    "e": "Defrosts a frozen POKéMON.",
+    "frlg": "A spray-type medicine. It defrosts a frozen POKéMON."
+   },
+   "i": "ice-heal",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_AWAKENING",
+   "en": "AWAKENING",
+   "g": "rsefl",
+   "p": {
+    "rs": 250,
+    "e": 250,
+    "frlg": 250
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Awakens a sleeping POKéMON.",
+    "e": "Awakens a sleeping POKéMON.",
+    "frlg": "A spray-type medicine. It awakens a sleeping POKéMON."
+   },
+   "i": "awakening",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_PARALYZE_HEAL",
+   "en": "PARLYZ HEAL",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Heals a paralyzed POKéMON.",
+    "e": "Heals a paralyzed POKéMON.",
+    "frlg": "A spray-type medicine. It heals one POKéMON from paralysis."
+   },
+   "i": "paralyze-heal",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_FULL_RESTORE",
+   "en": "FULL RESTORE",
+   "g": "rsefl",
+   "p": {
+    "rs": 3000,
+    "e": 3000,
+    "frlg": 3000
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Fully restores the HP and status of a POKéMON.",
+    "e": "Fully restores the HP and status of a POKéMON.",
+    "frlg": "A medicine that fully restores the HP and heals any status problems of one POKéMON."
+   },
+   "i": "full-restore",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_MAX_POTION",
+   "en": "MAX POTION",
+   "g": "rsefl",
+   "p": {
+    "rs": 2500,
+    "e": 2500,
+    "frlg": 2500
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Fully restores the HP of a POKéMON.",
+    "e": "Fully restores the HP of a POKéMON.",
+    "frlg": "A spray-type wound medicine. It fully restores the HP of one POKéMON."
+   },
+   "i": "max-potion",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_HYPER_POTION",
+   "en": "HYPER POTION",
+   "g": "rsefl",
+   "p": {
+    "rs": 1200,
+    "e": 1200,
+    "frlg": 1200
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Restores the HP of a POKéMON by 200 points.",
+    "e": "Restores the HP of a POKéMON by 200 points.",
+    "frlg": "A spray-type wound medicine. It restores the HP of one POKéMON by 200 points."
+   },
+   "i": "hyper-potion",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_SUPER_POTION",
+   "en": "SUPER POTION",
+   "g": "rsefl",
+   "p": {
+    "rs": 700,
+    "e": 700,
+    "frlg": 700
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Restores the HP of a POKéMON by 50 points.",
+    "e": "Restores the HP of a POKéMON by 50 points.",
+    "frlg": "A spray-type wound medicine. It restores the HP of one POKéMON by 50 points."
+   },
+   "i": "super-potion",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_FULL_HEAL",
+   "en": "FULL HEAL",
+   "g": "rsefl",
+   "p": {
+    "rs": 600,
+    "e": 600,
+    "frlg": 600
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Heals all the status problems of one POKéMON.",
+    "e": "Heals all the status problems of one POKéMON.",
+    "frlg": "A spray-type medicine. It heals all the status problems of one POKéMON."
+   },
+   "i": "full-heal",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_REVIVE",
+   "en": "REVIVE",
+   "g": "rsefl",
+   "p": {
+    "rs": 1500,
+    "e": 1500,
+    "frlg": 1500
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Revives a fainted POKéMON with half its HP.",
+    "e": "Revives a fainted POKéMON with half its HP.",
+    "frlg": "A medicine that revives a fainted POKéMON, restoring HP by half the maximum amount."
+   },
+   "i": "revive",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_MAX_REVIVE",
+   "en": "MAX REVIVE",
+   "g": "rsefl",
+   "p": {
+    "rs": 4000,
+    "e": 4000,
+    "frlg": 4000
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Revives a fainted POKéMON with all its HP.",
+    "e": "Revives a fainted POKéMON with all its HP.",
+    "frlg": "A medicine that revives a fainted POKéMON, restoring HP fully."
+   },
+   "i": "max-revive",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_FRESH_WATER",
+   "en": "FRESH WATER",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A mineral water that restores HP by 50 points.",
+    "e": "A mineral water that restores HP by 50 points.",
+    "frlg": "Water with a high mineral content. It restores the HP of one POKéMON by 50 points."
+   },
+   "i": "fresh-water",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_SODA_POP",
+   "en": "SODA POP",
+   "g": "rsefl",
+   "p": {
+    "rs": 300,
+    "e": 300,
+    "frlg": 300
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A fizzy soda drink that restores HP by 60 points.",
+    "e": "A fizzy soda drink that restores HP by 60 points.",
+    "frlg": "A fizzy soda drink. It restores the HP of one POKéMON by 60 points."
+   },
+   "i": "soda-pop",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_LEMONADE",
+   "en": "LEMONADE",
+   "g": "rsefl",
+   "p": {
+    "rs": 350,
+    "e": 350,
+    "frlg": 350
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A very sweet drink that restores HP by 80 points.",
+    "e": "A very sweet drink that restores HP by 80 points.",
+    "frlg": "A very sweet drink. It restores the HP of one POKéMON by 80 points."
+   },
+   "i": "lemonade",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_MOOMOO_MILK",
+   "en": "MOOMOO MILK",
+   "g": "rsefl",
+   "p": {
+    "rs": 500,
+    "e": 500,
+    "frlg": 500
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A nutritious milk that restores HP by 100 points.",
+    "e": "A nutritious milk that restores HP by 100 points.",
+    "frlg": "Highly nutritious milk. It restores the HP of one POKéMON by 100 points."
+   },
+   "i": "moomoo-milk",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_ENERGY_POWDER",
+   "en": "ENERGYPOWDER",
+   "g": "rsefl",
+   "p": {
+    "rs": 500,
+    "e": 500,
+    "frlg": 500
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A bitter powder that restores HP by 50 points.",
+    "e": "A bitter powder that restores HP by 50 points.",
+    "frlg": "A very bitter medicine powder. It restores the HP of one POKéMON by 50 points."
+   },
+   "i": "energy-powder",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_ENERGY_ROOT",
+   "en": "ENERGY ROOT",
+   "g": "rsefl",
+   "p": {
+    "rs": 800,
+    "e": 800,
+    "frlg": 800
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A bitter root that restores HP by 200 points.",
+    "e": "A bitter root that restores HP by 200 points.",
+    "frlg": "A very bitter root. It restores the HP of one POKéMON by 200 points."
+   },
+   "i": "energy-root",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_HEAL_POWDER",
+   "en": "HEAL POWDER",
+   "g": "rsefl",
+   "p": {
+    "rs": 450,
+    "e": 450,
+    "frlg": 450
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A bitter powder that heals all status problems.",
+    "e": "A bitter powder that heals all status problems.",
+    "frlg": "A very bitter medicine powder. It heals all the status problems of one POKéMON."
+   },
+   "i": "heal-powder",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_REVIVAL_HERB",
+   "en": "REVIVAL HERB",
+   "g": "rsefl",
+   "p": {
+    "rs": 2800,
+    "e": 2800,
+    "frlg": 2800
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A very bitter herb that revives a fainted POKéMON.",
+    "e": "A very bitter herb that revives a fainted POKéMON.",
+    "frlg": "A very bitter medicinal herb. It revives a fainted POKéMON, restoring HP fully."
+   },
+   "i": "revival-herb",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_ETHER",
+   "en": "ETHER",
+   "g": "rsefl",
+   "p": {
+    "rs": 1200,
+    "e": 1200,
+    "frlg": 1200
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Restores the PP of a selected move by 10.",
+    "e": "Restores the PP of a selected move by 10.",
+    "frlg": "Restores a selected move's PP by 10 points for one POKéMON."
+   },
+   "i": "ether",
+   "cat": "misc"
+  },
+  {
+   "k": "ITEM_MAX_ETHER",
+   "en": "MAX ETHER",
+   "g": "rsefl",
+   "p": {
+    "rs": 2000,
+    "e": 2000,
+    "frlg": 2000
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Fully restores the PP of a selected move.",
+    "e": "Fully restores the PP of a selected move.",
+    "frlg": "Fully restores a selected move's PP for one POKéMON."
+   },
+   "i": "max-ether",
+   "cat": "misc"
+  },
+  {
+   "k": "ITEM_ELIXIR",
+   "en": "ELIXIR",
+   "g": "rsefl",
+   "p": {
+    "rs": 3000,
+    "e": 3000,
+    "frlg": 3000
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Restores the PP of all moves by 10.",
+    "e": "Restores the PP of all moves by 10.",
+    "frlg": "Restores the PP of all moves for one POKéMON by 10 points each."
+   },
+   "i": "elixir",
+   "cat": "misc"
+  },
+  {
+   "k": "ITEM_MAX_ELIXIR",
+   "en": "MAX ELIXIR",
+   "g": "rsefl",
+   "p": {
+    "rs": 4500,
+    "e": 4500,
+    "frlg": 4500
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Fully restores the PP of a POKéMON's moves.",
+    "e": "Fully restores the PP of a POKéMON's moves.",
+    "frlg": "Fully restores the PP of all moves for one POKéMON."
+   },
+   "i": "max-elixir",
+   "cat": "misc"
+  },
+  {
+   "k": "ITEM_LAVA_COOKIE",
+   "en": "LAVA COOKIE",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A local specialty that heals all status problems.",
+    "e": "A local specialty that heals all status problems.",
+    "frlg": "LAVARIDGE TOWN's local specialty. It heals all the status problems of one POKéMON."
+   },
+   "i": "lava-cookie",
+   "cat": "misc"
+  },
+  {
+   "k": "ITEM_BLUE_FLUTE",
+   "en": "BLUE FLUTE",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A glass flute that awakens sleeping POKéMON.",
+    "e": "A glass flute that awakens sleeping POKéMON.",
+    "frlg": "A blue glass flute that awakens a sleeping POKéMON."
+   },
+   "i": "blue-flute",
+   "cat": "battle"
+  },
+  {
+   "k": "ITEM_YELLOW_FLUTE",
+   "en": "YELLOW FLUTE",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A glass flute that snaps POKéMON out of confusion.",
+    "e": "A glass flute that snaps POKéMON out of confusion.",
+    "frlg": "A yellow glass flute that snaps one POKéMON out of confusion."
+   },
+   "i": "yellow-flute",
+   "cat": "battle"
+  },
+  {
+   "k": "ITEM_RED_FLUTE",
+   "en": "RED FLUTE",
+   "g": "rsefl",
+   "p": {
+    "rs": 300,
+    "e": 300,
+    "frlg": 300
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A glass flute that snaps POKéMON out of attraction.",
+    "e": "A glass flute that snaps POKéMON out of attraction.",
+    "frlg": "A red glass flute that snaps one POKéMON out of infatuation."
+   },
+   "i": "red-flute",
+   "cat": "battle"
+  },
+  {
+   "k": "ITEM_BLACK_FLUTE",
+   "en": "BLACK FLUTE",
+   "g": "rsefl",
+   "p": {
+    "rs": 400,
+    "e": 400,
+    "frlg": 400
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A glass flute that keeps away wild POKéMON.",
+    "e": "A glass flute that keeps away wild POKéMON.",
+    "frlg": "A black glass flute. When blown, it makes wild POKéMON less likely to appear."
+   },
+   "i": "black-flute",
+   "cat": "battle"
+  },
+  {
+   "k": "ITEM_WHITE_FLUTE",
+   "en": "WHITE FLUTE",
+   "g": "rsefl",
+   "p": {
+    "rs": 500,
+    "e": 500,
+    "frlg": 500
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A glass flute that lures wild POKéMON.",
+    "e": "A glass flute that lures wild POKéMON.",
+    "frlg": "A white glass flute. When blown, it makes wild POKéMON more likely to appear."
+   },
+   "i": "white-flute",
+   "cat": "battle"
+  },
+  {
+   "k": "ITEM_BERRY_JUICE",
+   "en": "BERRY JUICE",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A 100% pure juice that restores HP by 20 points.",
+    "e": "A 100% pure juice that restores HP by 20 points.",
+    "frlg": "A 100% pure juice. It restores the HP of one POKéMON by 20 points."
+   },
+   "i": "berry-juice",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_SACRED_ASH",
+   "en": "SACRED ASH",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Fully revives and restores all fainted POKéMON.",
+    "e": "Fully revives and restores all fainted POKéMON.",
+    "frlg": "Revives all fainted POKéMON, restoring HP fully."
+   },
+   "i": "sacred-ash",
+   "cat": "heal"
+  },
+  {
+   "k": "ITEM_SHOAL_SALT",
+   "en": "SHOAL SALT",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Salt obtained from deep inside the SHOAL CAVE.",
+    "e": "Salt obtained from deep inside the SHOAL CAVE.",
+    "frlg": "Pure salt obtained from deep inside the SHOAL CAVE. It is extremely salty."
+   },
+   "i": "shoal-salt",
+   "cat": "treasure"
+  },
+  {
+   "k": "ITEM_SHOAL_SHELL",
+   "en": "SHOAL SHELL",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A seashell found deep inside the SHOAL CAVE.",
+    "e": "A seashell found deep inside the SHOAL CAVE.",
+    "frlg": "A pretty seashell found deep inside the SHOAL CAVE. It is striped in blue and white."
+   },
+   "i": "shoal-shell",
+   "cat": "treasure"
+  },
+  {
+   "k": "ITEM_RED_SHARD",
+   "en": "RED SHARD",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A shard from an ancient item. Can be sold cheaply.",
+    "e": "A shard from an ancient item. Can be sold cheaply.",
+    "frlg": "A small red shard. It appears to be from some sort of a tool made long ago."
+   },
+   "i": "red-shard",
+   "cat": "treasure"
+  },
+  {
+   "k": "ITEM_BLUE_SHARD",
+   "en": "BLUE SHARD",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A shard from an ancient item. Can be sold cheaply.",
+    "e": "A shard from an ancient item. Can be sold cheaply.",
+    "frlg": "A small blue shard. It appears to be from some sort of a tool made long ago."
+   },
+   "i": "blue-shard",
+   "cat": "treasure"
+  },
+  {
+   "k": "ITEM_YELLOW_SHARD",
+   "en": "YELLOW SHARD",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A shard from an ancient item. Can be sold cheaply.",
+    "e": "A shard from an ancient item. Can be sold cheaply.",
+    "frlg": "A small yellow shard. It appears to be from some sort of a tool made long ago."
+   },
+   "i": "yellow-shard",
+   "cat": "treasure"
+  },
+  {
+   "k": "ITEM_GREEN_SHARD",
+   "en": "GREEN SHARD",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A shard from an ancient item. Can be sold cheaply.",
+    "e": "A shard from an ancient item. Can be sold cheaply.",
+    "frlg": "A small green shard. It appears to be from some sort of a tool made long ago."
+   },
+   "i": "green-shard",
+   "cat": "treasure"
+  },
+  {
+   "k": "ITEM_HP_UP",
+   "en": "HP UP",
+   "g": "rsefl",
+   "p": {
+    "rs": 9800,
+    "e": 9800,
+    "frlg": 9800
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Raises the HP of one POKéMON.",
+    "e": "Raises the base HP of one POKéMON.",
+    "frlg": "A nutritious drink for POKéMON. It raises the base HP of one POKéMON."
+   },
+   "i": "hp-up",
+   "cat": "vitamin"
+  },
+  {
+   "k": "ITEM_PROTEIN",
+   "en": "PROTEIN",
+   "g": "rsefl",
+   "p": {
+    "rs": 9800,
+    "e": 9800,
+    "frlg": 9800
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Raises the stat ATTACK of one POKéMON.",
+    "e": "Raises the base ATTACK stat of one POKéMON.",
+    "frlg": "A nutritious drink for POKéMON. It raises the base ATTACK stat of one POKéMON."
+   },
+   "i": "protein",
+   "cat": "vitamin"
+  },
+  {
+   "k": "ITEM_IRON",
+   "en": "IRON",
+   "g": "rsefl",
+   "p": {
+    "rs": 9800,
+    "e": 9800,
+    "frlg": 9800
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Raises the stat DEFENSE of one POKéMON.",
+    "e": "Raises the base DEFENSE stat of one POKéMON.",
+    "frlg": "A nutritious drink for POKéMON. It raises the base DEFENSE stat of one POKéMON."
+   },
+   "i": "iron",
+   "cat": "vitamin"
+  },
+  {
+   "k": "ITEM_CARBOS",
+   "en": "CARBOS",
+   "g": "rsefl",
+   "p": {
+    "rs": 9800,
+    "e": 9800,
+    "frlg": 9800
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Raises the stat SPEED of one POKéMON.",
+    "e": "Raises the base SPEED stat of one POKéMON.",
+    "frlg": "A nutritious drink for POKéMON. It raises the base SPEED stat of one POKéMON."
+   },
+   "i": "carbos",
+   "cat": "vitamin"
+  },
+  {
+   "k": "ITEM_CALCIUM",
+   "en": "CALCIUM",
+   "g": "rsefl",
+   "p": {
+    "rs": 9800,
+    "e": 9800,
+    "frlg": 9800
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Raises the stat SP. ATK of one POKéMON.",
+    "e": "Raises the base SP. ATK stat of one POKéMON.",
+    "frlg": "A nutritious drink for POKéMON. It raises the base SP. ATK stat of one POKéMON."
+   },
+   "i": "calcium",
+   "cat": "vitamin"
+  },
+  {
+   "k": "ITEM_RARE_CANDY",
+   "en": "RARE CANDY",
+   "g": "rsefl",
+   "p": {
+    "rs": 4800,
+    "e": 4800,
+    "frlg": 4800
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Raises the level of a POKéMON by one.",
+    "e": "Raises the level of a POKéMON by one.",
+    "frlg": "A candy that is packed with energy. It raises the level of a POKéMON by one."
+   },
+   "i": "rare-candy",
+   "cat": "vitamin"
+  },
+  {
+   "k": "ITEM_PP_UP",
+   "en": "PP UP",
+   "g": "rsefl",
+   "p": {
+    "rs": 9800,
+    "e": 9800,
+    "frlg": 9800
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Raises the maximum PP of a selected move.",
+    "e": "Raises the maximum PP of a selected move.",
+    "frlg": "Slightly raises the maximum PP of a selected move for one POKéMON."
+   },
+   "i": "pp-up",
+   "cat": "vitamin"
+  },
+  {
+   "k": "ITEM_ZINC",
+   "en": "ZINC",
+   "g": "rsefl",
+   "p": {
+    "rs": 9800,
+    "e": 9800,
+    "frlg": 9800
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Raises the stat SP. DEF of one POKéMON.",
+    "e": "Raises the base SP. DEF stat of one POKéMON.",
+    "frlg": "A nutritious drink for POKéMON. It raises the base SP. DEF stat of one POKéMON."
+   },
+   "i": "zinc",
+   "cat": "vitamin"
+  },
+  {
+   "k": "ITEM_PP_MAX",
+   "en": "PP MAX",
+   "g": "rsefl",
+   "p": {
+    "rs": 9800,
+    "e": 9800,
+    "frlg": 9800
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Raises the PP of a move to its maximum points.",
+    "e": "Raises the PP of a move to its maximum points.",
+    "frlg": "Raises the PP of a selected move to its maximum level for one POKéMON."
+   },
+   "i": "pp-max",
+   "cat": "vitamin"
+  },
+  {
+   "k": "ITEM_GUARD_SPEC",
+   "en": "GUARD SPEC.",
+   "g": "rsefl",
+   "p": {
+    "rs": 700,
+    "e": 700,
+    "frlg": 700
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Prevents stat reduction when used in battle.",
+    "e": "Prevents stat reduction when used in battle.",
+    "frlg": "An item that prevents stat reduction among party POKéMON for five turns after use."
+   },
+   "i": "guard-spec",
+   "cat": "battle"
+  },
+  {
+   "k": "ITEM_DIRE_HIT",
+   "en": "DIRE HIT",
+   "g": "rsefl",
+   "p": {
+    "rs": 650,
+    "e": 650,
+    "frlg": 650
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Raises the critical-hit ratio during one battle.",
+    "e": "Raises the critical-hit ratio during one battle.",
+    "frlg": "Raises the critical-hit ratio of POKéMON in battle. Wears off if the POKéMON is withdrawn."
+   },
+   "i": "dire-hit",
+   "cat": "battle"
+  },
+  {
+   "k": "ITEM_X_ATTACK",
+   "en": "X ATTACK",
+   "g": "rsefl",
+   "p": {
+    "rs": 500,
+    "e": 500,
+    "frlg": 500
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Raises the stat ATTACK during one battle.",
+    "e": "Raises the stat ATTACK during one battle.",
+    "frlg": "Raises the ATTACK stat of POKéMON in battle. Wears off if the POKéMON is withdrawn."
+   },
+   "i": "x-attack",
+   "cat": "battle"
+  },
+  {
+   "k": "ITEM_X_DEFEND",
+   "en": "X DEFEND",
+   "g": "rsefl",
+   "p": {
+    "rs": 550,
+    "e": 550,
+    "frlg": 550
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Raises the stat DEFENSE during one battle.",
+    "e": "Raises the stat DEFENSE during one battle.",
+    "frlg": "Raises the DEFENSE stat of POKéMON in battle. Wears off if the POKéMON is withdrawn."
+   },
+   "i": "x-defense",
+   "cat": "battle"
+  },
+  {
+   "k": "ITEM_X_SPEED",
+   "en": "X SPEED",
+   "g": "rsefl",
+   "p": {
+    "rs": 350,
+    "e": 350,
+    "frlg": 350
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Raises the stat SPEED during one battle.",
+    "e": "Raises the stat SPEED during one battle.",
+    "frlg": "Raises the SPEED stat of POKéMON in battle. Wears off if the POKéMON is withdrawn."
+   },
+   "i": "x-speed",
+   "cat": "battle"
+  },
+  {
+   "k": "ITEM_X_ACCURACY",
+   "en": "X ACCURACY",
+   "g": "rsefl",
+   "p": {
+    "rs": 950,
+    "e": 950,
+    "frlg": 950
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Raises accuracy of attack moves during one battle.",
+    "e": "Raises accuracy of attack moves during one battle.",
+    "frlg": "Raises the accuracy stat of POKéMON in battle. Wears off if the POKéMON is withdrawn."
+   },
+   "i": "x-accuracy",
+   "cat": "battle"
+  },
+  {
+   "k": "ITEM_X_SPECIAL",
+   "en": "X SPECIAL",
+   "g": "rsefl",
+   "p": {
+    "rs": 350,
+    "e": 350,
+    "frlg": 350
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Raises the stat SP. ATK during one battle.",
+    "e": "Raises the stat SP. ATK during one battle.",
+    "frlg": "Raises the SP. ATK stat of POKéMON in battle. Wears off if the POKéMON is withdrawn."
+   },
+   "i": "x-sp-atk",
+   "cat": "battle"
+  },
+  {
+   "k": "ITEM_POKE_DOLL",
+   "en": "POKé DOLL",
+   "g": "rsefl",
+   "p": {
+    "rs": 1000,
+    "e": 1000,
+    "frlg": 1000
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Use to flee from any battle with a wild POKéMON.",
+    "e": "Use to flee from any battle with a wild POKéMON.",
+    "frlg": "An attractive doll. Use it to flee from any battle with a wild POKéMON."
+   },
+   "i": "poke-doll",
+   "cat": "battle"
+  },
+  {
+   "k": "ITEM_FLUFFY_TAIL",
+   "en": "FLUFFY TAIL",
+   "g": "rsefl",
+   "p": {
+    "rs": 1000,
+    "e": 1000,
+    "frlg": 1000
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Use to flee from any battle with a wild POKéMON.",
+    "e": "Use to flee from any battle with a wild POKéMON.",
+    "frlg": "An attractive item. Use it to flee from any battle with a wild POKéMON."
+   },
+   "i": "fluffy-tail",
+   "cat": "battle"
+  },
+  {
+   "k": "ITEM_SUPER_REPEL",
+   "en": "SUPER REPEL",
+   "g": "rsefl",
+   "p": {
+    "rs": 500,
+    "e": 500,
+    "frlg": 500
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Repels weak wild POKéMON for 200 steps.",
+    "e": "Repels weak wild POKéMON for 200 steps.",
+    "frlg": "Prevents weak wild POKéMON from appearing for 200 steps."
+   },
+   "i": "super-repel",
+   "cat": "misc"
+  },
+  {
+   "k": "ITEM_MAX_REPEL",
+   "en": "MAX REPEL",
+   "g": "rsefl",
+   "p": {
+    "rs": 700,
+    "e": 700,
+    "frlg": 700
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Repels weak wild POKéMON for 250 steps.",
+    "e": "Repels weak wild POKéMON for 250 steps.",
+    "frlg": "Prevents weak wild POKéMON from appearing for 250 steps."
+   },
+   "i": "max-repel",
+   "cat": "misc"
+  },
+  {
+   "k": "ITEM_ESCAPE_ROPE",
+   "en": "ESCAPE ROPE",
+   "g": "rsefl",
+   "p": {
+    "rs": 550,
+    "e": 550,
+    "frlg": 550
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Use to escape instantly from a cave or a dungeon.",
+    "e": "Use to escape instantly from a cave or a dungeon.",
+    "frlg": "A long, durable rope. Use it to escape instantly from a cave or a dungeon."
+   },
+   "i": "escape-rope",
+   "cat": "misc"
+  },
+  {
+   "k": "ITEM_REPEL",
+   "en": "REPEL",
+   "g": "rsefl",
+   "p": {
+    "rs": 350,
+    "e": 350,
+    "frlg": 350
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Repels weak wild POKéMON for 100 steps.",
+    "e": "Repels weak wild POKéMON for 100 steps.",
+    "frlg": "Prevents weak wild POKéMON from appearing for 100 steps."
+   },
+   "i": "repel",
+   "cat": "misc"
+  },
+  {
+   "k": "ITEM_SUN_STONE",
+   "en": "SUN STONE",
+   "g": "rsefl",
+   "p": {
+    "rs": 2100,
+    "e": 2100,
+    "frlg": 2100
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Makes certain species of POKéMON evolve.",
+    "e": "Makes certain species of POKéMON evolve.",
+    "frlg": "A peculiar stone that makes certain species of POKéMON evolve. It is as red as the sun."
+   },
+   "i": "sun-stone",
+   "cat": "stone"
+  },
+  {
+   "k": "ITEM_MOON_STONE",
+   "en": "MOON STONE",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Makes certain species of POKéMON evolve.",
+    "e": "Makes certain species of POKéMON evolve.",
+    "frlg": "A peculiar stone that makes certain species of POKéMON evolve. It is as black as the night sky."
+   },
+   "i": "moon-stone",
+   "cat": "stone"
+  },
+  {
+   "k": "ITEM_FIRE_STONE",
+   "en": "FIRE STONE",
+   "g": "rsefl",
+   "p": {
+    "rs": 2100,
+    "e": 2100,
+    "frlg": 2100
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Makes certain species of POKéMON evolve.",
+    "e": "Makes certain species of POKéMON evolve.",
+    "frlg": "A peculiar stone that makes certain species of POKéMON evolve. It is colored orange."
+   },
+   "i": "fire-stone",
+   "cat": "stone"
+  },
+  {
+   "k": "ITEM_THUNDER_STONE",
+   "en": "THUNDERSTONE",
+   "g": "rsefl",
+   "p": {
+    "rs": 2100,
+    "e": 2100,
+    "frlg": 2100
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Makes certain species of POKéMON evolve.",
+    "e": "Makes certain species of POKéMON evolve.",
+    "frlg": "A peculiar stone that makes certain species of POKéMON evolve. It has a thunderbolt pattern."
+   },
+   "i": "thunder-stone",
+   "cat": "stone"
+  },
+  {
+   "k": "ITEM_WATER_STONE",
+   "en": "WATER STONE",
+   "g": "rsefl",
+   "p": {
+    "rs": 2100,
+    "e": 2100,
+    "frlg": 2100
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Makes certain species of POKéMON evolve.",
+    "e": "Makes certain species of POKéMON evolve.",
+    "frlg": "A peculiar stone that makes certain species of POKéMON evolve. It is a clear light blue."
+   },
+   "i": "water-stone",
+   "cat": "stone"
+  },
+  {
+   "k": "ITEM_LEAF_STONE",
+   "en": "LEAF STONE",
+   "g": "rsefl",
+   "p": {
+    "rs": 2100,
+    "e": 2100,
+    "frlg": 2100
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Makes certain species of POKéMON evolve.",
+    "e": "Makes certain species of POKéMON evolve.",
+    "frlg": "A peculiar stone that makes certain species of POKéMON evolve. It has a leaf pattern."
+   },
+   "i": "leaf-stone",
+   "cat": "stone"
+  },
+  {
+   "k": "ITEM_TINY_MUSHROOM",
+   "en": "TINYMUSHROOM",
+   "g": "rsefl",
+   "p": {
+    "rs": 500,
+    "e": 500,
+    "frlg": 500
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A plain, ordinary mushroom. Can be sold cheaply.",
+    "e": "A plain mushroom that would sell at a cheap price.",
+    "frlg": "A small and rare mushroom. It is quite popular among certain people."
+   },
+   "i": "tiny-mushroom",
+   "cat": "treasure"
+  },
+  {
+   "k": "ITEM_BIG_MUSHROOM",
+   "en": "BIG MUSHROOM",
+   "g": "rsefl",
+   "p": {
+    "rs": 5000,
+    "e": 5000,
+    "frlg": 5000
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A rare mushroom that would sell at a high price.",
+    "e": "A rare mushroom that would sell at a high price.",
+    "frlg": "A large and rare mushroom. It is very popular among certain people."
+   },
+   "i": "big-mushroom",
+   "cat": "treasure"
+  },
+  {
+   "k": "ITEM_PEARL",
+   "en": "PEARL",
+   "g": "rsefl",
+   "p": {
+    "rs": 1400,
+    "e": 1400,
+    "frlg": 1400
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A pretty pearl. Can be sold cheaply.",
+    "e": "A pretty pearl that would sell at a cheap price.",
+    "frlg": "A relatively small pearl that sparkles in a pretty silver color. It can be sold cheaply."
+   },
+   "i": "pearl",
+   "cat": "treasure"
+  },
+  {
+   "k": "ITEM_BIG_PEARL",
+   "en": "BIG PEARL",
+   "g": "rsefl",
+   "p": {
+    "rs": 7500,
+    "e": 7500,
+    "frlg": 7500
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A lovely large pearl that would sell at a high price.",
+    "e": "A lovely large pearl that would sell at a high price.",
+    "frlg": "A quite-large pearl that sparkles in a pretty silver color. It can be sold at a high price."
+   },
+   "i": "big-pearl",
+   "cat": "treasure"
+  },
+  {
+   "k": "ITEM_STARDUST",
+   "en": "STARDUST",
+   "g": "rsefl",
+   "p": {
+    "rs": 2000,
+    "e": 2000,
+    "frlg": 2000
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "Beautiful red sand. Can be sold at a high price.",
+    "e": "Beautiful red sand. Can be sold at a high price.",
+    "frlg": "A pretty red sand with a loose, silky feel. It can be sold at a high price."
+   },
+   "i": "stardust",
+   "cat": "treasure"
+  },
+  {
+   "k": "ITEM_STAR_PIECE",
+   "en": "STAR PIECE",
+   "g": "rsefl",
+   "p": {
+    "rs": 9800,
+    "e": 9800,
+    "frlg": 9800
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A red gem shard. It would sell for a very high price.",
+    "e": "A red gem shard. It would sell for a very high price.",
+    "frlg": "A shard of a pretty gem that sparkles in a red color. It can be sold at a high price."
+   },
+   "i": "star-piece",
+   "cat": "treasure"
+  },
+  {
+   "k": "ITEM_NUGGET",
+   "en": "NUGGET",
+   "g": "rsefl",
+   "p": {
+    "rs": 10000,
+    "e": 10000,
+    "frlg": 10000
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A nugget of pure gold. Can be sold at a high price.",
+    "e": "A nugget of pure gold. Can be sold at a high price.",
+    "frlg": "A nugget of pure gold that gives off a lustrous gleam. It can be sold at a high price."
+   },
+   "i": "nugget",
+   "cat": "treasure"
+  },
+  {
+   "k": "ITEM_HEART_SCALE",
+   "en": "HEART SCALE",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A lovely scale. It is coveted by collectors.",
+    "e": "A lovely scale. It is coveted by collectors.",
+    "frlg": "A pretty, heart-shaped scale that is extremely rare. It glows faintly in the colors of a rainbow."
+   },
+   "i": "heart-scale",
+   "cat": "treasure"
+  },
+  {
+   "k": "ITEM_ORANGE_MAIL",
+   "en": "ORANGE MAIL",
+   "g": "rsefl",
+   "p": {
+    "rs": 50,
+    "e": 50,
+    "frlg": 50
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A ZIGZAGOON-print MAIL to be held by a POKéMON.",
+    "e": "A ZIGZAGOON-print MAIL to be held by a POKéMON.",
+    "frlg": "A piece of MAIL featuring a cute ZIGZAGOON print. It is to be held by a POKéMON."
+   },
+   "i": "orange-mail",
+   "cat": "mail"
+  },
+  {
+   "k": "ITEM_HARBOR_MAIL",
+   "en": "HARBOR MAIL",
+   "g": "rsefl",
+   "p": {
+    "rs": 50,
+    "e": 50,
+    "frlg": 50
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A WINGULL-print MAIL to be held by a POKéMON.",
+    "e": "A WINGULL-print MAIL to be held by a POKéMON.",
+    "frlg": "A piece of MAIL featuring a cute WINGULL print. It is to be held by a POKéMON."
+   },
+   "i": "harbor-mail",
+   "cat": "mail"
+  },
+  {
+   "k": "ITEM_GLITTER_MAIL",
+   "en": "GLITTER MAIL",
+   "g": "rsefl",
+   "p": {
+    "rs": 50,
+    "e": 50,
+    "frlg": 50
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A PIKACHU-print MAIL to be held by a POKéMON.",
+    "e": "A PIKACHU-print MAIL to be held by a POKéMON.",
+    "frlg": "A piece of MAIL featuring a cute PIKACHU print. It is to be held by a POKéMON."
+   },
+   "i": "glitter-mail",
+   "cat": "mail"
+  },
+  {
+   "k": "ITEM_MECH_MAIL",
+   "en": "MECH MAIL",
+   "g": "rsefl",
+   "p": {
+    "rs": 50,
+    "e": 50,
+    "frlg": 50
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A MAGNEMITE-print MAIL to be held by a POKéMON.",
+    "e": "A MAGNEMITE-print MAIL to be held by a POKéMON.",
+    "frlg": "A piece of MAIL featuring a cute MAGNEMITE print. It is to be held by a POKéMON."
+   },
+   "i": "mech-mail",
+   "cat": "mail"
+  },
+  {
+   "k": "ITEM_WOOD_MAIL",
+   "en": "WOOD MAIL",
+   "g": "rsefl",
+   "p": {
+    "rs": 50,
+    "e": 50,
+    "frlg": 50
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A SLAKOTH-print MAIL to be held by a POKéMON.",
+    "e": "A SLAKOTH-print MAIL to be held by a POKéMON.",
+    "frlg": "A piece of MAIL featuring a cute SLAKOTH print. It is to be held by a POKéMON."
+   },
+   "i": "wood-mail",
+   "cat": "mail"
+  },
+  {
+   "k": "ITEM_WAVE_MAIL",
+   "en": "WAVE MAIL",
+   "g": "rsefl",
+   "p": {
+    "rs": 50,
+    "e": 50,
+    "frlg": 50
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A WAILMER-print MAIL to be held by a POKéMON.",
+    "e": "A WAILMER-print MAIL to be held by a POKéMON.",
+    "frlg": "A piece of MAIL featuring a cute WAILMER print. It is to be held by a POKéMON."
+   },
+   "i": "wave-mail",
+   "cat": "mail"
+  },
+  {
+   "k": "ITEM_BEAD_MAIL",
+   "en": "BEAD MAIL",
+   "g": "rsefl",
+   "p": {
+    "rs": 50,
+    "e": 50,
+    "frlg": 50
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "MAIL featuring a sketch of the holding POKéMON.",
+    "e": "MAIL featuring a sketch of the holding POKéMON.",
+    "frlg": "A piece of MAIL to be held by a POKéMON. It will bear the print of the POKéMON holding it."
+   },
+   "i": "bead-mail",
+   "cat": "mail"
+  },
+  {
+   "k": "ITEM_SHADOW_MAIL",
+   "en": "SHADOW MAIL",
+   "g": "rsefl",
+   "p": {
+    "rs": 50,
+    "e": 50,
+    "frlg": 50
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A DUSKULL-print MAIL to be held by a POKéMON.",
+    "e": "A DUSKULL-print MAIL to be held by a POKéMON.",
+    "frlg": "A piece of MAIL featuring a cute DUSKULL print. It is to be held by a POKéMON."
+   },
+   "i": "shadow-mail",
+   "cat": "mail"
+  },
+  {
+   "k": "ITEM_TROPIC_MAIL",
+   "en": "TROPIC MAIL",
+   "g": "rsefl",
+   "p": {
+    "rs": 50,
+    "e": 50,
+    "frlg": 50
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A BELLOSSOM-print MAIL to be held by a POKéMON.",
+    "e": "A BELLOSSOM-print MAIL to be held by a POKéMON.",
+    "frlg": "A piece of MAIL featuring a cute BELLOSSOM print. It is to be held by a POKéMON."
+   },
+   "i": "tropic-mail",
+   "cat": "mail"
+  },
+  {
+   "k": "ITEM_DREAM_MAIL",
+   "en": "DREAM MAIL",
+   "g": "rsefl",
+   "p": {
+    "rs": 50,
+    "e": 50,
+    "frlg": 50
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "MAIL featuring a sketch of the holding POKéMON.",
+    "e": "MAIL featuring a sketch of the holding POKéMON.",
+    "frlg": "A piece of MAIL to be held by a POKéMON. It will bear the print of the POKéMON holding it."
+   },
+   "i": "dream-mail",
+   "cat": "mail"
+  },
+  {
+   "k": "ITEM_FAB_MAIL",
+   "en": "FAB MAIL",
+   "g": "rsefl",
+   "p": {
+    "rs": 50,
+    "e": 50,
+    "frlg": 50
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A gorgeous-print MAIL to be held by a POKéMON.",
+    "e": "A gorgeous-print MAIL to be held by a POKéMON.",
+    "frlg": "A piece of MAIL featuring a gorgeous, extravagant print. It is to be held by a POKéMON."
+   },
+   "i": "fab-mail",
+   "cat": "mail"
+  },
+  {
+   "k": "ITEM_RETRO_MAIL",
+   "en": "RETRO MAIL",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 50
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "MAIL featuring the drawings of three POKéMON.",
+    "e": "MAIL featuring the drawings of three POKéMON.",
+    "frlg": "A piece of MAIL featuring a print of three cute POKéMON. It is to be held by a POKéMON."
+   },
+   "i": "retro-mail",
+   "cat": "mail"
+  },
+  {
+   "k": "ITEM_CHERI_BERRY",
+   "en": "CHERI BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 1,
+   "d": {
+    "rs": "Blooms with delicate pretty flowers. The bright red BERRY is very spicy.",
+    "e": "Blooms with delicate pretty flowers. The bright red BERRY is very spicy.",
+    "frlg": "When held by a POKéMON, it will be used in battle to heal paralysis."
+   },
+   "fl": {
+    "spicy": 10,
+    "dry": 0,
+    "sweet": 0,
+    "bitter": 0,
+    "sour": 0
+   },
+   "firm": "soft",
+   "i": "cheri-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_CHESTO_BERRY",
+   "en": "CHESTO BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 1,
+   "d": {
+    "rs": "The BERRY's thick skin and fruit are very tough. It is dry-tasting all over.",
+    "e": "The BERRY's thick skin and fruit are very tough. It is dry-tasting all over.",
+    "frlg": "When held by a POKéMON, it will be used in battle to wake up."
+   },
+   "fl": {
+    "spicy": 0,
+    "dry": 10,
+    "sweet": 0,
+    "bitter": 0,
+    "sour": 0
+   },
+   "firm": "super_hard",
+   "i": "chesto-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_PECHA_BERRY",
+   "en": "PECHA BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 1,
+   "d": {
+    "rs": "Very sweet and delicious. Also very tender - handle with care.",
+    "e": "Very sweet and delicious. Also very tender - handle with care.",
+    "frlg": "When held by a POKéMON, it will be used in battle to cure poison."
+   },
+   "fl": {
+    "spicy": 0,
+    "dry": 0,
+    "sweet": 10,
+    "bitter": 0,
+    "sour": 0
+   },
+   "firm": "very_soft",
+   "i": "pecha-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_RAWST_BERRY",
+   "en": "RAWST BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 1,
+   "d": {
+    "rs": "If the leaves grow long and curly, the BERRY seems to grow very bitter.",
+    "e": "If the leaves grow long and curly, the BERRY seems to grow very bitter.",
+    "frlg": "When held by a POKéMON, it will be used in battle to heal a burn."
+   },
+   "fl": {
+    "spicy": 0,
+    "dry": 0,
+    "sweet": 0,
+    "bitter": 10,
+    "sour": 0
+   },
+   "firm": "hard",
+   "i": "rawst-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_ASPEAR_BERRY",
+   "en": "ASPEAR BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 1,
+   "d": {
+    "rs": "The hard BERRY is dense with a rich juice. It is quite sour.",
+    "e": "The hard BERRY is dense with a rich juice. It is quite sour.",
+    "frlg": "When held by a POKéMON, it will be used in battle for defrosting."
+   },
+   "fl": {
+    "spicy": 0,
+    "dry": 0,
+    "sweet": 0,
+    "bitter": 0,
+    "sour": 10
+   },
+   "firm": "super_hard",
+   "i": "aspear-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_LEPPA_BERRY",
+   "en": "LEPPA BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 1,
+   "d": {
+    "rs": "Grows slower than CHERI and others. The smaller the BERRY, the tastier.",
+    "e": "Grows slower than CHERI and others. The smaller the BERRY, the tastier.",
+    "frlg": "When held by a POKéMON, it will be used in battle to restore 10 PP."
+   },
+   "fl": {
+    "spicy": 10,
+    "dry": 0,
+    "sweet": 10,
+    "bitter": 10,
+    "sour": 10
+   },
+   "firm": "very_hard",
+   "i": "leppa-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_ORAN_BERRY",
+   "en": "ORAN BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 1,
+   "d": {
+    "rs": "A peculiar BERRY with a mix of flavors. BERRIES grow in half a day.",
+    "e": "A peculiar BERRY with a mix of flavors. BERRIES grow in half a day.",
+    "frlg": "When held by a POKéMON, it will be used in battle to restore 10 HP."
+   },
+   "fl": {
+    "spicy": 10,
+    "dry": 10,
+    "sweet": 10,
+    "bitter": 10,
+    "sour": 10
+   },
+   "firm": "super_hard",
+   "i": "oran-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_PERSIM_BERRY",
+   "en": "PERSIM BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 1,
+   "d": {
+    "rs": "Loves sunlight. The BERRY's color grows vivid when exposed to the sun.",
+    "e": "Loves sunlight. The BERRY's color grows vivid when exposed to the sun.",
+    "frlg": "When held by a POKéMON, it will be used in battle to lift confusion."
+   },
+   "fl": {
+    "spicy": 10,
+    "dry": 10,
+    "sweet": 10,
+    "bitter": 10,
+    "sour": 10
+   },
+   "firm": "hard",
+   "i": "persim-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_LUM_BERRY",
+   "en": "LUM BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 1,
+   "d": {
+    "rs": "Slow to grow. If raised with loving care, it may grow two BERRIES.",
+    "e": "Slow to grow. If raised with loving care, it may grow two BERRIES.",
+    "frlg": "When held by a POKéMON, it will be used in battle to heal any problem."
+   },
+   "fl": {
+    "spicy": 10,
+    "dry": 10,
+    "sweet": 10,
+    "bitter": 10,
+    "sour": 10
+   },
+   "firm": "super_hard",
+   "i": "lum-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_SITRUS_BERRY",
+   "en": "SITRUS BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 1,
+   "d": {
+    "rs": "Closely related to ORAN. The large BERRY has a well-rounded flavor.",
+    "e": "Closely related to ORAN. The large BERRY has a well-rounded flavor.",
+    "frlg": "When held by a POKéMON, it will be used in battle to restore 30 HP."
+   },
+   "fl": {
+    "spicy": 10,
+    "dry": 10,
+    "sweet": 10,
+    "bitter": 10,
+    "sour": 10
+   },
+   "firm": "very_hard",
+   "i": "sitrus-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_FIGY_BERRY",
+   "en": "FIGY BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 1,
+   "d": {
+    "rs": "The BERRY, which looks chewed up, brims with spicy substances.",
+    "e": "The BERRY, which looks chewed up, brims with spicy substances.",
+    "frlg": "A hold item that restores HP but may cause confusion when used."
+   },
+   "fl": {
+    "spicy": 10,
+    "dry": 0,
+    "sweet": 0,
+    "bitter": 0,
+    "sour": 0
+   },
+   "firm": "soft",
+   "i": "figy-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_WIKI_BERRY",
+   "en": "WIKI BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 1,
+   "d": {
+    "rs": "The BERRY is said to have grown lumpy to help POKéMON grip it.",
+    "e": "The BERRY is said to have grown lumpy to help POKéMON grip it.",
+    "frlg": "A hold item that restores HP but may cause confusion when used."
+   },
+   "fl": {
+    "spicy": 0,
+    "dry": 10,
+    "sweet": 0,
+    "bitter": 0,
+    "sour": 0
+   },
+   "firm": "hard",
+   "i": "wiki-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_MAGO_BERRY",
+   "en": "MAGO BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 1,
+   "d": {
+    "rs": "The BERRY turns curvy as it grows. The curvier, the sweeter and tastier.",
+    "e": "The BERRY turns curvy as it grows. The curvier, the sweeter and tastier.",
+    "frlg": "A hold item that restores HP but may cause confusion when used."
+   },
+   "fl": {
+    "spicy": 0,
+    "dry": 0,
+    "sweet": 10,
+    "bitter": 0,
+    "sour": 0
+   },
+   "firm": "hard",
+   "i": "mago-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_AGUAV_BERRY",
+   "en": "AGUAV BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 1,
+   "d": {
+    "rs": "The flower is dainty. It is rare in its ability to grow without light.",
+    "e": "The flower is dainty. It is rare in its ability to grow without light.",
+    "frlg": "A hold item that restores HP but may cause confusion when used."
+   },
+   "fl": {
+    "spicy": 0,
+    "dry": 0,
+    "sweet": 0,
+    "bitter": 10,
+    "sour": 0
+   },
+   "firm": "super_hard",
+   "i": "aguav-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_IAPAPA_BERRY",
+   "en": "IAPAPA BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 1,
+   "d": {
+    "rs": "The BERRY is very big and sour. It takes at least a day to grow.",
+    "e": "The BERRY is very big and sour. It takes at least a day to grow.",
+    "frlg": "A hold item that restores HP but may cause confusion when used."
+   },
+   "fl": {
+    "spicy": 0,
+    "dry": 0,
+    "sweet": 0,
+    "bitter": 0,
+    "sour": 10
+   },
+   "firm": "soft",
+   "i": "iapapa-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_RAZZ_BERRY",
+   "en": "RAZZ BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 0,
+   "d": {
+    "rs": "The red BERRY tastes slightly spicy. It grows quickly in just four hours.",
+    "e": "The red BERRY tastes slightly spicy. It grows quickly in just four hours.",
+    "frlg": "Can be ground up into a powder as an ingredient for medicine."
+   },
+   "fl": {
+    "spicy": 10,
+    "dry": 10,
+    "sweet": 0,
+    "bitter": 0,
+    "sour": 0
+   },
+   "firm": "very_hard",
+   "i": "razz-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_BLUK_BERRY",
+   "en": "BLUK BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 0,
+   "d": {
+    "rs": "The BERRY is blue on the outside, but it blackens the mouth when eaten.",
+    "e": "The BERRY is blue on the outside, but it blackens the mouth when eaten.",
+    "frlg": "Can be ground up into a powder as an ingredient for medicine."
+   },
+   "fl": {
+    "spicy": 0,
+    "dry": 10,
+    "sweet": 10,
+    "bitter": 0,
+    "sour": 0
+   },
+   "firm": "soft",
+   "i": "bluk-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_NANAB_BERRY",
+   "en": "NANAB BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 0,
+   "d": {
+    "rs": "This BERRY was the seventh discovered in the world. It is sweet.",
+    "e": "This BERRY was the seventh discovered in the world. It is sweet.",
+    "frlg": "Can be ground up into a powder as an ingredient for medicine."
+   },
+   "fl": {
+    "spicy": 0,
+    "dry": 0,
+    "sweet": 10,
+    "bitter": 10,
+    "sour": 0
+   },
+   "firm": "very_hard",
+   "i": "nanab-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_WEPEAR_BERRY",
+   "en": "WEPEAR BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 0,
+   "d": {
+    "rs": "The flower is small and white. It has a delicate balance of bitter and sour.",
+    "e": "The flower is small and white. It has a delicate balance of bitter and sour.",
+    "frlg": "Can be ground up into a powder as an ingredient for medicine."
+   },
+   "fl": {
+    "spicy": 0,
+    "dry": 0,
+    "sweet": 0,
+    "bitter": 10,
+    "sour": 10
+   },
+   "firm": "super_hard",
+   "i": "wepear-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_PINAP_BERRY",
+   "en": "PINAP BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 0,
+   "d": {
+    "rs": "Weak against wind and cold. The fruit is spicy and the skin, sour.",
+    "e": "Weak against wind and cold. The fruit is spicy and the skin, sour.",
+    "frlg": "Can be ground up into a powder as an ingredient for medicine."
+   },
+   "fl": {
+    "spicy": 10,
+    "dry": 0,
+    "sweet": 0,
+    "bitter": 0,
+    "sour": 10
+   },
+   "firm": "hard",
+   "i": "pinap-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_POMEG_BERRY",
+   "en": "POMEG BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 0,
+   "d": {
+    "rs": "However much it is watered, it only grows up to six BERRIES.",
+    "e": "However much it is watered, it only grows up to six BERRIES.",
+    "frlg": "Can be ground up into a powder as an ingredient for medicine."
+   },
+   "fl": {
+    "spicy": 10,
+    "dry": 0,
+    "sweet": 10,
+    "bitter": 10,
+    "sour": 0
+   },
+   "firm": "very_hard",
+   "i": "pomeg-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_KELPSY_BERRY",
+   "en": "KELPSY BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 0,
+   "d": {
+    "rs": "A rare variety shaped like a root. Grows a very large flower.",
+    "e": "A rare variety shaped like a root. Grows a very large flower.",
+    "frlg": "Can be ground up into a powder as an ingredient for medicine."
+   },
+   "fl": {
+    "spicy": 0,
+    "dry": 10,
+    "sweet": 0,
+    "bitter": 10,
+    "sour": 10
+   },
+   "firm": "hard",
+   "i": "kelpsy-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_QUALOT_BERRY",
+   "en": "QUALOT BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 0,
+   "d": {
+    "rs": "Loves water. Grows strong even in locations with constant rainfall.",
+    "e": "Loves water. Grows strong even in locations with constant rainfall.",
+    "frlg": "Can be ground up into a powder as an ingredient for medicine."
+   },
+   "fl": {
+    "spicy": 10,
+    "dry": 0,
+    "sweet": 10,
+    "bitter": 0,
+    "sour": 10
+   },
+   "firm": "hard",
+   "i": "qualot-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_HONDEW_BERRY",
+   "en": "HONDEW BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 0,
+   "d": {
+    "rs": "A BERRY that is very valuable and rarely seen. It is very delicious.",
+    "e": "A BERRY that is very valuable and rarely seen. It is very delicious.",
+    "frlg": "Can be ground up into a powder as an ingredient for medicine."
+   },
+   "fl": {
+    "spicy": 10,
+    "dry": 10,
+    "sweet": 0,
+    "bitter": 10,
+    "sour": 0
+   },
+   "firm": "hard",
+   "i": "hondew-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_GREPA_BERRY",
+   "en": "GREPA BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 0,
+   "d": {
+    "rs": "Despite its tenderness and round shape, the BERRY is unimaginably sour.",
+    "e": "Despite its tenderness and round shape, the BERRY is unimaginably sour.",
+    "frlg": "Can be ground up into a powder as an ingredient for medicine."
+   },
+   "fl": {
+    "spicy": 0,
+    "dry": 10,
+    "sweet": 10,
+    "bitter": 0,
+    "sour": 10
+   },
+   "firm": "soft",
+   "i": "grepa-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_TAMATO_BERRY",
+   "en": "TAMATO BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 0,
+   "d": {
+    "rs": "The BERRY is lip-bendingly spicy. It takes time to grow.",
+    "e": "The BERRY is lip-bendingly spicy. It takes time to grow.",
+    "frlg": "Can be ground up into a powder as an ingredient for medicine."
+   },
+   "fl": {
+    "spicy": 20,
+    "dry": 10,
+    "sweet": 0,
+    "bitter": 0,
+    "sour": 0
+   },
+   "firm": "soft",
+   "i": "tamato-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_CORNN_BERRY",
+   "en": "CORNN BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 0,
+   "d": {
+    "rs": "A BERRY from an ancient era. May not grow unless planted in quantity.",
+    "e": "A BERRY from an ancient era. May not grow unless planted in quantity.",
+    "frlg": "Can be ground up into a powder as an ingredient for medicine."
+   },
+   "fl": {
+    "spicy": 0,
+    "dry": 20,
+    "sweet": 10,
+    "bitter": 0,
+    "sour": 0
+   },
+   "firm": "hard",
+   "i": "cornn-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_MAGOST_BERRY",
+   "en": "MAGOST BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 0,
+   "d": {
+    "rs": "A BERRY that is widely said to have a finely balanced flavor.",
+    "e": "A BERRY that is widely said to have a finely balanced flavor.",
+    "frlg": "Can be ground up into a powder as an ingredient for medicine."
+   },
+   "fl": {
+    "spicy": 0,
+    "dry": 0,
+    "sweet": 20,
+    "bitter": 10,
+    "sour": 0
+   },
+   "firm": "hard",
+   "i": "magost-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_RABUTA_BERRY",
+   "en": "RABUTA BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 0,
+   "d": {
+    "rs": "A rare variety that is overgrown with hair. It is quite bitter.",
+    "e": "A rare variety that is overgrown with hair. It is quite bitter.",
+    "frlg": "Can be ground up into a powder as an ingredient for medicine."
+   },
+   "fl": {
+    "spicy": 0,
+    "dry": 0,
+    "sweet": 0,
+    "bitter": 20,
+    "sour": 10
+   },
+   "firm": "soft",
+   "i": "rabuta-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_NOMEL_BERRY",
+   "en": "NOMEL BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 0,
+   "d": {
+    "rs": "Quite sour. Just one bite makes it impossible to taste for three days.",
+    "e": "Quite sour. Just one bite makes it impossible to taste for three days.",
+    "frlg": "Can be ground up into a powder as an ingredient for medicine."
+   },
+   "fl": {
+    "spicy": 10,
+    "dry": 0,
+    "sweet": 0,
+    "bitter": 0,
+    "sour": 20
+   },
+   "firm": "super_hard",
+   "i": "nomel-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_SPELON_BERRY",
+   "en": "SPELON BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 0,
+   "d": {
+    "rs": "The vividly red BERRY is very spicy. Its warts secrete a spicy substance.",
+    "e": "The vividly red BERRY is very spicy. Its warts secrete a spicy substance.",
+    "frlg": "Can be ground up into a powder as an ingredient for medicine."
+   },
+   "fl": {
+    "spicy": 40,
+    "dry": 10,
+    "sweet": 0,
+    "bitter": 0,
+    "sour": 0
+   },
+   "firm": "soft",
+   "i": "spelon-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_PAMTRE_BERRY",
+   "en": "PAMTRE BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 0,
+   "d": {
+    "rs": "Drifts on the sea from somewhere. It is thought to grow elsewhere.",
+    "e": "Drifts on the sea from somewhere. It is thought to grow elsewhere.",
+    "frlg": "Can be ground up into a powder as an ingredient for medicine."
+   },
+   "fl": {
+    "spicy": 0,
+    "dry": 40,
+    "sweet": 10,
+    "bitter": 0,
+    "sour": 0
+   },
+   "firm": "very_soft",
+   "i": "pamtre-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_WATMEL_BERRY",
+   "en": "WATMEL BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 0,
+   "d": {
+    "rs": "A huge BERRY, with some over 20 inches discovered. Exceedingly sweet.",
+    "e": "A huge BERRY, with some over 20 inches discovered. Exceedingly sweet.",
+    "frlg": "Can be ground up into a powder as an ingredient for medicine."
+   },
+   "fl": {
+    "spicy": 0,
+    "dry": 0,
+    "sweet": 40,
+    "bitter": 10,
+    "sour": 0
+   },
+   "firm": "soft",
+   "i": "watmel-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_DURIN_BERRY",
+   "en": "DURIN BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 0,
+   "d": {
+    "rs": "Bitter to even look at. It is so bitter, no one has ever eaten it as is.",
+    "e": "Bitter to even look at. It is so bitter, no one has ever eaten it as is.",
+    "frlg": "Can be ground up into a powder as an ingredient for medicine."
+   },
+   "fl": {
+    "spicy": 0,
+    "dry": 0,
+    "sweet": 0,
+    "bitter": 40,
+    "sour": 10
+   },
+   "firm": "hard",
+   "i": "durin-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_BELUE_BERRY",
+   "en": "BELUE BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 0,
+   "d": {
+    "rs": "It is glossy and looks delicious, but it is awfully sour. Takes time to grow.",
+    "e": "It is glossy and looks delicious, but it is awfully sour. Takes time to grow.",
+    "frlg": "Can be ground up into a powder as an ingredient for medicine."
+   },
+   "fl": {
+    "spicy": 10,
+    "dry": 0,
+    "sweet": 0,
+    "bitter": 0,
+    "sour": 40
+   },
+   "firm": "very_soft",
+   "i": "belue-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_LIECHI_BERRY",
+   "en": "LIECHI BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 1,
+   "d": {
+    "rs": "A mysterious BERRY. It is rumored to contain the power of the sea.",
+    "e": "A mysterious BERRY. It is rumored to contain the power of the sea.",
+    "frlg": "When held by a POKéMON, it raises the ATTACK stat in a pinch."
+   },
+   "fl": {
+    "spicy": 40,
+    "dry": 0,
+    "sweet": 40,
+    "bitter": 0,
+    "sour": 10
+   },
+   "firm": "very_hard",
+   "i": "liechi-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_GANLON_BERRY",
+   "en": "GANLON BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 1,
+   "d": {
+    "rs": "A mysterious BERRY. It is rumored to contain the power of the land.",
+    "e": "A mysterious BERRY. It is rumored to contain the power of the land.",
+    "frlg": "When held by a POKéMON, it raises the DEFENSE stat in a pinch."
+   },
+   "fl": {
+    "spicy": 0,
+    "dry": 40,
+    "sweet": 0,
+    "bitter": 40,
+    "sour": 0
+   },
+   "firm": "very_hard",
+   "i": "ganlon-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_SALAC_BERRY",
+   "en": "SALAC BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 1,
+   "d": {
+    "rs": "A mysterious BERRY. It is rumored to contain the power of the sky.",
+    "e": "A mysterious BERRY. It is rumored to contain the power of the sky.",
+    "frlg": "When held by a POKéMON, it raises the SPEED stat in a pinch."
+   },
+   "fl": {
+    "spicy": 0,
+    "dry": 0,
+    "sweet": 40,
+    "bitter": 0,
+    "sour": 40
+   },
+   "firm": "very_hard",
+   "i": "salac-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_PETAYA_BERRY",
+   "en": "PETAYA BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 1,
+   "d": {
+    "rs": "A mysterious BERRY. It is rumored to contain the power of all living things.",
+    "e": "A mysterious BERRY. It is rumored to contain the power of all living things.",
+    "frlg": "When held by a POKéMON, it raises the SP. ATK stat in a pinch."
+   },
+   "fl": {
+    "spicy": 40,
+    "dry": 0,
+    "sweet": 0,
+    "bitter": 40,
+    "sour": 0
+   },
+   "firm": "very_hard",
+   "i": "petaya-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_APICOT_BERRY",
+   "en": "APICOT BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 1,
+   "d": {
+    "rs": "A very mystifying BERRY. No telling what may happen or how it can be used.",
+    "e": "A very mystifying BERRY. No telling what may happen or how it can be used.",
+    "frlg": "When held by a POKéMON, it raises the SP. DEF stat in a pinch."
+   },
+   "fl": {
+    "spicy": 0,
+    "dry": 40,
+    "sweet": 0,
+    "bitter": 0,
+    "sour": 40
+   },
+   "firm": "hard",
+   "i": "apicot-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_LANSAT_BERRY",
+   "en": "LANSAT BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 1,
+   "d": {
+    "rs": "Said to be a legendary BERRY. Holding it supposedly brings joy.",
+    "e": "Said to be a legendary BERRY. Holding it supposedly brings joy.",
+    "frlg": "When held by a POKéMON, it raises the critical-hit ratio in a pinch."
+   },
+   "fl": {
+    "spicy": 10,
+    "dry": 10,
+    "sweet": 10,
+    "bitter": 10,
+    "sour": 10
+   },
+   "firm": "soft",
+   "i": "lansat-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_STARF_BERRY",
+   "en": "STARF BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 1,
+   "d": {
+    "rs": "So strong, it was abandoned at the world's edge. Considered a mirage.",
+    "e": "So strong, it was abandoned at the world's edge. Considered a mirage.",
+    "frlg": "When held by a POKéMON, it sharply raises one stat in a pinch."
+   },
+   "fl": {
+    "spicy": 10,
+    "dry": 10,
+    "sweet": 10,
+    "bitter": 10,
+    "sour": 10
+   },
+   "firm": "super_hard",
+   "i": "starf-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_ENIGMA_BERRY",
+   "en": "ENIGMA BERRY",
+   "g": "rsefl",
+   "p": {
+    "rs": 20,
+    "e": 20,
+    "frlg": 20
+   },
+   "pk": "berry",
+   "hold": 0,
+   "d": {
+    "rs": "A completely enigmatic BERRY. Appears to have the power of stars.",
+    "e": "A completely enigmatic BERRY. Appears to have the power of stars.",
+    "frlg": "Can be ground up into a powder as an ingredient for medicine."
+   },
+   "fl": {
+    "spicy": 40,
+    "dry": 40,
+    "sweet": 40,
+    "bitter": 40,
+    "sour": 40
+   },
+   "firm": "unknown",
+   "i": "enigma-berry",
+   "cat": "berry"
+  },
+  {
+   "k": "ITEM_BRIGHT_POWDER",
+   "en": "BRIGHTPOWDER",
+   "g": "rsefl",
+   "p": {
+    "rs": 10,
+    "e": 10,
+    "frlg": 10
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that casts a glare to reduce accuracy.",
+    "e": "A hold item that casts a glare to reduce accuracy.",
+    "frlg": "An item to be held by a POKéMON. It casts a tricky glare that lowers the opponent's accuracy."
+   },
+   "i": "bright-powder",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_WHITE_HERB",
+   "en": "WHITE HERB",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that restores any lowered stat.",
+    "e": "A hold item that restores any lowered stat.",
+    "frlg": "An item to be held by a POKéMON. It restores any lowered stat in battle. It can be used only once."
+   },
+   "i": "white-herb",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_MACHO_BRACE",
+   "en": "MACHO BRACE",
+   "g": "rsefl",
+   "p": {
+    "rs": 3000,
+    "e": 3000,
+    "frlg": 3000
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that promotes growth, but reduces SPEED.",
+    "e": "A hold item that promotes growth, but reduces SPEED.",
+    "frlg": "An item to be held by a POKéMON. It promotes strong growth but lowers SPEED while it is held."
+   },
+   "i": "macho-brace",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_EXP_SHARE",
+   "en": "EXP. SHARE",
+   "g": "rsefl",
+   "p": {
+    "rs": 3000,
+    "e": 3000,
+    "frlg": 3000
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that gets EXP. points from battles.",
+    "e": "A hold item that gets EXP. points from battles.",
+    "frlg": "An item to be held by a POKéMON. The holder gets a share of EXP. points without having to battle."
+   },
+   "i": "exp-share",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_QUICK_CLAW",
+   "en": "QUICK CLAW",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that occasionally allows the first strike.",
+    "e": "A hold item that occasionally allows the first strike.",
+    "frlg": "An item to be held by a POKéMON. A light and sharp claw. The holder may be able to strike first."
+   },
+   "i": "quick-claw",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_SOOTHE_BELL",
+   "en": "SOOTHE BELL",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that calms spirits and fosters friendship.",
+    "e": "A hold item that calms spirits and fosters friendship.",
+    "frlg": "An item to be held by a POKéMON. A bell with a comforting chime that makes the holder calm and friendly."
+   },
+   "i": "soothe-bell",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_MENTAL_HERB",
+   "en": "MENTAL HERB",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that snaps POKéMON out of infatuation.",
+    "e": "A hold item that snaps POKéMON out of infatuation.",
+    "frlg": "An item to be held by a POKéMON. It snaps the holder out of infatuation. It can be used once."
+   },
+   "i": "mental-herb",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_CHOICE_BAND",
+   "en": "CHOICE BAND",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "Raises a move's power, but permits only that move.",
+    "e": "Raises a move's power, but permits only that move.",
+    "frlg": "An item to be held by a POKéMON. It powers up one move, which becomes the only usable one."
+   },
+   "i": "choice-band",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_KINGS_ROCK",
+   "en": "KING'S ROCK",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that may cause flinching when the foe is hit.",
+    "e": "A hold item that may cause flinching when the foe is hit.",
+    "frlg": "An item to be held by a POKéMON. It may cause the foe to flinch upon taking damage."
+   },
+   "i": "kings-rock",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_SILVER_POWDER",
+   "en": "SILVERPOWDER",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that raises the power of BUG-type moves.",
+    "e": "A hold item that raises the power of BUG-type moves.",
+    "frlg": "An item to be held by a POKéMON. A shiny silver powder that boosts the power of BUG-type moves."
+   },
+   "i": "silver-powder",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_AMULET_COIN",
+   "en": "AMULET COIN",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "Doubles money in battle if the holder takes part.",
+    "e": "Doubles money in battle if the holder takes part.",
+    "frlg": "An item to be held by a POKéMON. It doubles the battle money if the holding POKéMON takes part."
+   },
+   "i": "amulet-coin",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_CLEANSE_TAG",
+   "en": "CLEANSE TAG",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that helps repel wild POKéMON.",
+    "e": "A hold item that helps repel wild POKéMON.",
+    "frlg": "An item to be held by a POKéMON. It repels wild POKéMON if the holder is first in the party."
+   },
+   "i": "cleanse-tag",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_SOUL_DEW",
+   "en": "SOUL DEW",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "Hold item: Raises SP. ATK & SP. DEF of LATIOS & LATIAS.",
+    "e": "Hold item: raises SP. ATK & SP. DEF of LATIOS & LATIAS.",
+    "frlg": "An orb to be held by a LATIOS or LATIAS. It raises the SP. ATK and SP. DEF stats."
+   },
+   "i": "soul-dew",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_DEEP_SEA_TOOTH",
+   "en": "DEEPSEATOOTH",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that raises the SP. ATK of CLAMPERL.",
+    "e": "A hold item that raises the SP. ATK of CLAMPERL.",
+    "frlg": "An item to be held by a POKéMON. A fang that gleams a sharp silver. It raises the SP. ATK stat."
+   },
+   "i": "deep-sea-tooth",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_DEEP_SEA_SCALE",
+   "en": "DEEPSEASCALE",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that raises the SP. DEF of CLAMPERL.",
+    "e": "A hold item that raises the SP. DEF of CLAMPERL.",
+    "frlg": "An item to be held by a POKéMON. A scale that shines a faint pink. It raises the SP. DEF stat."
+   },
+   "i": "deep-sea-scale",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_SMOKE_BALL",
+   "en": "SMOKE BALL",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that can be used to flee from a wild POKéMON.",
+    "e": "A hold item that assures fleeing from wild POKéMON.",
+    "frlg": "An item to be held by a POKéMON. The holding POKéMON can flee from any wild POKéMON for sure."
+   },
+   "i": "smoke-ball",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_EVERSTONE",
+   "en": "EVERSTONE",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A wondrous stone & a hold item that prevents evolution.",
+    "e": "A wondrous hold item that prevents evolution.",
+    "frlg": "An item to be held by a POKéMON. The holding POKéMON is prevented from evolving."
+   },
+   "i": "everstone",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_FOCUS_BAND",
+   "en": "FOCUS BAND",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that occasionally prevents fainting.",
+    "e": "A hold item that occasionally prevents fainting.",
+    "frlg": "An item to be held by a POKéMON. The holding POKéMON may endure an attack, leaving just 1 HP."
+   },
+   "i": "focus-band",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_LUCKY_EGG",
+   "en": "LUCKY EGG",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that boosts EXP. points earned in battle.",
+    "e": "A hold item that boosts EXP. points earned in battle.",
+    "frlg": "An item to be held by a POKéMON. An egg filled with happiness that earns extra EXP. points in battle."
+   },
+   "i": "lucky-egg",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_SCOPE_LENS",
+   "en": "SCOPE LENS",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that raises the critical- hit rate.",
+    "e": "A hold item that improves the critical-hit rate.",
+    "frlg": "An item to be held by a POKéMON. A lens that boosts the critical-hit ratio of the holding POKéMON."
+   },
+   "i": "scope-lens",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_METAL_COAT",
+   "en": "METAL COAT",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that raises the power of STEEL-type moves.",
+    "e": "A hold item that raises the power of STEEL-type moves.",
+    "frlg": "An item to be held by a POKéMON. A special metallic film that boosts the power of STEEL-type moves."
+   },
+   "i": "metal-coat",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_LEFTOVERS",
+   "en": "LEFTOVERS",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that gradually restores HP in battle.",
+    "e": "A hold item that gradually restores HP in battle.",
+    "frlg": "An item to be held by a POKéMON. The holding POKéMON gradually regains HP during battle."
+   },
+   "i": "leftovers",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_DRAGON_SCALE",
+   "en": "DRAGON SCALE",
+   "g": "rsefl",
+   "p": {
+    "rs": 2100,
+    "e": 2100,
+    "frlg": 2100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A strange scale held by DRAGON- type POKéMON.",
+    "e": "A strange scale held by DRAGON- type POKéMON.",
+    "frlg": "A thick and tough scale. A DRAGON-type POKéMON may be holding it."
+   },
+   "i": "dragon-scale",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_LIGHT_BALL",
+   "en": "LIGHT BALL",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that raises the SP. ATK of PIKACHU.",
+    "e": "A hold item that raises the SP. ATK of PIKACHU.",
+    "frlg": "An orb to be held by a PIKACHU that raises the SP. ATK stat. Touching it may cause a shock."
+   },
+   "i": "light-ball",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_SOFT_SAND",
+   "en": "SOFT SAND",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that raises the power of GROUND-type moves.",
+    "e": "A hold item that raises the power of GROUND-type moves.",
+    "frlg": "An item to be held by a POKéMON. A loose, silky sand that boosts the power of GROUND-type moves."
+   },
+   "i": "soft-sand",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_HARD_STONE",
+   "en": "HARD STONE",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that raises the power of ROCK-type moves.",
+    "e": "A hold item that raises the power of ROCK-type moves.",
+    "frlg": "An item to be held by a POKéMON. An unbreakable stone that boosts the power of ROCK-type moves."
+   },
+   "i": "hard-stone",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_MIRACLE_SEED",
+   "en": "MIRACLE SEED",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that raises the power of GRASS-type moves.",
+    "e": "A hold item that raises the power of GRASS-type moves.",
+    "frlg": "An item to be held by a POKéMON. A seed imbued with life that boosts the power of GRASS-type moves."
+   },
+   "i": "miracle-seed",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_BLACK_GLASSES",
+   "en": "BLACKGLASSES",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that raises the power of DARK-type moves.",
+    "e": "A hold item that raises the power of DARK-type moves.",
+    "frlg": "An item to be held by a POKéMON. A shady-looking pair of glasses that boosts DARK-type moves."
+   },
+   "i": "black-glasses",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_BLACK_BELT",
+   "en": "BLACK BELT",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that boosts FIGHTING- type moves.",
+    "e": "A hold item that boosts FIGHTING- type moves.",
+    "frlg": "An item to be held by a POKéMON. A belt that boosts determination and FIGHTING-type moves."
+   },
+   "i": "black-belt",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_MAGNET",
+   "en": "MAGNET",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that boosts ELECTRIC- type moves.",
+    "e": "A hold item that boosts ELECTRIC- type moves.",
+    "frlg": "An item to be held by a POKéMON. A powerful magnet that boosts the power of ELECTRIC-type moves."
+   },
+   "i": "magnet",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_MYSTIC_WATER",
+   "en": "MYSTIC WATER",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that raises the power of WATER-type moves.",
+    "e": "A hold item that raises the power of WATER-type moves.",
+    "frlg": "An item to be held by a POKéMON. A teardrop-shaped gem that boosts the power of WATER-type moves."
+   },
+   "i": "mystic-water",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_SHARP_BEAK",
+   "en": "SHARP BEAK",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that raises the power of FLYING-type moves.",
+    "e": "A hold item that raises the power of FLYING-type moves.",
+    "frlg": "An item to be held by a POKéMON. A long, sharp beak that boosts the power of FLYING-type moves."
+   },
+   "i": "sharp-beak",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_POISON_BARB",
+   "en": "POISON BARB",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that raises the power of POISON-type moves.",
+    "e": "A hold item that raises the power of POISON-type moves.",
+    "frlg": "An item to be held by a POKéMON. A small, poisonous barb that boosts the power of POISON-type moves."
+   },
+   "i": "poison-barb",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_NEVER_MELT_ICE",
+   "en": "NEVERMELTICE",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that raises the power of ICE-type moves.",
+    "e": "A hold item that raises the power of ICE-type moves.",
+    "frlg": "An item to be held by a POKéMON. A piece of ice that repels heat and boosts ICE-type moves."
+   },
+   "i": "never-melt-ice",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_SPELL_TAG",
+   "en": "SPELL TAG",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that raises the power of GHOST-type moves.",
+    "e": "A hold item that raises the power of GHOST-type moves.",
+    "frlg": "An item to be held by a POKéMON. A sinister, eerie tag that boosts GHOST-type moves."
+   },
+   "i": "spell-tag",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_TWISTED_SPOON",
+   "en": "TWISTEDSPOON",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that boosts PSYCHIC- type moves.",
+    "e": "A hold item that boosts PSYCHIC- type moves.",
+    "frlg": "An item to be held by a POKéMON. A spoon imbued with telekinetic power boosts PSYCHIC-type moves."
+   },
+   "i": "twisted-spoon",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_CHARCOAL",
+   "en": "CHARCOAL",
+   "g": "rsefl",
+   "p": {
+    "rs": 9800,
+    "e": 9800,
+    "frlg": 9800
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that raises the power of FIRE-type moves.",
+    "e": "A hold item that raises the power of FIRE-type moves.",
+    "frlg": "An item to be held by a POKéMON. A combustible fuel that boosts the power of FIRE-type moves."
+   },
+   "i": "charcoal",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_DRAGON_FANG",
+   "en": "DRAGON FANG",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that raises the power of DRAGON-type moves.",
+    "e": "A hold item that raises the power of DRAGON-type moves.",
+    "frlg": "An item to be held by a POKéMON. A hard and sharp fang that boosts the power of DRAGON-type moves."
+   },
+   "i": "dragon-fang",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_SILK_SCARF",
+   "en": "SILK SCARF",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that raises the power of NORMAL-type moves.",
+    "e": "A hold item that raises the power of NORMAL-type moves.",
+    "frlg": "An item to be held by a POKéMON. A sumptuous scarf that boosts the power of NORMAL-type moves."
+   },
+   "i": "silk-scarf",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_UP_GRADE",
+   "en": "UP-GRADE",
+   "g": "rsefl",
+   "p": {
+    "rs": 2100,
+    "e": 2100,
+    "frlg": 2100
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A peculiar box made by SILPH CO.",
+    "e": "A peculiar box made by SILPH CO.",
+    "frlg": "A transparent device filled with all sorts of data. It is made by SILPH CO."
+   },
+   "i": "up-grade",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_SHELL_BELL",
+   "en": "SHELL BELL",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that restores HP upon striking the foe.",
+    "e": "A hold item that restores HP upon striking the foe.",
+    "frlg": "An item to be held by a POKéMON. The holding POKéMON regains some HP upon striking the foe."
+   },
+   "i": "shell-bell",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_SEA_INCENSE",
+   "en": "SEA INCENSE",
+   "g": "rsefl",
+   "p": {
+    "rs": 9600,
+    "e": 9600,
+    "frlg": 9600
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that slightly boosts WATER-type moves.",
+    "e": "A hold item that slightly boosts WATER-type moves.",
+    "frlg": "An item to be held by a POKéMON. It slightly boosts the power of WATER-type moves."
+   },
+   "i": "sea-incense",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_LAX_INCENSE",
+   "en": "LAX INCENSE",
+   "g": "rsefl",
+   "p": {
+    "rs": 9600,
+    "e": 9600,
+    "frlg": 9600
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that slightly lowers the foe's accuracy.",
+    "e": "A hold item that slightly lowers the foe's accuracy.",
+    "frlg": "An item to be held by a POKéMON. Its tricky aroma slightly reduces the foe's accuracy."
+   },
+   "i": "lax-incense",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_LUCKY_PUNCH",
+   "en": "LUCKY PUNCH",
+   "g": "rsefl",
+   "p": {
+    "rs": 10,
+    "e": 10,
+    "frlg": 10
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that raises CHANSEY's critical-hit rate.",
+    "e": "A hold item that raises CHANSEY's critical-hit rate.",
+    "frlg": "A glove to be held by a CHANSEY. It raises CHANSEY's critical-hit ratio."
+   },
+   "i": "lucky-punch",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_METAL_POWDER",
+   "en": "METAL POWDER",
+   "g": "rsefl",
+   "p": {
+    "rs": 10,
+    "e": 10,
+    "frlg": 10
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A hold item that raises DEFENSE.",
+    "e": "A hold item that raises DITTO's DEFENSE.",
+    "frlg": "A fine, hard powder to be held by a DITTO. It raises DITTO's DEFENSE stat."
+   },
+   "i": "metal-powder",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_THICK_CLUB",
+   "en": "THICK CLUB",
+   "g": "rsefl",
+   "p": {
+    "rs": 500,
+    "e": 500,
+    "frlg": 500
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A bone of some sort. It can be sold cheaply.",
+    "e": "A hold item that raises CUBONE or MAROWAK's ATTACK.",
+    "frlg": "A hard bone of some sort to be held by a CUBONE or MAROWAK. It raises the ATTACK stat."
+   },
+   "i": "thick-club",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_STICK",
+   "en": "STICK",
+   "g": "rsefl",
+   "p": {
+    "rs": 200,
+    "e": 200,
+    "frlg": 200
+   },
+   "pk": "item",
+   "hold": 1,
+   "d": {
+    "rs": "A stick of leek. It can be sold cheaply.",
+    "e": "A hold item that raises FARFETCH'D's critical-hit ratio.",
+    "frlg": "A stick of leek to be held by a FARFETCH'D. It raises FARFETCH'D's critical-hit ratio."
+   },
+   "i": "stick",
+   "cat": "held"
+  },
+  {
+   "k": "ITEM_RED_SCARF",
+   "en": "RED SCARF",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A hold item that raises COOL in CONTESTS.",
+    "e": "A hold item that raises COOL in CONTESTS.",
+    "frlg": "An item to be held by a POKéMON. It boosts the holding POKéMON's COOL condition in CONTESTS."
+   },
+   "i": "red-scarf",
+   "cat": "misc"
+  },
+  {
+   "k": "ITEM_BLUE_SCARF",
+   "en": "BLUE SCARF",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A hold item that raises BEAUTY in CONTESTS.",
+    "e": "A hold item that raises BEAUTY in CONTESTS.",
+    "frlg": "An item to be held by a POKéMON. It boosts the holding POKéMON's BEAUTY condition in CONTESTS."
+   },
+   "i": "blue-scarf",
+   "cat": "misc"
+  },
+  {
+   "k": "ITEM_PINK_SCARF",
+   "en": "PINK SCARF",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A hold item that raises CUTE in CONTESTS.",
+    "e": "A hold item that raises CUTE in CONTESTS.",
+    "frlg": "An item to be held by a POKéMON. It boosts the holding POKéMON's CUTE condition in CONTESTS."
+   },
+   "i": "pink-scarf",
+   "cat": "misc"
+  },
+  {
+   "k": "ITEM_GREEN_SCARF",
+   "en": "GREEN SCARF",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A hold item that raises SMART in CONTESTS.",
+    "e": "A hold item that raises SMART in CONTESTS.",
+    "frlg": "An item to be held by a POKéMON. It boosts the holding POKéMON's SMART condition in CONTESTS."
+   },
+   "i": "green-scarf",
+   "cat": "misc"
+  },
+  {
+   "k": "ITEM_YELLOW_SCARF",
+   "en": "YELLOW SCARF",
+   "g": "rsefl",
+   "p": {
+    "rs": 100,
+    "e": 100,
+    "frlg": 100
+   },
+   "pk": "item",
+   "hold": 0,
+   "d": {
+    "rs": "A hold item that raises TOUGH in CONTESTS.",
+    "e": "A hold item that raises TOUGH in CONTESTS.",
+    "frlg": "An item to be held by a POKéMON. It boosts the holding POKéMON's TOUGH condition in CONTESTS."
+   },
+   "i": "yellow-scarf",
+   "cat": "misc"
+  },
+  {
+   "k": "ITEM_MACH_BIKE",
+   "en": "MACH BIKE",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "A folding bicycle that more than doubles foot speed.",
+    "e": "A folding bicycle that doubles your speed or better.",
+    "frlg": "A folding bicycle that is at least twice as fast as walking."
+   },
+   "i": "mach-bike",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_COIN_CASE",
+   "en": "COIN CASE",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "A case that holds up to 9,999 COINS.",
+    "e": "A case that holds up to 9,999 COINS.",
+    "frlg": "A case for holding COINS obtained at the GAME CORNER. It holds up to 9,999 COINS."
+   },
+   "i": "coin-case",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_ITEMFINDER",
+   "en": "ITEMFINDER",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "A device that signals an invisible item by sound.",
+    "e": "A device that signals an invisible item by sound.",
+    "frlg": "A device used for finding items. If there is a hidden item nearby when it is used, it emits a signal."
+   },
+   "i": null,
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_OLD_ROD",
+   "en": "OLD ROD",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "Use by any body of water to fish for wild POKéMON.",
+    "e": "Use by any body of water to fish for wild POKéMON.",
+    "frlg": "An old and beat-up fishing rod. Use it by any body of water to fish for wild POKéMON."
+   },
+   "i": "old-rod",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_GOOD_ROD",
+   "en": "GOOD ROD",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "A decent fishing rod for catching wild POKéMON.",
+    "e": "A decent fishing rod for catching wild POKéMON.",
+    "frlg": "A new, good-quality fishing rod. Use it by any body of water to fish for wild POKéMON."
+   },
+   "i": "good-rod",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_SUPER_ROD",
+   "en": "SUPER ROD",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "The best fishing rod for catching wild POKéMON.",
+    "e": "The best fishing rod for catching wild POKéMON.",
+    "frlg": "An awesome, high-tech fishing rod. Use it by any body of water to fish for wild POKéMON."
+   },
+   "i": "super-rod",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_SS_TICKET",
+   "en": "S.S. TICKET",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "The ticket required for sailing on a ferry.",
+    "e": "The ticket required for sailing on a ferry.",
+    "frlg": "The ticket required for sailing on the ferry S.S. ANNE. It has a drawing of a ship on it."
+   },
+   "i": "ss-ticket",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_CONTEST_PASS",
+   "en": "CONTEST PASS",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "The pass required for entering POKéMON CONTESTS.",
+    "e": "The pass required for entering POKéMON CONTESTS.",
+    "frlg": "The pass required for entering POKéMON CONTESTS. It has a drawing of an award ribbon on it."
+   },
+   "i": "contest-pass",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_WAILMER_PAIL",
+   "en": "WAILMER PAIL",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "A tool used for watering BERRIES and plants.",
+    "e": "A tool used for watering BERRIES and plants.",
+    "frlg": "A nifty watering pail. Use it to promote strong growth in BERRIES planted in soft soil."
+   },
+   "i": "wailmer-pail",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_DEVON_GOODS",
+   "en": "DEVON GOODS",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "A package that contains DEVON's machine parts.",
+    "e": "A package that contains DEVON's machine parts.",
+    "frlg": "A package that contains mechanical parts of some sort made by the DEVON CORPORATION."
+   },
+   "i": "devon-goods",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_SOOT_SACK",
+   "en": "SOOT SACK",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "A sack used to gather and hold volcanic ash.",
+    "e": "A sack used to gather and hold volcanic ash.",
+    "frlg": "A sack used to collect volcanic ash automatically during walks over deep ash."
+   },
+   "i": "soot-sack",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_BASEMENT_KEY",
+   "en": "BASEMENT KEY",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "The key for NEW MAUVILLE beneath MAUVILLE CITY.",
+    "e": "The key for NEW MAUVILLE beneath MAUVILLE CITY.",
+    "frlg": "The key to NEW MAUVILLE, which was constructed beneath MAUVILLE CITY."
+   },
+   "i": "basement-key",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_ACRO_BIKE",
+   "en": "ACRO BIKE",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "A folding bicycle capable of jumps and wheelies.",
+    "e": "A folding bicycle capable of jumps and wheelies.",
+    "frlg": "A folding bicycle that is capable of stunts like jumps and wheelies."
+   },
+   "i": "acro-bike",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_POKEBLOCK_CASE",
+   "en": "POKéBLOCK CASE",
+   "g": "fl",
+   "p": {
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "frlg": "A case for holding POKéBLOCKS made with a BERRY BLENDER. It releases one POKéBLOCK when shaken."
+   },
+   "i": "pokeblock-case",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_LETTER",
+   "en": "LETTER",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "A letter to STEVEN from the PRESIDENT of the DEVON CORP.",
+    "e": "A letter to STEVEN from the PRESIDENT of the DEVON CORP.",
+    "frlg": "An extremely important letter to STEVEN from the PRESIDENT of the DEVON CORPORATION."
+   },
+   "i": "letter",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_EON_TICKET",
+   "en": "EON TICKET",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "The ticket for a ferry to a distant southern island.",
+    "e": "The ticket for a ferry to a distant southern island.",
+    "frlg": "The ticket required for sailing on a ferry to a distant southern island. It features a drawing of an island."
+   },
+   "i": "eon-ticket",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_RED_ORB",
+   "en": "RED ORB",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "A red, glowing orb said to contain an ancient power.",
+    "e": "A red, glowing orb said to contain an ancient power.",
+    "frlg": "An orb that glows red. It is said to contain an incredible power from ancient times."
+   },
+   "i": "red-orb",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_BLUE_ORB",
+   "en": "BLUE ORB",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "A blue, glowing orb said to contain an ancient power.",
+    "e": "A blue, glowing orb said to contain an ancient power.",
+    "frlg": "An orb that glows blue. It is said to contain an incredible power from ancient times."
+   },
+   "i": "blue-orb",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_SCANNER",
+   "en": "SCANNER",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "A device found inside the ABANDONED SHIP.",
+    "e": "A device found inside the ABANDONED SHIP.",
+    "frlg": "A device used to search for life-forms in water. It looks too difficult to use."
+   },
+   "i": "scanner",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_GO_GOGGLES",
+   "en": "GO-GOGGLES",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "Nifty goggles that protect eyes from desert sandstorms.",
+    "e": "Nifty goggles that protect eyes from desert sandstorms.",
+    "frlg": "A pair of protective goggles. They enable a TRAINER to travel through even desert sandstorms."
+   },
+   "i": "go-goggles",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_METEORITE",
+   "en": "METEORITE",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "A meteorite found at METEOR FALLS.",
+    "e": "A meteorite found at METEOR FALLS.",
+    "frlg": "A meteorite that fell from space onto MT. MOON long ago. It is very lumpy and hard."
+   },
+   "i": "meteorite",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_ROOM_1_KEY",
+   "en": "RM. 1 KEY",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "A key that opens a door inside the ABANDONED SHIP.",
+    "e": "A key that opens a door inside the ABANDONED SHIP.",
+    "frlg": "A key that opens the door to Room 1 inside the ABANDONED SHIP. It is old and looks easily broken."
+   },
+   "i": null,
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_ROOM_2_KEY",
+   "en": "RM. 2 KEY",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "A key that opens a door inside the ABANDONED SHIP.",
+    "e": "A key that opens a door inside the ABANDONED SHIP.",
+    "frlg": "A key that opens the door to Room 2 inside the ABANDONED SHIP. It is old and looks easily broken."
+   },
+   "i": null,
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_ROOM_4_KEY",
+   "en": "RM. 4 KEY",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "A key that opens a door inside the ABANDONED SHIP.",
+    "e": "A key that opens a door inside the ABANDONED SHIP.",
+    "frlg": "A key that opens the door to Room 4 inside the ABANDONED SHIP. It is old and looks easily broken."
+   },
+   "i": null,
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_ROOM_6_KEY",
+   "en": "RM. 6 KEY",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "A key that opens a door inside the ABANDONED SHIP.",
+    "e": "A key that opens a door inside the ABANDONED SHIP.",
+    "frlg": "A key that opens the door to Room 6 inside the ABANDONED SHIP. It is old and looks easily broken."
+   },
+   "i": null,
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_STORAGE_KEY",
+   "en": "STORAGE KEY",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "The key to the storage inside the ABANDONED SHIP.",
+    "e": "The key to the storage inside the ABANDONED SHIP.",
+    "frlg": "A key that opens the storage hold inside the ABANDONED SHIP. It is old and looks easily broken."
+   },
+   "i": "storage-key",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_ROOT_FOSSIL",
+   "en": "ROOT FOSSIL",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "A fossil of an ancient, seafloor- dwelling POKéMON.",
+    "e": "A fossil of an ancient, seafloor- dwelling POKéMON.",
+    "frlg": "A fossil of an ancient, seafloor- dwelling POKéMON. It appears to be part of a plant root."
+   },
+   "i": "root-fossil",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_CLAW_FOSSIL",
+   "en": "CLAW FOSSIL",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "A fossil of an ancient, seafloor- dwelling POKéMON.",
+    "e": "A fossil of an ancient, seafloor- dwelling POKéMON.",
+    "frlg": "A fossil of an ancient, seafloor- dwelling POKéMON. It appears to be part of a claw."
+   },
+   "i": "claw-fossil",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_DEVON_SCOPE",
+   "en": "DEVON SCOPE",
+   "g": "rsefl",
+   "p": {
+    "rs": 0,
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "rs": "A device by DEVON that signals any unseeable POKéMON.",
+    "e": "A device by DEVON that signals any unseeable POKéMON.",
+    "frlg": "A scope that signals the presence of any unseeable POKéMON. It is made by the DEVON CORP."
+   },
+   "i": "devon-scope",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_OAKS_PARCEL",
+   "en": "OAK'S PARCEL",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "A parcel for PROF. OAK from a POKéMON MART's clerk.",
+    "frlg": "A parcel to be delivered to PROF. OAK from VIRIDIAN CITY's POKéMON MART."
+   },
+   "i": "oaks-parcel",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_POKE_FLUTE",
+   "en": "POKé FLUTE",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "A sweet-sounding flute that awakens POKéMON.",
+    "frlg": "A flute that is said to instantly awaken any POKéMON. It has a lovely tone."
+   },
+   "i": "poke-flute",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_SECRET_KEY",
+   "en": "SECRET KEY",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "The key to the CINNABAR ISLAND GYM's entrance.",
+    "frlg": "The key to CINNABAR ISLAND GYM's front door. It is colored red and decorated."
+   },
+   "i": "secret-key",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_BIKE_VOUCHER",
+   "en": "BIKE VOUCHER",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "A voucher for obtaining a bicycle from the BIKE SHOP.",
+    "frlg": "Take this voucher to the BIKE SHOP in CERULEAN CITY and exchange it for a bicycle."
+   },
+   "i": "bike-voucher",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_GOLD_TEETH",
+   "en": "GOLD TEETH",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "Gold dentures lost by the SAFARI ZONE's WARDEN.",
+    "frlg": "A set of false teeth lost by the SAFARI ZONE'S WARDEN. It makes his smile sparkle."
+   },
+   "i": "gold-teeth",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_OLD_AMBER",
+   "en": "OLD AMBER",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "A stone containing the genes of an ancient POKéMON.",
+    "frlg": "A piece of amber that contains the genes of an ancient POKéMON. It is clear with a reddish tint."
+   },
+   "i": "old-amber",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_CARD_KEY",
+   "en": "CARD KEY",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "A card-type door key used in SILPH CO's office.",
+    "frlg": "A card-type key that unlocks doors in SILPH CO.'s HEAD OFFICE in SAFFRON CITY."
+   },
+   "i": "card-key",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_LIFT_KEY",
+   "en": "LIFT KEY",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "An elevator key used in TEAM ROCKET's HIDEOUT.",
+    "frlg": "A key that operates the elevator in TEAM ROCKET's HIDEOUT. It bears the TEAM ROCKET logo."
+   },
+   "i": "lift-key",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_HELIX_FOSSIL",
+   "en": "HELIX FOSSIL",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "A piece of an ancient marine POKéMON's seashell.",
+    "frlg": "A fossil of an ancient, seafloor- dwelling POKéMON. It appears to be part of a seashell."
+   },
+   "i": "helix-fossil",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_DOME_FOSSIL",
+   "en": "DOME FOSSIL",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "A piece of an ancient marine POKéMON's shell.",
+    "frlg": "A fossil of an ancient, seafloor- dwelling POKéMON. It appears to be part of a shell."
+   },
+   "i": "dome-fossil",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_SILPH_SCOPE",
+   "en": "SILPH SCOPE",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "SILPH CO's scope makes unseeable POKéMON visible.",
+    "frlg": "A scope that makes unseeable POKéMON visible. It is made by SILPH CO."
+   },
+   "i": "silph-scope",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_BICYCLE",
+   "en": "BICYCLE",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "A folding bicycle that is faster than the RUNNING SHOES.",
+    "frlg": "A folding bicycle that allows faster movement than the RUNNING SHOES."
+   },
+   "i": "bicycle",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_TOWN_MAP",
+   "en": "TOWN MAP",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "Can be viewed anytime. Shows your present location.",
+    "frlg": "A very convenient map that can be viewed anytime. It even shows your present location."
+   },
+   "i": "town-map",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_VS_SEEKER",
+   "en": "VS SEEKER",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "A rechargeable unit that flags battle- ready TRAINERS.",
+    "frlg": "A device that indicates TRAINERS who want to battle. The battery charges while traveling."
+   },
+   "i": "vs-seeker",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_FAME_CHECKER",
+   "en": "FAME CHECKER",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "Stores information on famous people for instant recall.",
+    "frlg": "A device that enables you to recall what you've heard and seen about famous people."
+   },
+   "i": "fame-checker",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_BERRY_POUCH",
+   "en": "BERRY POUCH",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "A convenient container that holds BERRIES.",
+    "frlg": "A pouch for carrying BERRIES. It is attached to the BAG's compartment for important items."
+   },
+   "i": "berry-pouch",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_TEACHY_TV",
+   "en": "TEACHY TV",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "A TV set tuned to an advice program for TRAINERS.",
+    "frlg": "A television set that is tuned to a program with useful tips for novice TRAINERS."
+   },
+   "i": "teachy-tv",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_TRI_PASS",
+   "en": "TRI-PASS",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "A pass for ferries between ONE, TWO, and THREE ISLAND.",
+    "frlg": "A pass for ferries between ONE, TWO, and THREE ISLAND. It has a drawing of three islands."
+   },
+   "i": "tri-pass",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_RAINBOW_PASS",
+   "en": "RAINBOW PASS",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "For ferries serving VERMILION and the SEVII ISLANDS.",
+    "frlg": "A pass for ferries between VERMILION and the SEVII ISLANDS. It features a drawing of a rainbow."
+   },
+   "i": "rainbow-pass",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_TEA",
+   "en": "TEA",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "A thirst-quenching tea prepared by an old lady.",
+    "frlg": "An aromatic tea prepared by an old lady. It will slake even the worst thirst."
+   },
+   "i": "tea",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_MYSTIC_TICKET",
+   "en": "MYSTICTICKET",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "A ticket required to board the ship to NAVEL ROCK.",
+    "frlg": "A ticket required to board the ship to NAVEL ROCK. It glows with a mystic light."
+   },
+   "i": "mysticticket",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_AURORA_TICKET",
+   "en": "AURORATICKET",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "A ticket required to board the ship to BIRTH ISLAND.",
+    "frlg": "A ticket required to board the ship to BIRTH ISLAND. It glows beautifully."
+   },
+   "i": "auroraticket",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_POWDER_JAR",
+   "en": "POWDER JAR",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "Stores BERRY POWDER made using a BERRY CRUSHER.",
+    "frlg": "A jar for storing BERRY POWDER made using a BERRY CRUSHER."
+   },
+   "i": "powder-jar",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_RUBY",
+   "en": "RUBY",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "An exquisite, red- glowing gem that symbolizes passion.",
+    "frlg": "An exquisitely beautiful gem that has a red glow. It symbolizes passion."
+   },
+   "i": "ruby",
+   "cat": "key"
+  },
+  {
+   "k": "ITEM_SAPPHIRE",
+   "en": "SAPPHIRE",
+   "g": "efl",
+   "p": {
+    "e": 0,
+    "frlg": 0
+   },
+   "pk": "key",
+   "hold": 0,
+   "d": {
+    "e": "A brilliant blue gem that symbolizes honesty.",
+    "frlg": "An exquisitely beautiful gem that has a blue glow. It symbolizes honesty."
+   },
+   "i": "sapphire",
+   "cat": "key"
+  }
+ ]
+}

@@ -383,6 +383,137 @@ with sync_playwright() as pw:
     mp.screenshot(path=f'{SHOT}/gen3-moves-overlay-en.png')
     mctx.close()
 
+    # ==================== PHASE 4 — Item Dex (R/S · EMERALD · FRLG) ====================
+    ictx = browser.new_context(viewport={'width': 1440, 'height': 950})
+    ip = ictx.new_page()
+    ierr = []
+    ip.on('console', lambda m: ierr.append(m.text) if m.type == 'error' else None)
+    ip.on('pageerror', lambda e: ierr.append(str(e)))
+    seed(ip, theme='ruby')
+    ip.goto(f'file://{R}/gen3.html')
+    ip.wait_for_timeout(1800)
+
+    check('items: scripts load (module + data + config)',
+          ip.evaluate('typeof ItemsUI!=="undefined" && typeof ITEMS!=="undefined" && typeof ITEM_CATS!=="undefined" && window.ITEM_DEX_CONFIG && window.ITEM_DEX_CONFIG.gen===3'))
+    check('items: no console errors with items wired', not ierr, '; '.join(ierr[:3]))
+
+    # counts per game (union and per-cartridge membership)
+    check('items data: 248 items in the Gen-3 universe', ip.evaluate('ITEMS.length') == 248)
+    check('items data: R/S 222 · EM 247 · FRLG 248',
+          ip.evaluate('ITEMS.filter(i=>i.g.includes("r")).length') == 222 and
+          ip.evaluate('ITEMS.filter(i=>i.g.includes("e")).length') == 247 and
+          ip.evaluate('ITEMS.filter(i=>i.g.includes("f")).length') == 248)
+    check('items data: sapphire == ruby lists, leafgreen == fireren lists',
+          ip.evaluate('ITEMS.every(i=>i.g.includes("r")===i.g.includes("s") && i.g.includes("f")===i.g.includes("l"))'))
+    check('items data: no TM/HM machines leaked into the bag list',
+          ip.evaluate('ITEMS.every(i=>!i.k.startsWith("ITEM_TM") && !i.k.startsWith("ITEM_HM"))'))
+    check('items data: every item has EN + FA name, pocket, category, price table',
+          ip.evaluate('ITEMS.every(i=>i.en && i.fa && i.pk && i.cat && i.p && ["rs","e","frlg"].some(g=>i.p[g]!==undefined))'))
+    check('items data: 43 berries with 5 flavors each (0..40) + firmness',
+          ip.evaluate('(()=>{const b=ITEMS.filter(i=>i.cat==="berry");return b.length===43 && b.every(i=>i.fl && ["spicy","dry","sweet","bitter","sour"].every(f=>Number.isInteger(i.fl[f]) && i.fl[f]>=0) && i.firm);})()'))
+    check('items data: flavors era-true spot checks (CHERI 10/0/0/0/0, SITRUS all 10)',
+          ip.evaluate('(()=>{const c=ITEMS.find(i=>i.k==="ITEM_CHERI_BERRY").fl, s=ITEMS.find(i=>i.k==="ITEM_SITRUS_BERRY").fl; return c.spicy===10&&c.dry===0&&c.sour===0 && ["spicy","dry","sweet","bitter","sour"].every(f=>s[f]===10);})()'))
+    check('items data: per-cartridge wordings differ where the carts did (MASTER BALL)',
+          ip.evaluate('(()=>{const m=ITEMS.find(i=>i.k==="ITEM_MASTER_BALL"); return m.d.rs===m.d.e && m.d.rs!==m.d.frlg;})()'))
+    check('items data: FRLG-only key items flagged (TOWN MAP not on R/S)',
+          ip.evaluate('(()=>{const t=ITEMS.find(i=>i.k==="ITEM_TOWN_MAP"); return t && !t.g.includes("r") && t.g.includes("f");})()'))
+
+    # overlay UI
+    ip.evaluate('ItemsUI.openDex()')
+    ip.wait_for_timeout(400)
+    check('items UI: overlay opens with head label', ip.text_content('#itHeadT').startswith('ITEM DEX'))
+    check('items UI: 248 cards, count label', ip.evaluate('document.querySelectorAll("#itBody .icard").length') == 248)
+    check('items UI: no GB/COLOR toggle for gen3 (fixed color icons)',
+          ip.evaluate('!document.querySelector("#itStyle")'))
+    check('items UI: honest color-only note shown (EN)',
+          ip.evaluate('(()=>{const n=[...document.querySelectorAll("#itBody .it-note")].map(e=>e.textContent).join(" ");return n.includes("color item art");})()'))
+    check('items UI: ruby price column on card (HYPER POTION ¥1200, MASTER BALL not sold)',
+          ip.evaluate('(()=>{const f=k=>{const c=[...document.querySelectorAll("#itBody .icard")].find(x=>x.dataset.k===k);return c.querySelector(".it-price").textContent;};return f("ITEM_HYPER_POTION")==="¥1200" && f("ITEM_MASTER_BALL").includes("NOT FOR SALE");})()'))
+    ip.screenshot(path=f'{SHOT}/gen3-items-overlay-en.png')
+
+    # detail view + per-group price rows
+    ip.evaluate('ItemsUI.closeDex()')
+    ip.evaluate('ItemsUI.setGroup("frlg")')
+    ip.evaluate('ItemsUI.openDex()')
+    ip.wait_for_timeout(300)
+    check('items UI: setGroup follows the cartridge (RETRO MAIL ¥50 only on FRLG)',
+          ip.evaluate('(()=>{const c=[...document.querySelectorAll("#itBody .icard")].find(x=>x.dataset.k==="ITEM_RETRO_MAIL");return c && c.querySelector(".it-price").textContent==="¥50";})()'))
+    ip.evaluate('ItemsUI.setGroup("rs")')  # back to the ruby cartridge
+    ip.evaluate('ItemsUI.closeDex()')
+    ip.evaluate('ItemsUI.openDex()')
+    ip.wait_for_timeout(300)
+    ip.evaluate('(()=>{const c=[...document.querySelectorAll("#itBody .icard")].find(x=>x.dataset.k==="ITEM_CHERI_BERRY");c.click();})()')
+    ip.wait_for_timeout(300)
+    check('items UI: berry detail shows FLAVORS + 5 rows + firmness',
+          ip.evaluate('(()=>{const b=document.querySelector("#itemsBox");const fl=b.querySelectorAll(".id-fl");return !!b.querySelector(".id-flavors") && fl.length>=6 && b.textContent.includes("FIRMNESS");})()'))
+    check('items UI: ruby cartridge shows the R/S berry wording',
+          ip.evaluate('(()=>{const b=document.querySelector("#itemsBox");return b.querySelector(".d-en").textContent.includes("Blooms with delicate");})()'))
+    ip.screenshot(path=f'{SHOT}/gen3-items-detail-en.png')
+
+    # theme change → price group + wording swap (ruby → firered), live overlay
+    ip.evaluate('toggleTheme("firered")')
+    ip.wait_for_timeout(400)
+    check('items UI: theme swap swaps the detail wording to the FRLG cart\'s own',
+          ip.evaluate('(()=>{const b=document.querySelector("#itemsBox");return b && b.querySelector(".d-en").textContent.includes("When held by a POKéMON, it will be used in battle to heal paralysis");})()'))
+
+    # FA pass
+    fctx = browser.new_context(viewport={'width': 1440, 'height': 950})
+    fp2 = fctx.new_page()
+    seed(fp2, lang='fa', theme='ruby')
+    fp2.goto(f'file://{R}/gen3.html')
+    fp2.wait_for_timeout(1600)
+    check('items FA: menu entry in Persian', fp2.evaluate('document.querySelector("#menuPop [data-act=itemsdex]").textContent.includes("دکس آیتم")'))
+    fp2.evaluate('ItemsUI.openDex()')
+    fp2.wait_for_timeout(400)
+    check('items FA: overlay head + chips in Persian, RTL',
+          fp2.evaluate('document.querySelector("#itemsWrap").textContent.includes("دکس آیتم")'))
+    check('items FA: all 248 FA names render (first card has Persian)',
+          fp2.evaluate('(()=>{const c=document.querySelector("#itBody .icard .icard-fa");return c && /[\u0600-\u06FF]/.test(c.textContent);})()'))
+    check('items FA: prices use Persian digits',
+          fp2.evaluate('(()=>{const c=[...document.querySelectorAll("#itBody .icard")].find(x=>x.dataset.k==="ITEM_HYPER_POTION");return c && /[\u06F0-\u06F9]/.test(c.querySelector(".it-price").textContent);})()'))
+    check('items FA: honest color note in Persian',
+          fp2.evaluate('(()=>{const n=[...document.querySelectorAll("#itBody .it-note")].map(e=>e.textContent).join(" ");return n.includes("رنگی");})()'))
+    fp2.evaluate('(()=>{const c=[...document.querySelectorAll("#itBody .icard")].find(x=>x.dataset.k==="ITEM_CHERI_BERRY");c.click();})()')
+    fp2.wait_for_timeout(300)
+    check('items FA: berry detail — Persian flavor labels + Persian digits + FA wording',
+          fp2.evaluate('(()=>{const b=document.querySelector("#itemsBox");return b.querySelector(".id-flavors") && b.textContent.includes("تندی") && /[\u06F0-\u06F9]/.test(b.querySelector(".id-fl-v").textContent) && /[\u0600-\u06FF]/.test(b.querySelector(".d-fa").textContent);})()'))
+    check('items FA: detail FRLG price row labels in Persian',
+          fp2.evaluate('(()=>{const b=document.querySelector("#itemsBox");return b.textContent.includes("یاقوت/یاقوت کبود") && b.textContent.includes("زمرد") && b.textContent.includes("آتشین/برگ سبز");})()'))
+    fp2.screenshot(path=f'{SHOT}/gen3-items-detail-fa.png')
+
+    # icons on disk for every mapped item; the 5 unmapped are honest misses
+    miss = ip.evaluate('ITEMS.filter(i=>!i.i).map(i=>i.k)')
+    check('items icons: only ITEMFINDER + 4 ship-room keys lack menu art',
+          sorted(miss) == ['ITEM_ITEMFINDER', 'ITEM_ROOM_1_KEY', 'ITEM_ROOM_2_KEY', 'ITEM_ROOM_4_KEY', 'ITEM_ROOM_6_KEY'], str(miss))
+    icons_needed = ip.evaluate('ITEMS.filter(i=>i.i).map(i=>i.i)')
+    missing_on_disk = [sl for sl in icons_needed
+                       if not os.path.exists(f'{R}/assets/itemicons/{sl}.png')]
+    check('items icons: every mapped icon file exists on disk', missing_on_disk == [], str(missing_on_disk[:5]))
+
+    # search + category chips (fresh page: the overlay remembers the last
+    # detail view, like gen1/gen2)
+    ip2 = browser.new_context(viewport={'width': 1440, 'height': 950}).new_page()
+    seed(ip2, theme='ruby')
+    ip2.goto(f'file://{R}/gen3.html')
+    ip2.wait_for_timeout(1600)
+    ip2.evaluate('ItemsUI.openDex()')
+    ip2.wait_for_timeout(300)
+    ip2.fill('#itQ', 'توت چری')
+    ip2.wait_for_timeout(300)
+    check('items search: FA query finds CHERI BERRY',
+          ip2.evaluate('(()=>{const cs=[...document.querySelectorAll("#itBody .icard")];return cs.length===1 && cs[0].dataset.k==="ITEM_CHERI_BERRY";})()'))
+    ip2.fill('#itQ', '')
+    ip2.wait_for_timeout(200)
+    ip2.evaluate('(()=>{const b=[...document.querySelectorAll("#itSub .it-chip")].find(x=>x.textContent==="Berries");b.click();})()')
+    ip2.wait_for_timeout(300)
+    check('items chips: Berries filter → 43 cards',
+          ip2.evaluate('document.querySelectorAll("#itBody .icard").length') == 43)
+    ip2.screenshot(path=f'{SHOT}/gen3-items-chips-en.png')
+    ip2.context.close()
+
+    fp2.close(); fctx.close()
+    ictx.close()
+
     ctx3.close()
     browser.close()
 

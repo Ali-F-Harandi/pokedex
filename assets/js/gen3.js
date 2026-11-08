@@ -310,11 +310,11 @@ const isMobile = () => window.matchMedia("(max-width:860px)").matches;
    Each pair shares a cartridge's sprite bank (like the real carts) but every
    game reads its own dex texts; Emerald adds the animated battle sprites. */
 const THEMES = {
-  ruby:      { sets:["rs"],   def:"rs",   text:"rs", moves:"MD_RS",   cls:"theme-ruby",      anim:false },
-  sapphire:  { sets:["rs"],   def:"rs",   text:"rs", moves:"MD_RS",   cls:"theme-sapphire",  anim:false },
-  emerald:   { sets:["em"],   def:"em",   text:"em", moves:"MD_EM",   cls:"theme-emerald",   anim:true },
-  firered:   { sets:["frlg"], def:"frlg", text:"fr", moves:"MD_FRLG", cls:"theme-firered",   anim:false },
-  leafgreen: { sets:["frlg"], def:"frlg", text:"fr", moves:"MD_FRLG", cls:"theme-leafgreen", anim:false }
+  ruby:      { sets:["rs"],   def:"rs",   text:"rs", moves:"MD_RS",   items:"rs",   cls:"theme-ruby",      anim:false },
+  sapphire:  { sets:["rs"],   def:"rs",   text:"rs", moves:"MD_RS",   items:"rs",   cls:"theme-sapphire",  anim:false },
+  emerald:   { sets:["em"],   def:"em",   text:"em", moves:"MD_EM",   items:"e",    cls:"theme-emerald",   anim:true },
+  firered:   { sets:["frlg"], def:"frlg", text:"fr", moves:"MD_FRLG", items:"frlg", cls:"theme-firered",   anim:false },
+  leafgreen: { sets:["frlg"], def:"frlg", text:"fr", moves:"MD_FRLG", items:"frlg", cls:"theme-leafgreen", anim:false }
 };
 const THEME_ORDER = ["ruby","sapphire","emerald","firered","leafgreen"];
 function activeMoves(){
@@ -338,6 +338,10 @@ function applyTheme(){
   if (typeof MovesUI !== "undefined" && typeof activeMoves === "function"){
     const md = activeMoves();
     if (md) MovesUI.setGame(md);
+  }
+  /* the Item Dex reads the active cartridge's prices + wordings */
+  if (typeof ItemsUI !== "undefined" && ItemsUI.setGroup && th.items){
+    ItemsUI.setGroup(th.items);
   }
   const t1 = document.querySelector("#topbar .t1");
   if (t1) t1.textContent = t("theme_tag." + state.theme);
