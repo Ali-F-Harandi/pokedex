@@ -45,6 +45,7 @@ const MovesUI = (() => {
       never_miss: "Never misses", menu_moves: "Moves Dex", menu_tmhm: "TM / HM list",
       unknown_type: "???", from_egg: "via breeding", lv_prefix: "Lv.",
       contest_t: "CONTEST", c_0: "COOL", c_1: "BEAUTY", c_2: "CUTE", c_3: "SMART", c_4: "TOUGH",
+      contest_note: "Gen-3 contests: a move's category is boosted by the matching Pokéblock flavor — Spicy→Cool, Dry→Beauty, Sweet→Cute, Bitter→Smart, Sour→Tough.",
       jam: "jam",
       tutor_note_em: "Most of these are taught by the Move Tutors of the Battle Frontier, for Battle Points.",
       tutor_note_frlg: "Taught only by Move Tutors. The tutor at Cape Brink also teaches Venusaur, Charizard and Blastoise their ultimate move."
@@ -64,6 +65,7 @@ const MovesUI = (() => {
       never_miss: "هرگز خطا نمی‌رود", menu_moves: "دکس حرکت‌ها", menu_tmhm: "لیست TM / HM",
       unknown_type: "؟؟؟", from_egg: "از طریق تخم‌گذاری", lv_prefix: "سطح ",
       contest_t: "مسابقه", c_0: "خوش‌تیپ", c_1: "زیبایی", c_2: "بامزه", c_3: "باهوش", c_4: "سخت‌جان",
+      contest_note: "مسابقه در نسل ۳: دسته‌ی هر حرکت با طعمِ متناظر پوک‌بلاک تقویت می‌شود — تند←خوش‌تیپ، خشک←زیبایی، شیرین←بامزه، تلخ←باهوش، ترش←سخت‌جان.",
       jam: "اخلال",
       tutor_note_em: "بیشتر این‌ها را آموزگاران حرکتِ «مرز نبرد» در ازای امتیاز نبرد (BP) یاد می‌دهند.",
       tutor_note_frlg: "این حرکت‌ها را فقط آموزگاران حرکت یاد می‌دهند؛ آموزگارِ دماغه‌ی برینک هم به ونوسور، چاریزد و بلاستویز حرکت نهایی‌شان را یاد می‌دهد."
@@ -425,6 +427,7 @@ const MovesUI = (() => {
           '<div class="md-stat"><i>' + esc(mt("pp")) + "</i><b>" + num(r[4]) + "</b></div>" +
           (contestOf(id) ? '<div class="md-stat md-contest"><i>' + esc(mt("contest_t")) + "</i><b>" + contestHTML(id, false) + "</b></div>" : "") +
         "</div>" +
+        (contestOf(id) ? '<div class="mv-note">' + esc(mt("contest_note")) + "</div>" : "") +
         '<div class="mv-sec-t">' + esc(descLabel) + "</div>" +
         '<div class="md-desc">' +
           '<p class="d-fa">' + esc(descOf(slug)[1]) + "</p>" +

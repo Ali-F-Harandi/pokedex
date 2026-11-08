@@ -60,7 +60,7 @@ updates the statuses below. Work through the phases IN ORDER.
 | 4 | Item Dex wiring (Gen 3, per-game lists + prices, berries) + verification | DONE | see phase notes below |
 | 5 | Location Dex + How to Catch — Hoenn (R/S/E) | DONE | see phase notes below |
 | 6 | Location Dex + How to Catch — Kanto + Sevii (FRLG) | DONE | see phase notes below |
-| 7 | Gen-3 signature: Ability Dex overlay + Natures (25, interactive) + contest polish | TODO | |
+| 7 | Gen-3 signature: Ability Dex overlay + Natures (25, interactive) + contest polish | DONE | see phase notes below |
 | 8 | Final QA (all-gen regression, VLM visual audit EN/FA, README, landing) + delete cron | TODO | |
 
 ## Phase details
@@ -581,6 +581,56 @@ REDESIGN — nothing reused from gen1):
 - Extend test-gen3.py: ability overlay counts, per-mon slots (no hidden
   anywhere), nature math (+10%/−10% on base stats, neutral = unchanged),
   FA pass.
+
+### Phase 7 — RESULT (2026-11-09, this run)
+DONE. Delivered: the Ability Dex — gen3's fourth dex (Moves `M` / Items `I` /
+Locations `L` / **Abilities `Y`**) — plus the interactive nature selector and
+the contest/flavor cross-notes.
+
+- `tools/build-gen3-abilities.py` (new) → `assets/js/abilities-gen3.js`:
+  **ABIL3** = the era-authentic 77-entry ability set in pokeemerald's
+  internal ABILITY_* order (stench → air-lock); EN names + effects parsed
+  straight from the game's tables (gAbilityNames + s*Description in
+  src/data/text/abilities.h), FA names cross-checked entry-by-entry against
+  the donor table ABIL_FA in gen3.js (cacophony is the one the donor skips —
+  it had never been user-visible), FA effects hand-written in
+  `tools/gen3-abil-fa.json` (77 one-liners mirroring the GBA wordings).
+  **NATURES3** = the 25 natures with up/down from gNatureStatTable
+  (src/pokemon.c — the ×110/100 · ×90/100 boosts) and like/hate berry
+  flavors from gPokeblockFlavorCompatibilityTable (src/pokeblock.c — the
+  Pokéblock-era tie-in, era-source instead of PokeAPI); FA names
+  hand-written in `tools/gen3-nature-fa.json`.
+- `assets/js/abilities-module.js` (new): the overlay — search EN+FA, 77
+  cards (bilingual names, effect, carrier count), card view with the
+  EN+FA effect and the slot-1 / slot-2 carrier lists (sprite chips that
+  select the Pokémon); START-menu entry; `Y` hotkey (no collisions);
+  Cacophony kept with the honest note "defined in the games' code, but no
+  Pokémon of this era carries it" (verified: ABIL3 \ DATA = {cacophony}).
+- gen3.js: ability chips are real buttons now — click opens the ability's
+  card, tooltip = the era effect (EN/FA) — plus an "Open in the Ability
+  Dex →" link; nature selector `<select>` (25 + none) on the BASE STATS
+  panel with ▲/▼ arrows on the affected stat rows (+10%/−10% tooltips,
+  Persian ۱۰٪ بیشتر/کمتر in FA), a note line spelling the boosts and the
+  Pokéblock loves/hates flavors, neutral natures noted; pick persists in
+  `pkd_g3_nature`; About box documents Y + the natures EN/FA.
+- Cross-notes (shared modules, gated so gen1/gen2 are untouched):
+  moves-module.js shows the category↔flavor explainer on R/S/E contest
+  cards only (FRLG verified note-free), items-module.js shows the
+  flavor↔Pokéblock↔nature explainer under berry flavors on gen3 only
+  (IS_G3).
+- gen3.css: overlay family (same visual language as items/locations
+  overlays) + nature selector/arrow/note styles + clickable abchips.
+- Tests: test-gen3.py extended to **293 checks** (65 new: 77/unique/era
+  order, DATA coverage, slots 258×1+128×2, no hidden anywhere, FA effects
+  Persian, overlay via Y/menu/count 77, blaze slot-1 = 9 carriers led by
+  Charmander, early-bird First+Second sections with Doduo in slot 2,
+  cacophony unused note EN+FA, FA search, nature pairs vs both pret
+  tables, adamant/modest arrows + tooltips + note, neutral hardy, clear
+  + persistence across reload, contest note on R/S/E and its ABSENCE on
+  FRLG, berry flavor note, full FA pass incl. Persian search, Persian
+  digits and Persian about). All-gen regression green: gen1 24 · gen2 103
+  · order 20 · gen2-order 9 · gen2-sprites 30 · gen3-sprites 50 · items
+  27 · moves 44 · locations 42 · gen3 293.
 
 ### Phase 8 — Final QA + ship
 - Run EVERYTHING: test-gen1, test-gen2, test-gen3, test-order,

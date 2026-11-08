@@ -48,6 +48,14 @@ en:{
   evo_unknown:"Data unknown — not seen yet",
   abilities:"Abilities", hidden:"Hidden",
   ability_note:"Gen-3 ability slots, straight from the pokeemerald disassembly — no hidden abilities existed yet.",
+  ab_open:"Open in the Ability Dex",
+  nat_t:"Nature", nat_none:"— pick a nature —",
+  nat_up_t:"+10%", nat_dn_t:"−10%",
+  nat_up_fmt:"{s} +10%", nat_dn_fmt:"{s} −10%",
+  nat_neutral:"Neutral — no stat change",
+  nat_loves:"Pokéblock: loves {f}, hates {h}",
+  nat_flavor_none:"Pokéblock: no favorite flavor",
+  flavors:{spicy:"Spicy",dry:"Dry",sweet:"Sweet",bitter:"Bitter",sour:"Sour"},
   capture:"Catch rate", capture_hint:"(max 255)", happiness:"Base happiness",
   growth:"Growth rate", exp:"Base exp. yield", egg:"Egg groups", habitat:"Habitat",
   gender:"Gender ratio", genderless:"Genderless",
@@ -71,7 +79,7 @@ en:{
   about_title:"ABOUT", ok:"OK",
   about_p1:"A fan-made, offline Pokédex covering all 386 Pokémon of Generation III — the five Game Boy Advance games in one dex. Data, sprites, cries and fonts live in local files next to the page — everything runs without internet.",
   about_p2:"",
-  about_p3:"Mark Pokémon as Seen (automatic while browsing) and Owned (pokeball button) to fill your dex status, just like the game. The GAME chips (or key T) switch this dex between the five Gen-3 releases: RUBY and SAPPHIRE (the 2002 pair, sharing a cartridge's sprite bank but each with its own dex texts), EMERALD (its own texts, its animated battle sprites — the ANIM chip — and the Speed-forme Deoxys) and FIRERED / LEAFGREEN (the Kanto remakes with their own sprite bank and texts). The ✦ SHINY chip shows the rare color variants and the Back button (key B) flips to the in-game back side. Every dex entry can be read in the wording of the game you pick with the R/S · EMERALD · FRLG selector — Sapphire and LeafGreen get their own button wherever their texts differ. Deoxys is the era trick: its forme, stats and sprite change with the selected cartridge, exactly like the real games. Your settings (game, shiny, animated, language, sort, last Pokémon) are remembered between visits.",
+  about_p3:"Mark Pokémon as Seen (automatic while browsing) and Owned (pokeball button) to fill your dex status, just like the game. The GAME chips (or key T) switch this dex between the five Gen-3 releases: RUBY and SAPPHIRE (the 2002 pair, sharing a cartridge's sprite bank but each with its own dex texts), EMERALD (its own texts, its animated battle sprites — the ANIM chip — and the Speed-forme Deoxys) and FIRERED / LEAFGREEN (the Kanto remakes with their own sprite bank and texts). The ✦ SHINY chip shows the rare color variants and the Back button (key B) flips to the in-game back side. Every dex entry can be read in the wording of the game you pick with the R/S · EMERALD · FRLG selector — Sapphire and LeafGreen get their own button wherever their texts differ. Deoxys is the era trick: its forme, stats and sprite change with the selected cartridge, exactly like the real games. The ABILITY DEX (key Y, the START menu, or an ability chip) lists the era's full ability set with its effects and everyone who carries it, and picking a NATURE on the stat panel marks the +10%/−10% stats plus the Pokéblock flavors that Pokémon loves. Your settings (game, shiny, animated, nature, language, sort, last Pokémon) are remembered between visits.",
   foot_disclaimer:"Fan-made, non-commercial project. Pokémon © Nintendo / Creatures Inc. / GAME FREAK inc.",
   foot_offline:"Runs 100% offline · static site", all_games:"All games",
   reset_confirm:"Reset all Seen/Owned progress?",
@@ -135,6 +143,14 @@ fa:{
   evo_unknown:"داده نامشخص — هنوز دیده نشده",
   abilities:"توانایی‌ها", hidden:"پنهان",
   ability_note:"جایگاه‌های توانایی نسل ۳، مستقیم از دیساسمبل pokeemerald — هنوز توانایی پنهانی وجود نداشت.",
+  ab_open:"باز کردن در دکس توانایی",
+  nat_t:"طبیعت", nat_none:"— یک طبیعت انتخاب کنید —",
+  nat_up_t:"۱۰٪ بیشتر", nat_dn_t:"۱۰٪ کمتر",
+  nat_up_fmt:"{s}: ۱۰٪ بیشتر", nat_dn_fmt:"{s}: ۱۰٪ کمتر",
+  nat_neutral:"خنثی — بدون تغییر آمار",
+  nat_loves:"پوک‌بلاک: {f} را دوست دارد، {h} را نه",
+  nat_flavor_none:"پوک‌بلاک: طعم محبوب ندارد",
+  flavors:{spicy:"تند",dry:"خشک",sweet:"شیرین",bitter:"تلخ",sour:"ترش"},
   capture:"نرخ گرفتن", capture_hint:"(حداکثر ۲۵۵)", happiness:"شادی پایه",
   growth:"سرعت رشد", exp:"امتیاز تجربه پایه", egg:"گروه تخم", habitat:"زیستگاه",
   gender:"نسبت جنسیت", genderless:"بی‌جنس",
@@ -157,8 +173,8 @@ fa:{
   m_sort_tpl:"ترتیب: {v}",
   about_title:"درباره", ok:"باشه",
   about_p1:"پوکیدکس طرفداری و آفلاین برای هر ۳۸۶ پوکمون نسل سوم — هر پنج بازی گیم‌بوی ادونس در یک پوکیدکس واحد. داده‌ها، اسپرایت‌ها، صدای پوکمون‌ها و فونت‌ها در فایل‌های کنار صفحه ذخیره شده‌اند و همه‌چیز بدون اینترنت کار می‌کند.",
-  about_p2:"↑ ↓ مرور\u00a0 · \u00a0/ جست‌وجو\u00a0 · \u00a0M حرکت‌ها\u00a0 · \u00a0I آیتم‌ها\u00a0 · \u00a0L مکان‌ها\u00a0 · \u00a0C صدا\u00a0 · \u00a0T بازی\u00a0 · \u00a0S شاینی\u00a0 · \u00a0A متحرک\u00a0 · \u00a0B پشت\u00a0 · \u00a0R تصادفی\u00a0 · \u00a0Esc بستن",
-  about_p3:"با مرور هر پوکمون، به‌طور خودکار «دیده‌شده» ثبت می‌شود و با دکمه پوکربال می‌توانید آن را «گرفته‌شده» علامت بزنید تا وضعیت پوکیدکس مثل خود بازی پر شود. چیپ‌های بازی (یا کلید T) این دکس را بین پنج نسخه‌ی نسل سوم جابه‌جا می‌کنند: یاقوت و یاقوت کبود (جفت ۲۰۰۲ که بانک اسپرایت کارتریج خودشان را شریک‌اند ولی هرکدام متن‌های پوکیدکس خودشان را دارند)، زمرد (متن‌های خودش، اسپرایت‌های متحرک نبردش — چیپ ANIM — و دِآوکس فرم سرعت) و آتشین قرمز / برگ سبز (بازسازی کانتو با بانک اسپرایت و متن‌های خودشان). چیپ ✦ شاینی واریانت‌های رنگی کمیاب را نشان می‌دهد و دکمه پشت (کلید B) اسپرایت را به نمای پشت بازی برمی‌گرداند. هر توضیح را می‌توان با انتخابگر R/S · EMERALD · FRLG با متن بازی دلخواه خواند — هر جا متن سیلورِ این نسل، یعنی یاقوت کبود یا برگ سبز، متفاوت باشد دکمه‌ی خودش را می‌گیرد. دِآوکس ترفند این نسل است: فرم، آمار و اسپرایتش با کارتریج انتخاب‌شده عوض می‌شود؛ درست مثل خود بازی‌ها. تنظیمات شما (بازی، شاینی، متحرک، زبان، ترتیب، آخرین پوکمون) بین دیدارها به خاطر سپرده می‌شود.",
+  about_p2:"↑ ↓ مرور\u00a0 · \u00a0/ جست‌وجو\u00a0 · \u00a0M حرکت‌ها\u00a0 · \u00a0I آیتم‌ها\u00a0 · \u00a0L مکان‌ها\u00a0 · \u00a0Y توانایی‌ها\u00a0 · \u00a0C صدا\u00a0 · \u00a0T بازی\u00a0 · \u00a0S شاینی\u00a0 · \u00a0A متحرک\u00a0 · \u00a0B پشت\u00a0 · \u00a0R تصادفی\u00a0 · \u00a0Esc بستن",
+  about_p3:"با مرور هر پوکمون، به‌طور خودکار «دیده‌شده» ثبت می‌شود و با دکمه پوکربال می‌توانید آن را «گرفته‌شده» علامت بزنید تا وضعیت پوکیدکس مثل خود بازی پر شود. چیپ‌های بازی (یا کلید T) این دکس را بین پنج نسخه‌ی نسل سوم جابه‌جا می‌کنند: یاقوت و یاقوت کبود (جفت ۲۰۰۲ که بانک اسپرایت کارتریج خودشان را شریک‌اند ولی هرکدام متن‌های پوکیدکس خودشان را دارند)، زمرد (متن‌های خودش، اسپرایت‌های متحرک نبردش — چیپ ANIM — و دِآوکس فرم سرعت) و آتشین قرمز / برگ سبز (بازسازی کانتو با بانک اسپرایت و متن‌های خودشان). چیپ ✦ شاینی واریانت‌های رنگی کمیاب را نشان می‌دهد و دکمه پشت (کلید B) اسپرایت را به نمای پشت بازی برمی‌گرداند. هر توضیح را می‌توان با انتخابگر R/S · EMERALD · FRLG با متن بازی دلخواه خواند — هر جا متن سیلورِ این نسل، یعنی یاقوت کبود یا برگ سبز، متفاوت باشد دکمه‌ی خودش را می‌گیرد. دِآوکس ترفند این نسل است: فرم، آمار و اسپرایتش با کارتریج انتخاب‌شده عوض می‌شود؛ درست مثل خود بازی‌ها. دکس توانایی (کلید Y، منوی استارت یا کلیک روی چیپ توانایی) مجموعه‌ی کامل توانایی‌های این نسل را با اثرشان و فهرست دارنده‌ها نشان می‌دهد و انتخاب طبیعت در پنل آمار، آمارهای ۱۰٪ بیشتر/۱۰٪ کمتر و طعم‌های محبوب آن پوکمون در پوک‌بلاک‌ها را علامت می‌زند. تنظیمات شما (بازی، شاینی، متحرک، طبیعت، زبان، ترتیب، آخرین پوکمون) بین دیدارها به خاطر سپرده می‌شود.",
   foot_disclaimer:"پروژه‌ای غیرتجاری ساخته‌ی طرفداران. پوکمون © نینتندو / کرچرز / گیم‌فریک.",
   foot_offline:"کاملاً آفلاین · سایت استاتیک", all_games:"همه بازی‌ها",
   reset_confirm:"همه پیشرفت دیده‌شده/گرفته‌شده پاک شود؟",
@@ -299,6 +315,9 @@ const state = {
   lcd: store("pkd_g3_lcd", false) === true,
   favOnly: store("pkd_g3_favonly", false) === true,
   sort: ["id","name","total"].indexOf(store("pkd_g3_sort", "id")) !== -1 ? store("pkd_g3_sort", "id") : "id",
+  /* nature (phase 7): a dex-wide pick that marks the affected base stats —
+     +10% / −10% per gNatureStatTable, shown on the stat panel */
+  nature: NATURES3.some(n => n.slug === store("pkd_g3_nature", "")) ? store("pkd_g3_nature", "") : "",
   page: 1,
   favs: new Set(store("pkd_g3_favs", [])),
   seen: new Set(store("pkd_g3_seen", [])),
@@ -656,6 +675,16 @@ function flavorPages(p){
   const pgs = (src || []).map(lines => lines.join(" ")).filter(x => x);
   return pgs.length ? pgs : [""];
 }
+/* nature display + note (phase 7) */
+function dispNat(n){ return state.lang === "fa" ? n.fa : n.en; }
+function natNoteHtml(n){
+  if (!n.up) return '<b>' + esc(dispNat(n)) + '</b> — ' + esc(t("nat_neutral")) +
+    ' · <bdi>' + esc(t("nat_flavor_none")) + '</bdi>';
+  const up = tpl(t("nat_up_fmt"), {s: esc(statName(n.up))});
+  const dn = tpl(t("nat_dn_fmt"), {s: esc(statName(n.down))});
+  const pk = tpl(t("nat_loves"), {f: esc(t("flavors." + n.like)), h: esc(t("flavors." + n.hate))});
+  return '<b>' + esc(dispNat(n)) + '</b> — <bdi>' + up + '</bdi> · <bdi>' + dn + '</bdi> · <bdi>' + pk + '</bdi>';
+}
 function renderDetail(){
   const p = PMAP[state.sel];
   if (!p) return;
@@ -669,10 +698,26 @@ function renderDetail(){
     '</div>';
   const S = statsOf(p), T = total(p);
   const curText = effText(p);
-  const statRows = ["hp","atk","def","spa","spd","spe"].map(k =>
-    '<div class="statrow"><span class="stat-l">' + esc(statName(k)) + '</span>' +
-    '<span class="stat-track"><span class="stat-fill" style="width:' + Math.min(100, S[k]/1.6) + '%;background:linear-gradient(90deg,' + STAT_COLOR[k] + 'cc,' + STAT_COLOR[k] + ')"></span></span>' +
-    '<span class="stat-v">' + num(S[k]) + '</span></div>').join("");
+  const nat = state.nature && typeof NATURES3 !== "undefined"
+    ? NATURES3.find(x => x.slug === state.nature) : null;
+  const natSelHtml =
+    '<div class="natRow"><span class="nat-l">' + esc(t("nat_t")) + '</span>' +
+      '<select id="natSel" aria-label="' + esc(t("nat_t")) + '">' +
+        '<option value="">' + esc(t("nat_none")) + '</option>' +
+        (typeof NATURES3 !== "undefined" ? NATURES3.map(n =>
+          '<option value="' + n.slug + '"' + (state.nature === n.slug ? " selected" : "") + '>' +
+          esc(dispNat(n)) + '</option>').join("") : "") +
+      '</select></div>';
+  const statRows = ["hp","atk","def","spa","spd","spe"].map(k => {
+    const up = nat && nat.up === k, dn = nat && nat.down === k;
+    return '<div class="statrow' + (up || dn ? " nat-aff" : "") + '" data-k="' + k + '">' +
+      '<span class="stat-l">' + esc(statName(k)) +
+      (up ? ' <b class="nat-up" title="' + esc(t("nat_up_t")) + '">▲</b>' : "") +
+      (dn ? ' <b class="nat-dn" title="' + esc(t("nat_dn_t")) + '">▼</b>' : "") +
+      '</span>' +
+      '<span class="stat-track"><span class="stat-fill" style="width:' + Math.min(100, S[k]/1.6) + '%;background:linear-gradient(90deg,' + STAT_COLOR[k] + 'cc,' + STAT_COLOR[k] + ')"></span></span>' +
+      '<span class="stat-v">' + num(S[k]) + '</span></div>';
+  }).join("");
 
   let gender;
   if (p.genderRate < 0) gender = esc(t("genderless"));
@@ -681,10 +726,16 @@ function renderDetail(){
     gender = '<span class="gbar"><span class="m" style="width:' + mp + '%"></span><span class="f" style="width:' + fp + '%"></span></span>' +
       '<span class="glegend">♂ ' + num(mp.toFixed(1)) + ' — ♀ ' + num(fp.toFixed(1)) + '</span>';
   }
-  /* era-authentic abilities: 1-2 slots, NO hidden chip (it did not exist) */
-  const abils = p.abilities.map(a =>
-    '<span class="abchip" title="' + esc(a) + '">' + esc(dispAbility(a)) + '</span>').join("") +
-    '<span class="wk-note">' + esc(t("ability_note")) + '</span>';
+  /* era-authentic abilities: 1-2 slots, NO hidden chip (it did not exist).
+     Chips open the Ability Dex (phase 7) with the era effect as tooltip. */
+  const abils = p.abilities.map(a => {
+    const rec = typeof ABIL3 !== "undefined" ? ABIL3.find(x => x.slug === a) : null;
+    const tip = rec ? (state.lang === "fa" ? rec.eff_fa : rec.eff_en) : a;
+    return '<button type="button" class="abchip" data-ab="' + esc(a) + '" title="' + esc(tip) + '">' +
+      esc(dispAbility(a)) + '</button>';
+  }).join("") +
+    '<span class="wk-note">' + esc(t("ability_note")) + '</span>' +
+    '<button type="button" class="wk-note ab-open" id="abOpenLink">' + esc(t("ab_open")) + ' →</button>';
 
   const eggLine = p.egg.map(e => t("egg_names."+e) || e).join(state.lang === "fa" ? "، " : ", ");
   const badges =
@@ -722,10 +773,11 @@ function renderDetail(){
         '<span class="tagchip' + (state.theme === "emerald" ? " tag-gen" : "") + '">EMERALD · ' + esc(t("formes.em.label")) + '</span>' +
       '</div></div>' : '') +
 
-    '<div class="sec"><div class="sec-t">' + esc(t("stats_t")) + '</div>' + statRows +
+    '<div class="sec"><div class="sec-t">' + esc(t("stats_t")) + '</div>' + natSelHtml + statRows +
       '<div class="statrow total"><span class="stat-l">' + esc(t("total")) + '</span>' +
       '<span class="stat-track"><span class="stat-fill" style="width:' + Math.min(100, T/7.8) + '%;background:linear-gradient(90deg,#e8a61388,#e8a613)"></span></span>' +
-      '<span class="stat-v">' + num(T) + '</span></div></div>' +
+      '<span class="stat-v">' + num(T) + '</span></div>' +
+      (nat ? '<div class="natNote">' + natNoteHtml(nat) + '</div>' : '') + '</div>' +
 
     '<div class="sec"><div class="sec-t">' + esc(t("weak_t")) + '</div>' + wkHtml(p) + '</div>' +
 
@@ -769,6 +821,20 @@ function renderDetail(){
     el.addEventListener("click", () => { state.text = el.dataset.txt; save("pkd_g3_text", state.text); renderDetail(); }));
   document.querySelectorAll("#detailPane .evo").forEach(el =>
     el.addEventListener("click", () => select(parseInt(el.dataset.id, 10))));
+  /* ability chips + link open the Ability Dex (phase 7) */
+  if (typeof AbilityUI !== "undefined" && AbilityUI.openDex){
+    document.querySelectorAll("#detailPane .abchip[data-ab]").forEach(elm =>
+      elm.addEventListener("click", () => AbilityUI.openDex(elm.dataset.ab)));
+    const abLink = $("#abOpenLink");
+    if (abLink) abLink.addEventListener("click", () => AbilityUI.openDex());
+  }
+  /* nature selector (phase 7): dex-wide pick, remembered like the settings */
+  const ns = $("#natSel");
+  if (ns) ns.addEventListener("change", e => {
+    state.nature = e.target.value || "";
+    save("pkd_g3_nature", state.nature);
+    renderDetail();
+  });
   if (typeof MovesUI !== "undefined" && MovesUI.wire) MovesUI.wire(p);
   if (typeof LocUI !== "undefined" && LocUI.wire) LocUI.wire(p);
 }
@@ -898,6 +964,7 @@ function applyLang(){
   if (typeof MovesUI !== "undefined" && MovesUI.applyLang) MovesUI.applyLang();
   if (typeof ItemsUI !== "undefined" && ItemsUI.applyLang) ItemsUI.applyLang();
   if (typeof LocUI !== "undefined" && LocUI.applyLang) LocUI.applyLang();
+  if (typeof AbilityUI !== "undefined" && AbilityUI.applyLang) AbilityUI.applyLang();
 }
 function toggleLang(){
   state.lang = state.lang === "en" ? "fa" : "en";

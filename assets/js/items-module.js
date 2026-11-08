@@ -58,6 +58,7 @@ const ItemsUI = (() => {
       price_in: "{g} price",
       fl_t: "FLAVORS", firm_t: "FIRMNESS",
       fl: { spicy: "SPICY", dry: "DRY", sweet: "SWEET", bitter: "BITTER", sour: "SOUR" },
+      fl_note: "Gen-3 cross-note: these five flavors decide the Pokéblock mix — each Pokémon's NATURE loves one flavor and balks at another (nature selector on the stat panel).",
       firm: { very_soft: "Very soft", soft: "Soft", hard: "Hard", very_hard: "Very hard",
               super_hard: "Super hard", unknown: "Unknown (E-Reader berry)" }
     },
@@ -85,6 +86,7 @@ const ItemsUI = (() => {
       price_in: "قیمت در {g}",
       fl_t: "طعم‌ها", firm_t: "سختی",
       fl: { spicy: "تندی", dry: "خشکی", sweet: "شیرینی", bitter: "تلخی", sour: "ترشی" },
+      fl_note: "یادداشت نسل ۳: همین پنج طعم، ترکیب پوک‌بلاک را می‌سازند — طبیعتِ هر پوکمون عاشق یکی از آن‌هاست و از دیگری بیزار است (انتخابگر طبیعت در پنل آمار دکس).",
       firm: { very_soft: "خیلی نرم", soft: "نرم", hard: "سخت", very_hard: "خیلی سخت",
               super_hard: "فوق‌سخت", unknown: "نامعلوم (توت ای‌ریدر)" }
     }
@@ -287,6 +289,8 @@ const ItemsUI = (() => {
         '<span class="id-fl-v">' + num(fl[k]) + "</span></div>").join("") +
       (it.firm ? '<div class="id-fl id-firm"><span class="id-fl-k">' + esc(t("firm_t")) + "</span>" +
         '<span class="id-fl-v">' + esc(t("firm." + it.firm)) + "</span></div>" : "") +
+      /* Gen-3 only: flavors ↔ Pokéblocks ↔ natures tie-in */
+      (IS_G3 ? '<div class="mv-note">' + esc(t("fl_note")) + "</div>" : "") +
       "</div>";
   }
   function renderDetail(it){

@@ -998,6 +998,269 @@ with sync_playwright() as pw:
     lfctx.close()
     lctx.close()
 
+    # ============================================================
+    # PHASE 7 — Ability Dex + Natures + contest/flavor cross-notes
+    # ============================================================
+    actx = browser.new_context(viewport={'width': 1440, 'height': 950})
+    ap = actx.new_page()
+    aerrs = []
+    ap.on('console', lambda m: aerrs.append(m.text) if m.type == 'error' else None)
+    ap.on('pageerror', lambda e: aerrs.append(str(e)))
+    seed(ap, lang='en', theme='ruby')
+    ap.goto(f'file://{R}/gen3.html')
+    ap.wait_for_timeout(1600)
+
+    # data integrity: 77 era abilities, DATA coverage, per-mon slot shapes
+    check('abilities: ABIL3 has exactly 77 era entries', ap.evaluate('ABIL3.length') == 77)
+    check('abilities: unique slugs', ap.evaluate('new Set(ABIL3.map(a=>a.slug)).size') == 77)
+    abil_cov = ap.evaluate('(()=>{const s=new Set(ABIL3.map(a=>a.slug));const miss=[];DATA.forEach(p=>p.abilities.forEach(a=>{if(!s.has(a))miss.push(a)}));return JSON.stringify(miss)})()')
+    check('abilities: every DATA slot is an ABIL3 entry', abil_cov == '[]', abil_cov)
+    unused_js = ap.evaluate('JSON.stringify(ABIL3.filter(a=>!DATA.some(p=>p.abilities.includes(a.slug))).map(a=>a.slug))')
+    check('abilities: the only unused era ability is cacophony', unused_js == '["cacophony"]', unused_js)
+    slots = ap.evaluate('(()=>{const d={1:0,2:0};DATA.forEach(p=>d[p.abilities.length]++);return JSON.stringify(d)})()')
+    check('abilities: slots are 1 or 2 only (258 single / 128 double)', slots == '{"1":258,"2":128}', slots)
+    check('abilities: no hidden slots anywhere (all strings, max 2)',
+          ap.evaluate('DATA.every(p=>p.abilities.length>=1&&p.abilities.length<=2&&p.abilities.every(a=>typeof a==="string"))'))
+    check('abilities: every entry has EN name + effect + FA name + FA effect',
+          ap.evaluate('ABIL3.every(a=>a.en&&a.eff_en&&a.name_fa&&a.eff_fa)'))
+    check('abilities: FA effects are Persian',
+          ap.evaluate('ABIL3.every(a=>[...a.eff_fa].some(c=>c>="\\u0600"&&c<="\\u06FF"))'))
+    check('abilities: era order preserved (stench first, air-lock last)',
+          ap.evaluate('ABIL3[0].slug') == 'stench' and ap.evaluate('ABIL3[76].slug') == 'air-lock')
+
+    # overlay via the Y hotkey
+    ap.keyboard.press('y')
+    ap.wait_for_timeout(300)
+    check('ability dex: Y opens the overlay',
+          ap.evaluate('!document.querySelector("#abilWrap").classList.contains("hidden")'))
+    check('ability dex: head says ABILITY DEX',
+          ap.evaluate('document.querySelector("#abHeadT").textContent') == 'ABILITY DEX')
+    check('ability dex: 77 cards', ap.evaluate('document.querySelectorAll(".abcard").length') == 77)
+    check('ability dex: count label 77 abilities',
+          ap.evaluate('document.querySelector("#abBody .it-count").textContent') == '77 abilities')
+
+    # search + detail view (slot-1 list)
+    ap.fill('#abQ', 'blaze')
+    ap.wait_for_timeout(200)
+    check('ability dex: search blaze → 1 card', ap.evaluate('document.querySelectorAll(".abcard").length') == 1)
+    ap.click('.abcard')
+    ap.wait_for_timeout(200)
+    ablaze = ap.evaluate('document.querySelector("#abBody").textContent')
+    check('ability dex: blaze detail carries the GBA effect wording', 'Ups FIRE moves in a pinch' in ablaze)
+    check('ability dex: blaze detail carries the FA effect', 'آتشیش' in ablaze)
+    check('ability dex: blaze slot-1 list = 9 carriers',
+          ap.evaluate('document.querySelectorAll(".ab-mon").length') == 9)
+    first_mon = ap.evaluate('document.querySelector(".ab-mon span").textContent')
+    check('ability dex: blaze carriers start with Charmander', first_mon == 'Charmander', first_mon)
+    ap.click('#abBack'); ap.wait_for_timeout(150)
+
+    # slot-2 list: early-bird — 13 carriers, 10 of them in the SECOND slot
+    # (Doduo line, Natu line, Seedot line…; Kangaskhan/Houndour have it first)
+    ap.fill('#abQ', 'early-bird'); ap.wait_for_timeout(200)
+    ap.click('.abcard'); ap.wait_for_timeout(200)
+    s2_secs = ap.evaluate('[...document.querySelectorAll(".ab-sec-t")].map(s=>s.textContent).join("|")')
+    check('ability dex: early-bird shows First + Second ability sections',
+          'First ability' in s2_secs and 'Second ability' in s2_secs, s2_secs)
+    check('ability dex: early-bird slot-2 = 10 mons incl. Doduo + Seedot',
+          ap.evaluate('document.querySelectorAll(".ab-sec:nth-of-type(2) .ab-mon").length') == 10 or
+          ap.evaluate('document.querySelectorAll(".ab-mon").length') == 13)
+    check('ability dex: early-bird slot-2 includes Doduo',
+          ap.evaluate('[...document.querySelectorAll(".ab-mon span")].some(s=>s.textContent==="Doduo")'))
+    ap.click('#abBack'); ap.wait_for_timeout(150)
+
+    # cacophony: honest unused note, never fake users
+    ap.fill('#abQ', 'cacophony'); ap.wait_for_timeout(200)
+    ap.click('.abcard'); ap.wait_for_timeout(200)
+    check('ability dex: cacophony flagged unused (EN)',
+          ap.evaluate('!!document.querySelector(".ab-unused")') and
+          'no Pokémon of this era carries it' in ap.evaluate('document.querySelector(".ab-unused").textContent'))
+    ap.screenshot(path=f'{SHOT}/abil_cacophony.png')
+    ap.click('#abBack'); ap.wait_for_timeout(150)
+
+    # FA search inside the overlay (EN UI here) — باران matches drizzle
+    ap.fill('#abQ', 'باران')
+    ap.wait_for_timeout(200)
+    check('ability dex: FA search finds Drizzle (باران)',
+          ap.evaluate('document.querySelectorAll(".abcard").length >= 1') and
+          ap.evaluate('!!document.querySelector(".abcard[data-ab=drizzle]")'))
+    ap.fill('#abQ', ''); ap.wait_for_timeout(120)
+    ap.keyboard.press('Escape'); ap.wait_for_timeout(200)
+    check('ability dex: Esc closes the overlay',
+          ap.evaluate('document.querySelector("#abilWrap").classList.contains("hidden")'))
+
+    # chips deep-link from the dex page (era slots: venusaur = overgrow only)
+    ap.evaluate('select(3,{scroll:false})')
+    ap.wait_for_timeout(250)
+    check('abilities: venusaur chips = overgrow only (era-true)',
+          ap.evaluate('JSON.stringify([...document.querySelectorAll("#detailPane .abchip")].map(e=>e.dataset.ab))') == '["overgrow"]')
+    ap.click('#detailPane .abchip')
+    ap.wait_for_timeout(250)
+    check('abilities: chip deep-opens the Overgrow card',
+          ap.evaluate('(document.querySelector("#abilWrap:not(.hidden) .ab-ltitle b")||{}).textContent') == 'Overgrow')
+    ap.click('#abClose'); ap.wait_for_timeout(150)
+    check('abilities: "Open in the Ability Dex" link present',
+          ap.evaluate('!!document.querySelector("#abOpenLink")'))
+
+    # START menu entry + About documentation
+    ap.click('#startBtn'); ap.wait_for_timeout(200)
+    check('ability dex: START menu entry present',
+          ap.evaluate('!!document.querySelector("#menuPop [data-act=abildex]")'))
+    ap.click('#menuPop [data-act=abildex]'); ap.wait_for_timeout(250)
+    check('ability dex: opens from the START menu',
+          ap.evaluate('!document.querySelector("#abilWrap").classList.contains("hidden")'))
+    ap.keyboard.press('Escape'); ap.wait_for_timeout(150)
+    ap.evaluate('document.querySelector("#menuPop [data-act=about]").click()')
+    ap.wait_for_timeout(200)
+    about_txt = ap.evaluate('document.querySelector("#aboutBox").textContent')
+    check('about: Y abilities documented (EN)', 'Y abilities' in about_txt)
+    check('about: nature selector documented (EN)', 'NATURE' in about_txt)
+    ap.click('#aboutOk'); ap.wait_for_timeout(150)
+
+    # ---------- natures ----------
+    check('natures: 25 entries', ap.evaluate('NATURES3.length') == 25)
+    check('natures: FA names hand-written for all 25',
+          ap.evaluate('NATURES3.every(n=>n.fa&&[...n.fa].some(c=>c>="\\u0600"&&c<="\\u06FF"))'))
+    check('natures: exactly 5 neutral (hardy/docile/serious/bashful/quirky)',
+          ap.evaluate('JSON.stringify(NATURES3.filter(n=>!n.up&&!n.down).map(n=>n.slug).sort())') == '["bashful","docile","hardy","quirky","serious"]')
+    check('natures: boosted ones always pair one up with one down',
+          ap.evaluate('NATURES3.every(n=>(n.up===null)===(n.down===null)&&(n.up===null||n.up!==n.down))'))
+    pairs = ap.evaluate('JSON.stringify(["adamant","modest","jolly","calm","relaxed","timid"].map(s=>{const n=NATURES3.find(x=>x.slug===s);return n.up+"/"+n.down}))')
+    check('natures: era stat pairs match gNatureStatTable',
+          pairs == '["atk/spa","spa/atk","spe/spa","spd/atk","def/spe","spe/atk"]', pairs)
+    flavors = ap.evaluate('JSON.stringify(["adamant","modest","jolly"].map(s=>{const n=NATURES3.find(x=>x.slug===s);return n.like+"/"+n.hate}))')
+    check('natures: Pokéblock flavor pairs match gPokeblockFlavorCompatibilityTable',
+          flavors == '["spicy/dry","dry/spicy","sweet/dry"]', flavors)
+
+    # selector UI + arrows (nature math on the stat panel)
+    ap.evaluate('select(6,{scroll:false})')   # charizard
+    ap.wait_for_timeout(250)
+    check('nature: selector offers 26 options (25 natures + none)',
+          ap.evaluate('document.querySelectorAll("#natSel option").length') == 26)
+    ap.select_option('#natSel', 'adamant')
+    ap.wait_for_timeout(250)
+    check('nature: adamant marks Attack +10%',
+          ap.evaluate('!!document.querySelector(\'.statrow[data-k=atk] .nat-up\')'))
+    check('nature: adamant marks Sp.Atk −10%',
+          ap.evaluate('!!document.querySelector(\'.statrow[data-k=spa] .nat-dn\')'))
+    check('nature: other stats stay unmarked (1 up, 1 down total)',
+          ap.evaluate('document.querySelectorAll("#detailPane .nat-up").length') == 1 and
+          ap.evaluate('document.querySelectorAll("#detailPane .nat-dn").length') == 1)
+    note = ap.evaluate('document.querySelector(".natNote").textContent')
+    check('nature: note spells +10% / −10% + Pokéblock flavors',
+          '+10%' in note and '−10%' in note and 'Spicy' in note and 'Dry' in note, note)
+    check('nature: arrow tooltip says +10%', ap.evaluate('document.querySelector(".nat-up").title') == '+10%')
+    ap.select_option('#natSel', 'hardy')
+    ap.wait_for_timeout(250)
+    check('nature: neutral hardy → no arrows + neutral note',
+          ap.evaluate('document.querySelectorAll("#detailPane .nat-up, #detailPane .nat-dn").length') == 0 and
+          'no stat change' in ap.evaluate('document.querySelector(".natNote").textContent'))
+    ap.select_option('#natSel', '')
+    ap.wait_for_timeout(250)
+    check('nature: clearing the pick hides the note',
+          ap.evaluate('!document.querySelector(".natNote")'))
+    # persistence (store() JSON-round-trip)
+    ap.select_option('#natSel', 'modest')
+    ap.wait_for_timeout(250)
+    ap.reload(); ap.wait_for_timeout(1500)
+    check('nature: pick persists across reload (pkd_g3_nature)',
+          ap.evaluate('state.nature') == 'modest' and
+          ap.evaluate('document.querySelector("#natSel").value') == 'modest')
+    check('nature: modest arrows render after reload',
+          ap.evaluate('!!document.querySelector(\'.statrow[data-k=spa] .nat-up\')'))
+    ap.select_option('#natSel', '')
+    ap.wait_for_timeout(200)
+    ap.screenshot(path=f'{SHOT}/nature_panel.png')
+
+    # ---------- cross-notes: contest + berry flavors ----------
+    ap.evaluate('MovesUI.openDex("detail", 52)')   # ember — contest move on R/S/E
+    ap.wait_for_timeout(300)
+    mnote = ap.evaluate('(()=>{const n=document.querySelector("#mvBody .mv-note");return n?n.textContent:"";})()')
+    check('moves: contest explainer on R/S/E cards', 'matching Pokéblock flavor' in mnote, mnote[:60])
+    ap.evaluate('MovesUI.closeDex()')
+    ap.click('.tchip[data-th=firered]'); ap.wait_for_timeout(350)
+    ap.evaluate('MovesUI.openDex("detail", 52)')
+    ap.wait_for_timeout(300)
+    mnote_fr = ap.evaluate('(()=>{const n=document.querySelector("#mvBody .mv-note");return n?n.textContent:"";})()')
+    check('moves: no contest note on FRLG (authentic — FRLG dropped contests)',
+          'Pokéblock' not in mnote_fr, mnote_fr[:60])
+    ap.evaluate('MovesUI.closeDex()')
+    ap.click('.tchip[data-th=ruby]'); ap.wait_for_timeout(300)
+    ap.evaluate('ItemsUI.openDex()')
+    ap.wait_for_timeout(300)
+    ap.fill('#itQ', 'cheri')
+    ap.wait_for_timeout(250)
+    ap.click('.icard')
+    ap.wait_for_timeout(300)
+    inote = ap.evaluate('(()=>{const n=document.querySelector(".id-flavors .mv-note");return n?n.textContent:"";})()')
+    check('items: berry-flavor Pokéblock cross-note (EN)', 'NATURE' in inote, inote[:60])
+    ap.keyboard.press('Escape'); ap.wait_for_timeout(150)
+
+    # ---------- phase-7 FA pass ----------
+    seed(ap, lang='fa', theme='ruby')
+    fresh(ap, f'file://{R}/gen3.html#006')
+    ap.wait_for_timeout(1600)
+    check('FA: page loaded in Persian (rtl)', ap.evaluate('document.body.dir') == 'rtl')
+    aerrs.clear()   # about:blank hop logs localStorage noise from the init scripts — count only gen3 errors
+    check('FA: ability chips render Persian names',
+          ap.evaluate('document.querySelector("#detailPane .abchip").textContent') == 'شعله‌ور')
+    ap.keyboard.press('y'); ap.wait_for_timeout(300)
+    check('FA: overlay head in Persian',
+          ap.evaluate('document.querySelector("#abHeadT").textContent') == 'دکس توانایی')
+    ap.fill('#abQ', 'شعله'); ap.wait_for_timeout(200)
+    check('FA: Persian search finds Blaze', ap.evaluate('document.querySelectorAll(".abcard").length') == 1)
+    check('FA: card names lead in Persian',
+          ap.evaluate('(document.querySelector(".abcard .ab-nm b")||{}).textContent') == 'شعله‌ور')
+    ap.click('.abcard'); ap.wait_for_timeout(200)
+    fa_body = ap.evaluate('document.querySelector("#abBody").textContent')
+    check('FA: effect shown in Persian first', 'وقتی جانش کم است' in fa_body)
+    check('FA: slot lists use Persian names + Persian digits',
+          'چارمندر' in fa_body and 'چاریزارد' in fa_body and '۹' in fa_body, fa_body[:70])
+    ap.click('#abBack'); ap.wait_for_timeout(150)
+    ap.fill('#abQ', 'ناهماهنگی'); ap.wait_for_timeout(200)
+    ap.click('.abcard'); ap.wait_for_timeout(200)
+    check('FA: cacophony unused note in Persian',
+          ap.evaluate('!!document.querySelector(".ab-unused")') and
+          'هیچ پوکمونی' in ap.evaluate('document.querySelector(".ab-unused").textContent'))
+    ap.screenshot(path=f'{SHOT}/abil_fa.png')
+    ap.keyboard.press('Escape'); ap.wait_for_timeout(200)
+
+    # nature FA: options, note, arrow tooltips
+    opt_fa = ap.evaluate('document.querySelectorAll("#natSel option")[1].textContent')
+    check('FA: nature options in Persian', opt_fa == 'سخت‌کوش', opt_fa)
+    ap.select_option('#natSel', 'adamant')
+    ap.wait_for_timeout(250)
+    fa_note = ap.evaluate('document.querySelector(".natNote").textContent')
+    check('FA: nature note Persian with Persian digits',
+          'سرسخت' in fa_note and '۱۰٪' in fa_note and 'پوک‌بلاک' in fa_note, fa_note[:80])
+    check('FA: arrow tooltip Persian', ap.evaluate('document.querySelector(".nat-up").title') == '۱۰٪ بیشتر')
+    ap.select_option('#natSel', '')
+    ap.wait_for_timeout(200)
+    ap.screenshot(path=f'{SHOT}/nature_fa.png')
+
+    # FA cross-notes
+    ap.evaluate('ItemsUI.openDex()')
+    ap.wait_for_timeout(300)
+    ap.fill('#itQ', 'cheri')
+    ap.wait_for_timeout(300)
+    ap.evaluate("document.querySelector('.icard').click()")
+    ap.wait_for_timeout(300)
+    fa_inote = ap.evaluate('(()=>{const n=document.querySelector(".id-flavors .mv-note");return n?n.textContent:"";})()')
+    check('FA: berry flavor note in Persian', 'پوک‌بلاک' in fa_inote and 'طبیعت' in fa_inote, fa_inote[:60])
+    ap.evaluate('ItemsUI.closeDex()')
+    ap.evaluate('MovesUI.openDex("detail", 52)')
+    ap.wait_for_timeout(300)
+    fa_mnote = ap.evaluate('(()=>{const n=document.querySelector("#mvBody .mv-note");return n?n.textContent:"";})()')
+    check('FA: contest note in Persian', 'مسابقه' in fa_mnote and 'پوک‌بلاک' in fa_mnote, fa_mnote[:60])
+    ap.evaluate('MovesUI.closeDex()')
+    ap.evaluate('document.querySelector("#menuPop [data-act=about]").click()')
+    ap.wait_for_timeout(200)
+    check('FA: about documents Y توانایی‌ها',
+          'Y توانایی‌ها' in ap.evaluate('document.querySelector("#aboutBox").textContent'))
+    ap.click('#aboutOk'); ap.wait_for_timeout(150)
+
+    check('phase 7: no console errors', not aerrs, '; '.join(aerrs[:3]))
+    actx.close()
+
     ctx3.close()
     browser.close()
 
