@@ -514,6 +514,299 @@ with sync_playwright() as pw:
     fp2.close(); fctx.close()
     ictx.close()
 
+    # ==================== PHASE 5 — Location Dex + How to Catch (Hoenn) ====================
+    lctx = browser.new_context(viewport={'width': 1440, 'height': 950})
+    lp = lctx.new_page()
+    lerr = []
+    lp.on('console', lambda m: lerr.append(m.text) if m.type == 'error' else None)
+    lp.on('pageerror', lambda e: lerr.append(str(e)))
+    seed(lp, theme='ruby')
+    lp.goto(f'file://{R}/gen3.html')
+    lp.wait_for_timeout(1800)
+
+    check('locations: scripts load (LOC3 + module) with no console errors',
+          lp.evaluate('typeof LOC3!=="undefined" && typeof LocUI!=="undefined"') and not lerr, '; '.join(lerr[:3]))
+    check('locations: START menu entry present (ruby)',
+          lp.evaluate('!!document.querySelector("#menuPop [data-act=locdex]")'))
+    check('locations: HOW TO CATCH section in the detail pane',
+          lp.evaluate('!!document.querySelector("#locSec")'))
+    check('locations: section follows the active game (RUBY chip on)',
+          lp.evaluate('(()=>{const c=[...document.querySelectorAll("#locSec .lchip")].find(x=>x.dataset.lg==="ruby");return c && c.classList.contains("on");})()'))
+
+    # data-level checks straight from LOC3
+    ldata = lp.evaluate("""(function(){
+      const H = LOC3.regions.hoenn;
+      const noFA = H.locs.filter(l=>!l.fa || !/[\\u0600-\\u06FF]/.test(l.fa)).length;
+      const ids = H.locs.map(l=>l.id);
+      const groups = {}; H.locs.forEach(l=>groups[l.g]=(groups[l.g]||0)+1);
+      const r101 = H.locs.find(l=>l.id==='MAPSEC_ROUTE_101');
+      const isStart = id => id===252 || id===255 || id===258;
+      const noStarter = H.locs.every(l=>Object.values(l.t||{}).every(rooms=>!rooms || rooms.every(rm=>
+        !(rm.land && rm.land.s.some(e=>isStart(e[0]))) &&
+        !(rm.surf && rm.surf.w.some(e=>isStart(e[0]))) &&
+        !(rm.rk && rm.rk.s2.some(e=>isStart(e[0]))))));
+      const saf = H.locs.find(l=>l.id==='MAPSEC_SAFARI_ZONE');
+      const coo = H.locs.find(l=>l.id==='MAPSEC_CAVE_OF_ORIGIN');
+      const spOf = id => H.sp.filter(s=>s.m && s.m.some(x=>x[0]===id));
+      const grou = {}; spOf(383).forEach(s=>{grou[s.v.join('+')+'@'+(s.loc||'roam')]=s.m[0][1];});
+      const kyo = {}; spOf(382).forEach(s=>{kyo[s.v.join('+')+'@'+(s.loc||'roam')]=s.m[0][1];});
+      const lvl = (id, v) => { const s=H.sp.find(s=>s.m&&s.m[0][0]===id&&s.v.includes(v)); return s?s.m[0][1]:null; };
+      const trades = { rs: H.sp.filter(s=>s.k==='trade'&&s.v.includes('ruby')).length,
+                       em: H.sp.filter(s=>s.k==='trade'&&s.v.includes('emerald')).length };
+      const fishAllMagikarp = H.fish.every(f=>(f.o||[]).every(r=>r[0]===129));
+      const uw = {}; ['MAPSEC_UNDERWATER_124','MAPSEC_UNDERWATER_125','MAPSEC_UNDERWATER_126'].forEach(id=>{
+        const l=H.locs.find(x=>x.id===id); uw[id]=l?Object.keys(l.t):null; });
+      const spFA = H.sp.every(s=>s.d.fa && /[\\u0600-\\u06FF]/.test(s.d.fa));
+      const evos = H.sp.filter(s=>s.k==='egg').length;
+      return { n: H.locs.length, noFA, uniq: new Set(ids).size, groups,
+               r101rate: r101.t.ruby[0].land.r, r101has261: r101.t.ruby[0].land.s.some(e=>e[0]===261),
+               noStarter,
+               safRuby: saf.t.ruby.length, safEm: saf.t.emerald.length,
+               cooRuby: coo.t.ruby.length, cooEm: coo.t.emerald.length,
+               grou, kyo, grouSapph: spOf(383).some(s=>s.v.includes('sapphire')),
+               ray: spOf(384).map(s=>[s.v.join('+'), s.m[0][1]]),
+               regice: lvl(378,'ruby'), voltorbN: (H.sp.find(s=>s.k==='static'&&s.loc==='MAPSEC_NEW_MAUVILLE').m||[]).length,
+               sudowoodo: lvl(185,'emerald'), kecleon: lvl(352,'ruby'),
+               trades, beldum: H.sp.some(s=>s.m&&s.m[0][0]===374&&s.v.length===3),
+               castform: H.sp.some(s=>s.m&&s.m[0][0]===351&&s.v.length===3),
+               wynaut: evos,
+               latiRoam: H.sp.filter(s=>s.k==='roamer').length,
+               south: H.sp.filter(s=>s.loc==='MAPSEC_SOUTHERN_ISLAND').map(s=>s.v.join('+')),
+               mew: lvl(151,'emerald'), lugia: lvl(249,'emerald'), hooh: lvl(250,'emerald'), deoxys: lvl(386,'emerald'),
+               deoxysRS: spOf(386).some(s=>s.v.some(v=>v!=='emerald')),
+               swarms: H.swarms.map(s=>[s.id,s.lvl,s.loc]),
+               fishAllMagikarp, bite: LOC3.bite,
+               uw, spFA,
+               notes: H.locs.filter(l=>l.note).map(l=>l.id),
+               noTimeTabs: true,
+               dedup: H.locs.filter(l=>l.t.sapphire===undefined && l.t.ruby!==undefined).length,
+               kantoNull: LOC3.regions.kanto === null }; })()""")
+    check('80 locations, all bilingual, unique ids', ldata['n'] == 80 and ldata['noFA'] == 0 and ldata['uniq'] == 80, str(ldata['n']))
+    check('every group represented (routes/cities/caves/water/safari/island/building)',
+          all(g in ldata['groups'] for g in ['route','city','cave','water','safari','island','building']), str(ldata['groups']))
+    check('Route 101 ruby: rate 20 + Poochyena in slot table', ldata['r101rate'] == 20 and ldata['r101has261'])
+    check('no wild starters anywhere (Treecko/Torchic/Mudkip)', ldata['noStarter'])
+    check('Safari Zone areas: 4 on R/S, 6 on Emerald (N+S Emerald-only)',
+          ldata['safRuby'] == 4 and ldata['safEm'] == 6, f"{ldata['safRuby']}/{ldata['safEm']}")
+    check('Cave of Origin rooms: 5 on R/S (B4F special), 2 on Emerald',
+          ldata['cooRuby'] == 5 and ldata['cooEm'] == 2, f"{ldata['cooRuby']}/{ldata['cooEm']}")
+    check('Groudon version-locked: R 45 @Cave of Origin · E 70 @Terra Cave · never Sapphire',
+          ldata['grou'] == {'ruby@MAPSEC_CAVE_OF_ORIGIN': 45, 'emerald@MAPSEC_TERRA_CAVE': 70} and not ldata['grouSapph'], str(ldata['grou']))
+    check('Kyogre version-locked: S 45 @Cave of Origin · E 70 @Marine Cave',
+          ldata['kyo'] == {'sapphire@MAPSEC_CAVE_OF_ORIGIN': 45, 'emerald@MAPSEC_MARINE_CAVE': 70}, str(ldata['kyo']))
+    check('Rayquaza Lv 70 in all three games at Sky Pillar',
+          ldata['ray'] == [["ruby+sapphire+emerald", 70]], str(ldata['ray']))
+    check('Regice Lv 40 (Island Cave), Voltorb trio Lv 25, Kecleon Lv 30, Sudowoodo Lv 40 Emerald-only',
+          ldata['regice'] == 40 and ldata['voltorbN'] == 3 and ldata['kecleon'] == 30 and ldata['sudowoodo'] == 40, str((ldata['regice'], ldata['voltorbN'], ldata['kecleon'], ldata['sudowoodo'])))
+    check('in-game trades: 3 on R/S + 4 on Emerald', ldata['trades'] == {'rs': 3, 'em': 4}, str(ldata['trades']))
+    check('Beldum + Castform gifts + Wynaut egg in every game', ldata['beldum'] and ldata['castform'] and ldata['wynaut'])
+    check('Latis: 4 roamer entries (40) + Southern Island per game (50)',
+          ldata['latiRoam'] == 4 and sorted(ldata['south']) == ['emerald', 'ruby', 'sapphire'], str((ldata['latiRoam'], ldata['south'])))
+    check('ticket events Emerald-only: Mew 30 · Lugia 70 · Ho-Oh 70 · Deoxys 30',
+          (ldata['mew'], ldata['lugia'], ldata['hooh'], ldata['deoxys']) == (30, 70, 70, 30) and not ldata['deoxysRS'])
+    check('Emerald swarms: Seedot3/R102 · Skitty8/R116 · Seedot13/R117 · Nuzleaf15/R114 · Seedot25/R120',
+          ldata['swarms'] == [[273, 3, 'MAPSEC_ROUTE_102'], [300, 8, 'MAPSEC_ROUTE_116'], [273, 13, 'MAPSEC_ROUTE_117'], [274, 15, 'MAPSEC_ROUTE_114'], [273, 25, 'MAPSEC_ROUTE_120']], str(ldata['swarms']))
+    check('fishing: Old Rod hooks only Magikarp everywhere · bite 50%',
+          ldata['fishAllMagikarp'] and ldata['bite'] == 50)
+    check('underwater coverage: R/S 124+125 · Emerald 124+126 (sapphire deduped to ruby)',
+          ldata['uw']['MAPSEC_UNDERWATER_124'] == ['ruby', 'emerald'] and
+          ldata['uw']['MAPSEC_UNDERWATER_125'] == ['ruby'] and
+          ldata['uw']['MAPSEC_UNDERWATER_126'] == ['emerald'], str(ldata['uw']))
+    check('every special way carries a Persian description', ldata['spFA'])
+    check('per-location notes: Feebas (R119) · Altering Cave · Shoal tides',
+          sorted(ldata['notes']) == ['MAPSEC_ALTERING_CAVE', 'MAPSEC_ROUTE_119', 'MAPSEC_SHOAL_CAVE'], str(ldata['notes']))
+    check('R/S dedupe: identical Sapphire tables omitted (fallback to ruby)',
+          ldata['dedup'] >= 30, str(ldata['dedup']))
+    check('kanto region stays null until phase 6 (FRLG hidden)', ldata['kantoNull'])
+
+    # HOW TO CATCH per Pokémon
+    lp.evaluate("select(304)")   # Aron — Granite Cave wild
+    lp.wait_for_timeout(250)
+    txt = lp.evaluate("document.querySelector('#locSec').textContent")
+    check('Aron HOW TO CATCH lists Granite Cave (bilingual)',
+          'Granite Cave' in txt and 'غار گرانیت' in txt, txt[:60])
+    lp.evaluate("select(383)")   # Groudon — version-dependent static
+    lp.wait_for_timeout(250)
+    txt = lp.evaluate("document.querySelector('#locSec').textContent")
+    check('Groudon shows Lv 45 Cave of Origin on RUBY', '45' in txt and 'Cave of Origin' in txt, txt[:70])
+    lp.evaluate("[...document.querySelectorAll('#locSec .lchip')].find(x=>x.dataset.lg==='sapphire').click()")
+    lp.wait_for_timeout(250)
+    txt = lp.evaluate("document.querySelector('#locSec').textContent")
+    check('Groudon locked out on SAPPHIRE with the trade note', 'NOT IN THIS GAME' in txt.upper() and 'Trade' in txt, txt[:70])
+    lp.evaluate("[...document.querySelectorAll('#locSec .lchip')].find(x=>x.dataset.lg==='emerald').click()")
+    lp.wait_for_timeout(250)
+    txt = lp.evaluate("document.querySelector('#locSec').textContent")
+    check('Groudon chip switch shows Lv 70 Terra Cave (Emerald)', '70' in txt and 'Terra Cave' in txt, txt[:70])
+    lp.evaluate("select(149)")   # Dragonite — not obtainable in Hoenn at all
+    lp.wait_for_timeout(250)
+    txt = lp.evaluate("document.querySelector('#locSec').textContent")
+    check('Dragonite: honest not-obtainable note (cartridge trade)', 'NOT IN THIS GAME' in txt.upper() and 'Generation III' in txt, txt[:80])
+    lp.evaluate("select(350)")   # Milotic — beauty evolution from wild Feebas
+    lp.wait_for_timeout(250)
+    txt = lp.evaluate("document.querySelector('#locSec').textContent")
+    check('Milotic: evolution path via Beauty 170 (gen-3 condition)', 'Beauty' in txt and '170' in txt, txt[:80])
+    lp.evaluate("select(336)")   # Seviper — sapphire/emerald only (route 114)
+    lp.wait_for_timeout(250)
+    txt = lp.evaluate("document.querySelector('#locSec').textContent")
+    check('Seviper: wild rows only in the games that have it', 'Route 114' in txt or 'Safari' in txt, txt[:60])
+    lp.evaluate("select(386)")   # Deoxys — Emerald ticket event
+    lp.wait_for_timeout(250)
+    txt = lp.evaluate("document.querySelector('#locSec').textContent")
+    check('Deoxys: EVENT row on Emerald (Birth Island, Speed forme)', 'EVENT' in txt.upper() and 'Birth Island' in txt, txt[:80])
+
+    # Location Dex overlay
+    lp.keyboard.press('l')
+    lp.wait_for_timeout(350)
+    check('overlay opens with L', lp.evaluate("!document.querySelector('#locWrap').classList.contains('hidden')"))
+    ov_n = lp.evaluate("document.querySelectorAll('#locWrap .lcard').length")
+    check('overlay lists all 80 locations', ov_n == 80, f'cards={ov_n}')
+    ov_head = lp.evaluate("document.querySelector('#lcHeadT').textContent")
+    check('overlay head follows the theme game (ruby seed)', 'RUBY' in ov_head, ov_head)
+    lp.evaluate("[...document.querySelectorAll('#lcViewbar .gchip')].find(x=>x.dataset.gm==='emerald').click()")
+    lp.wait_for_timeout(250)
+    ov_head2 = lp.evaluate("document.querySelector('#lcHeadT').textContent")
+    check('overlay game chip switches to EMERALD', 'EMERALD' in ov_head2, ov_head2)
+    lp.evaluate("[...document.querySelectorAll('#lcViewbar .gchip')].find(x=>x.dataset.gm==='ruby').click()")
+    lp.wait_for_timeout(250)
+    lp.evaluate("LocUI.openDex('MAPSEC_ROUTE_101')")
+    lp.wait_for_timeout(300)
+    r101 = lp.evaluate("document.querySelector('#lcBody').textContent")
+    check('Route 101 view: grass + Persian name + Poochyena',
+          'GRASS' in r101 and 'مسیر ۱۰۱' in r101 and 'Poochyena' in r101, r101[:70].replace('\n', ' '))
+    check('no time tabs in Gen 3 (day/night dropped)', lp.evaluate("document.querySelectorAll('#lcBody .tchip').length") == 0)
+    check('slot percentages aggregate (Zigzagoon 45% on R101)',
+          lp.evaluate("(()=>{const r=[...document.querySelectorAll('#lcBody .lrow.mon')].find(x=>x.textContent.includes('Zigzagoon'));return r && r.querySelector('.lrow-pc').textContent.trim().replace('%','')==='45';})()"))
+    lp.screenshot(path=f'{SHOT}/loc_route101.png')
+    lp.evaluate("LocUI.openDex('MAPSEC_ROUTE_119')")
+    lp.wait_for_timeout(300)
+    r119 = lp.evaluate("document.querySelector('#lcBody').textContent")
+    check('Route 119 view: Feebas tile note present', 'FEEBAS' in r119.upper() and '6 random' in r119, r119[:70])
+    check('Route 119 underwater badge absent (land route)',
+          lp.evaluate("!document.querySelector('#lcBody .lcb-uw')"))
+    lp.evaluate("LocUI.openDex('MAPSEC_UNDERWATER_124')")
+    lp.wait_for_timeout(300)
+    uw = lp.evaluate("document.querySelector('#lcBody').textContent")
+    check('Underwater Route 124: UNDERWATER label + absent note on RUBY (EM-only? no: exists)',
+          'UNDERWATER' in uw.upper(), uw[:70])
+    lp.evaluate("[...document.querySelectorAll('#lcViewbar .gchip')].find(x=>x.dataset.gm==='emerald').click()")
+    lp.wait_for_timeout(250)
+    uw2 = lp.evaluate("document.querySelector('#lcBody').textContent")
+    check('Underwater 124 shows tables on Emerald (no absent note)',
+          'does not exist' not in uw2 and 'UNDERWATER' in uw2.upper(), uw2[:70])
+    lp.evaluate("LocUI.openDex('MAPSEC_UNDERWATER_126')")
+    lp.wait_for_timeout(250)
+    lp.evaluate("[...document.querySelectorAll('#lcViewbar .gchip')].find(x=>x.dataset.gm==='ruby').click()")
+    lp.wait_for_timeout(250)
+    uw3 = lp.evaluate("document.querySelector('#lcBody').textContent")
+    check('Underwater 126 on RUBY: honest absent note', 'does not exist in RUBY' in uw3, uw3[:70])
+    lp.evaluate("LocUI.openDex('MAPSEC_SAFARI_ZONE')")
+    lp.wait_for_timeout(250)
+    saf = lp.evaluate("document.querySelector('#lcBody').textContent")
+    check('Safari Zone on RUBY: 4 area blocks', all(a in saf for a in ['Northwest', 'Northeast', 'Southwest', 'Southeast']), saf[:80])
+    lp.evaluate("[...document.querySelectorAll('#lcViewbar .gchip')].find(x=>x.dataset.gm==='emerald').click()")
+    lp.wait_for_timeout(250)
+    saf2 = lp.evaluate("document.querySelector('#lcBody').textContent")
+    check('Safari Zone on EMERALD adds North + South areas',
+          all(a in saf2 for a in ['North area', 'South area']), saf2[:80])
+    lp.evaluate("LocUI.openDex('MAPSEC_SHOAL_CAVE')")
+    lp.wait_for_timeout(250)
+    sh = lp.evaluate("document.querySelector('#lcBody').textContent")
+    check('Shoal Cave: low-tide room labels + tide note',
+          'low tide' in sh and 'Tides' in sh, sh[:80])
+    lp.evaluate("LocUI.openDex('MAPSEC_ROUTE_116')")
+    lp.wait_for_timeout(250)
+    sw = lp.evaluate("[...document.querySelectorAll('#lcViewbar .gchip')].find(x=>x.dataset.gm==='emerald').click(), document.querySelector('#lcBody').textContent")
+    check('Route 116 (Emerald): Skitty swarm block + note', 'SWARM' in sw.upper() and 'Skitty' in sw, sw[:80])
+    lp.screenshot(path=f'{SHOT}/loc_r116_swarm.png')
+    lp.evaluate("LocUI.openDex('MAPSEC_TERRA_CAVE')")
+    lp.wait_for_timeout(250)
+    coo = lp.evaluate("[...document.querySelectorAll('#lcViewbar .gchip')].find(x=>x.dataset.gm==='emerald').click(), document.querySelector('#lcBody').textContent")
+    check('Terra Cave (Emerald): Groudon Lv 70 + legend note',
+          'GROUDON' in coo.upper() and '70' in coo and 'one-time legendary' in coo, coo[:80])
+    lp.evaluate("LocUI.openDex()")
+    lp.wait_for_timeout(300)
+    check('group chips filter (Caves → cave-only cards)',
+          lp.evaluate("(()=>{document.querySelector('#lcViewbar .it-chip[data-g=cave]').click();const r=document.querySelector('#locWrap').textContent;return !r.includes('Route 101');})()"))
+    lp.evaluate("[...document.querySelectorAll('#lcViewbar .it-chip')].find(x=>x.dataset.g==='all').click()")
+    lp.wait_for_timeout(200)
+    lp.fill('#lcQ', 'غار گرانیت')
+    lp.wait_for_timeout(250)
+    check('search matches the Persian name (Granite Cave)',
+          lp.evaluate("(()=>{const c=[...document.querySelectorAll('#lcBody .lcard')];return c.length===1 && c[0].dataset.loc==='MAPSEC_GRANITE_CAVE';})()"))
+    lp.keyboard.press('Escape')
+    lp.wait_for_timeout(200)
+    check('Escape closes the overlay', lp.evaluate("document.querySelector('#locWrap').classList.contains('hidden')"))
+
+    # FRLG: no Hoenn section (kanto lands in phase 6)
+    lp.evaluate("toggleTheme('firered')")
+    lp.wait_for_timeout(400)
+    check('FRLG: HOW TO CATCH section hidden (no invented data)',
+          lp.evaluate("!document.querySelector('#locSec')"))
+    check('FRLG: START menu entry hidden', lp.evaluate("document.querySelector('#menuPop [data-act=locdex]').style.display === 'none'"))
+    check('FRLG: openDex is a no-op', lp.evaluate("LocUI.openDex(), document.querySelector('#locWrap').classList.contains('hidden')"))
+    lp.evaluate("toggleTheme('ruby')")
+    lp.wait_for_timeout(300)
+    check('back on RUBY: section + menu return', lp.evaluate("!!document.querySelector('#locSec')") and
+          lp.evaluate("document.querySelector('#menuPop [data-act=locdex]').style.display !== 'none'"))
+
+    # mobile: full-width panels (the b0e9a15 lesson) + overlay fits
+    mctx = browser.new_context(viewport={'width': 390, 'height': 844})
+    mp = mctx.new_page()
+    seed(mp, theme='emerald')
+    mp.goto(f'file://{R}/gen3.html')
+    mp.wait_for_timeout(1600)
+    mp.evaluate("select(304)")
+    mp.wait_for_timeout(250)
+    mw = mp.evaluate("(()=>{const s=document.querySelector('#locSec').getBoundingClientRect();const p=document.querySelector('#detailPane').getBoundingClientRect();return {sec:s.width, pane:p.width};})()")
+    check('mobile: location section stretches with the pane (no shrink)',
+          mw['sec'] >= mw['pane'] - 40, str(mw))
+    mp.evaluate("LocUI.openDex()")
+    mp.wait_for_timeout(300)
+    mo = mp.evaluate("(()=>{const b=document.querySelector('#locBox').getBoundingClientRect();return {w:Math.round(b.width), inner:window.innerWidth};})()")
+    check('mobile: overlay fits the viewport', mo['w'] <= mo['inner'] and mo['w'] >= mo['inner'] - 30, str(mo))
+    mp.screenshot(path=f'{SHOT}/loc_mobile.png')
+    mctx.close()
+
+    # FA pass for the location module
+    lfctx = browser.new_context(viewport={'width': 1440, 'height': 950})
+    lfp = lfctx.new_page()
+    seed(lfp, lang='fa', theme='sapphire')
+    lfp.goto(f'file://{R}/gen3.html')
+    lfp.wait_for_timeout(1600)
+    check('locations FA: START menu entry in Persian',
+          lfp.evaluate('document.querySelector("#menuPop [data-act=locdex]").textContent.includes("دکس مکان")'))
+    lfp.evaluate("select(252)")
+    lfp.wait_for_timeout(250)
+    fa_sec = lfp.evaluate("document.querySelector('#locSec').textContent")
+    check('locations FA: starter special renders in Persian',
+          'استارتر' in fa_sec and 'برچ' in fa_sec and 'سطح ۵' in fa_sec, fa_sec[:80])
+    check('locations FA: Persian digits in the section',
+          any('\u06F0' <= ch <= '\u06F9' for ch in fa_sec))
+    lfp.evaluate("select(149)")
+    lfp.wait_for_timeout(250)
+    fa_none = lfp.evaluate("document.querySelector('#locSec').textContent")
+    check('locations FA: not-obtainable note in Persian',
+          'در این نسخه نیست' in fa_none and 'کارتریج' in fa_none, fa_none[:90])
+    lfp.evaluate("select(130)")
+    lfp.wait_for_timeout(250)
+    fa_wild = lfp.evaluate("document.querySelector('#locSec').textContent")
+    check('locations FA: Gyarados via Magikarp evolution (Lv 20, no wild Gyarados in Hoenn)',
+          'با تکامل' in fa_wild and 'ماجیکارپ' in fa_wild and 'سطح ۲۰' in fa_wild, fa_wild[:80])
+    lfp.evaluate("LocUI.openDex()")
+    lfp.wait_for_timeout(400)
+    check('locations FA: overlay head + cards in Persian',
+          lfp.evaluate('document.querySelector("#lcHeadT").textContent.includes("دکس مکان")'))
+    check('locations FA: FA search works (یاقوت کبود header present)',
+          lfp.evaluate('document.querySelector("#locWrap").textContent.includes("یاقوت کبود")'))
+    lfp.evaluate("LocUI.openDex('MAPSEC_ROUTE_119')")
+    lfp.wait_for_timeout(300)
+    fa_note = lfp.evaluate("document.querySelector('#lcBody').textContent")
+    check('locations FA: Feebas note in Persian with Persian digits',
+          'فِیباس' in fa_note and '۵۰٪' in fa_note, fa_note[:90])
+    lfp.screenshot(path=f'{SHOT}/loc_fa.png')
+    lfctx.close()
+    lctx.close()
+
     ctx3.close()
     browser.close()
 

@@ -58,7 +58,7 @@ updates the statuses below. Work through the phases IN ORDER.
 | 2 | Sprite & cry completeness audit (every variant × 386) + fixes | DONE | see phase notes below |
 | 3 | Moves Dex wiring (R/S · EMERALD · FRLG) + contest data + verification | DONE | see phase notes below |
 | 4 | Item Dex wiring (Gen 3, per-game lists + prices, berries) + verification | DONE | see phase notes below |
-| 5 | Location Dex + How to Catch — Hoenn (R/S/E) | TODO | |
+| 5 | Location Dex + How to Catch — Hoenn (R/S/E) | DONE | see phase notes below |
 | 6 | Location Dex + How to Catch — Kanto + Sevii (FRLG) | TODO | |
 | 7 | Gen-3 signature: Ability Dex overlay + Natures (25, interactive) + contest polish | TODO | |
 | 8 | Final QA (all-gen regression, VLM visual audit EN/FA, README, landing) + delete cron | TODO | |
@@ -331,6 +331,88 @@ cleaner than the planned `rse-frlg` string, same semantics). Tests: 32 new
 checks in test-gen3.py (counts per cart, exclusives, berry flavors, per-cart
 wordings/prices, FA pass, icons on disk, search/chips) — 122/122 green; full
 regression across all 10 suites (471 checks) green.
+
+### Phase 5 — RESULT (2026-11-09, this run)
+DONE. Delivered: `assets/js/locations-gen3.js` (LOC3 — built by
+`tools/build-locations-gen3.py` from the pret decompiles pokeruby +
+pokeemerald; curated bilingual name tables live in `tools/loc3_names.py` and
+`tools/loc3_specials.py`) + `assets/js/locations-module3.js` (the gen3 LocUI
+module — same API surface as gen1/gen2). Wired into gen3.html (script tags +
+locations.css) and the existing gen3.js hooks (sectionHTML/wire/applyLang/
+syncGame) with zero gen3.js layout changes; 'L' hotkey + START-menu entry
+(about_p2 hotkey line updated EN/FA).
+
+Data (all from the decomp jsons, never from memory):
+- 80 Hoenn locations (union of R/S 59 + Emerald-only 6 MAPSECs + 15
+  special-only areas), bilingual EN/FA names, ordered by the region-map grid
+  (y·x) like the game's area screen; groups route/city/cave/forest/water/
+  safari/island/building.
+- Per-game per-room tables: land 12 slots at the shared
+  20/20/10/10/10/10/5/5/4/4/1/1, surf + rock-smash 5 slots at 60/30/5/4/1,
+  fishing per map (old 70/30 · good 60/20/20 · super 40/40/15/4/1) with the
+  engine's 50% bite roll (`Random() & 1`, wild_encounter.c); levels roll
+  min..max per slot; NO time tabs (Gen 3 dropped day/night wilds).
+- R/S dedupe: identical Sapphire tables omitted (38 locations) — the module
+  falls back sapphire→ruby; Emerald separate (11 Emerald-only areas).
+- Rooms: multi-map MAPSECs keep honest room blocks (Meteor Falls 1F/1F/B1F/
+  B1F pairs that genuinely differ, Mt. Pyre 8, Seafloor Cavern 9, Cave of
+  Origin 5-on-R/S vs 2-on-Emerald, Victory Road 3, Granite Cave 4, Sky
+  Pillar 1F/3F/5F, Shoal Cave 5 low-tide rooms + tide note, Safari Zone
+  4-on-R/S vs 6-on-Emerald, Magma Hideout 4, Mirage Tower 4, Artisan 2,
+  New Mauville 2, Abandoned Ship 2); identical same-label rooms merge.
+- Dead data excluded: pokeemerald's CaveOfOrigin_UnusedRubySapphireMap1-3
+  wild headers are unreachable (Terra/Marine Caves replace them; their
+  scripts carry FLAG_UNUSED_RS_*) — following gen2's dead-data precedent.
+- Underwater: R/S 124+125 · Emerald 124+126 (per the headers); surf tables
+  on water-group locations carry the UNDERWATER badge.
+
+Specials (39, all verified in the disasm scripts/tables):
+- Starters Lv5 (Birch), Wynaut egg (Lavaridge), Castform Lv25 + Mystic Water
+  (Weather Institute), Beldum Lv5 (Steven's house — R/S AND Emerald, the
+  plan's "Emerald-only" guess was wrong: the gift is in both), fossils Lv20
+  (R/S one-of-two in the desert vs Emerald Mirage Tower + Desert Underpass).
+- Trades per game (gIngameTrades): R/S 3 (Makuhita←Slakoth Rustboro,
+  Skitty←Pikachu Fortree, Corsola←Bellossom Pacifidlog) · Emerald 4
+  (Seedot←Ralts Rustboro, Plusle←Volbeat Fortree, Horsea←Bagon Pacifidlog,
+  Meowth←Skitty Battle Frontier); received mon joins at the given mon's
+  level (trade.c) — noted on the card.
+- Mauville Game Corner: prizes are DOLLS only in R/S/E (verified in the
+  scripts) — no Pokémon prizes, no corner special, authentically absent.
+- Statics with script levels: Groudon 45 R / Kyogre 45 S @Cave of Origin
+  B4F; Groudon 70 @Terra Cave + Kyogre 70 @Marine Cave (Emerald, entrances
+  move with the weather report — noted); Rayquaza 70 @Sky Pillar (all);
+  Regirock/Regice/Registeel 40; Voltorb 25 ×3 @New Mauville; Electrode 30
+  ×2 (R/E Aqua Hideout · S Magma Hideout); Kecleon 30 @Route 120;
+  Sudowoodo 40 Emerald-only @Battle Frontier.
+- Feebas: FishingWildEncounter() + CheckFeebas() — Lv 20–25 via 6 hidden
+  tiles (50% inside a good tile, tiles move with the Dewford trend); NOT in
+  any regular fishing table (verified) — modeled as a Route 119 special +
+  loc note, so Milotic's Beauty-170 evolution path resolves.
+- Latis: roamer Lv40 (R: Latios · S: Latias · E: Mom's red/blue choice) +
+  Southern Island Lv50 Soul Dew via Eon Ticket (R: the other twin · E: the
+  un-chosen twin — roamer.c/`VAR_ROAMER_POKEMON`).
+- Ticket events Emerald-only: Mew 30 @Faraway Island (Old Sea Chart),
+  Lugia 70 + Ho-Oh 70 @Navel Rock (Mystic Ticket), Deoxys 30 @Birth Island
+  (Aurora Ticket, Speed forme).
+- Emerald TV mass outbreaks (tv.c sPokeOutbreakSpeciesList, 50%):
+  Seedot 3 @R102 · Skitty 8 @R116 · Seedot 13 @R117 · Nuzleaf 15 @R114 ·
+  Seedot 25 @R120 — swarm section + method badge.
+- HOW TO CATCH mirrors gen1/gen2: evo paths with gen-3 conditions (Beauty
+  170 Milotic, trade items Deep Sea Tooth/Scale/King's Rock/Metal Coat,
+  happiness day/night, shed for Nincada); version-locked mons say which of
+  the three games have them; not-obtainable-in-Hoenn mons (Kanto dex etc.)
+  get an honest cartridge-trade note; event-only mons point at the ticket
+  rows. FRLG themes: kanto region still null (phase 6) — section, START
+  menu entry and openDex stay hidden (no invented data).
+
+Tests: 67 new phase-5 checks in `tools/test-gen3.py` (data authenticity,
+version locks, per-Pokémon sections, overlay UX, R/S dedupe fallback,
+no-time-tabs, percent aggregation, FRLG hiding, mobile stretch, FA pass) —
+gen3 suite now 189/189; all-gen regression green (gen1 24, gen2 103, order
+20, gen2-order 9, gen2-sprites 30, items 27, moves 44, locations 42,
+gen3-sprites 49/50 — the animated-webp Firefox flake also fails on the
+untouched phase-4 tree, pre-existing headless timing issue, not from this
+phase).
 
 ### Phase 5 — Location Dex + How to Catch — Hoenn (R/S/E)
 - Sources: pokeruby (Ruby+Sapphire) + pokeemerald, raw.githubusercontent.com,

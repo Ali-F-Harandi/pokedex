@@ -52,6 +52,21 @@ body.fa .lcb { font-family: var(--font-fa); font-weight: 700; font-size: 10px; l
 .lcb-static{ background: #d84848; }
 .lcb-event { background: #7a8a9a; }
 .lcb-evoblock { background: #7a8a9a; }
+.lcb-egg   { background: #e08ac0; }
+.lcb-roamer{ background: #7a68c8; }
+.lcb-rk    { background: #a07848; }
+.lcb-sw    { background: #48a8a0; }
+.lcb-uw    { background: #3868a8; }
+.lcb-hb    { background: #688848; }
+.lcb-ct    { background: #c85838; }
+.lc-sub2b {
+  font-family: var(--font-px); font-size: 8.5px; letter-spacing: .8px; direction: ltr;
+  color: var(--ink-faint); margin: 9px 0 5px;
+}
+body.fa .lc-sub2b { font-family: var(--font-fa); font-weight: 700; font-size: 11.5px; letter-spacing: 0; direction: rtl; color: var(--ink-soft); }
+.lc-note2 { font-style: italic; color: var(--ink-faint); }
+.lc-absent { font-size: 10px; color: var(--ink-faint); font-style: italic; }
+.lcb.lc-reg { background: var(--ink-soft); }
 .lrow-nm { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
 .lrow-nm b { font-weight: 700; font-size: 12.5px; }
 .lrow-nm i { font-style: normal; font-size: 10px; color: var(--ink-faint); }
@@ -150,6 +165,11 @@ body.fa .lc-rodnote b { font-family: var(--font-fa); font-weight: 700; font-size
 .lc-mi-g { background: #58a848; }
 .lc-mi-w { background: #4890d0; }
 .lc-mi-f { background: #c88a28; }
+.lc-mi-rk { background: #a07848; }
+.lc-mi-sw { background: #48a8a0; }
+.lc-mi-uw { background: #3868a8; }
+.lc-mi-hb { background: #688848; }
+.lc-mi-ct { background: #c85838; }
 .lc-n { font-family: var(--font-px); font-size: 9px; color: var(--ink-soft); }
 .lc-star { color: var(--gold-d); font-size: 12px; }
 
