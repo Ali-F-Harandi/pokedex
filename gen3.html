@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pokédex — Generation III (Ruby · Sapphire · Emerald · FireRed · LeafGreen)</title>
+<meta name="description" content="All five Generation III games in one offline Pokédex — Pokémon Ruby, Sapphire, Emerald, FireRed and LeafGreen, each with its own theme, its own sprites and its own dex entries. 386 Pokémon with era-true ability slots, cartridge-bound Deoxys formes, shiny variants, Emerald's animated battle sprites and authentic cries. Bilingual EN/FA.">
+<link rel="icon" href="assets/img/favicon.png">
+<link rel="stylesheet" href="assets/css/gen3.css">
+</head>
+<body>
+
+<div id="splash">
+  <div class="sp-inner">
+    <svg class="sp-ball" viewBox="0 0 100 100" aria-hidden="true">
+      <circle cx="50" cy="50" r="45" fill="#f8f8f0" stroke="#0b3d28" stroke-width="6"/>
+      <path d="M5,50 A45,45 0 0 1 95,50 Z" fill="#e5484d" stroke="#0b3d28" stroke-width="5"/>
+      <rect x="3" y="44" width="94" height="12" fill="#0b3d28"/>
+      <circle cx="50" cy="50" r="16" fill="#f8f8f0" stroke="#0b3d28" stroke-width="5"/>
+      <circle cx="50" cy="50" r="6.5" fill="#cfd8d3" stroke="#0b3d28" stroke-width="3"/>
+    </svg>
+    <div class="sp-title">POK&eacute;DEX</div>
+    <div class="sp-sub">GEN III &bull; RUBY &middot; SAPPHIRE &middot; EMERALD &middot; FIRERED &middot; LEAFGREEN</div>
+    <div class="sp-load"><span></span><span></span><span></span></div>
+  </div>
+</div>
+
+<div id="shell">
+  <div class="shoulder l" aria-hidden="true">L</div>
+  <div class="shoulder r" aria-hidden="true">R</div>
+  <div id="screen">
+
+    <header id="topbar">
+      <div class="dexlogo"><span class="l1">POK&eacute;</span><span class="l2">DEX</span></div>
+      <div class="tt">
+        <div class="t1" id="brandSub">GEN III &middot; RUBY VERSION</div>
+        <div class="t2" data-i18n="brand_main">Hoenn Pok&eacute;dex &mdash; 386 Pok&eacute;mon</div>
+      </div>
+      <div class="hspace"></div>
+      <nav id="tabs" aria-label="dex mode"></nav>
+      <div class="htools">
+        <span id="kbHint" data-i18n="kb_hint">&uarr;&darr; browse &middot; / search</span>
+        <button class="hbtn" id="langBtn" title="Change language">فارسی</button>
+        <a class="hbtn" id="homeBtn" data-i18n="home" href="index.html" style="text-decoration:none">HOME</a>
+      </div>
+    </header>
+
+    <main id="main">
+
+      <!-- ============ list pane ============ -->
+      <section id="listPane" aria-label="pokemon list">
+        <div id="searchRow">
+          <input id="q" type="search" autocomplete="off" spellcheck="false" placeholder="Search name or number...">
+          <button class="mbtn" id="sortBtn" title="Sort"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 7h13M4 12h9M4 17h5"/></svg></button>
+          <button class="mbtn" id="favBtn" title="Favorites only"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg></button>
+          <button class="mbtn" id="randBtn" title="Random"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="4"/><circle cx="8.5" cy="8.5" r="1.6" fill="currentColor" stroke="none"/><circle cx="15.5" cy="8.5" r="1.6" fill="currentColor" stroke="none"/><circle cx="8.5" cy="15.5" r="1.6" fill="currentColor" stroke="none"/><circle cx="15.5" cy="15.5" r="1.6" fill="currentColor" stroke="none"/></svg></button>
+        </div>
+        <div id="typeRow"></div>
+        <div id="scrollUp"><svg viewBox="0 0 24 14" fill="currentColor"><path d="M12 1 23 13H1z"/></svg></div>
+        <ul id="list"></ul>
+        <div id="scrollDown"><svg viewBox="0 0 24 14" fill="currentColor"><path d="M12 13 1 1h22z"/></svg></div>
+        <div id="listMeta"><span id="countLabel"></span></div>
+      </section>
+
+      <!-- ============ settings · Pokémon card · dex status ============ -->
+      <div id="gameCfg" aria-label="game and view settings">
+        <div class="gcHead" data-i18n="gc_title">SETTINGS</div>
+        <div class="gcGames" id="themeRow" role="group" aria-label="game"></div>
+        <div class="gcRow">
+          <span class="gcLab" data-i18n="set_mark">Sprites</span>
+          <div class="setRow" id="setRow" role="group" aria-label="sprite options"></div>
+          <span class="gcLab" data-i18n="lcd_mark">LCD</span>
+          <button class="lcdchip" id="btnLcd" aria-pressed="false"><span class="lcdDot"></span><span id="lcdTxt">OFF</span></button>
+        </div>
+        <div id="setNote" class="setNote hidden"></div>
+      </div>
+      <div class="sprCard" id="sprCard" aria-label="selected pokemon">
+          <div class="sprStage" id="sprStage">
+            <button class="navArrow" id="mPrev" aria-label="Previous Pok&eacute;mon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 4.5 8 12l7.5 7.5 1.8-1.8L11.6 12l5.7-5.7z"/></svg></button>
+            <div id="sprBox" role="img"><img id="sprImg" alt=""></div>
+            <button class="navArrow" id="mNext" aria-label="Next Pok&eacute;mon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8.5 4.5 16 12l-7.5 7.5-1.8-1.8L12.4 12 6.7 6.3z"/></svg></button>
+          </div>
+          <div id="sprNo">#0000</div>
+          <div id="sprName">---</div>
+          <div id="sprTypes"></div>
+          <div class="htwt">
+            <div class="hw"><div class="k" data-i18n="ht">HT</div><div class="v" id="htVal">-</div></div>
+            <div class="hw"><div class="k" data-i18n="wt">WT</div><div class="v" id="wtVal">-</div></div>
+          </div>
+          <div id="cardFlavor" class="cardFlavor"></div>
+          <div class="sprBtns">
+            <button class="sbtn" id="btnBack" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h14M13 4l4 4-4 4"/><path d="M21 16H7M11 12l-4 4 4 4"/></svg><span data-i18n="back_mark">Back</span></button>
+            <button class="sbtn" id="btnShiny" aria-pressed="false" title=""><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.7L19.5 9l-4.4 3.6 1.4 5.7L12 15.2l-4.5 3.1 1.4-5.7L4.5 9l5.7-1.3z"/><path d="M19 3.5l.6 1.9 1.9.6-1.9.6-.6 1.9-.6-1.9-1.9-.6 1.9-.6z" fill-opacity=".7"/></svg><span data-i18n="shiny_mark">&#10022; Shiny</span></button>
+            <button class="sbtn" id="btnAnim" aria-pressed="false" title=""><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4l10 8-10 8z" fill="currentColor" stroke="none"/><path d="M18 5v14M21 8v8" stroke-linecap="round"/></svg><span data-i18n="anim_mark">Anim</span></button>
+            <button class="sbtn" id="btnCry"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M16.5 8.5a5 5 0 0 1 0 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span data-i18n="cry_mark">Cry</span></button>
+            <button class="sbtn" id="btnOwn"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M3.6 10.5h16.8" stroke="currentColor" stroke-width="2.4"/><circle cx="12" cy="12" r="3.4" fill="none" stroke="currentColor" stroke-width="2.2"/></svg><span data-i18n="own_mark">Own</span></button>
+            <button class="sbtn" id="btnFav"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.2 5.9 20.6l1.4-6.8L2.2 9.1l6.9-.8z"/></svg><span data-i18n="fav_mark">Fav</span></button>
+          </div>
+          <div id="sprHint" class="sprHint" data-i18n="swipe_hint">swipe: browse &middot; tap: front / back</div>
+        </div>
+        <div class="cntBox">
+          <div class="cTitle" data-i18n="dex_status">DEX STATUS</div>
+          <div id="cntRows"></div>
+        </div>
+
+      <!-- ============ detail pane ============ -->
+      <section id="detailPane" aria-live="polite"></section>
+
+    </main>
+
+    <footer id="foot">
+      <button id="startBtn"><span class="pill" data-i18n="start">START</span><span data-i18n="menu">MENU</span></button>
+      <span data-i18n="foot_disclaimer">Fan-made, non-commercial project. Pok&eacute;mon &copy; Nintendo / Creatures Inc. / GAME FREAK inc.</span>
+      <span><span data-i18n="foot_offline">Runs 100% offline &middot; single HTML file</span> &middot; <a href="index.html" data-i18n="all_games">All games</a></span>
+    </footer>
+
+  </div>
+</div>
+
+<!-- START menu popup -->
+<div id="menuScrim" class="hidden"></div>
+<div id="menuPop" class="hidden">
+  <div class="m-head" data-i18n="menu_title">POK&eacute;DEX MENU</div>
+  <button class="m-item" data-act="search"><span class="mi">&#128269;</span><span data-i18n="m_search">Search</span></button>
+  <button class="m-item" data-act="random"><span class="mi">&#127922;</span><span data-i18n="m_random">Random Pok&eacute;mon</span></button>
+  <button class="m-item" data-act="cry"><span class="mi">&#128266;</span><span data-i18n="m_cry">Play cry</span></button>
+  <button class="m-item" data-act="game"><span class="mi">&#127918;</span><span data-i18n="m_game">Game: Ruby</span></button>
+  <button class="m-item" data-act="shiny"><span class="mi">&#10022;</span><span data-i18n="m_shiny">Shiny sprites: OFF</span></button>
+  <button class="m-item" data-act="anim"><span class="mi">&#9654;</span><span data-i18n="m_anim">Animated sprites: OFF</span></button>
+  <button class="m-item" data-act="back"><span class="mi">&#8646;</span><span data-i18n="m_back">View: Front</span></button>
+  <button class="m-item" data-act="lcd"><span class="mi">&#128441;</span><span data-i18n="m_lcd">Screen: LCD</span></button>
+  <button class="m-item" data-act="fav"><span class="mi">&#9733;</span><span data-i18n="m_fav">Favorites only</span></button>
+  <button class="m-item" data-act="sort"><span class="mi">&#8645;</span><span data-i18n="m_sort">Sort: number</span></button>
+  <div class="m-sep"></div>
+  <button class="m-item" data-act="reset"><span class="mi">&#128465;</span><span data-i18n="m_reset">Reset seen / owned</span></button>
+  <button class="m-item" data-act="lang"><span class="mi">&#127760;</span><span data-i18n="m_lang">Language: English</span></button>
+  <button class="m-item" data-act="about"><span class="mi">&#8505;</span><span data-i18n="m_about">About / help</span></button>
+</div>
+
+<!-- about modal -->
+<div id="aboutWrap" class="hidden">
+  <div id="aboutBox">
+    <div class="a-head"><span data-i18n="about_title">ABOUT</span><button class="sbtn" id="aboutClose">&#10005;</button></div>
+    <div class="a-body">
+      <p data-i18n="about_p1">A fan-made, offline Pokédex covering all 386 Pokémon of Generation III — the five Game Boy Advance games in one dex. Data, sprites, cries and fonts live in local files next to the page — everything runs without internet.</p>
+      <p data-i18n="about_p2">&uarr; &darr; browse &nbsp; / search &nbsp; C cry &nbsp; T game &nbsp; S shiny &nbsp; A anim &nbsp; B back &nbsp; R random &nbsp; Esc close</p>
+      <p data-i18n="about_p3">Mark Pokémon as Seen and Owned to fill your dex status, just like the game.</p>
+      <div class="a-close"><button class="btn sec" id="aboutOk" data-i18n="ok">OK</button></div>
+    </div>
+  </div>
+</div>
+<script src="assets/js/gen3-data.js"></script>
+<script src="assets/js/gen3.js"></script>
+</body>
+</html>

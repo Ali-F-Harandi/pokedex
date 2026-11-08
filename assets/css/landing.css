@@ -102,6 +102,13 @@ body.fa .hero h1{font-family:var(--font-fa);font-size:30px;letter-spacing:0}
   --fc-h:#d8f0f4; --fc-d:#9cc4cc;
   --fc-chip-t:#c2e2e8; --fc-chip-bg:rgba(58,152,200,.25); --fc-chip-line:#2a6a80;
 }
+/* Gen III featured variant — GBA emerald / Rayquaza green */
+.fcard.em{
+  --fc-a:#0c2418; --fc-b:#091d13; --fc-c:#06160e; --fc-line:#1c4a30;
+  --fc-spr-a:#2c8458; --fc-spr-b:#175c38; --fc-spr-line:#3ea868;
+  --fc-h:#d8f2e2; --fc-d:#9ccab0;
+  --fc-chip-t:#c2e8d0; --fc-chip-bg:rgba(56,168,104,.25); --fc-chip-line:#2a6a44;
+}
 .fcard .fspr img{width:96px;height:96px;image-rendering:pixelated}
 .fcard .finfo{flex:1;min-width:250px}
 .fcard .fkick{font-family:var(--font-px);font-size:8.5px;letter-spacing:2px;color:var(--ok);direction:ltr;display:inline-block}

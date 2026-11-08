@@ -54,7 +54,7 @@ updates the statuses below. Work through the phases IN ORDER.
 
 | # | Phase | Status | Notes |
 |---|-------|--------|-------|
-| 1 | Landing + `gen3.html` unified dex (GBA styling, 5 themes RUBY/SAPPHIRE/EMERALD/FIRERED/LEAFGREEN, 386 data + per-game dex-text wordings R/S·EMERALD·FRLG, Deoxys per-game formes, full i18n + persistence) | TODO | |
+| 1 | Landing + `gen3.html` unified dex (GBA styling, 5 themes RUBY/SAPPHIRE/EMERALD/FIRERED/LEAFGREEN, 386 data + per-game dex-text wordings R/S·EMERALD·FRLG, Deoxys per-game formes, full i18n + persistence) | DONE | see phase notes below |
 | 2 | Sprite & cry completeness audit (every variant × 386) + fixes | TODO | |
 | 3 | Moves Dex wiring (R/S · EMERALD · FRLG) + contest data + verification | TODO | |
 | 4 | Item Dex wiring (Gen 3, per-game lists + prices, berries) + verification | TODO | |
@@ -122,6 +122,36 @@ Goal: the Gen-3 page itself, mirroring what gen2.html is for Gen 2.
   persistence, mobile order, emerald.html redirect, landing card href.
   Regression: test-gen1, test-gen2, test-order all still green.
 
+### Phase 1 — RESULT (2026-11-08, this run)
+DONE in one run. Delivered: `gen3.html` + `assets/css/gen3.css` (GBA indigo
+shell, GAME BOY ADVANCE wordmark, power LED, L/R shoulder buttons, wider
+1460px layout, 5 theme layers with per-game chip groups R+S / E / FR+LG;
+mobile `#main` keeps `align-items:stretch` — the b0e9a15 lesson) +
+`assets/js/gen3.js` (I18N EN/FA complete, `pkd_g3_*` persistence, deep
+links, 3-group game chips, ANIM = Emerald-only, wording selector that
+grows RUBY/SAPPHIRE and FIRERED/LEAFGREEN buttons exactly where the games'
+texts differ — 203 and 251 species respectively) + `assets/js/gen3-data.js`
+(built by `tools/build-gen3-data.py` from the emerald.js donor + PokeAPI
+cached species + `tools/gen3-fa-rs.json` — 386 hand-written Persian R/S
+wordings; abilities are the ERA-TRUE slots parsed from the pokeemerald
+`species_info.h` — 76 era abilities, Treecko=Overgrow only, Deoxys=Pressure;
+Deoxys per-cartridge formes: Normal R/S, Attack FR, Defense LG, Speed EM,
+per-game stats from PokeAPI forms and forme sprites 10013/10014/10015
+stored in the frlg/rs banks, emerald bank's 386.png IS the Speed forme) +
+`tools/build-gen3-sprites.py` (10 complete 64x64 banks: rs/frlg ×
+front/shiny/back/back-shiny + emerald/emerald-shiny cut from the legacy
+atlas — shiny rides atlas row-block 20; emerald BACK view reuses the rs
+bank — pokeemerald back sprites verified byte-identical to pokeruby's) +
+cries 252..386 fetched (1..251 untouched) + `emerald.html` redirect +
+landing card/catalog/roadmap Gen-3 (landing.css got an `.fcard.em`
+variant) + `tools/test-gen3.py` (61 checks) — full regression green:
+gen3 61, gen2 103, gen2-order 9, gen2-sprites 30, gen1 24, order 20,
+items 27, moves 44, locations 42.
+STAGED to phase 2 (tracked there): the FRLG Persian wording group
+(`fa_frlg`) — FA mode honestly falls back to the EN text for FRLG until
+then (the gen2 fallback pattern); the Deoxys SPEED *animated* webp (the
+anim set's 386.webp is still the normal forme; the still bank is correct).
+
 ### Phase 2 — sprite & cry completeness audit (gen3)
 - Audit every bank × 386: gen3-rs, gen3-rs-shiny, gen3-rs-back,
   gen3-rs-back-shiny, gen3-frlg (same four), gen3-emerald (extracted
@@ -135,6 +165,12 @@ Goal: the Gen-3 page itself, mirroring what gen2.html is for Gen 2.
   252..386 > 2KB (and 1..251 untouched).
 - Fix gaps via tools (build-sprites.py patterns). Write
   `tools/test-gen3-sprites.py`; run it + test-gen3.py.
+- ALSO owed from phase 1: hand-write the FRLG Persian wording group
+  (`fa_frlg`, 386 texts, dedupe FR==LG where shared) into
+  tools/gen3-fa-frlg.json + build wiring + swap the phase-1 test's
+  "falls back to EN" check to "is Persian"; and fetch/convert the Deoxys
+  SPEED animated webp for gen3-emerald-anim (the anim still shows the
+  normal forme on the EMERALD chip).
 
 ### Phase 3 — Moves Dex (R/S · EMERALD · FRLG) + contest data
 - Data: 354 moves (Gen-3 total; ids 1-354). Era stats from pret move tables
