@@ -6,11 +6,11 @@ Every dex shares one structure and feature set; only the theme changes per game.
 
 > 🌐 **Live site:** https://ali-f-harandi.github.io/pokedex/
 >
-> ▶️ **Emerald dex (Gen 3):** https://ali-f-harandi.github.io/pokedex/emerald.html
->
 > ▶️ **Generation I dex — Red · Blue · Green · Yellow in one page:** https://ali-f-harandi.github.io/pokedex/gen1.html
 >
 > ▶️ **Generation II dex — Gold · Silver · Crystal in one page:** https://ali-f-harandi.github.io/pokedex/gen2.html
+>
+> ▶️ **Generation III dex — Ruby · Sapphire · Emerald · FireRed · LeafGreen in one page:** https://ali-f-harandi.github.io/pokedex/gen3.html
 
 ---
 
@@ -18,22 +18,27 @@ Every dex shares one structure and feature set; only the theme changes per game.
 
 | Game | Generation | File | Status |
 |------|-----------|------|--------|
-| **Pokémon Emerald** | Gen 3 (Hoenn) | [`emerald.html`](https://ali-f-harandi.github.io/pokedex/emerald.html) | ✅ Available |
 | **Generation I — Red · Blue · Green · Yellow** | Gen 1 (Kanto) | [`gen1.html`](https://ali-f-harandi.github.io/pokedex/gen1.html) | ✅ Available |
 | **Generation II — Gold · Silver · Crystal** | Gen 2 (Johto + Kanto) | [`gen2.html`](https://ali-f-harandi.github.io/pokedex/gen2.html) | ✅ Available |
+| **Generation III — Ruby · Sapphire · Emerald · FireRed · LeafGreen** | Gen 3 (Hoenn + Kanto + Sevii) | [`gen3.html`](https://ali-f-harandi.github.io/pokedex/gen3.html) | ✅ Available |
 
-(`red-blue.html` / `yellow.html` redirect to `gen1.html`, and `goldsilver.html` / `crystal.html` redirect to `gen2.html` — each generation lives in one dex.)
+(`red-blue.html` / `yellow.html` redirect to `gen1.html`, `goldsilver.html` / `crystal.html` redirect to `gen2.html`, and `emerald.html` redirects to `gen3.html` — each generation lives in one dex.)
 
-### Emerald Dex — features
+### Generation III Dex — features (Ruby · Sapphire · Emerald · FireRed · LeafGreen in one page)
 
-- All **386 Pokémon** (Gen 1–3, National Dex #001–#386)
-- UI faithful to the **in-game Pokémon Emerald Pokédex**: cream screen, red `POKé DEX` badge, red selection bar with pointer arrow, sprite card, `DEX STATUS` counters, `START · MENU` button
-- **Dex modes** like the game: `NATIONAL / KANTO / JOHTO / HOENN`
-- **Animated battle sprites** — Emerald was the first game to animate its battle sprites; all 386 authentic animations are included as lossless WebP, with a toggle (START menu / `Anim` button / key `A`)
-- Emerald sprites **normal + shiny** (single local sprite atlas)
-- Detail view: dex entry, base stats with colored bars, gen-3-accurate **type matchups**, full **evolution line** with conditions, abilities (incl. hidden), catch rate, happiness, growth rate, egg groups, habitat, gender ratio
-- Search (EN/FA/number) · type filter chips · sort · favorites · random · seen/owned tracking (saved in browser)
-- Keyboard: `↑ ↓ ← →` browse · `/` search · `S` shiny · `A` anim · `R` random · `Esc` close · deep links (`emerald.html#025`)
+- All **386 Pokémon** (Gen 1–3, National Dex #001–#386) and **all five Gen-3 games in a single dex**, themed after the Game Boy Advance era — an indigo GBA shell with the `GAME BOY ADVANCE` wordmark, power LED, L/R shoulder buttons and a wider screen proportion; each game repaints the console like its own cartridge. The GAME chips live in their own SETTINGS panel, grouped like the real cartridges: **RUBY + SAPPHIRE share one group**, **EMERALD** stands alone and **FIRERED + LEAFGREEN** share one — also reachable from the START menu or key `T`
+- **Each cartridge's own sprites** — Ruby/Sapphire, Emerald and FireRed/LeafGreen each get their own banks (front, back, shiny, back-shiny — 64×64 uniform canvas, `image-rendering:pixelated`), and the dex swaps banks with the theme. **Emerald's animated battle sprites** are on the EMERALD chip only (Emerald was the first game to animate them) — all 386 authentic animations as lossless WebP with a toggle (`Anim` button, START menu or key `A`)
+- **Deoxys follows its cartridge**, exactly like the real games: Normal forme on Ruby/Sapphire, Attack on FireRed, Defense on LeafGreen, Speed on Emerald — the card, stats, sprites and dex entry all switch with the selected game
+- **Dex-text version selector**: Ruby/Sapphire, Emerald and FRLG each carry their own entry texts — small `R/S` / `EMERALD` / `FRLG` buttons on the entry box offer only the wordings the active game really has (203 species differ across R/S, 251 across FRLG); the box flips pages like the original
+- **Ability Dex** (`Y` key or START menu) — gen 3 introduced abilities: all **77 era-authentic abilities** parsed from the pokeemerald tables, searchable EN/FA, each with its effect and its slot-1 / slot-2 carrier lists; **no hidden abilities anywhere** (they didn't exist yet), and Cacophony is kept with the honest note that it exists in the games' code but no Pokémon of the era carries it; ability chips on every Pokémon open the ability's card
+- **Natures** — all **25 natures** with an interactive selector on the base-stats panel: picking one shows ▲/▼ (+10 %/−10 %) on the affected stats, notes neutral natures, and ties each nature to its loved/hated **Pokéblock flavor** straight from the games' tables
+- **HOW TO CATCH section on every Pokémon** — where it actually lives in the selected game: wild grass, surfing, rock-smashing, underwater and fishing tables (with the real slot and bite chances), every special way (starters, gifts, in-game trades with their NPCs, Game Corner dolls, fossils, statics with script-true levels, roamers, ticket events), Feebas's six hidden tiles, and the full evolve paths with Gen-3 conditions (Beauty 170, trade items, happiness) — impossible-in-that-game Pokémon say so and name the games that have them
+- **Location Dex** (`L` key or START menu) — **80 Hoenn** (R/S/E) **+ 87 Kanto & Sevii** (FRLG) locations with region chips `HOENN / KANTO`, per-game per-room encounter tables (Emerald-only areas, FR/LG differences, rooms that genuinely differ), fishing with bite rolls, the UNDERWATER / ROCK-SMASH / SWARM method badges, the Tanoby chambers' authentic Unown letter sets and the roaming-Lati@s / beast rules; click any Pokémon to jump to its dex page
+- **Moves follow the selected game** — the learnset panel, Moves Dex and TM/HM list switch between R/S, Emerald and FRLG data with the theme; **contest data** (appeal + jam hearts) shows on R/S/E move cards and is authentically absent on FRLG — see the *Moves & learnsets* section below
+- **Item Dex** — every bag item of the selected game (222 in R/S, 247 in Emerald, 248 in FRLG) with era-true prices, pockets and descriptions, and all **43 Gen-3 berries** with their flavor profiles and firmness — see the *Item Dex* section below
+- Counters split like the game: seen & owned, saved in the browser
+- **Authentic Gen-3 type chart** (identical to Gen 2's — the next change came in Gen 5) and **era-true move classes**: physical/special still derived from the move's type (the split came in Gen 4)
+- **Authentic cries for all 386** (local OGG files; 252–386 joined the shared cry folder, 1–251 untouched) · deep links (`gen3.html#025`) · optional LCD screen shader · settings remembered (`pkd_g3_*`)
 
 ### Generation I Dex — features (Red · Blue · Green · Yellow in one page)
 
@@ -113,14 +118,15 @@ Every dex shares one structure and feature set; only the theme changes per game.
 ### All dexes
 
 - **Bilingual: English (primary) + Persian (فارسی)** — full RTL, Persian digits, translated names/types/entries/abilities/evolutions
-- **Moves everywhere (Gen-1/2 dexes)** — per-game learnset panel, Moves Dex (`M`), TM/HM list — see the *Moves & learnsets* section above
-- **Item Dex everywhere (Gen-1/2 dexes)** — every bag item of the game with icons, prices and bilingual descriptions (`I`) — see the *Item Dex* section above
+- **Moves everywhere (Gen-1/2/3 dexes)** — per-game learnset panel, Moves Dex (`M`), TM/HM list — see the *Moves & learnsets* section above
+- **Item Dex everywhere (Gen-1/2/3 dexes)** — every bag item of the game with icons, prices and bilingual descriptions (`I`) — see the *Item Dex* section above
+- **Location Dex on Gen-1/2/3** (`L`) with HOW TO CATCH on every Pokémon — see the *Location Dex* section above
 - **100% offline** — all data, sprites, cries and fonts are plain local files next to each page
 - Landing page (`index.html`) is **game-neutral**: one catalog item per game — Generation I is all four Game Boy games in one item; complementary pairs like Gold/Silver or Ruby/Sapphire share a single item
 
 ## 🏠 Landing page
 
-`index.html` is the project hub (dark neutral theme, not tied to any single game). Every mainline Pokémon game (Gen 1–9) is listed with its own colored card; **Emerald**, the **Generation I dex** (Red · Blue · Green · Yellow in one page), **Gold/Silver** and **Crystal** are live now, everything else is *Coming Soon* and will follow one by one. Bilingual EN/FA.
+`index.html` is the project hub (dark neutral theme, not tied to any single game). Every mainline Pokémon game (Gen 1–9) is listed with its own colored card; the **Generation I dex** (Red · Blue · Green · Yellow in one page), the **Generation II dex** (Gold · Silver · Crystal) and the **Generation III dex** (Ruby · Sapphire · Emerald · FireRed · LeafGreen) are live now, everything else is *Coming Soon* and will follow one by one. Bilingual EN/FA.
 
 ## 🗺 Roadmap
 
@@ -136,7 +142,11 @@ Every dex shares one structure and feature set; only the theme changes per game.
 - [x] **Moves & learnsets on the Gen-2 dex** — 251 moves, per-game learnsets, Crystal-only Move Tutor, authentic 50+7 TM/HM list
 - [x] **Item Dex on the Gen-2 dex** — 161 Gold/Silver + 165 Crystal items with Gen-2 prices and LCD-coupled icons
 - [x] **Location Dex & How to Catch on the Gen-2 dex** — 119 Johto + Kanto locations with time-of-day tables, rods, Headbutt/Rock Smash, swarms, the Bug-Catching Contest and 51 special encounters
-- [ ] Ruby / Sapphire, FireRed / LeafGreen (Gen 3)
+- [x] **Generation III unified dex (Pokédex Plus)** — Ruby · Sapphire · Emerald · FireRed · LeafGreen in one Game Boy Advance-styled page: per-cartridge sprite banks, three dex-text wordings, the cartridge-bound Deoxys formes, era-true abilities (no hidden), Emerald's animated sprites
+- [x] **Moves & learnsets on the Gen-3 dex** — 354 moves × 3 games, per-game learnsets/egg/machine/tutor data, contest appeal+jam on R/S/E, authentic 50 TMs + 8 HMs
+- [x] **Item Dex on the Gen-3 dex** — 222 R/S + 247 Emerald + 248 FRLG items with era-true prices and all 43 berries with flavor profiles
+- [x] **Location Dex & How to Catch on the Gen-3 dex** — 80 Hoenn + 87 Kanto & Sevii locations with per-game tables, underwater/rock-smash/swarm methods, Feebas tiles, roamers and ticket events
+- [x] **Ability Dex + Natures on the Gen-3 dex** — all 77 era abilities with carrier lists (`Y`), the 25 natures with an interactive stat-boost selector and Pokéblock flavors
 - [ ] Gen 4–9 — planned
 
 ## 🚀 Run locally
@@ -146,7 +156,7 @@ No installation needed:
 ```bash
 git clone https://github.com/Ali-F-Harandi/pokedex.git
 cd pokedex
-# open index.html (or emerald.html / gen1.html / gen2.html) directly in any browser —
+# open index.html (or gen1.html / gen2.html / gen3.html) directly in any browser —
 # everything works offline, even over file://
 ```
 
@@ -155,19 +165,28 @@ cd pokedex
 ```
 pokedex/
 ├── index.html                  ← game-neutral landing page (catalog + roadmap, EN/FA)
-├── emerald.html                ← Gen-3 Emerald dex entry page
 ├── gen1.html                   ← Generation I dex — Red · Blue · Green · Yellow in one page
 ├── red-blue.html               ← redirect → gen1.html
 ├── yellow.html                 ← redirect → gen1.html
 ├── gen2.html                   ← Generation II dex — Gold · Silver · Crystal in one page
 ├── goldsilver.html             ← redirect → gen2.html
 ├── crystal.html                ← redirect → gen2.html
+├── gen3.html                   ← Generation III dex — Ruby · Sapphire · Emerald · FireRed · LeafGreen in one page
+├── emerald.html                ← redirect → gen3.html
 └── assets/
-    ├── css/                    ← one stylesheet per page (emerald / gen1 / gen2 / landing)
-    ├── js/                     ← data + logic per page (emerald / gen1 / gen2 / landing) + shared moves/items/locations modules
+    ├── css/                    ← one stylesheet per page (gen1 / gen2 / gen3 / landing / …)
+    ├── js/                     ← data + logic per page (gen1 / gen2 / gen3 / landing) + shared moves/items/locations/abilities modules
     ├── fonts/                  ← Press Start 2P + Vazirmatn (woff2, OFL)
     ├── img/                    ← favicon, Emerald sprite atlas, featured-card images
     ├── sprites/
+    │   ├── gen3-rs/            ← Ruby/Sapphire sprites (386)
+    │   ├── gen3-rs-shiny/      ← Ruby/Sapphire shiny variants (386)
+    │   ├── gen3-rs-back*/      ← Ruby/Sapphire backs (normal + shiny)
+    │   ├── gen3-frlg/          ← FireRed/LeafGreen sprites (386 + the FR/LG Deoxys forme sprites)
+    │   ├── gen3-frlg-shiny/    ← FireRed/LeafGreen shiny variants
+    │   ├── gen3-frlg-back*/    ← FireRed/LeafGreen backs (normal + shiny)
+    │   ├── gen3-emerald/       ← Emerald stills cut from the animation atlas (incl. the Speed-forme Deoxys)
+    │   ├── gen3-emerald-shiny/ ← Emerald shiny variants
     │   ├── gen3-emerald-anim/  ← 386 animated battle sprites (lossless WebP)
     │   ├── gen1-rb-dmg/        ← Red/Blue Game Boy mono, DMG green palette
     │   ├── gen1-rb-pocket/     ← Red/Blue Game Boy mono, Pocket gray palette
@@ -186,7 +205,7 @@ pokedex/
     │   ├── gen2-crystal-anim/  ← 251 animated battle sprites (lossless WebP)
     │   ├── gen1-*-back/        ← back sprites of every Gen-1 set above
     │   └── gen2-*-back*/       ← back sprites (normal + shiny) of every Gen-2 version
-    └── audio/cries/            ← 251 authentic cries (ogg, shared by all Gen-1/2 dexes)
+    └── audio/cries/            ← 386 authentic cries (ogg, shared by all dexes; 252–386 joined for Gen 3)
 ```
 
 Each HTML page is tiny (6–12 KB) and pulls in its own CSS/JS plus the shared `assets/` folder. Adding a new game dex = one more HTML entry + one CSS + one JS + a sprite folder — everything else is reused.
@@ -195,15 +214,16 @@ Each HTML page is tiny (6–12 KB) and pulls in its own CSS/JS plus the shared `
 
 - Vanilla HTML/CSS/JS — zero dependencies, zero network calls
 - Sprites from the [PokeAPI sprites](https://github.com/PokeAPI/sprites) project:
-  - `generation-iii/emerald` — static + animated battle sprites (Emerald)
   - `generation-i/red-blue` — Red/Blue sprites (mono conversions + colored originals, front + back)
   - `generation-i/red-green-japan` — the Japan-only Green version's older artwork (front + back)
   - `generation-i/yellow` — Yellow sprites (mono conversions + colored originals, front + back)
   - `generation-ii/gold` + `generation-ii/silver` (+ `shiny`, + back sprites) — each version's own sprites (Gold/Silver)
   - `generation-ii/crystal` (+ `shiny` + `animated` + back sprites) — Crystal's own static and animated sprites
-- Pokédex entry texts, categories and in-game HT/WT from the [`pret/pokered`](https://github.com/pret/pokered) and [`pret/pokeyellow`](https://github.com/pret/pokeyellow) decompilations; Gold/Silver/Crystal EN texts per version from PokeAPI
+  - `generation-iii/ruby-sapphire` + `generation-iii/firered-leafgreen` (+ `shiny`, + back sprites) — each cartridge's own sprites (Gen 3), plus the legacy Emerald animation atlas for the EMERALD chip
+- Pokédex entry texts, categories and in-game HT/WT from the [`pret/pokered`](https://github.com/pret/pokered) and [`pret/pokeyellow`](https://github.com/pret/pokeyellow) decompilations; Gold/Silver/Crystal EN texts per version from PokeAPI; Gen-3 R/S · Emerald · FRLG wordings per version from PokeAPI, era-true abilities from the [`pret/pokeemerald`](https://github.com/pret/pokeemerald) tables
 - Game data (stats, abilities, evolutions, genera) from [PokeAPI](https://pokeapi.co/)
-- Wild encounter tables, fishing groups, in-game trades and Game Corner prizes from the `pret` decompilations (`pokered`, `pokeyellow` for Kanto; `pokegold` / `pokesilver` / `pokecrystal` for Johto + Kanto) — see `tools/build-locations.py` and `tools/build-locations-gen2.py`
+- Wild encounter tables, fishing groups, in-game trades and Game Corner prizes from the `pret` decompilations (`pokered`, `pokeyellow` for Kanto; `pokegold` / `pokesilver` / `pokecrystal` for Johto + Kanto; `pokeruby` / `pokeemerald` / `pokefirered` for Hoenn + Kanto/Sevii) — see `tools/build-locations.py`, `tools/build-locations-gen2.py` and `tools/build-locations-gen3.py`
+- Gen-3 moves, items, abilities and natures parsed from the `pret` decompiles (`pokeruby`, `pokeemerald`, `pokefirered`) — see `tools/build-gen3-moves.py`, `tools/build-items-gen3.py`, `tools/build-gen3-abilities.py`
 - [Press Start 2P](https://fonts.google.com/specimen/Press+Start+2P) (OFL) + [Vazirmatn](https://github.com/rastikerdar/vazirmatn) (OFL)
 - Persian translations: names, genera, dex entries, abilities and UI — hand-written for this project
 

@@ -61,7 +61,7 @@ updates the statuses below. Work through the phases IN ORDER.
 | 5 | Location Dex + How to Catch — Hoenn (R/S/E) | DONE | see phase notes below |
 | 6 | Location Dex + How to Catch — Kanto + Sevii (FRLG) | DONE | see phase notes below |
 | 7 | Gen-3 signature: Ability Dex overlay + Natures (25, interactive) + contest polish | DONE | see phase notes below |
-| 8 | Final QA (all-gen regression, VLM visual audit EN/FA, README, landing) + delete cron | TODO | |
+| 8 | Final QA (all-gen regression, VLM visual audit EN/FA, README, landing) + delete cron | DONE | see phase notes below |
 
 ## Phase details
 
@@ -650,6 +650,58 @@ the contest/flavor cross-notes.
 - Mark the table all DONE, commit, push — then DELETE the cron job
   `gen3-phases-runner` (cron tool: list → id → delete). Confirm deletion.
   Leave a short summary in the final commit message.
+
+### Phase 8 — RESULT (2026-11-09, this run — FINAL PHASE, Gen 3 shipped)
+DONE — the whole Generation-III plan is complete. This phase:
+- Full regression, all 10 suites green in one sweep: gen3 **293** · gen2
+  103 · gen3-sprites 50 · locations 42 · moves 44 · items 27 · order 20 ·
+  gen1 24 · gen2-sprites 30 · gen2-order 9 — **642 checks, 0 failures**.
+- New `tools/shoot-gen3-qa.py` (kept in the repo, the gen2-qa sister):
+  screenshots (mobile 390 EN ruby + FA sapphire + FA emerald, desktop 1440
+  × all 5 themes) + **23 DOM geometry checks, all passing** — mobile
+  reading order DEX STATUS→search→SETTINGS→card→details, all five panels
+  exactly fill `#main` (the b0e9a15 stretch lesson holds on gen3), no
+  horizontal overflow at 390, bilingual `.altName` name on the card, rtl
+  sane in FA, zero page errors on all 8 viewports/themes.
+- `z-ai vision` audit on m-ruby-en / m-sapphire-fa / d-firered-fa: Persian
+  glyphs, RTL mirroring, Persian digits (۲۵۲، ۰٫۴ متر، ۵٫۰ کیلوگرم),
+  bilingual card name and FireRed palette all OK. The two model-flagged
+  "problems" were disproven by DOM measurement (authoritative): the
+  SETTINGS row has zero overlapping boxes (scrollWidth==clientWidth 304)
+  and the entry "ends mid-sentence" because the dex text is paginated 1/2
+  by design — false positives.
+- Landing verified: GENERATION I→II→III catalog order, Gen-3 card →
+  gen3.html (active), 386 count, FA featured titles, roadmap STEP 4 ✓;
+  emerald.html redirects to gen3.html (canonical + meta refresh).
+- README.md: new **Generation III Dex — features** section mirroring the
+  Gen-2 one (five cartridges, per-cart sprite banks, Deoxys formes, dex-
+  text selector, Ability Dex `Y`, Natures, HOW TO CATCH, 80+87 locations,
+  354 moves + contests, 248 items + 43 berries, type chart/move-class era
+  notes, 386 cries); header links/table/landing paragraph/roadmap
+  (Gen-3 phases checked off)/project structure (gen3 files + 11 sprite
+  banks + 386 cries)/built-with (gen-3 sprite folders, pret
+  pokeruby/pokeemerald/pokefirered, build tools) all updated.
+- Live deploy verified after push: Pages build → status `built`, then
+  gen3.html / assets/js/gen3.js / assets/css/gen3.css curled from
+  https://ali-f-harandi.github.io/pokedex/ and md5-identical to local.
+- Cron `gen3-phases-runner` deleted after the final push (confirmed via
+  list) — the runner's job is done.
+
+**GENERATION III — FINAL COMMIT SUMMARY (all 8 phases):** one unified GBA-
+styled dex `gen3.html` for all five cartridges (Ruby · Sapphire · Emerald ·
+FireRed · LeafGreen) with 386 Pokémon, per-cartridge sprite banks (10
+static banks + Emerald's 386 authentic animations), Deoxys bound to its
+cartridge (Normal/Attack/Defense/Speed), three per-game dex-text wordings
+fully hand-translated to Persian (386 R/S + 386 FRLG + Emerald donor),
+354 moves × 3 games with learnsets/egg/TM·HM 50+8/tutors and R/S·E contest
+data, 248 items with era-true prices + 43 berries with flavors, 80 Hoenn +
+87 Kanto & Sevii locations with per-game encounter tables and 82 curated
+specials (starters, trades, statics, roamers, Feebas tiles, ticket events),
+HOW TO CATCH everywhere, the era's 77 abilities in a searchable Ability Dex
+(`Y`, no hidden abilities, honest Cacophony note), all 25 natures as an
+interactive stat-boost selector with Pokéblock flavors — everything
+bilingual EN/FA (RTL, Persian digits), fully offline, one descriptive
+commit per phase, tracked in this file end-to-end.
 
 ## Environment facts (for the runs)
 
